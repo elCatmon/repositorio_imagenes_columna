@@ -4,6 +4,7 @@ import Login from './components/Login';
 import DicomViewer from './components/DicomViewer';
 import ThumbnailGallery from './components/ThumbnailGallery';
 import Donaciones from './components/Donacion'; // Asegúrate de que el nombre es correcto
+import Importar from './components/Importar'; // Importa el nuevo componente
 import './App.css'; // Asegúrate de que el CSS se está importando correctamente
 
 function App() {
@@ -35,6 +36,11 @@ function App() {
       {/* Aquí se agrega el componente Donaciones debajo de ThumbnailGallery y DicomViewer */}
       <div className="donaciones-section">
         <Donaciones />
+      </div>
+
+      {/* Aquí se agrega el nuevo formulario */}
+      <div className="importar-section">
+        <Importar />
       </div>
     </div>
   );

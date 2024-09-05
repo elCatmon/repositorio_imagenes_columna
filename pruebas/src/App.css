@@ -1,3 +1,4 @@
+/* Estilos generales */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -173,4 +174,41 @@ input[type="text"], input[type="file"], select {
 
 select {
   background-color: #f8f8f8; /* Fondo ligero para el menú desplegable */
+}
+
+/* Estilos para el componente Importar */
+.importar-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.form-section {
+  width: 48%;
+}
+
+.table-section {
+  width: 48%;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.table-section table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Asegurar que el ancho de las columnas sea consistente */
+}
+
+.table-section th, .table-section td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd; /* Color de borde más suave */
+  box-sizing: border-box; /* Incluir el padding y el borde en el cálculo del ancho */
 }
