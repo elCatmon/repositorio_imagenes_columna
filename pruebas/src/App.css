@@ -1,0 +1,176 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Asegura que el contenedor principal ocupe toda la altura de la ventana */
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  flex: 1; /* Asegura que el contenido ocupe toda la altura disponible */
+}
+
+.thumbnail-gallery {
+  flex: 1;
+  max-height: 700px; /* Limita la altura de la columna de miniaturas */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+}
+
+.thumbnail-gallery-container {
+  position: relative; /* Establece la posición relativa para que el encabezado sticky se posicione correctamente */
+  max-height: 700px; /* Limita la altura del contenedor de miniaturas */
+  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+}
+
+.thumbnail-gallery-header {
+  position: sticky; /* Fija el encabezado en su lugar */
+  top: 0; /* Alinea el encabezado en la parte superior del contenedor */
+  background-color: #f8f8f8; /* Fondo ligero para el encabezado */
+  z-index: 1; /* Asegúrate de que el encabezado esté por encima del contenido */
+  padding: 10px; /* Añade algo de espacio alrededor del texto */
+}
+
+.dicom-viewer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 700px; /* Limita la altura máxima del contenedor */
+  height: 700px; /* Fija la altura del contenedor */
+}
+
+.dicom-viewer {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+#dicomImage {
+  width: 100%; /* Ajusta el ancho al 100% del contenedor */
+  height: auto; /* Ajusta la altura automáticamente para mantener la relación de aspecto */
+}
+
+.donaciones-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.donaciones-left {
+  width: 40%;
+}
+
+.donaciones-right {
+  width: 55%;
+}
+
+/* Estilo de la tabla con alto máximo y scroll en tbody */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Asegurar que el ancho de las columnas sea consistente */
+}
+
+thead {
+  display: table;
+  width: calc(100% - 1px); /* Ajustar el ancho para compensar el borde */
+  table-layout: fixed; /* Asegurar que el ancho de las columnas sea consistente */
+}
+
+thead th {
+  background-color: #4CAF50; /* Fondo verde para los encabezados */
+  color: white; /* Texto blanco en los encabezados */
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd; /* Color de borde más suave */
+  box-sizing: border-box; /* Incluir el padding y el borde en el cálculo del ancho */
+}
+
+/* Estilo para las filas del cuerpo de la tabla */
+tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto; /* Barra de desplazamiento solo en el cuerpo de la tabla */
+  width: 100%;
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Asegurar que el ancho de las columnas sea consistente */
+}
+
+tbody td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd; /* Color de borde más suave */
+  box-sizing: border-box; /* Incluir el padding y el borde en el cálculo del ancho */
+}
+
+/* Limitar ancho para columnas específicas */
+thead th:nth-child(1), tbody td:nth-child(1) {
+  width: 30%; /* Ancho mayor para el nombre del archivo */
+}
+
+thead th:nth-child(2), tbody td:nth-child(2) {
+  width: 20%; /* Ajustar según el diseño deseado */
+}
+
+thead th:nth-child(3), tbody td:nth-child(3) {
+  width: 60px; /* Ancho fijo para fecha y hora de subida */
+}
+
+thead th:nth-child(4), tbody td:nth-child(4) {
+  width: 60px; /* Ancho fijo para tipo de estudio */
+}
+
+thead th:nth-child(5), tbody td:nth-child(5) {
+  width: 20%; /* Ajustar según el diseño deseado */
+}
+
+/* Estilo para botones */
+button {
+  background-color: #4CAF50; /* Fondo verde para los botones */
+  color: white; /* Texto blanco en los botones */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado dentro del botón */
+  text-align: center; /* Centra el texto en el botón */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Muestra los botones en línea */
+  font-size: 16px; /* Tamaño de fuente del texto del botón */
+  margin: 4px 2px; /* Espacio alrededor del botón */
+  cursor: pointer; /* Muestra un cursor de puntero cuando se pasa sobre el botón */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+button:hover {
+  background-color: #45a049; /* Color de fondo más oscuro en hover */
+}
+
+/* Estilo para campos de texto */
+input[type="text"], input[type="file"], select {
+  padding: 8px;
+  border: 1px solid #ddd; /* Color de borde más suave */
+  border-radius: 4px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente del texto en los campos */
+  width: 100%; /* Ajusta el ancho al 100% del contenedor */
+  box-sizing: border-box; /* Incluir el padding y el borde en el cálculo del ancho */
+  margin-bottom: 10px; /* Espacio debajo de los campos de texto */
+}
+
+select {
+  background-color: #f8f8f8; /* Fondo ligero para el menú desplegable */
+}
