@@ -15,6 +15,8 @@ const Importar = () => {
     archivos: []
   });
 
+  const [tablaDatos, setTablaDatos] = useState([]);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
@@ -37,9 +39,44 @@ const Importar = () => {
     setFormData((prevData) => ({ ...prevData, archivos: validFiles }));
   };
 
+  const generateRandomCode = () => {
+    return Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí podrías agregar la lógica para manejar el envío del formulario
+
+    // Genera un número de operación aleatorio
+    const noOperacion = generateRandomCode();
+
+    // Crea las miniaturas de las imágenes subidas
+    const miniaturas = formData.archivos.map(file => URL.createObjectURL(file));
+
+    // Crea los datos para la nueva fila
+    const nuevoRegistro = {
+      miniaturas,
+      noOperacion,
+      donador: formData.donador,
+      fecha: formData.fechaEstudio,
+      tipoEstudio: formData.tipoEstudio,
+      numeroArchivos: formData.archivos.length
+    };
+
+    // Agrega el nuevo registro a la tabla
+    setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
+
+    // Limpia el formulario si es necesario
+    setFormData({
+      tipoEstudio: '',
+      donador: '',
+      imagenValida: '',
+      edad: '',
+      sexo: '',
+      fechaNacimiento: '',
+      fechaEstudio: '',
+      proyeccion: '',
+      archivos: []
+    });
   };
 
   return (
@@ -61,8 +98,14 @@ const Importar = () => {
             >
               <option value="">Seleccione</option>
               <option value="Radiografia">Radiografía</option>
-              <option value="Mastografia">Mastografía</option>
-              <option value="Tomografia">Tomografía</option>
+              <option value="TomografiaComputarizada">Tomografia Computarizada</option>
+              <option value="ResonanciaMagentica">Resonancia Magentica</option>
+              <option value="Ultrasonido">Ultrasonido</option>
+              <option value="Mamografia">Mamografia</option>
+              <option value="Angiografia">Angiografia</option>
+              <option value="MedicinaNuclear">Medicina Nuclear</option>
+              <option value="RadioTerapia">Radio Terapia</option>
+              <option value="Fluroscopia">Fluroscopia</option>
             </select>
           </div>
 
@@ -195,11 +238,13 @@ const Importar = () => {
             </tr>
           </thead>
           <tbody>
-            {/* Aquí deberías mapear los datos a filas de la tabla */}
-            {/* Ejemplo:
-            {data.map((item) => (
-              <tr key={item.id}>
-                <td><img src={item.miniatura} alt="miniatura" /></td>
+            {tablaDatos.map((item, index) => (
+              <tr key={index}>
+                <td>
+                  {item.miniaturas.map((miniatura, i) => (
+                    <img key={i} src={miniatura} alt="miniatura" style={{ width: '60px', height: '60px' }} />
+                  ))}
+                </td>
                 <td>{item.noOperacion}</td>
                 <td>{item.donador}</td>
                 <td>{item.fecha}</td>
@@ -207,7 +252,6 @@ const Importar = () => {
                 <td>{item.numeroArchivos}</td>
               </tr>
             ))}
-            */}
           </tbody>
         </table>
       </div>
