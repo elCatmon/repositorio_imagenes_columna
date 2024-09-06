@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
+import { BASE_URL } from './config';
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
@@ -16,43 +17,47 @@ const Importar = () => {
   });
 
   const [tablaDatos, setTablaDatos] = useState([]);
+  const [error, setError] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (type === 'checkbox') {
-      setFormData((prevData) => ({ ...prevData, [name]: checked ? 'Sí' : 'No' }));
-    } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? (checked ? 'Sí' : 'No') : value
+    }));
+    console.log(`Campo cambiado: ${name} = ${value}`);
   };
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
+    console.log('Archivos seleccionados:', files);
+
     const validFiles = files.filter(file => 
       file.type === 'image/jpeg' && file.size <= 20 * 1024 * 1024 // Solo archivos JPG de hasta 20MB
     );
 
     if (validFiles.length !== files.length) {
       alert('Solo se permiten imágenes JPG de máximo 20MB.');
+      console.warn('Algunos archivos no cumplen con los criterios de validación');
     }
 
     setFormData((prevData) => ({ ...prevData, archivos: validFiles }));
   };
 
   const generateRandomCode = () => {
-    return Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
+    const code = Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
+    console.log('Código de operación generado:', code);
+    return code;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Datos del formulario al enviar:', formData);
 
-    // Genera un número de operación aleatorio
     const noOperacion = generateRandomCode();
-
-    // Crea las miniaturas de las imágenes subidas
     const miniaturas = formData.archivos.map(file => URL.createObjectURL(file));
 
-    // Crea los datos para la nueva fila
     const nuevoRegistro = {
       miniaturas,
       noOperacion,
@@ -62,21 +67,56 @@ const Importar = () => {
       numeroArchivos: formData.archivos.length
     };
 
-    // Agrega el nuevo registro a la tabla
     setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
 
-    // Limpia el formulario si es necesario
-    setFormData({
-      tipoEstudio: '',
-      donador: '',
-      imagenValida: '',
-      edad: '',
-      sexo: '',
-      fechaNacimiento: '',
-      fechaEstudio: '',
-      proyeccion: '',
-      archivos: []
+    // Prepara el objeto FormData para enviar al servidor
+    const formDataToSend = new FormData();
+    formDataToSend.append('estudio_ID', noOperacion);
+    formDataToSend.append('hash', ''); // Genera un hash si es necesario
+    formDataToSend.append('estudio', formData.tipoEstudio);
+    formDataToSend.append('sexo', formData.sexo);
+    formDataToSend.append('edad', formData.edad);
+    formDataToSend.append('fecha_nacimiento', formData.fechaNacimiento);
+    formDataToSend.append('proyeccion', formData.proyeccion);
+    formDataToSend.append('hallazgos', ''); // Asume que no envías hallazgos en el frontend
+    formDataToSend.append('fecha_estudio', formData.fechaEstudio);
+
+    formData.archivos.forEach((file, index) => {
+      formDataToSend.append(`imagenes[${index}]`, file);
     });
+
+    console.log('Datos enviados al servidor:', formDataToSend);
+
+    try {
+      const response = await fetch(`${BASE_URL}/estudios`, {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al enviar los datos');
+      }
+
+      setMensaje('Datos enviados correctamente');
+      setError('');
+      console.log('Respuesta del servidor:', await response.json());
+      setFormData({
+        tipoEstudio: '',
+        donador: '',
+        imagenValida: '',
+        edad: '',
+        sexo: '',
+        fechaNacimiento: '',
+        fechaEstudio: '',
+        proyeccion: '',
+        archivos: []
+      });
+
+    } catch (error) {
+      console.error('Error al enviar los datos:', error);
+      setError('Error al enviar los datos');
+      setMensaje('');
+    }
   };
 
   return (
@@ -98,14 +138,14 @@ const Importar = () => {
             >
               <option value="">Seleccione</option>
               <option value="Radiografia">Radiografía</option>
-              <option value="TomografiaComputarizada">Tomografia Computarizada</option>
-              <option value="ResonanciaMagentica">Resonancia Magentica</option>
+              <option value="TomografiaComputarizada">Tomografía Computarizada</option>
+              <option value="ResonanciaMagnetica">Resonancia Magnética</option>
               <option value="Ultrasonido">Ultrasonido</option>
-              <option value="Mamografia">Mamografia</option>
-              <option value="Angiografia">Angiografia</option>
+              <option value="Mamografia">Mamografía</option>
+              <option value="Angiografia">Angiografía</option>
               <option value="MedicinaNuclear">Medicina Nuclear</option>
               <option value="RadioTerapia">Radio Terapia</option>
-              <option value="Fluroscopia">Fluroscopia</option>
+              <option value="Fluroscopia">Fluoroscopia</option>
             </select>
           </div>
 
@@ -221,11 +261,13 @@ const Importar = () => {
 
           <button type="submit">Aceptar</button>
         </form>
+
+        {mensaje && <p className="success-message">{mensaje}</p>}
+        {error && <p className="error-message">{error}</p>}
       </div>
 
-      {/* Tabla de Importación */}
       <div className="table-section">
-        <h2>Tabla de Importación</h2>
+        <h2>Datos Importados</h2>
         <table>
           <thead>
             <tr>
@@ -233,23 +275,23 @@ const Importar = () => {
               <th>No. Operación</th>
               <th>Donador</th>
               <th>Fecha</th>
-              <th>Tipo de estudio</th>
-              <th>Número de archivos</th>
+              <th>Tipo de Estudio</th>
+              <th>Número de Archivos</th>
             </tr>
           </thead>
           <tbody>
-            {tablaDatos.map((item, index) => (
+            {tablaDatos.map((registro, index) => (
               <tr key={index}>
                 <td>
-                  {item.miniaturas.map((miniatura, i) => (
-                    <img key={i} src={miniatura} alt="miniatura" style={{ width: '60px', height: '60px' }} />
+                  {registro.miniaturas.map((miniatura, i) => (
+                    <img key={i} src={miniatura} alt="miniatura" width="50" />
                   ))}
                 </td>
-                <td>{item.noOperacion}</td>
-                <td>{item.donador}</td>
-                <td>{item.fecha}</td>
-                <td>{item.tipoEstudio}</td>
-                <td>{item.numeroArchivos}</td>
+                <td>{registro.noOperacion}</td>
+                <td>{registro.donador}</td>
+                <td>{registro.fecha}</td>
+                <td>{registro.tipoEstudio}</td>
+                <td>{registro.numeroArchivos}</td>
               </tr>
             ))}
           </tbody>
