@@ -1,10 +1,19 @@
-/* Estilos generales */
+/* Estilos generales para la aplicación */
 .app-container {
   display: flex;
   flex-direction: column;
   height: 100vh; /* Asegura que el contenedor principal ocupe toda la altura de la ventana */
+  padding: 20px; /* Espacio alrededor del contenido */
 }
 
+/* Estilo para el título principal */
+h1 {
+  margin-bottom: 20px; /* Espacio debajo del título */
+  font-size: 2em; /* Tamaño del texto del título */
+  font-weight: bold; /* Negrita para el título */
+}
+
+/* Contenedor principal del contenido */
 .content {
   display: flex;
   gap: 20px;
@@ -13,6 +22,7 @@
   padding: 20px;
   flex: 1; /* Asegura que el contenido ocupe toda la altura disponible */
 }
+
 
 .thumbnail-gallery {
   flex: 1;
@@ -143,7 +153,7 @@ thead th:nth-child(5), tbody td:nth-child(5) {
 }
 
 /* Estilo para botones */
-button {
+button, .app-button {
   background-color: #4CAF50; /* Fondo verde para los botones */
   color: white; /* Texto blanco en los botones */
   border: none; /* Sin borde */
@@ -157,8 +167,80 @@ button {
   border-radius: 5px; /* Bordes redondeados */
 }
 
-button:hover {
+button:hover, .app-button:hover {
   background-color: #45a049; /* Color de fondo más oscuro en hover */
+}
+
+/* Estilo para el botón de regresar */
+.back-button {
+  background-color: #4CAF50; /* Fondo verde para los botones */
+  color: white; /* Texto blanco en los botones */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado dentro del botón */
+  text-align: center; /* Centra el texto en el botón */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Muestra los botones en línea */
+  font-size: 16px; /* Tamaño de fuente del texto del botón */
+  margin: 10px; /* Espacio alrededor del botón */
+  cursor: pointer; /* Muestra un cursor de puntero cuando se pasa sobre el botón */
+  border-radius: 5px; /* Bordes redondeados */
+  position: relative; /* Posiciona el botón en relación a su contenedor */
+}
+
+/* Contenedor para el texto y las tarjetas de servicio */
+.service-section {
+  margin: 20px; /* Margen para separar del borde de la página */
+}
+
+/* Contenedor para las tarjetas de servicio */
+.service-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px; /* Espacio superior para separar del título */
+}
+
+/* Estilo para las tarjetas de servicio */
+.service-card {
+  padding: 20px;
+  color: #333; /* Color de texto más oscuro para contraste */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
+  transition: transform 0.2s, box-shadow 0.2s; /* Transición de transformación y sombra */
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
+  text-align: center; /* Centra el texto dentro de la tarjeta */
+  cursor: pointer; /* Muestra un cursor de puntero cuando se pasa sobre la tarjeta */
+  height: 200px; /* Ajusta la altura de las tarjetas */
+}
+
+/* Tarjetas de servicio al pasar el mouse */
+.service-card:hover {
+  transform: scale(1.02); /* Escala ligeramente la tarjeta en hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra en hover */
+}
+
+/* Estilo para enlaces dentro de las tarjetas */
+.service-card a {
+  color: #4CAF50; /* Color de enlace verde */
+  text-decoration: none; /* Sin subrayado */
+}
+
+.service-card a:hover {
+  text-decoration: underline; /* Subrayado en hover */
+}
+
+/* Contenedor de las tarjetas de servicio al estar alineadas en la parte superior */
+.service-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra las tarjetas horizontalmente */
+}
+
+.service-title {
+  margin-bottom: 20px; /* Espacio debajo del título */
+  font-size: 24px; /* Tamaño del texto del título */
+  font-weight: bold; /* Negrita para el título */
 }
 
 /* Estilo para campos de texto */
@@ -203,12 +285,10 @@ select {
 .table-section table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Asegurar que el ancho de las columnas sea consistente */
 }
 
 .table-section th, .table-section td {
+  border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
-  border: 1px solid #ddd; /* Color de borde más suave */
-  box-sizing: border-box; /* Incluir el padding y el borde en el cálculo del ancho */
 }

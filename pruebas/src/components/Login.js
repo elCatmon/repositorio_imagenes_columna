@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Hook para navegación
 
   // Función para manejar el login
   const handleLogin = async (event) => {
@@ -16,8 +18,8 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          correo: email,     // Asegúrate de que esto coincida con el nombre del campo en el backend
-          contrasena: password,  // Asegúrate de que esto coincida con el nombre del campo en el backend
+          correo: email,
+          contrasena: password,
         }),
       });
 
@@ -36,23 +38,28 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        placeholder="Correo electrónico"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Iniciar sesión</button>
-    </form>
+    <div>
+      {/* Botón de regresar */}
+      <button onClick={() => navigate('/')}>← Regresar</button>
+
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Iniciar sesión</button>
+      </form>
+    </div>
   );
 }
 

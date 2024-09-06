@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import JSZip from 'jszip'; // Importar la biblioteca JSZip para manejar archivos zip
+import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
 
 const Donaciones = () => {
+  const navigate = useNavigate(); // Inicializar la función navigate
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [error, setError] = useState(null);
@@ -47,7 +49,6 @@ const Donaciones = () => {
       }
     }
 
-    // Verificar si se encontraron archivos DICOM válidos
     if (dicomFiles.length > 0) {
       setSelectedFiles((prevFiles) => [...prevFiles, ...dicomFiles]);
       return true;
@@ -70,14 +71,12 @@ const Donaciones = () => {
       return;
     }
 
-    // Crear un FormData para enviar los archivos
     const formData = new FormData();
     selectedFiles.forEach(({ file }) => {
       formData.append('files', file);
     });
     formData.append('tipoEstudio', tipoEstudio);
 
-    // Configurar la solicitud para enviar los archivos
     try {
       setUploading(true);
       const response = await fetch(`${BASE_URL}/donacion`, { // Cambiar a /donacion
@@ -102,6 +101,10 @@ const Donaciones = () => {
 
   return (
     <div className="donaciones-container">
+      <div className="header">
+        <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
+      </div>
+
       <div className="donaciones-left">
         <h2>Donaciones de Archivos</h2>
         <div>

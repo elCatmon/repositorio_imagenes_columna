@@ -1,46 +1,47 @@
-import React, { useState } from 'react';
-import Register from './components/Register';
-import Login from './components/Login';
-import DicomViewer from './components/DicomViewer';
-import ThumbnailGallery from './components/ThumbnailGallery';
-import Donaciones from './components/Donacion'; // Asegúrate de que el nombre es correcto
-import Importar from './components/Importar'; // Importa el nuevo componente
-import './App.css'; // Asegúrate de que el CSS se está importando correctamente
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Asumiendo que usas react-router para navegación
+import './App.css';
 
 function App() {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleThumbnailClick = (image) => {
-    const fileName = image.split('/').pop().replace('.jpg', '.dcm');
-    setSelectedImage(fileName);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="app-container">
       <h1>Prueba de webservice</h1>
-      <Register />
-      <Login />
+      <div className="service-cards-container">
+        <div className="service-card bg-uno" onClick={() => navigate('/register')}>
+          <h2>Registro</h2>
+          <p>Realizar registro de usuario</p>
+          <a href="/register">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+        </div>
+        <div className="service-card bg-uno" onClick={() => navigate('/login')}>
+          <h2>Acceder</h2>
+          <p>Acceder a tu cuenta</p>
+          <a href="/login">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+        </div>
+        <div className="service-card bg-uno" onClick={() => navigate('/visualizador')}>
+          <h2>Visualizador DICOM</h2>
+          <p>Ver imágenes DICOM</p>
+          <a href="/visualizador">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+        </div>
+        <div className="service-card bg-uno" onClick={() => navigate('/importar')}>
+          <h2>Importar estudios</h2>
+          <p>Importar nuevos estudios</p>
+          <a href="/importar">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+        </div>
+        <div className="service-card bg-uno" onClick={() => navigate('/donacion')}>
+          <h2>Donación Física</h2>
+          <p>Realizar una donación</p>
+          <a href="/donacion">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
       <div className="content">
         <div className="thumbnail-gallery">
-          <ThumbnailGallery onThumbnailClick={handleThumbnailClick} />
+          {/* Aquí puedes colocar el componente de galería de miniaturas */}
         </div>
-        <div className="dicom-viewer">
-          {selectedImage ? (
-            <DicomViewer fileName={selectedImage} />
-          ) : (
-            <p>Selecciona una miniatura para ver la imagen DICOM.</p>
-          )}
+        <div className="dicom-viewer-container">
+          {/* Aquí puedes colocar el componente del visor DICOM */}
         </div>
-      </div>
-
-      {/* Aquí se agrega el componente Donaciones debajo de ThumbnailGallery y DicomViewer */}
-      <div className="donaciones-section">
-        <Donaciones />
-      </div>
-
-      {/* Aquí se agrega el nuevo formulario */}
-      <div className="importar-section">
-        <Importar />
       </div>
     </div>
   );
