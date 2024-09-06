@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';  // Import from 'react-dom/client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App';
 import Register from './components/Register';
@@ -8,7 +8,8 @@ import VisualizerPage from './components/VisualizerPage';
 import Importar from './components/Importar';
 import Donacion from './components/Donacion';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));  // Use createRoot
+root.render(
   <Router>
     <Routes>
       <Route path="/" element={<App />} />
@@ -18,6 +19,5 @@ ReactDOM.render(
       <Route path="/importar" element={<Importar />} />
       <Route path="/donacion" element={<Donacion />} />
     </Routes>
-  </Router>,
-  document.getElementById('root')
+  </Router>
 );

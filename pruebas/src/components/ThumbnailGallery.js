@@ -11,7 +11,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
       const response = await fetch(`${BASE_URL}/thumbnails`);
       if (response.ok) {
         const data = await response.json();
-        setImages(data);
+        setImages(Array.isArray(data) ? data : []);  // Ensure data is an array
         setLoaded(true);
       } else {
         setError('Error al obtener las imágenes');
@@ -34,19 +34,23 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
       <h2 className="thumbnail-gallery-header">Imágenes DICOM</h2>
       {loaded ? (
         <div style={galleryStyle}>
-          {images.map((image, index) => (
-            <div
-              key={index}
-              style={thumbnailContainerStyle}
-              onClick={() => onThumbnailClick(image)}
-            >
-              <img
-                src={image}
-                alt={`Thumbnail ${index}`}
-                style={thumbnailStyle}
-              />
-            </div>
-          ))}
+          {(images && images.length > 0) ? (   // Ensure images is not null
+            images.map((image, index) => (
+              <div
+                key={index}
+                style={thumbnailContainerStyle}
+                onClick={() => onThumbnailClick(image)}
+              >
+                <img
+                  src={image}
+                  alt={`Thumbnail ${index}`}
+                  style={thumbnailStyle}
+                />
+              </div>
+            ))
+          ) : (
+            <p>No hay imágenes disponibles.</p>
+          )}
         </div>
       ) : (
         <p>Cargando imágenes...</p>

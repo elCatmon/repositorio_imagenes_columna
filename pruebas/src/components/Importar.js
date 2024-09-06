@@ -25,7 +25,16 @@ const Importar = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData((prevData) => ({ ...prevData, archivos: e.target.files }));
+    const files = Array.from(e.target.files);
+    const validFiles = files.filter(file => 
+      file.type === 'image/jpeg' && file.size <= 20 * 1024 * 1024 // Solo archivos JPG de hasta 20MB
+    );
+
+    if (validFiles.length !== files.length) {
+      alert('Solo se permiten imágenes JPG de máximo 20MB.');
+    }
+
+    setFormData((prevData) => ({ ...prevData, archivos: validFiles }));
   };
 
   const handleSubmit = (e) => {
@@ -38,36 +47,140 @@ const Importar = () => {
       <div className="header">
         <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
       </div>
-
       <div className="form-section">
         <h2>Formulario de Importación</h2>
         <form onSubmit={handleSubmit}>
-          {/* Form Fields */}
+          {/* Tipo de estudio */}
           <div className="form-group">
             <label>Tipo de estudio:</label>
-            <input
-              type="text"
+            <select
               name="tipoEstudio"
               value={formData.tipoEstudio}
               onChange={handleChange}
               required
+            >
+              <option value="">Seleccione</option>
+              <option value="Radiografia">Radiografía</option>
+              <option value="Mastografia">Mastografía</option>
+              <option value="Tomografia">Tomografía</option>
+            </select>
+          </div>
+
+          {/* Donador */}
+          <div className="form-group">
+            <label>Donador:</label>
+            <input
+              type="text"
+              name="donador"
+              value={formData.donador}
+              onChange={handleChange}
+              required
             />
           </div>
-          {/* Other form fields remain the same */}
+
+          {/* Imagen válida */}
           <div className="form-group">
-            <label>Seleccionar archivos:</label>
+            <label>Imagen válida:</label>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="imagenValida"
+                  value="Sí"
+                  checked={formData.imagenValida === 'Sí'}
+                  onChange={handleChange}
+                />
+                Sí
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="imagenValida"
+                  value="No"
+                  checked={formData.imagenValida === 'No'}
+                  onChange={handleChange}
+                />
+                No
+              </label>
+            </div>
+          </div>
+
+          {/* Edad */}
+          <div className="form-group">
+            <label>Edad:</label>
+            <input
+              type="number"
+              name="edad"
+              value={formData.edad}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Sexo */}
+          <div className="form-group">
+            <label>Sexo:</label>
+            <select name="sexo" value={formData.sexo} onChange={handleChange} required>
+              <option value="">Seleccione</option>
+              <option value="M">M</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+
+          {/* Fecha de nacimiento */}
+          <div className="form-group">
+            <label>Fecha de nacimiento:</label>
+            <input
+              type="date"
+              name="fechaNacimiento"
+              value={formData.fechaNacimiento}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Fecha del estudio */}
+          <div className="form-group">
+            <label>Fecha del estudio:</label>
+            <input
+              type="date"
+              name="fechaEstudio"
+              value={formData.fechaEstudio}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Proyección */}
+          <div className="form-group">
+            <label>Proyección:</label>
+            <textarea
+              name="proyeccion"
+              value={formData.proyeccion}
+              onChange={handleChange}
+              rows="4"
+              required
+            />
+          </div>
+
+          {/* Selección de archivos */}
+          <div className="form-group">
+            <label>Seleccionar archivos (Solo imágenes JPG de máx 20MB):</label>
             <input
               type="file"
               multiple
+              accept="image/jpeg"
               name="archivos"
               onChange={handleFileChange}
               required
             />
           </div>
+
           <button type="submit">Aceptar</button>
         </form>
       </div>
 
+      {/* Tabla de Importación */}
       <div className="table-section">
         <h2>Tabla de Importación</h2>
         <table>
@@ -83,6 +196,18 @@ const Importar = () => {
           </thead>
           <tbody>
             {/* Aquí deberías mapear los datos a filas de la tabla */}
+            {/* Ejemplo:
+            {data.map((item) => (
+              <tr key={item.id}>
+                <td><img src={item.miniatura} alt="miniatura" /></td>
+                <td>{item.noOperacion}</td>
+                <td>{item.donador}</td>
+                <td>{item.fecha}</td>
+                <td>{item.tipoEstudio}</td>
+                <td>{item.numeroArchivos}</td>
+              </tr>
+            ))}
+            */}
           </tbody>
         </table>
       </div>
