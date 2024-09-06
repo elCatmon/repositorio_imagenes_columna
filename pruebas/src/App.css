@@ -204,20 +204,25 @@ button:hover, .app-button:hover {
 /* Estilo para las tarjetas de servicio */
 .service-card {
   padding: 20px;
+  background-color: #1a5baf; /* Color de fondo */
+  border: 1px solid #ddd; /* Color del borde */
   color: #333; /* Color de texto más oscuro para contraste */
-  border-radius: 8px;
+  border-radius: 8px; /* Esquinas redondeadas */
+  margin: 10px; /* Espacio exterior */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
   transition: transform 0.2s, box-shadow 0.2s; /* Transición de transformación y sombra */
   background-color: #ffffff; /* Fondo blanco para las tarjetas */
   text-align: center; /* Centra el texto dentro de la tarjeta */
   cursor: pointer; /* Muestra un cursor de puntero cuando se pasa sobre la tarjeta */
   height: 200px; /* Ajusta la altura de las tarjetas */
+  width: 250px;
 }
 
 /* Tarjetas de servicio al pasar el mouse */
 .service-card:hover {
   transform: scale(1.02); /* Escala ligeramente la tarjeta en hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra en hover */
+  background-color: #e9ecef; /* Color de fondo al pasar el ratón */
 }
 
 /* Estilo para enlaces dentro de las tarjetas */

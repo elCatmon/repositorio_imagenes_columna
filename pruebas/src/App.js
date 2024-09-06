@@ -25,12 +25,12 @@ function App() {
           <a href="/visualizador">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
         <div className="service-card bg-uno" onClick={() => navigate('/importar')}>
-          <h2>Importar estudios</h2>
+          <h2>Importar Estudios</h2>
           <p>Importar nuevos estudios</p>
           <a href="/importar">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
         <div className="service-card bg-uno" onClick={() => navigate('/donacion')}>
-          <h2>Donación Física</h2>
+          <h2>Donación Digital</h2>
           <p>Realizar una donación</p>
           <a href="/donacion">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
