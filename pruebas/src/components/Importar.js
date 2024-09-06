@@ -82,24 +82,25 @@ const Importar = () => {
     formDataToSend.append('fecha_estudio', formData.fechaEstudio);
 
     formData.archivos.forEach((file, index) => {
-      formDataToSend.append(`imagenes[${index}]`, file);
+      formDataToSend.append(`imagenes`, file); // Enviar los archivos correctamente
     });
 
-    console.log('Datos enviados al servidor:', formDataToSend);
-
     try {
-      const response = await fetch(`${BASE_URL}/estudios`, {
+      const response = await fetch(`${BASE_URL}/importar`, {
         method: 'POST',
-        body: formDataToSend,
+        body: formDataToSend, // Usa formDataToSend aquí
       });
 
       if (!response.ok) {
         throw new Error('Error al enviar los datos');
       }
 
+      const responseData = await response.json();
       setMensaje('Datos enviados correctamente');
       setError('');
-      console.log('Respuesta del servidor:', await response.json());
+      console.log('Respuesta del servidor:', responseData);
+
+      // Limpiar el formulario
       setFormData({
         tipoEstudio: '',
         donador: '',
@@ -118,6 +119,8 @@ const Importar = () => {
       setMensaje('');
     }
   };
+
+
 
   return (
     <div className="importar-container">
@@ -194,6 +197,8 @@ const Importar = () => {
             <input
               type="number"
               name="edad"
+              min="0"
+              max="100"
               value={formData.edad}
               onChange={handleChange}
               required
@@ -280,18 +285,18 @@ const Importar = () => {
             </tr>
           </thead>
           <tbody>
-            {tablaDatos.map((registro, index) => (
+            {tablaDatos.map((data, index) => (
               <tr key={index}>
                 <td>
-                  {registro.miniaturas.map((miniatura, i) => (
-                    <img key={i} src={miniatura} alt="miniatura" width="50" />
+                  {data.miniaturas.map((miniatura, idx) => (
+                    <img key={idx} src={miniatura} alt={`Miniatura ${idx}`} width="100" />
                   ))}
                 </td>
-                <td>{registro.noOperacion}</td>
-                <td>{registro.donador}</td>
-                <td>{registro.fecha}</td>
-                <td>{registro.tipoEstudio}</td>
-                <td>{registro.numeroArchivos}</td>
+                <td>{data.noOperacion}</td>
+                <td>{data.donador}</td>
+                <td>{data.fecha}</td>
+                <td>{data.tipoEstudio}</td>
+                <td>{data.numeroArchivos}</td>
               </tr>
             ))}
           </tbody>
