@@ -6,6 +6,7 @@ const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
   const [formData, setFormData] = useState({
     tipoEstudio: '',
+    region: "",
     donador: '',
     imagenValida: '',
     edad: '',
@@ -13,7 +14,8 @@ const Importar = () => {
     fechaNacimiento: '',
     fechaEstudio: '',
     proyeccion: '',
-    archivos: []
+    archivosAnonimizados: [],
+    archivosOriginales: []
   });
 
   const [tablaDatos, setTablaDatos] = useState([]);
@@ -30,6 +32,7 @@ const Importar = () => {
   };
 
   const handleFileChange = (e) => {
+    const { name } = e.target;
     const files = Array.from(e.target.files);
     console.log('Archivos seleccionados:', files);
 
@@ -42,7 +45,12 @@ const Importar = () => {
       console.warn('Algunos archivos no cumplen con los criterios de validación');
     }
 
-    setFormData((prevData) => ({ ...prevData, archivos: validFiles }));
+    setFormData((prevData) => ({ 
+      ...prevData, 
+      [name]: validFiles 
+    }));
+
+    console.log('Archivos después de la validación:', validFiles);
   };
 
   const generateRandomCode = () => {
@@ -56,7 +64,7 @@ const Importar = () => {
     console.log('Datos del formulario al enviar:', formData);
 
     const noOperacion = generateRandomCode();
-    const miniaturas = formData.archivos.map(file => URL.createObjectURL(file));
+    const miniaturas = formData.archivosOriginales.map(file => URL.createObjectURL(file));
 
     const nuevoRegistro = {
       miniaturas,
@@ -64,26 +72,36 @@ const Importar = () => {
       donador: formData.donador,
       fecha: formData.fechaEstudio,
       tipoEstudio: formData.tipoEstudio,
-      numeroArchivos: formData.archivos.length
+      numeroArchivos: formData.archivosOriginales.length
     };
 
     setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
 
-    // Prepara el objeto FormData para enviar al servidor
     const formDataToSend = new FormData();
     formDataToSend.append('estudio_ID', noOperacion);
-    formDataToSend.append('hash', ''); // Genera un hash si es necesario
+    formDataToSend.append('hash', ''); // O genera un hash si es necesario
+    formDataToSend.append('donador', formData.donador)
     formDataToSend.append('estudio', formData.tipoEstudio);
+    formDataToSend.append('region', formData.region);
     formDataToSend.append('sexo', formData.sexo);
     formDataToSend.append('edad', formData.edad);
     formDataToSend.append('fecha_nacimiento', formData.fechaNacimiento);
     formDataToSend.append('proyeccion', formData.proyeccion);
-    formDataToSend.append('hallazgos', ''); // Asume que no envías hallazgos en el frontend
     formDataToSend.append('fecha_estudio', formData.fechaEstudio);
 
-    formData.archivos.forEach((file, index) => {
-      formDataToSend.append(`imagenes`, file); // Enviar los archivos correctamente
-    });
+    // Solo agrega archivos anonimizados si hay
+    if (formData.archivosAnonimizados.length > 0) {
+      formData.archivosAnonimizados.forEach((file) => {
+        formDataToSend.append('archivosAnonimizados', file);
+      });
+    }
+
+    // Solo agrega archivos originales si hay
+    if (formData.archivosOriginales.length > 0) {
+      formData.archivosOriginales.forEach((file) => {
+        formDataToSend.append('archivosOriginales', file);
+      });
+    }
 
     try {
       const response = await fetch(`${BASE_URL}/importar`, {
@@ -92,7 +110,9 @@ const Importar = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Error al enviar los datos');
+        // Captura más información sobre el error
+        const errorResponse = await response.text();
+        throw new Error(`Error al enviar los datos: ${errorResponse}`);
       }
 
       const responseData = await response.json();
@@ -103,6 +123,7 @@ const Importar = () => {
       // Limpiar el formulario
       setFormData({
         tipoEstudio: '',
+        region:'',
         donador: '',
         imagenValida: '',
         edad: '',
@@ -110,17 +131,16 @@ const Importar = () => {
         fechaNacimiento: '',
         fechaEstudio: '',
         proyeccion: '',
-        archivos: []
+        archivosAnonimizados: [],
+        archivosOriginales: []
       });
 
     } catch (error) {
-      console.error('Error al enviar los datos:', error);
-      setError('Error al enviar los datos');
+      console.error('Error al enviar los datos:', error.message);
+      setError(`Error al enviar los datos: ${error.message}`);
       setMensaje('');
     }
   };
-
-
 
   return (
     <div className="importar-container">
@@ -129,7 +149,7 @@ const Importar = () => {
       </div>
       <div className="form-section">
         <h2>Formulario de Importación</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           {/* Tipo de estudio */}
           <div className="form-group">
             <label>Tipo de estudio:</label>
@@ -149,6 +169,31 @@ const Importar = () => {
               <option value="MedicinaNuclear">Medicina Nuclear</option>
               <option value="RadioTerapia">Radio Terapia</option>
               <option value="Fluroscopia">Fluoroscopia</option>
+            </select>
+          </div>
+
+          {/* Region */}
+          <div className="form-group">
+            <label>Region:</label>
+            <select
+              name="region"
+              value={formData.region}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccione</option>
+              <option value="cabeza-y-cuello">Cabeza y Cuello</option>
+              <option value="torso">Torso</option>
+              <option value="abdomen">Abdomen</option>
+              <option value="pelvis">Pelvis</option>
+              <option value="columna-vertebral">Columna Vertebral</option>
+              <option value="extremidades-superiores">Extremidades Superiores</option>
+              <option value="extremidades-inferiores">Extremidades Inferiores</option>
+              <option value="sistema-musculoesqueletico">Sistema Musculoesquelético</option>
+              <option value="sistema-cardiovascular">Sistema Cardiovascular</option>
+              <option value="sistema-respiratorio">Sistema Respiratorio</option>
+              <option value="sistema -digestivo">Sistema Digestivo</option>
+              <option value="sistema-urogenital">Sistema Urogenital</option>
             </select>
           </div>
 
@@ -227,9 +272,9 @@ const Importar = () => {
             />
           </div>
 
-          {/* Fecha del estudio */}
+          {/* Fecha de estudio */}
           <div className="form-group">
-            <label>Fecha del estudio:</label>
+            <label>Fecha de estudio:</label>
             <input
               type="date"
               name="fechaEstudio"
@@ -242,37 +287,50 @@ const Importar = () => {
           {/* Proyección */}
           <div className="form-group">
             <label>Proyección:</label>
-            <textarea
+            <input
+              type="text"
               name="proyeccion"
               value={formData.proyeccion}
               onChange={handleChange}
-              rows="4"
               required
             />
           </div>
 
-          {/* Selección de archivos */}
+          {/* Archivos anonimizados */}
           <div className="form-group">
-            <label>Seleccionar archivos (Solo imágenes JPG de máx 20MB):</label>
+            <label>Archivos anonimizados (JPG hasta 20MB):</label>
             <input
               type="file"
-              multiple
-              accept="image/jpeg"
-              name="archivos"
+              name="archivosAnonimizados"
               onChange={handleFileChange}
+              accept=".jpg"
+              multiple
               required
             />
           </div>
 
-          <button type="submit">Aceptar</button>
+          {/* Archivos originales */}
+          <div className="form-group">
+            <label>Archivos originales (JPG hasta 20MB):</label>
+            <input
+              type="file"
+              name="archivosOriginales"
+              onChange={handleFileChange}
+              accept=".jpg"
+              multiple
+              required
+            />
+          </div>
+
+          <button type="submit">Enviar</button>
         </form>
 
-        {mensaje && <p className="success-message">{mensaje}</p>}
         {error && <p className="error-message">{error}</p>}
+        {mensaje && <p className="success-message">{mensaje}</p>}
       </div>
 
       <div className="table-section">
-        <h2>Datos Importados</h2>
+        <h3>Datos Ingresados</h3>
         <table>
           <thead>
             <tr>
@@ -285,18 +343,18 @@ const Importar = () => {
             </tr>
           </thead>
           <tbody>
-            {tablaDatos.map((data, index) => (
+            {tablaDatos.map((dato, index) => (
               <tr key={index}>
                 <td>
-                  {data.miniaturas.map((miniatura, idx) => (
-                    <img key={idx} src={miniatura} alt={`Miniatura ${idx}`} width="100" />
+                  {dato.miniaturas.map((miniatura, miniIndex) => (
+                    <img key={miniIndex} src={miniatura} alt="Miniatura" width="50" height="50" />
                   ))}
                 </td>
-                <td>{data.noOperacion}</td>
-                <td>{data.donador}</td>
-                <td>{data.fecha}</td>
-                <td>{data.tipoEstudio}</td>
-                <td>{data.numeroArchivos}</td>
+                <td>{dato.noOperacion}</td>
+                <td>{dato.donador}</td>
+                <td>{dato.fecha}</td>
+                <td>{dato.tipoEstudio}</td>
+                <td>{dato.numeroArchivos}</td>
               </tr>
             ))}
           </tbody>
