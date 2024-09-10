@@ -49,19 +49,15 @@ const Importar = () => {
       ...prevData, 
       [name]: validFiles 
     }));
-
-    console.log('Archivos después de la validación:', validFiles);
   };
 
   const generateRandomCode = () => {
     const code = Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
-    console.log('Código de operación generado:', code);
     return code;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Datos del formulario al enviar:', formData);
 
     const noOperacion = generateRandomCode();
     const miniaturas = formData.archivosOriginales.map(file => URL.createObjectURL(file));
@@ -118,7 +114,6 @@ const Importar = () => {
       const responseData = await response.json();
       setMensaje('Datos enviados correctamente');
       setError('');
-      console.log('Respuesta del servidor:', responseData);
 
       // Limpiar el formulario
       setFormData({
@@ -136,7 +131,6 @@ const Importar = () => {
       });
 
     } catch (error) {
-      console.error('Error al enviar los datos:', error.message);
       setError(`Error al enviar los datos: ${error.message}`);
       setMensaje('');
     }

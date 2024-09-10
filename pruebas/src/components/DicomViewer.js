@@ -51,11 +51,9 @@ const DicomViewer = ({ fileName }) => {
 
           // Activar la herramienta de zoom por defecto
           cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-          console.log('Herramienta de zoom activada.');
 
         } catch (error) {
           setError('Error al cargar la imagen DICOM.');
-          console.error('Error al cargar la imagen:', error);
         } finally {
           setLoading(false);
         }
@@ -84,7 +82,6 @@ const DicomViewer = ({ fileName }) => {
       <div className="tool-buttons">
         <button
           onClick={() => {
-            console.log('Activando herramienta de Zoom');
             cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
           }}
         >

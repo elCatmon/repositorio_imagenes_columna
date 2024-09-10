@@ -24,23 +24,17 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
         sexo,
       }).toString();
 
-      console.log("Consulta de imágenes:", query);
-
       const response = await fetch(`${BASE_URL}/thumbnails?${query}`);
-      console.log("Respuesta de la API:", response);
       
       if (response.ok) {
         const data = await response.json();
-        console.log("Datos recibidos:", data);
         setImages(data); // Actualiza el estado con las URLs de las imágenes
         setLoaded(true);
       } else {
         setError('Error al obtener las imágenes');
-        console.error('Error en la solicitud:', response.statusText);
       }
     } catch (error) {
       setError('Error en la solicitud de imágenes: ' + error.message);
-      console.error('Error en la solicitud:', error);
     }
   }, [tipoEstudio, region, edadMin, edadMax, sexo]);
 
@@ -48,17 +42,9 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     fetchImages();
   }, [fetchImages]);
 
-  const handleFilterChange = () => {
-    console.log("Aplicando filtros...");
-    setLoaded(false);
-    fetchImages();
-  };
-
   if (error) {
     return <p>{error}</p>;
   }
-
-  console.log("Estado actual de imágenes:", images);
 
   return (
     <div className="thumbnail-gallery-container">
@@ -137,7 +123,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
           </>
         )}
       </div>
-
       <div className="thumbnail-gallery">
         {loaded ? (
           images.length > 0 ? (

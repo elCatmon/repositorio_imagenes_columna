@@ -26,13 +26,11 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         alert('Login exitoso');
-        console.log('Datos del login:', data);
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
       alert('Hubo un problema con el inicio de sesión. Por favor, intenta nuevamente.');
     }
   };
