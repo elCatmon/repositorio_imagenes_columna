@@ -11,13 +11,13 @@ function Register() {
   // Función para manejar el registro
   const handleRegister = async (event) => {
     event.preventDefault(); // Prevenir la recarga de la página
-
+  
     // Validar el correo electrónico
     if (!isValidEmail(email)) {
       alert('Por favor, ingresa un correo electrónico válido.');
       return;
     }
-
+  
     try {
       const response = await fetch(`${BASE_URL}/register`, {
         method: 'POST',
@@ -25,24 +25,33 @@ function Register() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          nombre: name,     // Cambiado de 'username' a 'nombre'
-          correo: email,    // Cambiado de 'email' a 'correo'
-          contrasena: password,  // Cambiado de 'password' a 'contrasena'
+          nombre: name,
+          correo: email,
+          contrasena: password,
         }),
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        alert(data.message); // Mostrar mensaje de éxito del backend
+  
+      const text = await response.text(); // Obtener el texto de la respuesta para depuración
+      const contentType = response.headers.get('Content-Type');
+  
+      if (contentType && contentType.includes('application/json')) {
+        const data = JSON.parse(text); // Intentar analizar el JSON
+        if (response.ok) {
+          alert(data.message); // Mostrar mensaje de éxito del backend
+        } else {
+          alert(data.error || 'Error en la solicitud'); // Mostrar mensaje de error si existe
+        }
       } else {
-        const errorData = await response.json(); // Manejar la respuesta de error
-        alert(errorData.error || 'Error en la solicitud'); // Mostrar mensaje de error si existe
+        console.error('Respuesta del servidor no es JSON:', text);
+        alert('Respuesta del servidor no es JSON válido.');
       }
     } catch (error) {
       console.error('Error al registrar:', error);
       alert('Hubo un problema con el registro. Por favor, intenta nuevamente.');
     }
   };
+  
+  
 
   // Función para validar el formato del correo electrónico
   const isValidEmail = (email) => {

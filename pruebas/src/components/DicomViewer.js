@@ -4,8 +4,7 @@ import cornerstoneTools from 'cornerstone-tools';
 import dicomParser from 'dicom-parser';
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import { BASE_URL } from './config';
-import { ZoomTool } from 'cornerstone-tools';
-
+import { ZoomTool, PanTool, LengthTool, RotateTool } from 'cornerstone-tools';
 
 // Configurar el cargador de imágenes DICOM
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
@@ -14,14 +13,14 @@ cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 // Configurar herramientas
 const configureTools = () => {
   cornerstoneTools.addTool(ZoomTool);
-  cornerstoneTools.addTool(cornerstoneTools.ZoomTool, {
-    configuration: {
-      invert: false,
-      preventZoomOutsideImage: false,
-      minScale: 0.1,
-      maxScale: 20.0,
-    }
-  });
+  cornerstoneTools.addTool(PanTool);
+  cornerstoneTools.addTool(LengthTool);
+  cornerstoneTools.addTool(RotateTool); // Asumiendo que existe RotateTool
+
+  cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
+  cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
+  cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
+  cornerstoneTools.setToolActive('Rotate', { mouseButtonMask: 1 }); // Asumiendo que existe RotateTool
 };
 
 const DicomViewer = ({ fileName }) => {
@@ -31,7 +30,7 @@ const DicomViewer = ({ fileName }) => {
 
   useEffect(() => {
     const element = elementRef.current;
-    
+
     if (element && fileName) {
       const imageId = `wadouri:${BASE_URL}/image/${fileName}`;
 
@@ -41,11 +40,8 @@ const DicomViewer = ({ fileName }) => {
 
         try {
           cornerstone.enable(element);
-
-          // Configura herramientas aquí
           configureTools();
 
-          // Cargar y mostrar la imagen
           const image = await cornerstone.loadImage(imageId);
           cornerstone.displayImage(element, image);
 
@@ -69,6 +65,54 @@ const DicomViewer = ({ fileName }) => {
     }
   }, [fileName]);
 
+  const zoomIn = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.scale *= 1.1; // Incrementar el nivel de zoom
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const zoomOut = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.scale /= 1.1; // Decrementar el nivel de zoom
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const moveLeft = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.translation.x -= 10; // Mover a la izquierda
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const moveRight = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.translation.x += 10; // Mover a la derecha
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const moveUp = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.translation.y -= 10; // Mover hacia arriba
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const moveDown = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.translation.y += 10; // Mover hacia abajo
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const rotateClockwise = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.rotation += 0.1; // Rotar en sentido horario
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
+  const rotateCounterClockwise = () => {
+    const viewport = cornerstone.getViewport(elementRef.current);
+    viewport.rotation -= 0.1; // Rotar en sentido antihorario
+    cornerstone.setViewport(elementRef.current, viewport);
+  };
+
   return (
     <div className="dicom-viewer-container">
       <div
@@ -79,13 +123,30 @@ const DicomViewer = ({ fileName }) => {
         {loading && <p>Cargando imagen DICOM...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
-      <div className="tool-buttons">
-        <button
-          onClick={() => {
-            cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-          }}
-        >
-          Zoom
+      <div className="tool-buttons" style={{ position: 'absolute', bottom: 10, right: 10, zIndex: 1 }}>
+        <button onClick={zoomIn}>
+          Zoom +
+        </button>
+        <button onClick={zoomOut}>
+          Zoom -
+        </button>
+        <button onClick={moveDown}>
+          Mover ↑
+        </button>
+        <button onClick={rotateCounterClockwise}>
+          Rotar ←
+        </button>
+        <button onClick={rotateClockwise}>
+          Rotar →
+        </button>
+        <button onClick={moveRight}>
+          Mover ←
+        </button>
+        <button onClick={moveUp}>
+          Mover ↓
+        </button>
+        <button onClick={moveLeft}>
+          Mover →
         </button>
       </div>
     </div>

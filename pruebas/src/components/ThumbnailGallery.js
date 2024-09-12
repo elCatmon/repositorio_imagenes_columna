@@ -157,9 +157,9 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
 const galleryStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-  gap: '10px',
+  gap: '20px',
   justifyContent: 'center',
-  padding: '10px',
+  padding: '20px',
   border: '1px solid #ddd'
 };
 
@@ -177,7 +177,7 @@ const thumbnailContainerStyle = {
 };
 
 const filterStyle = {
-  marginBottom: '20px'
+  marginBottom: '10px'
 };
 
 export default ThumbnailGallery;

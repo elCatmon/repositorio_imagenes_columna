@@ -22,26 +22,28 @@ h1 {
   padding: 20px;
   flex: 1; /* Asegura que el contenido ocupe toda la altura disponible */
 }
-
-
-.thumbnail-gallery {
-  flex: 1;
-  max-height: 700px; /* Limita la altura de la columna de miniaturas */
-  overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
-}
-
+/* Contenedor principal que contiene la galería de miniaturas */
 .thumbnail-gallery-container {
-  position: relative; /* Establece la posición relativa para que el encabezado sticky se posicione correctamente */
-  max-height: 700px; /* Limita la altura del contenedor de miniaturas */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Asegúrate de que el contenedor principal ocupe el 100% de la altura del contenedor padre */
+}
+
+/* Galería de miniaturas */
+.thumbnail-gallery {
+  flex: 1; /* Permite que la galería de miniaturas ocupe el espacio restante */
+  max-height: 700px; /* Limita la altura de la galería de miniaturas */
   overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
 }
 
+/* Encabezado de la galería de miniaturas */
 .thumbnail-gallery-header {
   position: sticky; /* Fija el encabezado en su lugar */
   top: 0; /* Alinea el encabezado en la parte superior del contenedor */
   background-color: #f8f8f8; /* Fondo ligero para el encabezado */
   z-index: 1; /* Asegúrate de que el encabezado esté por encima del contenido */
   padding: 10px; /* Añade algo de espacio alrededor del texto */
+  border-bottom: 1px solid #ddd; /* Opcional: Agrega una línea de separación debajo del encabezado */
 }
 
 .dicom-viewer-container {
