@@ -13,11 +13,11 @@ root.render(
   <Router>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Register />} />
+      <Route path="/" element={<Login />} />
       <Route path="/visualizador" element={<VisualizerPage />} />
-      <Route path="/importar" element={<Importar />} />
-      <Route path="/donacion" element={<Donacion />} />
+      <Route path="/" element={<Importar />} />
+      <Route path="/" element={<Donacion />} />
       
     </Routes>
   </Router>

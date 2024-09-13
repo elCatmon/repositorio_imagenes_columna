@@ -12,12 +12,12 @@ function App() {
         <div className="service-card bg-uno" onClick={() => navigate('/register')}>
           <h2>Registro</h2>
           <p>Realizar registro de usuario</p>
-          <a href="/register">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+          <a href="/">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
         <div className="service-card bg-uno" onClick={() => navigate('/login')}>
           <h2>Acceder</h2>
           <p>Acceder a tu cuenta</p>
-          <a href="/login">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+          <a href="/">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
         <div className="service-card bg-uno" onClick={() => navigate('/visualizador')}>
           <h2>Visualizador DICOM</h2>
@@ -27,12 +27,12 @@ function App() {
         <div className="service-card bg-uno" onClick={() => navigate('/importar')}>
           <h2>Importar Estudios</h2>
           <p>Importar nuevos estudios</p>
-          <a href="/importar">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+          <a href="/">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
         <div className="service-card bg-uno" onClick={() => navigate('/donacion')}>
           <h2>Donación Digital</h2>
           <p>Realizar una donación</p>
-          <a href="/donacion">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
+          <a href="/">Ir a la liga <i className="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <div className="content">
