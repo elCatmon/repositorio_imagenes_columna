@@ -5,6 +5,8 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [images, setImages] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1); // Página actual
+  const [hasMore, setHasMore] = useState(true); // Si hay más imágenes para cargar
 
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [region, setRegion] = useState('');
@@ -12,7 +14,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [edadMax, setEdadMax] = useState('');
   const [sexo, setSexo] = useState('');
 
-  const fetchImages = useCallback(async () => {
+  const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
 
     try {
@@ -22,13 +24,18 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
         edadMin,
         edadMax,
         sexo,
+        page: pageNumber,
+        limit: 18 // Limitar a 18 imágenes por página
       }).toString();
 
       const response = await fetch(`${BASE_URL}/thumbnails?${query}`);
       
       if (response.ok) {
         const data = await response.json();
-        setImages(data); // Actualiza el estado con las URLs de las imágenes
+        if (data.length < 18) {
+          setHasMore(false); // No hay más imágenes para cargar
+        }
+        setImages(prevImages => [...prevImages, ...data]); // Añadir nuevas imágenes al estado
         setLoaded(true);
       } else {
         setError('Error al obtener las imágenes');
@@ -39,8 +46,19 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   }, [tipoEstudio, region, edadMin, edadMax, sexo]);
 
   useEffect(() => {
-    fetchImages();
-  }, [fetchImages]);
+    setImages([]); // Limpiar imágenes cuando cambian los filtros
+    setPage(1); // Resetear la página
+    setHasMore(true); // Volver a habilitar el botón de cargar más
+    fetchImages(1); // Cargar la primera página
+  }, [fetchImages, tipoEstudio, region, edadMin, edadMax, sexo]);
+
+  const handleLoadMore = () => {
+    if (hasMore) {
+      const nextPage = page + 1;
+      setPage(nextPage);
+      fetchImages(nextPage); // Cargar la siguiente página
+    }
+  };
 
   if (error) {
     return <p>{error}</p>;
@@ -148,6 +166,9 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
         ) : (
           <p>Seleccione el tipo de estudio...</p>
         )}
+        {hasMore && (
+          <button onClick={handleLoadMore} style={buttonStyle}>Cargar más</button>
+        )}
       </div>
     </div>
   );
@@ -178,6 +199,14 @@ const thumbnailContainerStyle = {
 
 const filterStyle = {
   marginBottom: '10px'
+};
+
+const buttonStyle = {
+  display: 'block',
+  margin: '20px auto',
+  padding: '10px 20px',
+  fontSize: '16px',
+  cursor: 'pointer'
 };
 
 export default ThumbnailGallery;
