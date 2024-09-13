@@ -28,13 +28,11 @@ const Importar = () => {
       ...prevData,
       [name]: type === 'checkbox' ? (checked ? 'Sí' : 'No') : value
     }));
-    console.log(`Campo cambiado: ${name} = ${value}`);
   };
 
   const handleFileChange = (e) => {
     const { name } = e.target;
     const files = Array.from(e.target.files);
-    console.log('Archivos seleccionados:', files);
 
     const validFiles = files.filter(file => 
       file.type === 'image/jpeg' && file.size <= 20 * 1024 * 1024 // Solo archivos JPG de hasta 20MB
@@ -42,7 +40,6 @@ const Importar = () => {
 
     if (validFiles.length !== files.length) {
       alert('Solo se permiten imágenes JPG de máximo 20MB.');
-      console.warn('Algunos archivos no cumplen con los criterios de validación');
     }
 
     setFormData((prevData) => ({ 

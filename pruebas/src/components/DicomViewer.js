@@ -103,13 +103,13 @@ const DicomViewer = ({ fileName }) => {
 
   const rotateClockwise = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.rotation += 0.1; // Rotar en sentido horario
+    viewport.rotation += 0.5; // Rotar en sentido horario
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const rotateCounterClockwise = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.rotation -= 0.1; // Rotar en sentido antihorario
+    viewport.rotation -= 0.5; // Rotar en sentido antihorario
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
