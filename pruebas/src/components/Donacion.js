@@ -138,7 +138,6 @@ const Donaciones = () => {
       setUploading(false);
     }
   };
-  
 
   return (
     <div className="donaciones-container">
@@ -153,14 +152,14 @@ const Donaciones = () => {
           <select id="tipo-estudio" value={tipoEstudio} onChange={handleTipoEstudioChange}>
             <option value="">Seleccione</option>
             <option value="Radiografia">Radiografía</option>
-            <option value="TomografiaComputarizada">Tomografia Computarizada</option>
-            <option value="ResonanciaMagentica">Resonancia Magentica</option>
+            <option value="TomografiaComputarizada">Tomografía Computarizada</option>
+            <option value="ResonanciaMagnetica">Resonancia Magnética</option>
             <option value="Ultrasonido">Ultrasonido</option>
-            <option value="Mamografia">Mamografia</option>
-            <option value="Angiografia">Angiografia</option>
+            <option value="Mamografia">Mamografía</option>
+            <option value="Angiografia">Angiografía</option>
             <option value="MedicinaNuclear">Medicina Nuclear</option>
             <option value="RadioTerapia">Radio Terapia</option>
-            <option value="Fluroscopia">Fluroscopia</option>
+            <option value="Fluoroscopia">Fluoroscopia</option>
           </select>
         </div>
 
@@ -212,7 +211,7 @@ const Donaciones = () => {
             </tbody>
           </table>
         ) : (
-          <p>No hay archivos seleccionados.</p>
+          <p>No se han seleccionado archivos.</p>
         )}
       </div>
     </div>
