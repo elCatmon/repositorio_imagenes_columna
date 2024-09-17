@@ -1,0 +1,83 @@
+.banner {
+    background-color: #26798E; /* Azul oscuro */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    height: 60px;
+  }
+  
+  .left, .right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-toggle {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+    padding: 0; /* Sin padding */
+    display: flex; /* Usar flexbox para alinear el ícono */
+    align-items: center; /* Centra verticalmente el ícono */
+    height: 8%; /* Asegura que ocupe toda la altura del navbar */
+  }
+  
+  .title {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .right a {
+    margin-right: 19px;
+    color: white;
+    text-decoration: none;
+    display: flex; /* Flexbox para alinear ícono y texto */
+  align-items: center; /* Centrar verticalmente */
+  margin-right: 9px;
+  }
+  
+  .right a:not(.notification-link) i {
+    margin-right: 9px; /* Ajusta este valor para separar más los íconos de los textos */
+  }
+  
+  .notification-container {
+    position: relative;
+  }
+  
+  .notification-badge {
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.75em;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    color: white;
+  }
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Mueve las imágenes a la derecha */
+    margin-right: 30px; /* Ajusta este valor para mover más a la derecha */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  }
+
+  .logo {
+    max-height: 80px; /* Ajusta según sea necesario */
+    margin-right: 10px; /* Añade espacio entre las imágenes */
+    vertical-align: middle; /* Asegura que las imágenes estén alineadas con el texto */
+  }
+  

@@ -1,0 +1,117 @@
+
+.footer .container {
+    max-width: 1100px; /* Ancho máximo del footer */
+    margin: 0 auto; /* Centra el footer horizontalmente */
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-around; /* Distribuye el espacio alrededor de los grupos de enlaces */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten si la pantalla es pequeña */
+    padding: 20px 0; /* Espaciado interno */
+}
+
+.footer .footer-section {
+    flex: 1; /* Hace que cada sección ocupe el mismo espacio */
+    min-width: 150px; /* Define un ancho mínimo para cada sección */
+    margin: 10px; /* Espaciado entre las secciones */
+}
+
+
+.footer h4 {
+    font-size: 1.5rem; /* Tamaño del texto de los títulos */
+    margin-bottom: 1rem; /* Margen inferior para separar del contenido */
+    font-weight: bold; /* Texto en negrita */
+}
+.footer .footer-section h4 {
+    font-size: 20px; /* Tamaño de fuente para los títulos */
+    font-weight: bold; /* Mantiene los títulos fuertes */
+    margin-bottom: 10px; /* Espacio debajo de los títulos */
+}
+
+.footer .footer-section ul li a {
+    font-size: 18px; /* Aumenta el tamaño de la fuente de los enlaces */
+    font-weight: normal; /* Mantiene el peso de los enlaces normal */
+    padding: 5px 0; /* Espacio adicional para destacar los enlaces */
+    color: #e2e8f0; /* Color para diferenciarse de los títulos */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+}
+
+.footer .footer-section ul li a:hover {
+    color: #17e4ff; /* Color de los enlaces al pasar el cursor */
+}
+
+.footer ul li {
+    margin-bottom: 0.5rem; /* Espacio entre elementos de la lista */
+}
+
+.footer {
+    background-color: #666666; /* Color de fondo azul */
+    color: #fff; /* Color del texto blanco */
+    padding: 5px 10px; /* Espaciado mínimo en la parte superior e inferior */
+    text-align: center; /* Centrar el texto */
+    margin-top: 50px; /* Mantiene el margen superior */
+    margin-bottom: 0; /* Elimina cualquier margen inferior */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del contenedor */
+}
+.footer {
+    background-color: #666666; /* Color de fondo azul */
+    color: #fff; /* Color del texto blanco */
+    padding: 5px 10px; /* Espaciado mínimo en la parte superior e inferior */
+    text-align: center; /* Centrar el texto */
+    margin-top: 20px; /* Mantiene el margen superior */
+    margin-bottom: 0; /* Elimina cualquier margen inferior */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del contenedor */
+    overflow: hidden; /* Asegura que no haya contenido que expanda el footer */
+}
+
+.footer * {
+    margin: 0; /* Elimina márgenes de los elementos internos */
+    padding: 0; /* Elimina padding de los elementos internos */
+    line-height: 1.2; /* Ajusta la altura de línea de los elementos internos para mantener la legibilidad */
+    box-sizing: border-box; /* Asegura que los elementos internos no expandan el contenedor */
+}
+
+.footer h4 {
+    margin-bottom: 3px; /* Espacio debajo de los títulos */
+}
+
+.footer ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer ul li {
+    list-style: none;
+    margin: 10px 0; /* Reduce el margen entre los elementos de la lista */
+}
+
+.footer ul li a {
+    padding: 2px 0; /* Reduce el padding interno de los enlaces */
+}
+
+.footer .social-icons {
+    display: flex;
+    justify-content: center; /* Centra los íconos */
+    gap: 16px; /* Espacio entre los íconos */
+    margin-top: 20px; /* Aumenta el margen superior para bajar los íconos */
+}
+
+/* Específico para los íconos de contacto */
+.footer .contact-icons {
+    margin-top: 0; /* Reduce el margen superior de los íconos de contacto */
+}
+
+.footer .social-icons a {
+    color: #fff; /* Color de los íconos sociales */
+    font-size: 2rem; /* Tamaño de los íconos */
+    transition: color 0.3s ease; /* Transición suave para el hover */
+    text-decoration: none; /* Elimina la línea de bajo */
+}
+
+.footer .social-icons a:hover {
+    color: #e2e8f0; /* Color del ícono al hacer hover */
+    transform: translateY(-5px) scale(1.1); /* Mueve el ícono hacia arriba y lo escala ligeramente */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+    text-decoration: none; /* Asegura que no haya línea de bajo en hover */
+}

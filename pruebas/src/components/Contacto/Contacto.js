@@ -1,0 +1,96 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Contacto.css';
+import Footer from '../Footer';
+import Header from '../Header';
+
+const Contacto = () => {
+  return (
+    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
+     <Header/>
+
+
+<header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
+<h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
+   Contáctanos
+</h1>
+<p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
+Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados y apasionados.
+</p>
+</header>
+
+<main className="max-w-6xl mx-auto py-10">
+  {/* Contenedor para la primera fila */}
+  <div className="grid-cols-3">
+    <div className="persona-card">
+      <img src="/Imagenes/oscar.jpeg" alt="Dr. Oscar Montiel Ross" className="persona-img" />
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Oscar Montiel Ross</h2>
+      <p className="text-gray-600 mt-2">Líder de proyecto</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oscar.montiel@empresa.com</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 123 456 789</p>
+      <div className="mt-4 flex justify-center space-x-3">
+        <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+      </div>
+    </div>
+    <div className="persona-card">
+      <img src="/Imagenes/maria.jpg" alt="Dra. María de los Ángeles Cosío León" className="persona-img" />
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. María de los Ángeles Cosío León</h2>
+      <p className="text-gray-600 mt-2">Coordinadora técnica</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> maria.cosio@empresa.com</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 234 567 890</p>
+      <div className="mt-4 flex justify-center space-x-3">
+        <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+      </div>
+    </div>
+    <div className="persona-card">
+      <img src="/Imagenes/anabel.jpg" alt="Dra. Anabel Martínez Vargas" className="persona-img" />
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Anabel Martínez Vargas</h2>
+      <p className="text-gray-600 mt-2">Coordinadora Administrativa</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> anabel.martinez@empresa.com</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 345 678 901</p>
+      <div className="mt-4 flex justify-center space-x-3">
+        <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+      </div>
+    </div>
+  </div>
+
+  {/* Contenedor para la segunda fila centrada */}
+  <div className="grid-cols-2 mt-10">
+    <div className="persona-card">
+      <img src="/Imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
+      <p className="text-gray-600 mt-2">Área Médica</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> tania.aparicio@empresa.com</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 456 789 012</p>
+      <div className="mt-4 flex justify-center space-x-3">
+        <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+      </div>
+    </div>
+    <div className="persona-card">
+      <img src="/Imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Gener José Avilés Rodríguez</h2>
+      <p className="text-gray-600 mt-2">Asesor Clínico</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> gener.aviles@empresa.com</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 567 890 123</p>
+      <div className="mt-4 flex justify-center space-x-3">
+        <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+      </div>
+    </div>
+  </div>
+</main>
+<Footer />
+    </div>
+  );
+}
+
+export default Contacto;

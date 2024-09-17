@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
+import Footer from './/Footer';
+import Header from './Header';
 
 function Register() {
   const [name, setName] = useState('');
@@ -60,12 +62,24 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
+<Header/>
+
+     <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
+<h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
+   Registrarse
+</h1>
+<p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
+   Introduce tus datos para registrarte
+</p>
+</header>
+
+    <div className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins', width:'60%', marginLeft:'20%'}}>
       {/* Botón de regresar */}
-      <button onClick={() => navigate('/')}>← Regresar</button>
+      {/* <button onClick={() => navigate('/')}>← Regresar</button>*/}
 
       <form onSubmit={handleRegister}>
-        <input
+        {/* <input
           type="text"
           placeholder="Nombre"
           value={name}
@@ -85,9 +99,24 @@ function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        />
-        <button type="submit">Registrarse</button>
+        /> */}
+
+<div data-mdb-input-init class="form-outline mb-4">
+    <input type="email" id="form2Example1" class="form-control" value={name} onChange={(e) => setName(e.target.value)} required/>
+    <label class="form-label" for="form2Example1">Nombre</label>
+  </div>
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input type="email" id="form2Example1" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+    <label class="form-label" for="form2Example1">Correo electrónico</label>
+  </div>
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input type="password" id="form2Example1" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+    <label class="form-label" for="form2Example1">Contraseña</label>
+  </div>
+        <button type="submit" data-mdb-button-init data-mdb-ripple-init style={{width:'43%', marginLeft:'31%', backgroundColor:'#666666', color:'#ffffff' }} class="btn btn-block mb-4">Registrarse</button>
       </form>
+    </div>
+    <Footer />
     </div>
   );
 }

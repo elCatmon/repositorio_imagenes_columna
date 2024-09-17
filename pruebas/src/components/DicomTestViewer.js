@@ -53,6 +53,7 @@ const DicomTestViewer = () => {
 
   return (
     <div>
+      
       <input type="file" accept=".dcm" onChange={handleFileChange} />
       <div
         ref={elementRef}

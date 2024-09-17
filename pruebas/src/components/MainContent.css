@@ -1,0 +1,59 @@
+/* Estilos para el contenedor principal del contenido */
+.main-content {
+    margin-top: 20px; /* Ajusta este valor para subir el contenido más arriba */
+    padding: 20px;
+    transition: margin-left 0.4s ease-in-out; /* Ajusta la duración de la transición */
+}
+
+/* Estilos para el título principal */
+.main-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la cuadrícula de servicios */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adaptable a diferentes tamaños de pantalla */
+    gap: 20px;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+}
+
+/* Estilos para las tarjetas de servicio */
+.service-card {
+    padding: 20px;
+    color: #333; /* Color de texto más oscuro para contraste */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para las tarjetas */
+    transition: transform 0.2s, box-shadow 0.2s; /* Transición de transformación y sombra */
+}
+
+/* Estilos para los títulos de las tarjetas de servicio */
+.service-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los párrafos dentro de las tarjetas de servicio */
+.service-card p {
+    margin-bottom: 10px;
+}
+
+/* Estilos para los enlaces dentro de las tarjetas de servicio */
+.service-card a {
+    color: #333; /* Color de texto más oscuro para contraste */
+    text-decoration: none;
+}
+
+/* Espaciado para el icono de flecha dentro de los enlaces */
+.service-card a i {
+    margin-left: 5px;
+}
+
+/* Efecto al pasar el ratón sobre las tarjetas de servicio */
+.service-card:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta ligeramente */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+

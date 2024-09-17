@@ -1,0 +1,442 @@
+/* PaginaInicio.css */
+
+body {
+    font-family: 'Poppins', sans-serif; /* Cambia la fuente */
+    color: #333;
+    line-height: 1.6; /* Aumenta la altura de línea para mejorar la legibilidad */
+}
+
+/* Esto debería estar en tu archivo CSS global o en el archivo donde defines los estilos */
+.bg-gradient-to-r {
+    background: linear-gradient(to right, #f0faf9, #E9E4F0, #f0faf9);
+}
+
+h3 {
+    color: #26798E; /* Color azul oscuro para títulos */
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #666666, #555555); /* Degradado suave */
+    color: #fff;
+    border-radius: 30px;
+    padding: 12px 24px;
+    transition: all 0.4s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #666666, #555555);
+}
+
+
+/* Otros estilos según sea necesario */
+
+.cardHome {
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* Sombra más suave */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background-color: whitesmoke;
+    font-size: large;
+    font-family: Poppins;
+}
+
+.cardHome:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Sombra más prominente al hover */
+}
+
+
+.animate-fade-in-left {
+    animation: fadeInLeft 1s ease;
+}
+
+.animate-fade-in-right {
+    animation: fadeInRight 1s ease;
+}
+
+.animate-bounce {
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.menu-button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: #7e3333;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e91414;
+    margin-left: 20px; /* Ajusta el margen para mejor alineación */
+}
+
+.first-logo {
+    height: 70px;
+    width: auto;
+    margin-left: 20px; /* Alinea mejor con el título */
+}
+
+.second-logo {
+    width: 140px;
+    height: auto;
+    margin-left: 20px; /* Aumenta el espacio entre los logos */
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    color: #666666;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link i {
+    margin-right: 6px;
+    font-size: 20px;
+}
+
+.navbar .nav-link:hover {
+    color: #555555;
+}
+
+.user-icon {
+    font-size: 30px;
+    color: #666666;
+    margin-left: 20px;
+}
+
+.logo {
+    height: 100px;
+    margin-left: 10px;
+}
+
+.logoupp {
+    height: 150px;
+    margin-left: 100px;
+}
+
+.logocitedi {
+    height: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/* Ejemplo en PaginaInicio.css */
+#banner {
+    background-image: url('/public/imagenes/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 300px 20px; /* Reduce este valor para hacer el banner más pequeño */
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1.5s ease-in-out;
+    margin-bottom: 40px; /* Mantén esta línea para separar el banner del contenido siguiente */
+}
+
+#banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Aumenta el valor de opacidad a 0.5 o más para oscurecer */
+    z-index: 1;
+}
+
+#banner h1, #banner h2, #banner p {
+    position: relative; /* Posición relativa para colocar sobre el overlay */
+    z-index: 2; /* Colocar texto sobre el overlay */
+    opacity: 0; /* Inicialmente invisible */
+    animation: fadeInText 1s ease-in-out forwards; /* Animación de desvanecimiento más rápida */
+}
+
+#banner h1 {
+    font-size: 3rem; /* Tamaño de fuente grande para el título principal */
+    font-weight: bold; /* Negrita para el título principal */
+    margin-bottom: 20px; /* Margen inferior */
+    animation-delay: 0.5s; /* Retardo para la animación del título principal reducido */
+}
+
+#banner h2 {
+    font-size: 2rem; /* Tamaño de fuente para el subtítulo */
+    margin-bottom: 40px; /* Margen inferior */
+    animation-delay: 0.8s; /* Retardo para la animación del subtítulo reducido */
+}
+
+#banner p {
+    font-size: 1.5rem; /* Tamaño de fuente para el párrafo */
+    animation-delay: 1s; /* Retardo para la animación del párrafo reducido */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro {
+    background: linear-gradient(135deg, #F0F4F8, #D9E2EC);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.intro:hover {
+    transform: translateY(-10px);
+}
+
+.intro h1 {
+    color: #4CA1AF;
+    transition: color 0.3s ease-in-out;
+}
+
+.intro h1:hover {
+    color: #26798E;
+}
+
+.info-card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.info-card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.info-card:hover img {
+    transform: scale(1.1);
+}
+
+.info-card .info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.info-card:hover .info-overlay {
+    opacity: 1;
+}
+
+
+.follow-up:hover {
+    transform: translateY(-10px);
+}
+
+.follow-up h2 {
+    color: #26798E;
+    transition: color 0.3s ease-in-out;
+}
+
+.follow-up h2:hover {
+    color: #1e5f75;
+}
+
+.support {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.support:hover {
+    transform: translateY(-10px);
+}
+
+.support h2 {
+    color: #26798E;
+    transition: color 0.3s ease-in-out;
+}
+
+.support h2:hover {
+    color: #1e5f75;
+}
+
+/* Definición de la animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 2s ease-in-out; /* Duración de 2s, puedes ajustarlo según necesites */
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666666;
+    font-family: Poppins;
+    padding-top: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 2rem;
+    gap: 2rem; /* Espacio entre la tarjeta de texto y la imagen */
+    max-width: 1200px; /* Limita el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.card {
+    flex: 1;
+    width: 900px; /* Ancho fijo para mantener la forma cuadrada */
+    height: 900px; /* Altura fija para mantener la forma cuadrada */
+    padding: 200px 200px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    text-align: center; /* Centra el texto horizontalmente */
+    overflow-y: auto; /* Agrega scroll si el contenido es demasiado largo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el texto verticalmente */
+}
+
+
+.card p {
+    margin: 0;
+    line-height: 1.4; /* Ajusta el valor para reducir la separación entre líneas */
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente si es necesario */
+}
+.image-container {
+    flex: 1;
+    max-width: 50%; /* Limita el ancho máximo */
+    margin: 0 auto;  /* Centra la imagen */
+}
+
+img {
+    max-width: 80%;
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+
+.btn-primary {
+    background-color: #26798E; 
+    margin: 0 20px; /* Aumenta la separación horizontal entre los botones */
+}
+
+.menu-button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 10px; /* Reducir margen derecho */
+    position: absolute; /* Cambia a posición absoluta */
+    left: 20px; /* Ajusta la posición a la izquierda según sea necesario */
+    top: 50%; /* Asegura que esté centrado verticalmente */
+    transform: translateY(-50%); /* Centrado vertical */
+    transition: transform 0.3s ease;
+}
+

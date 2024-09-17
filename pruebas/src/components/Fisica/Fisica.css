@@ -1,0 +1,264 @@
+.header-section {
+  margin-top: 20px; /* Ajusta este valor si necesitas mover el título más hacia abajo */
+  margin-bottom: 40px; /* Aumenta este valor para separar más el título del contenido debajo */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins';
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 20px;
+  margin-left: 50px; /* Aumenta el margen izquierdo para mover el título a la derecha */
+}
+.title-white {
+  color: #ffffff; /* Cambia el color del texto a blanco */
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.first-logo {
+  height: 70px; /* Aumenta la altura del logo UPP */
+  width: auto; /* Mantén la proporción del ancho automáticamente */
+  margin-left: 100px; /* Aumenta el margen izquierdo para alinear con el título */
+}
+
+.second-logo {
+  width: 140px; /* Ajusta el ancho del logo CITEDI */
+  height: auto; /* Mantén la proporción */
+  margin-left: 50px; /* Aumenta el espacio entre los logos */
+}
+
+
+.user-icon {
+  font-size: 30px; /* Tamaño más grande para el ícono del usuario */
+  color: #ffffff;
+  margin-left: 0; /* Asegúrate de que no haya margen izquierdo */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinea todos los elementos a la izquierda */
+  gap: 15px; /* Espacio uniforme entre todos los elementos, incluyendo el ícono de usuario */
+}
+
+.nav-link {
+  color: 666666;
+  font-size: 13px;
+  font-weight: regular;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link i {
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #38b2ac;
+  transform: scale(1.1);
+}
+
+.nav-link i:hover {
+  color: #38b2ac;
+  transform: scale(1.1);
+}
+
+.user-icon {
+  font-size: 30px; /* Tamaño del ícono de usuario */
+  color: #ffffff;
+  transition: transform 0.3s ease, color 0.3s ease;
+ 
+}
+
+
+.user-icon:hover {
+  color: #38b2ac;
+  transform: scale(1.1);
+}
+
+
+.title {
+  margin-right: 20px;
+}
+
+.logo {
+  height: 80px; /* Ajusta la altura de los logos */
+  margin-left: 20px;
+}
+
+.flex.items-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex.items-center img {
+  margin-left: 10px;
+}
+
+.grid-cols-3 {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Aumenta el espacio entre las tarjetas */
+}
+.grid-cols-2 {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Aumenta el espacio entre las tarjetas */
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.qr-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-height: 300px;
+  width: 320px; /* Fija un ancho para todas las tarjetas */
+  margin: 0; /* Elimina el margen para que no se separen */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: fadeInUp 1s ease-in-out; /* Aplicar la animación */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 5%;
+}
+.qr-card:hover {
+  transform: scale(1.08) translateY(-10px); /* Aumenta el tamaño y desplaza hacia arriba */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Aumenta la sombra para dar un efecto más pronunciado */
+  border-color: #1B5C6B; /* Cambia el color del borde al pasar el mouse */
+}
+
+.qr-card img {
+  border-radius: 0%; /* Haz que la imagen sea circular */
+  width: 120px; /* Ajusta el tamaño de la imagen */
+  height: 120px; /* Mantén la altura y el ancho iguales para asegurar que sea un círculo */
+  object-fit: cover; /* Asegura que la imagen se ajuste bien en el círculo */
+  margin: 15px auto 15px auto; /* Centra la imagen y añade espacio debajo */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil a la imagen */
+  border: 4px solid #666666; /* Añade un borde de color */
+}
+
+.qr-card h2 {
+  margin-bottom: 10px; /* Ajusta el margen debajo del título */
+}
+
+.qr-card p {
+  margin-bottom: 0px; /* Elimina completamente el espacio debajo de los párrafos */
+}
+
+.qr-card .flex {
+  margin-top: -30px; /* Incrementa el margen negativo para subir los íconos aún más */
+  justify-content: center;
+  gap: 15px; /* Mantén la separación entre los íconos */
+  padding-top: 0px; /* Asegura que no haya espacio en la parte superior del contenedor de los íconos */
+}
+
+.qr-card {
+  padding-top: 10px; /* Reduce el padding superior de la tarjeta para que los íconos suban más */
+}
+
+
+.qr-img {
+  border-radius: 0%; /* Haz que la imagen sea circular */
+  width: 120px; /* Ajusta el tamaño de la imagen */
+  height: 120px; /* Mantén la altura y el ancho iguales para asegurar que sea un círculo */
+  object-fit: cover; /* Asegura que la imagen se ajuste bien en el círculo */
+  margin: 0 auto 15px auto; /* Centra la imagen y añade espacio debajo */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil a la imagen */
+  border: 4px solid #26798E; /* Añade un borde de color */
+}
+
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  font-family: 'Poppins';
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-gray-900 {
+  color: #1a202c;
+}
+
+.text-gray-600 {
+  color: #718096;
+  font-family: 'Poppins';
+}
+
+.text-gray-500 {
+  color: #a0aec0;
+  font-family: 'Poppins';
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}

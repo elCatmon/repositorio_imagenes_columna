@@ -1,0 +1,432 @@
+body {
+  background-color: #f0f4f8; /* Fondo general más claro */
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animación de desvanecimiento (fade-in) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #26798E;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 20px;
+  margin-left: 50px; /* Aumenta el margen izquierdo para mover el título a la derecha */
+}
+.title-white {
+  color: #ffffff; /* Cambia el color del texto a blanco */
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.first-logo {
+  height: 70px; /* Aumenta la altura del logo UPP */
+  width: auto; /* Mantén la proporción del ancho automáticamente */
+  margin-left: 100px; /* Aumenta el margen izquierdo para alinear con el título */
+}
+
+.second-logo {
+  width: 140px; /* Ajusta el ancho del logo CITEDI */
+  height: auto; /* Mantén la proporción */
+  margin-left: 50px; /* Aumenta el espacio entre los logos */
+}
+
+
+.user-icon {
+  font-size: 30px; /* Tamaño más grande para el ícono del usuario */
+  color: #ffffff;
+  margin-left: 0; /* Asegúrate de que no haya margen izquierdo */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinea todos los elementos a la izquierda */
+  gap: 15px; /* Espacio uniforme entre todos los elementos, incluyendo el ícono de usuario */
+}
+
+.nav-link {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link i {
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #38b2ac;
+  transform: scale(1.1);
+}
+
+.nav-link i:hover {
+  color: #38b2ac;
+  transform: scale(1.1);
+}
+
+.user-icon {
+  font-size: 30px; /* Tamaño del ícono de usuario */
+  color: #ffffff;
+  transition: transform 0.3s ease, color 0.3s ease;
+ 
+}
+
+
+.user-icon:hover {
+  color: #38b2ac;
+  transform: scale(1.1);
+}
+
+
+.title {
+  margin-right: 20px;
+}
+
+.logo {
+  height: 50px; /* Ajusta la altura de los logos */
+  margin-left: 20px;
+}
+
+.flex.items-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex.items-center img {
+  margin-left: 10px;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out; 
+}
+
+.bg-gradient {
+  background: linear-gradient(to right, #2c3e50, #bdc3c7);
+}
+
+.intro {
+  background: linear-gradient(135deg, #F0F4F8, #D9E2EC);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.intro:hover {
+  transform: translateY(-10px);
+}
+
+.intro h1 {
+  color: #297987;
+  transition: color 0.3s ease-in-out;
+}
+
+.intro h1:hover {
+  color: #2c94ae;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+
+.btn-primary {
+  background-color: #26798E;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1f5f6b;
+}
+
+.modal-content:hover {
+  transform: scale(1.02);
+}
+
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 20px; /* Ajusta este valor para mover el título más a la derecha */
+  color: white;
+}
+
+.modal-header .modal-title {
+  color: white !important; /* Cambia el color del título a blanco y agrega !important */
+}
+
+
+.modal-header .close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.modal-header .close:hover {
+  color: #38b2ac;
+}
+
+.modal-body {
+  margin-top: 15px;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-body:hover {
+  background-color: #f8f9fa;
+}
+
+.modal-body img {
+  position: relative; /* Permite ajustar la posición relativa a su posición normal */
+  top: -20px; /* Mueve la imagen hacia arriba */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.modal-body p {
+  text-align: justify;
+  margin: 30px; /* Aumenta el margen superior para separar el texto de la imagen */
+  margin-bottom: 1rem;
+}
+
+.btn-secondary {
+  background-color: #26798E;
+  border-color: #26798E;
+  color: #ffffff;
+  font-weight: bold;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #1a5e73;
+  border-color: #1a5e73;
+  transform: scale(1.1);
+}
+
+.main-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px; /* Más padding para centrar contenido */
+  max-width: 95%; /* Ajustado al 95% del ancho de la página */
+  margin: 20px auto; /* Centrado horizontal */
+}
+
+.intro {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px; /* Más margen inferior */
+  text-align: center; /* Texto centrado */
+}
+
+.intro h1 {
+  color: #26798E;
+  font-size: 3rem; /* Aumentado para más énfasis */
+  margin-bottom: 20px;
+}
+
+.intro p {
+  color: #333333;
+  line-height: 1.8;
+  font-size: 1.2rem;
+  max-width: 80%; /* Limitar el ancho del texto */
+  margin: 0 auto; /* Centrar el texto */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Tamaño mínimo de columna de 250px */
+  gap: 20px;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.info-card:hover img {
+  transform: scale(1.1);
+}
+
+.info-card img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+/* Estilos para el overlay en la tarjeta */
+.info-card .info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  padding: 1rem; /* Puedes cambiar a 10px si prefieres */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-content {
+  background-color: #ffffff; /* Fondo del modal */
+  border-radius: 8px; /* Bordes redondeados */
+  max-width: 90%; /* Ancho máximo del modal */
+  max-height: 80%; /* Alto máximo del modal */
+  overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es más grande */
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra del modal */
+  position: relative; /* Posición relativa para posicionar el botón de cerrar */
+  
+}
+
+.modal-body {
+  padding: 20px; /* Padding en el cuerpo del modal */
+  color: black; /* Color del texto en negro para contraste */
+  background-color: white; /* Fondo blanco para el cuerpo */
+}
+
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #666666; /* Color de fondo del header del modal */
+  padding: 20px;
+  color: white;
+  width: 100%; /* Asegura que el header cubra todo el ancho del modal */
+  border-top-left-radius: 8px; /* Mantén el radio en la esquina superior izquierda */
+  border-top-right-radius: 8px; /* Mantén el radio en la esquina superior derecha */
+  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+  position: absolute;
+  top: 0; /* Posiciona el header en la parte superior */
+  left: 0; /* Posiciona el header en el borde izquierdo */
+  z-index: 10; /* Asegura que el header esté por encima del contenido del modal */
+}
+
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardConocenos {
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* Sombra más suave */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: whitesmoke;
+  font-size: large;
+  font-family: Poppins;
+}
+
+.cardConocenos:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Sombra más prominente al hover */
+}
+
+.footer {
+  margin-top: 70px; /* Ajusta este valor para aumentar el espacio entre el contenido y el footer */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in-out; /* Duración de la animación reducida a 0.5 segundos */
+}
+.main-container {
+  margin-bottom: 40px; /* Espacio adicional debajo del contenedor "¿Quiénes somos?" */
+}
+
+.grid {
+  margin-top: 40px; /* Espacio adicional arriba de las tarjetas */
+}

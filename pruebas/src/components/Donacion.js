@@ -3,6 +3,8 @@ import JSZip from 'jszip'; // Importar la biblioteca JSZip para manejar archivos
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
 import * as dicomParser from 'dicom-parser'; // Importar dicom-parser
+import Header from './Header';
+import Footer from './Footer';
 
 const Donaciones = () => {
   const navigate = useNavigate(); // Inicializar la función navigate
@@ -140,13 +142,18 @@ const Donaciones = () => {
   };
 
   return (
-    <div className="donaciones-container">
-      <div className="header">
-        <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
-      </div>
-
-      <div className="donaciones-left">
-        <h2>Donaciones de Archivos</h2>
+    <div className="donaciones-container " style={{ fontFamily:'Poppins'}}>
+      <Header/>
+      <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
+<h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
+   Donación de archivos
+</h1>
+<p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
+   Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
+</p>
+</header>
+      <div className="donaciones-left" style={{marginLeft:'400px'}}>
+        
         <div>
           <label htmlFor="tipo-estudio">Tipo de Estudio:</label>
           <select id="tipo-estudio" value={tipoEstudio} onChange={handleTipoEstudioChange}>
@@ -162,13 +169,14 @@ const Donaciones = () => {
             <option value="Fluoroscopia">Fluoroscopia</option>
           </select>
         </div>
-
+<br></br>
         <input
           type="file"
           accept=".dcm, .dicom, .zip"
           multiple
           onChange={handleFileChange}
           className="file-input"
+          
         />
 
         <button
@@ -210,11 +218,15 @@ const Donaciones = () => {
               ))}
             </tbody>
           </table>
+          
         ) : (
-          <p>No se han seleccionado archivos.</p>
+          
+          <p style={{marginLeft:'400px', fontStyle:'italic'}}>No se han seleccionado archivos.</p>
         )}
       </div>
+      <Footer/>
     </div>
+    
   );
 };
 

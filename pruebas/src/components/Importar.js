@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
+import Header from './Header';
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
@@ -134,7 +135,9 @@ const Importar = () => {
   };
 
   return (
+    
     <div className="importar-container">
+      <Header/>
       <div className="header">
         <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
       </div>

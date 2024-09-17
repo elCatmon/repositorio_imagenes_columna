@@ -114,6 +114,7 @@ const DicomViewer = ({ fileName }) => {
   };
 
   return (
+    
     <div className="dicom-viewer-container">
       <div
         ref={elementRef}
