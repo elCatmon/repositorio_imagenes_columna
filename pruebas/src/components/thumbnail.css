@@ -1,0 +1,59 @@
+
+/* Estilo para botones */
+button, .app-button {
+    background-color: #4CAF50; /* Fondo verde para los botones */
+    color: white; /* Texto blanco en los botones */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    text-align: center; /* Centra el texto en el botón */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Muestra los botones en línea */
+    font-size: 16px; /* Tamaño de fuente del texto del botón */
+    margin: 4px 2px; /* Espacio alrededor del botón */
+    cursor: pointer; /* Muestra un cursor de puntero cuando se pasa sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  
+  button:hover, .app-button:hover {
+    background-color: #45a049; /* Color de fondo más oscuro en hover */
+  }
+  
+  /* Estilo para el botón de regresar */
+  .back-button {
+    background-color: #4CAF50; /* Fondo verde para los botones */
+    color: white; /* Texto blanco en los botones */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    text-align: center; /* Centra el texto en el botón */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Muestra los botones en línea */
+    font-size: 16px; /* Tamaño de fuente del texto del botón */
+    margin: 10px; /* Espacio alrededor del botón */
+    cursor: pointer; /* Muestra un cursor de puntero cuando se pasa sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+    position: relative; /* Posiciona el botón en relación a su contenedor */
+  }
+  
+  /* Contenedor principal que contiene la galería de miniaturas */
+  .thumbnail-gallery-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegúrate de que el contenedor principal ocupe el 100% de la altura del contenedor padre */
+  }
+  
+  /* Galería de miniaturas */
+  .thumbnail-gallery {
+    flex: 1; /* Permite que la galería de miniaturas ocupe el espacio restante */
+    max-height: 700px; /* Limita la altura de la galería de miniaturas */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+  }
+  
+  /* Encabezado de la galería de miniaturas */
+  .thumbnail-gallery-header {
+    position: sticky; /* Fija el encabezado en su lugar */
+    top: 0; /* Alinea el encabezado en la parte superior del contenedor */
+    background-color: #f8f8f8; /* Fondo ligero para el encabezado */
+    z-index: 1; /* Asegúrate de que el encabezado esté por encima del contenido */
+    padding: 10px; /* Añade algo de espacio alrededor del texto */
+    border-bottom: 1px solid #ddd; /* Opcional: Agrega una línea de separación debajo del encabezado */
+  }

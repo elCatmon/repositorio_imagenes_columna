@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import ThumbnailGallery from './ThumbnailGallery';
 import DicomViewer from './DicomViewer';
 import { useNavigate } from 'react-router-dom'; // For back navigation
+import Header from './Header';
+import Footer from './Footer';
+import '../App.css'; 
 
 function VisualizerPage() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,6 +17,7 @@ function VisualizerPage() {
 
   return (
     <div className="visualizer-page">
+      <Header/>
       <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
       <div className="content">
         <div className="thumbnail-gallery">
@@ -27,6 +31,7 @@ function VisualizerPage() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

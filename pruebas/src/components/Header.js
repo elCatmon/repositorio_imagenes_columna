@@ -48,7 +48,7 @@ function Header({ toggleSidebar }) {
          >
            <i className="fas fa-sign-in-alt"></i> Acceder
          </a>
-         <a href="/DicomViewer" 
+         <a href="/visualizador" 
            className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6"
          >
            <i className="fas fa-binoculars"></i> Visualizador

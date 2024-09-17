@@ -9,7 +9,6 @@ import RecuperarContrasena from './components/RecuperarContrasena/RecuperarContr
 import SeguimientoDonacion from './components/SeguimientoDonacion/SeguimientoDonacion';
 import Servicios from './components/Servicios/Servicios';
 import TerminosCondiciones from './components/TerminosCondiciones/TerminosCondiciones';
-import Visualizador from './components/Visualizador/Visualizador';
 import Register from './components/Register';
 import Login from './components/Login';
 import VisualizerPage from './components/VisualizerPage';
@@ -39,7 +38,6 @@ function App() {
       <Route path="/seguimientodonacion" element={<SeguimientoDonacion />} />
       <Route path="/servicios" element={<Servicios />} />
       <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
-      <Route path="/visualizador" element={<Visualizador />} />
       <Route path="/fisica" element={<Fisica />} />
         
       
