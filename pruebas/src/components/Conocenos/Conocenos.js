@@ -13,17 +13,17 @@ const Conocenos = () => {
     {/* Contenido Principal */}
     <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
 <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
-   ¿Qué hacemos?
+   Conócenos
 </h1>
 </header>
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
     <div className="section-container">
     
-    <div className="cardConocenos">
+    {/* <div className="cardConocenos">
     <p  className="text-lg leading-relaxed text-gray-700">
       Somos un equipo de profesionales de la salud y de las ciencias computacionales, colaboradores en el proyecto de investigación de Ciencia de Frontera "Detección de fracturas y daño óseo mediante cómputo inteligente cuántico", financiado por CONAHCYT. En nuestro proyecto, buscamos construir una biblioteca digital con imágenes específicas, como tomografías computarizadas, radiografías de fracturas de columna vertebral y cadera con diagnósticos de osteoporosis, osteopenia y osteoartritis, además de casos de personas sanas y expedientes clínicos. Esta biblioteca, es primera en su clase, promoverá la investigación inclusiva en nuestro país, así como un espacio en el cual se propone mantener registros de la información utilizada para el entrenamiento de algoritmos de inteligencia artificial. Nuestro equipo está compuesto por destacados profesionales, incluyendo Dra. María de los Ángeles Cosío León, Dra. Anabel Martínez Vargas de la Universidad Politécnica de Pachuca, así como el Dr. Gener José Avilés Rodríguez de la Universidad Autónoma de Baja California. Siendo líder del proyecto y responsable del mismo ante CONAHCYT el Dr. Oscar Humberto Montiel Ross CITEDI-IPN.
     </p>
-    </div>
+    </div> */}
   </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <InfoCard 

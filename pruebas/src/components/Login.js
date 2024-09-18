@@ -4,6 +4,7 @@ import { BASE_URL } from './config';
 import Footer from './/Footer';
 import Header from './Header';
 
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,9 +29,11 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         alert('Login exitoso');
+        navigate('/menu')
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
+
       }
     } catch (error) {
       alert('Hubo un problema con el inicio de sesión. Por favor, intenta nuevamente.');

@@ -25,7 +25,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
     <div className="persona-card">
       <img src="/Imagenes/oscar.jpeg" alt="Dr. Oscar Montiel Ross" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Oscar Montiel Ross</h2>
-      <p className="text-gray-600 mt-2">Líder de proyecto</p>
+      <p className="text-gray-600 mt-2">Coordinador técnico CITEDI</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oscar.montiel@empresa.com</p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 123 456 789</p>
       <div className="mt-4 flex justify-center space-x-3">
@@ -37,7 +37,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
     <div className="persona-card">
       <img src="/Imagenes/maria.jpg" alt="Dra. María de los Ángeles Cosío León" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. María de los Ángeles Cosío León</h2>
-      <p className="text-gray-600 mt-2">Coordinadora técnica</p>
+      <p className="text-gray-600 mt-2">Coordinadora técnica UPP</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> maria.cosio@empresa.com</p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 234 567 890</p>
       <div className="mt-4 flex justify-center space-x-3">
@@ -65,7 +65,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
     <div className="persona-card">
       <img src="/Imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
-      <p className="text-gray-600 mt-2">Área Médica</p>
+      <p className="text-gray-600 mt-2">Asesor Clínico UPP</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> tania.aparicio@empresa.com</p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 456 789 012</p>
       <div className="mt-4 flex justify-center space-x-3">
@@ -77,7 +77,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
     <div className="persona-card">
       <img src="/Imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Gener José Avilés Rodríguez</h2>
-      <p className="text-gray-600 mt-2">Asesor Clínico</p>
+      <p className="text-gray-600 mt-2">Asesor Clínico UABC</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> gener.aviles@empresa.com</p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 567 890 123</p>
       <div className="mt-4 flex justify-center space-x-3">

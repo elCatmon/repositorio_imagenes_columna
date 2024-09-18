@@ -142,7 +142,8 @@ const Donaciones = () => {
   };
 
   return (
-    <div className="donaciones-container " style={{ fontFamily:'Poppins'}}>
+    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily:'Poppins'}}>
+
       <Header/>
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
 <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
@@ -221,8 +222,12 @@ const Donaciones = () => {
           
         ) : (
           
-          <p style={{marginLeft:'400px', fontStyle:'italic'}}>No se han seleccionado archivos.</p>
+          <p style={{marginLeft:'400px', marginTop:'20px',fontStyle:'italic'}}>No se han seleccionado archivos.</p>
         )}
+      </div>
+      <div class="text-center" style={{marginBottom:'50px', marginTop:'20px'}}>
+        <p>Al hacer tu donación estas aceptando nuestro <a href="/documentos/AVISO_PRIVACIDAD.pdf">Aviso de privacidad</a> así como los <a href="/documentos/TERMINOS_CONDICIONES.pdf">Términos y Condiciones</a></p>
+       
       </div>
       <Footer/>
     </div>

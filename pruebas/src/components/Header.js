@@ -48,17 +48,7 @@ function Header({ toggleSidebar }) {
          >
            <i className="fas fa-sign-in-alt"></i> Acceder
          </a>
-         <a href="/visualizador" 
-           className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6"
-         >
-           <i className="fas fa-binoculars"></i> Visualizador
-         </a>
-         <a href="/Donacion" 
-           className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6"
-         >
-           <i className="fas fa-file-circle-plus"></i> Donación de estudios
-         </a>
-         <i className="fas fa-user user-icon ml-6 transform hover:scale-110 transition-transform duration-300"></i>
+        
          
        </div>
      </nav>

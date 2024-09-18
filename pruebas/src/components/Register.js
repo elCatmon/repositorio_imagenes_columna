@@ -102,15 +102,15 @@ function Register() {
         /> */}
 
 <div data-mdb-input-init class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" value={name} onChange={(e) => setName(e.target.value)} required/>
+    <input type="text" id="form2Example1" class="form-control" value={name} onChange={(e) => setName(e.target.value)} required/>
     <label class="form-label" for="form2Example1">Nombre</label>
   </div>
   <div data-mdb-input-init class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+    <input type="email" id="form2Example2" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required/>
     <label class="form-label" for="form2Example1">Correo electrónico</label>
   </div>
   <div data-mdb-input-init class="form-outline mb-4">
-    <input type="password" id="form2Example1" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+    <input type="password" id="form2Example3" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required/>
     <label class="form-label" for="form2Example1">Contraseña</label>
   </div>
         <button type="submit" data-mdb-button-init data-mdb-ripple-init style={{width:'43%', marginLeft:'31%', backgroundColor:'#666666', color:'#ffffff' }} class="btn btn-block mb-4">Registrarse</button>

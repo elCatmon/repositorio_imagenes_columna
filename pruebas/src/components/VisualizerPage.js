@@ -18,7 +18,7 @@ function VisualizerPage() {
   return (
     <div className="visualizer-page">
       <Header/>
-      <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
+
       <div className="content">
         <div className="thumbnail-gallery">
           <ThumbnailGallery onThumbnailClick={handleThumbnailClick} />
