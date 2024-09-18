@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
 /* Estilos generales para la aplicación */
 .app-container {
   display: flex;
@@ -231,7 +233,7 @@ thead th:nth-child(5), tbody td:nth-child(5) {
 
 /* Estilo para enlaces dentro de las tarjetas */
 .service-card a {
-  color: #4CAF50; /* Color de enlace verde */
+  color: #666666; /* Color de enlace verde */
   text-decoration: none; /* Sin subrayado */
 }
 

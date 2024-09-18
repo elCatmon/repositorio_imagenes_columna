@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Colores */
