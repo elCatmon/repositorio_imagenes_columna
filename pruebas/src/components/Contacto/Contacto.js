@@ -26,8 +26,8 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
       <img src="/Imagenes/oscar.jpeg" alt="Dr. Oscar Montiel Ross" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Oscar Montiel Ross</h2>
       <p className="text-gray-600 mt-2">Coordinador técnico CITEDI</p>
-      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oscar.montiel@empresa.com</p>
-      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 123 456 789</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oross@citedi.mx</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 664 623 1344</p>
       <div className="mt-4 flex justify-center space-x-3">
         <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
         <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
@@ -38,8 +38,8 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
       <img src="/Imagenes/maria.jpg" alt="Dra. María de los Ángeles Cosío León" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. María de los Ángeles Cosío León</h2>
       <p className="text-gray-600 mt-2">Coordinadora técnica UPP</p>
-      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> maria.cosio@empresa.com</p>
-      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 234 567 890</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> ma.cosio.leon@upp.edu.mx</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 771 547 7510</p>
       <div className="mt-4 flex justify-center space-x-3">
         <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
         <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
@@ -50,8 +50,8 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
       <img src="/Imagenes/anabel.jpg" alt="Dra. Anabel Martínez Vargas" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Anabel Martínez Vargas</h2>
       <p className="text-gray-600 mt-2">Coordinadora Administrativa</p>
-      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> anabel.martinez@empresa.com</p>
-      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 345 678 901</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> anabel.martinez@upp.edu.mx</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 771 547 7510</p>
       <div className="mt-4 flex justify-center space-x-3">
         <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
         <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
@@ -66,8 +66,8 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
       <img src="/Imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
       <p className="text-gray-600 mt-2">Asesor Clínico UPP</p>
-      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> tania.aparicio@empresa.com</p>
-      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 456 789 012</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> taniaaparicio@upp.edu.mx</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 771 547 7510</p>
       <div className="mt-4 flex justify-center space-x-3">
         <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
         <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
@@ -78,8 +78,8 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados 
       <img src="/Imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Gener José Avilés Rodríguez</h2>
       <p className="text-gray-600 mt-2">Asesor Clínico UABC</p>
-      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> gener.aviles@empresa.com</p>
-      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 567 890 123</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> aviles.gener@uabc.edu.mx</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 646 152 8231</p>
       <div className="mt-4 flex justify-center space-x-3">
         <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
         <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
