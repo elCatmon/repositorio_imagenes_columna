@@ -6,16 +6,16 @@ function Header({ toggleSidebar }) {
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
     <nav className="navbar text-white py-4 px-6 flex items-center justify-between shadow-lg">
        <div className="flex items-center">
-         <button className="menu-button transition-transform duration-300">
+         {/* <button className="menu-button transition-transform duration-300">
            <i 
              className="fas fa-bars" 
              style={{ 
                transition: 'transform 0.3s ease, color 0.3s ease' 
              }} 
-             onMouseEnter={(e) => { e.currentTarget.style.transform = 'rotate(20deg)'; e.currentTarget.style.color = '#38b2ac'; }}
-             onMouseLeave={(e) => { e.currentTarget.style.transform = 'rotate(0deg)'; e.currentTarget.style.color = 'white'; }}
+             onMouseEnter={(e) => { e.currentTarget.style.transform = 'rotate(20deg)'; e.currentTarget.style.color = '#55555'; }}
+             onMouseLeave={(e) => { e.currentTarget.style.transform = 'rotate(0deg)'; e.currentTarget.style.color = '#666666'; }}
            ></i>
-         </button>
+         </button> */}
          
          <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo BDMDM" style={{ position: 'relative', left: '60px' }} />
          <span className="title ml-4 text-lg font-semibold"> </span>
