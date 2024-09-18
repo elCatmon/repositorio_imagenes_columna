@@ -39,7 +39,8 @@ function Register() {
       if (contentType && contentType.includes('application/json')) {
         const data = JSON.parse(text); // Intentar analizar el JSON
         if (response.ok) {
-          alert(data.message); // Mostrar mensaje de éxito del backend
+          alert(data.message); // Mostrar mensaje de éxito del 
+          navigate('/menu')
         } else {
           alert(data.error || 'Error en la solicitud'); // Mostrar mensaje de error si existe
         }
