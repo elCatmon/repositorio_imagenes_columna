@@ -8,9 +8,9 @@ const Footer = () => {
       <h4>Enlaces de interés</h4>
       <ul>
               <li><a href="/nosotros">Nosotros</a></li>
-              <li><a href="/servicios">Servicios</a></li>
-              <li><a href="/politicas">Políticas de privacidad</a></li>
-              <li><a href="/afiliacion">Programas de afiliación</a></li>
+              <li>Servicios</li>
+              <li>Políticas de privacidad</li>
+              <li>Programas de afiliación</li>
             </ul>
     </div>
     <div class="footer-section">
