@@ -31,7 +31,7 @@ function PaginaInicio() {
 
       {/* Banner */}
       <section id="banner" className="relative text-white text-center py-16 mb-12" style={{ backgroundImage: "url('/imagenes/Principal.png')" }}>
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute inset-0 bg-black"></div>
         <div className="relative z-10">
           <h1 className="text-5xl font-bold mb-4"> </h1>
           <h2 className="text-3xl mb-6"> </h2>
