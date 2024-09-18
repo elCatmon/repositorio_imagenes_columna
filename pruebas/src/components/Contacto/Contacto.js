@@ -15,7 +15,7 @@ const Contacto = () => {
    Contáctanos
 </h1>
 <p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
-Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales dedicados y apasionados.
+Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales.
 </p>
 </header>
 
