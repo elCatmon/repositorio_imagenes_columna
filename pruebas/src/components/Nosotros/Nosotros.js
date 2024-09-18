@@ -37,7 +37,7 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
     <div className="persona-card">
       <img src="/Imagenes/dieter.jpeg" alt="Al Dieter Valderrabano Garcia" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Al Dieter Valderrabano Garcia</h2>
-      <p className="text-gray-600 mt-2">Estudiante de Biomédica</p>
+      <p className="text-gray-600 mt-2">Estudiante de  Ing. Biomédica</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> dieter.vg@upp.edu.mx </p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 123 456 789</p>
       <div className="mt-4 flex justify-center space-x-3">
@@ -47,8 +47,20 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
       </div>
     </div>
     <div className="persona-card">
+      <img src="/Imagenes/Rodrigo.jpg" alt="Rodrigo Efren Tellez Guerrero" className="persona-img" />
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">Rodrigo Efren Tellez Guerrero </h2>
+      <p className="text-gray-600 mt-2">Ingeniero en Telématica</p>
+      <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> rodrigo.tellez@upp.edu.mx</p>
+      <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 345 678 901</p>
+      <div className="mt-4 flex justify-center space-x-3">
+        <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+      </div>
+    </div>
+    <div className="persona-card">
       <img src="/Imagenes/Julian.png" alt="M. I. Julián Garibaldi" className="persona-img" />
-      <h2 className="mt-6 text-2xl font-semibold text-gray-900">M. I. Julián Garibaldi</h2>
+      <h2 className="mt-6 text-2xl font-semibold text-gray-900">M. I. Julián Adrian Garibaldi Beltrán</h2>
       <p className="text-gray-600 mt-2">Maestro en Ingeniería en Computación</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> julian.garibaldi@upp.edu.mx</p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 345 678 901</p>
