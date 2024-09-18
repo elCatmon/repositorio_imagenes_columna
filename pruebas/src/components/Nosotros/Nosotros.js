@@ -29,9 +29,9 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> cesarortegaah@micorro.upp.edu.mx</p>
       <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 123 456 789</p>
       <div className="mt-4 flex justify-center space-x-3">
-        <a href="https://www.linkedin.com/in/cesar-andres-ortega-herrera-ba7a81253" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+        <a href="https://www.linkedin.com/in/cesar-andres-ortega-herrera-ba7a81253" target="_blank" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
         <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
-        <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+        <a href="https://github.com/elCatmon" target="_blank" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
       </div>
     </div>
     <div className="persona-card">
