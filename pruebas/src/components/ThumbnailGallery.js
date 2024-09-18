@@ -66,8 +66,10 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   }
 
   return (
-    <div className="thumbnail-gallery-container">
-      <h2 className="thumbnail-gallery-header">Estudios médicos</h2>
+    <div className="thumbnail-gallery-container" style={{ marginLeft:'100px'}}>
+      <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
+   Estudios médicos
+</h1>
 
       <div className="filters" style={filterStyle}>
         <label>
