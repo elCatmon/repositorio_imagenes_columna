@@ -42,10 +42,12 @@ function PaginaInicio() {
       <div className="section-container">
                 <h3 className="section-title">Instituciones participantes del proyecto</h3>
                 <div className="container">
-                    <div className='cardHome'>
+                    <div className='cardHome'  >
                     <img src="/imagenes/logo_upp.png" alt="Logo UPP" className="logoupp ml-6" />
                     
                     <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logocitedi ml-6" /> 
+
+                    <img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss ml-6" /> 
                         
                     </div>
                     {/* <div className="image-container">

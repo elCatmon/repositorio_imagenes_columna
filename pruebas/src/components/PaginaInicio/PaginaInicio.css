@@ -167,13 +167,19 @@ h3 {
 
 .logoupp {
     height: 150px;
-    margin-left: 100px;
+    margin-left: 0px;
 }
 
 .logocitedi {
     height: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 60px;
+    margin-right: 55px;
+}
+
+.logoimss {
+    height: 100px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 /* Ejemplo en PaginaInicio.css */
