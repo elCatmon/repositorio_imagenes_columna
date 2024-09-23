@@ -23,7 +23,7 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
   {/* Contenedor para la primera fila */}
   <div className="grid-cols-3">
     <div className="persona-card">
-      <img src="/Imagenes/cesar.jpeg" alt="Cesar Andrés Ortega Herrera" className="persona-img" />
+      <img src="/imagenes/cesar.jpeg" alt="Cesar Andrés Ortega Herrera" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Cesar Andrés Ortega Herrera</h2>
       <p className="text-gray-600 mt-2">Estudiante de Ing. de Software</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> cesarortegaah@micorro.upp.edu.mx</p>
@@ -35,7 +35,7 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
       </div>
     </div>
     <div className="persona-card">
-      <img src="/Imagenes/dieter.jpeg" alt="Al Dieter Valderrabano Garcia" className="persona-img" />
+      <img src="/imagenes/dieter.jpeg" alt="Al Dieter Valderrabano Garcia" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Al Dieter Valderrabano Garcia</h2>
       <p className="text-gray-600 mt-2">Estudiante de  Ing. Biomédica</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> dieter.vg@upp.edu.mx </p>
@@ -47,7 +47,7 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
       </div>
     </div>
     <div className="persona-card">
-      <img src="/Imagenes/Rodrigo.jpg" alt="Rodrigo Efren Tellez Guerrero" className="persona-img" />
+      <img src="/imagenes/Rodrigo.jpg" alt="Rodrigo Efren Tellez Guerrero" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Rodrigo Efren Tellez Guerrero </h2>
       <p className="text-gray-600 mt-2">Ingeniero en Telématica</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> rodrigo.tellez@upp.edu.mx</p>
@@ -59,7 +59,7 @@ Descubre el talento y la dedicación detrás de nuestro equipo.
       </div>
     </div>
     <div className="persona-card">
-      <img src="/Imagenes/Julian.png" alt="M. I. Julián Garibaldi" className="persona-img" />
+      <img src="/imagenes/Julian.png" alt="M. I. Julián Garibaldi" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">M. I. Julián Adrian Garibaldi Beltrán</h2>
       <p className="text-gray-600 mt-2">Maestro en Ingeniería en Computación</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> julian.garibaldi@upp.edu.mx</p>
