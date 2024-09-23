@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
 import Header from './Header';
+import Footer from './Footer';
+import './importar.css'; 
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
@@ -135,9 +137,9 @@ const Importar = () => {
   };
 
   return (
-    
     <div className="importar-container">
-      <Header/>
+    <Header />
+    <div className="main-content">
       <div className="header">
         <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
       </div>
@@ -153,16 +155,16 @@ const Importar = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Seleccione</option>
-              <option value="Radiografia">Radiografía</option>
-              <option value="TomografiaComputarizada">Tomografía Computarizada</option>
-              <option value="ResonanciaMagnetica">Resonancia Magnética</option>
-              <option value="Ultrasonido">Ultrasonido</option>
-              <option value="Mamografia">Mamografía</option>
-              <option value="Angiografia">Angiografía</option>
-              <option value="MedicinaNuclear">Medicina Nuclear</option>
-              <option value="RadioTerapia">Radio Terapia</option>
-              <option value="Fluroscopia">Fluoroscopia</option>
+          <option value="00">Seleccione</option>
+            <option value="01">Radiografía</option>
+            <option value="02">Tomografía Computarizada</option>
+            <option value="03">Resonancia Magnética</option>
+            <option value="04">Ultrasonido</option>
+            <option value="05">Mamografía</option>
+            <option value="06">Angiografía</option>
+            <option value="07">Medicina Nuclear</option>
+            <option value="08">Radio Terapia</option>
+            <option value="09">Fluoroscopia</option>
             </select>
           </div>
 
@@ -175,22 +177,37 @@ const Importar = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Seleccione</option>
-              <option value="cabeza-y-cuello">Cabeza y Cuello</option>
-              <option value="torso">Torso</option>
-              <option value="abdomen">Abdomen</option>
-              <option value="pelvis">Pelvis</option>
-              <option value="columna-vertebral">Columna Vertebral</option>
-              <option value="extremidades-superiores">Extremidades Superiores</option>
-              <option value="extremidades-inferiores">Extremidades Inferiores</option>
-              <option value="sistema-musculoesqueletico">Sistema Musculoesquelético</option>
-              <option value="sistema-cardiovascular">Sistema Cardiovascular</option>
-              <option value="sistema-respiratorio">Sistema Respiratorio</option>
-              <option value="sistema -digestivo">Sistema Digestivo</option>
-              <option value="sistema-urogenital">Sistema Urogenital</option>
+                <option value="00">Seleccione</option>
+                <option value="01">Cabeza</option>
+                <option value="02">Torax</option>
+                <option value="03">Abdomen</option>
+                <option value="04">Rodilla</option>
+                <option value="05">Tobillo</option>
+                <option value="06">Pie</option>
+                <option value="07">Mano</option>
+                <option value="08">Cuello</option>
+                <option value="09">Piernas</option>
+                <option value="10">Brazo</option>
             </select>
           </div>
 
+          <div className="form-group">
+            <label>Proyeccion:</label>
+            <select
+              name="proyeccion"
+              value={formData.proyeccion}
+              onChange={handleChange}
+              required
+            >
+                <option value="00">Seleccione</option>
+                <option value="01">Postero anterior</option>
+                <option value="02">Antero posterior</option>
+                <option value="03">Obliqua</option>
+                <option value="04">Lateral izquierda</option>
+                <option value="05">Lateral derecha</option>
+            </select>
+          </div>
+          
           {/* Donador */}
           <div className="form-group">
             <label>Donador:</label>
@@ -278,18 +295,6 @@ const Importar = () => {
             />
           </div>
 
-          {/* Proyección */}
-          <div className="form-group">
-            <label>Proyección:</label>
-            <input
-              type="text"
-              name="proyeccion"
-              value={formData.proyeccion}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
           {/* Archivos anonimizados */}
           <div className="form-group">
             <label>Archivos anonimizados (JPG hasta 20MB):</label>
@@ -355,7 +360,9 @@ const Importar = () => {
         </table>
       </div>
     </div>
-  );
+    <Footer />
+  </div>
+);
 };
 
 export default Importar;

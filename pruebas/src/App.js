@@ -17,6 +17,7 @@ import Donacion from './components/Donacion';
 import PaginaInicio from './components/PaginaInicio/PaginaInicio';
 import Fisica from './components/Fisica/Fisica';
 import MenuAcceso from './components/MenuAcceso/MenuAcceso';
+import Diagnosticos from './components/Diagnosticos';
 
 
 
@@ -42,6 +43,7 @@ function App() {
       <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
       <Route path="/fisica" element={<Fisica />} />
       <Route path="/menu" element={<MenuAcceso />} />
+      <Route path="/diagnosticos" element={<Diagnosticos />} />
         
       
     </Routes>

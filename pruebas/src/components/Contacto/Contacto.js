@@ -23,7 +23,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales.
   {/* Contenedor para la primera fila */}
   <div className="grid-cols-3">
     <div className="persona-card">
-      <img src="/Imagenes/oscar.jpeg" alt="Dr. Oscar Montiel Ross" className="persona-img" />
+      <img src="./Imagenes/oscar.jpeg" alt="Dr. Oscar Montiel Ross" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Oscar Montiel Ross</h2>
       <p className="text-gray-600 mt-2">Coordinador técnico CITEDI</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oross@citedi.mx</p>
@@ -35,7 +35,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales.
       </div>
     </div>
     <div className="persona-card">
-      <img src="/Imagenes/maria.jpg" alt="Dra. María de los Ángeles Cosío León" className="persona-img" />
+      <img src="./Imagenes/maria.jpg" alt="Dra. María de los Ángeles Cosío León" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. María de los Ángeles Cosío León</h2>
       <p className="text-gray-600 mt-2">Coordinadora técnica UPP</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> ma.cosio.leon@upp.edu.mx</p>
@@ -47,7 +47,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales.
       </div>
     </div>
     <div className="persona-card">
-      <img src="/Imagenes/anabel.jpg" alt="Dra. Anabel Martínez Vargas" className="persona-img" />
+      <img src="./Imagenes/anabel.jpg" alt="Dra. Anabel Martínez Vargas" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Anabel Martínez Vargas</h2>
       <p className="text-gray-600 mt-2">Coordinadora Administrativa</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> anabel.martinez@upp.edu.mx</p>
@@ -63,7 +63,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales.
   {/* Contenedor para la segunda fila centrada */}
   <div className="grid-cols-2 mt-10">
     <div className="persona-card">
-      <img src="/Imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
+      <img src="./Imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
       <p className="text-gray-600 mt-2">Asesor Clínico UPP</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> taniaaparicio@upp.edu.mx</p>
@@ -75,7 +75,7 @@ Estamos aquí para ayudarte. Conoce a nuestro equipo de profesionales.
       </div>
     </div>
     <div className="persona-card">
-      <img src="/Imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
+      <img src="./Imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
       <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Gener José Avilés Rodríguez</h2>
       <p className="text-gray-600 mt-2">Asesor Clínico UABC</p>
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> aviles.gener@uabc.edu.mx</p>

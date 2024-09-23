@@ -75,16 +75,16 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
         <label>
           Tipo de Estudio:
           <select value={tipoEstudio} onChange={(e) => setTipoEstudio(e.target.value)}>
-            <option value="">Seleccione</option>
-            <option value="Radiografia">Radiografía</option>
-            <option value="TomografiaComputarizada">Tomografía Computarizada</option>
-            <option value="ResonanciaMagnetica">Resonancia Magnética</option>
-            <option value="Ultrasonido">Ultrasonido</option>
-            <option value="Mamografia">Mamografía</option>
-            <option value="Angiografia">Angiografía</option>
-            <option value="MedicinaNuclear">Medicina Nuclear</option>
-            <option value="RadioTerapia">Radio Terapia</option>
-            <option value="Fluroscopia">Fluoroscopia</option>
+            <option value="00">Seleccione</option>
+            <option value="01">Radiografía</option>
+            <option value="02">Tomografía Computarizada</option>
+            <option value="03">Resonancia Magnética</option>
+            <option value="04">Ultrasonido</option>
+            <option value="05">Mamografía</option>
+            <option value="06">Angiografía</option>
+            <option value="07">Medicina Nuclear</option>
+            <option value="08">Radio Terapia</option>
+            <option value="09">Fluoroscopia</option>
           </select>
         </label>
 
@@ -93,19 +93,17 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
             <label>
               Región:
               <select value={region} onChange={(e) => setRegion(e.target.value)}>
-                <option value="">Seleccione</option>
-                <option value="cabeza-y-cuello">Cabeza y Cuello</option>
-                <option value="torso">Torso</option>
-                <option value="abdomen">Abdomen</option>
-                <option value="pelvis">Pelvis</option>
-                <option value="columna-vertebral">Columna Vertebral</option>
-                <option value="extremidades-superiores">Extremidades Superiores</option>
-                <option value="extremidades-inferiores">Extremidades Inferiores</option>
-                <option value="sistema-musculoesqueletico">Sistema Musculoesquelético</option>
-                <option value="sistema-cardiovascular">Sistema Cardiovascular</option>
-                <option value="sistema-respiratorio">Sistema Respiratorio</option>
-                <option value="sistema-digestivo">Sistema Digestivo</option>
-                <option value="sistema-urogenital">Sistema Urogenital</option>
+                <option value="00">Seleccione</option>
+                <option value="01">Cabeza</option>
+                <option value="02">Torax</option>
+                <option value="03">Abdomen</option>
+                <option value="04">Rodilla</option>
+                <option value="05">Tobillo</option>
+                <option value="06">Pie</option>
+                <option value="07">Mano</option>
+                <option value="08">Cuello</option>
+                <option value="09">Piernas</option>
+                <option value="10">Brazo</option>
               </select>
             </label>
 
@@ -114,7 +112,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
               <input
                 type="number"
                 min="0"
-                max="120"
+                max="100"
                 value={edadMin}
                 onChange={(e) => setEdadMin(e.target.value)}
                 placeholder="Edad mínima"
@@ -126,7 +124,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
               <input
                 type="number"
                 min="0"
-                max="120"
+                max="100"
                 value={edadMax}
                 onChange={(e) => setEdadMax(e.target.value)}
                 placeholder="Edad máxima"
@@ -136,9 +134,9 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
             <label>
               Sexo:
               <select value={sexo} onChange={(e) => setSexo(e.target.value)}>
-                <option value="">Seleccionar</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
+                <option value="0">Seleccionar</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
               </select>
             </label>
           </>
