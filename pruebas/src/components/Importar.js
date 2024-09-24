@@ -73,16 +73,13 @@ const Importar = () => {
 
     const formDataToSend = new FormData();
     formDataToSend.append('estudio_ID', noOperacion);
-    formDataToSend.append('hash', ''); // O genera un hash si es necesario
-    formDataToSend.append('donador', formData.donador)
+    formDataToSend.append('donador', formData.donador);
     formDataToSend.append('estudio', formData.tipoEstudio);
     formDataToSend.append('region', formData.region);
+    formDataToSend.append('imagenValida', formData.imagenValida);
     formDataToSend.append('sexo', formData.sexo);
     formDataToSend.append('edad', formData.edad);
-    formDataToSend.append('fecha_nacimiento', formData.fechaNacimiento);
     formDataToSend.append('proyeccion', formData.proyeccion);
-    formDataToSend.append('fecha_estudio', formData.fechaEstudio);
-
     // Solo agrega archivos anonimizados si hay
     if (formData.archivosAnonimizados.length > 0) {
       formData.archivosAnonimizados.forEach((file) => {
@@ -153,16 +150,16 @@ const Importar = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Seleccione</option>
-              <option value="Radiografia">Radiografía</option>
-              <option value="TomografiaComputarizada">Tomografía Computarizada</option>
-              <option value="ResonanciaMagnetica">Resonancia Magnética</option>
-              <option value="Ultrasonido">Ultrasonido</option>
-              <option value="Mamografia">Mamografía</option>
-              <option value="Angiografia">Angiografía</option>
-              <option value="MedicinaNuclear">Medicina Nuclear</option>
-              <option value="RadioTerapia">Radio Terapia</option>
-              <option value="Fluroscopia">Fluoroscopia</option>
+              <option value="00">Seleccione</option>
+              <option value="01">Radiografía</option>
+              <option value="02">Tomografía Computarizada</option>
+              <option value="03">Resonancia Magnética</option>
+              <option value="04">Ultrasonido</option>
+              <option value="05">Mamografía</option>
+              <option value="06">Angiografía</option>
+              <option value="07">Medicina Nuclear</option>
+              <option value="08">Radio Terapia</option>
+              <option value="09">Fluoroscopia</option>
             </select>
           </div>
 
@@ -175,19 +172,18 @@ const Importar = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Seleccione</option>
-              <option value="cabeza-y-cuello">Cabeza y Cuello</option>
-              <option value="torso">Torso</option>
-              <option value="abdomen">Abdomen</option>
-              <option value="pelvis">Pelvis</option>
-              <option value="columna-vertebral">Columna Vertebral</option>
-              <option value="extremidades-superiores">Extremidades Superiores</option>
-              <option value="extremidades-inferiores">Extremidades Inferiores</option>
-              <option value="sistema-musculoesqueletico">Sistema Musculoesquelético</option>
-              <option value="sistema-cardiovascular">Sistema Cardiovascular</option>
-              <option value="sistema-respiratorio">Sistema Respiratorio</option>
-              <option value="sistema -digestivo">Sistema Digestivo</option>
-              <option value="sistema-urogenital">Sistema Urogenital</option>
+              <option value="00">Seleccione</option>
+              <option value="01">Cabeza</option>
+              <option value="02">Cuello</option>
+              <option value="03">Torax</option>
+              <option value="04">Abdomen</option>
+              <option value="05">Pelvis</option>
+              <option value="06">Brazo</option>
+              <option value="07">Manos</option>
+              <option value="08">Pernas</option>
+              <option value="09">Rdilla</option>
+              <option value="10">Tobillo</option>
+              <option value="11">Pie</option>
             </select>
           </div>
 
@@ -211,8 +207,8 @@ const Importar = () => {
                 <input
                   type="radio"
                   name="imagenValida"
-                  value="Sí"
-                  checked={formData.imagenValida === 'Sí'}
+                  value="1"
+                  checked={formData.imagenValida === '1'}
                   onChange={handleChange}
                 />
                 Sí
@@ -221,8 +217,8 @@ const Importar = () => {
                 <input
                   type="radio"
                   name="imagenValida"
-                  value="No"
-                  checked={formData.imagenValida === 'No'}
+                  value="2"
+                  checked={formData.imagenValida === '2'}
                   onChange={handleChange}
                 />
                 No
@@ -233,61 +229,26 @@ const Importar = () => {
           {/* Edad */}
           <div className="form-group">
             <label>Edad:</label>
-            <input
-              type="number"
-              name="edad"
-              min="0"
-              max="100"
-              value={formData.edad}
-              onChange={handleChange}
-              required
-            />
+            <select name="sexo" value={formData.sexo} onChange={handleChange} required>
+              <option value="0">Seleccione</option>
+              <option value="1">"Lactante menores de 1 año</option>
+              <option value="2">Prescolar 1-5</option>
+              <option value="3">Infante 6-12</option>
+              <option value="4">Adolescente 13-18</option>
+              <option value="5">Adulto joven 19-26</option>
+              <option value="6">Adulto 27-59</option>
+              <option value="7">Adulto mayor 60+</option>
+            </select>
           </div>
 
           {/* Sexo */}
           <div className="form-group">
             <label>Sexo:</label>
             <select name="sexo" value={formData.sexo} onChange={handleChange} required>
-              <option value="">Seleccione</option>
-              <option value="M">M</option>
-              <option value="F">F</option>
+              <option value="0">Seleccione</option>
+              <option value="1">M</option>
+              <option value="2">F</option>
             </select>
-          </div>
-
-          {/* Fecha de nacimiento */}
-          <div className="form-group">
-            <label>Fecha de nacimiento:</label>
-            <input
-              type="date"
-              name="fechaNacimiento"
-              value={formData.fechaNacimiento}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Fecha de estudio */}
-          <div className="form-group">
-            <label>Fecha de estudio:</label>
-            <input
-              type="date"
-              name="fechaEstudio"
-              value={formData.fechaEstudio}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Proyección */}
-          <div className="form-group">
-            <label>Proyección:</label>
-            <input
-              type="text"
-              name="proyeccion"
-              value={formData.proyeccion}
-              onChange={handleChange}
-              required
-            />
           </div>
 
           {/* Archivos anonimizados */}

@@ -9,12 +9,17 @@ import '../App.css';
 
 function DiagnosticosPage() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageD, setSelectedImageD] = useState(null);
   const navigate = useNavigate();
 
   const handleThumbnailClick = (image) => {
     const fileName = image.split('/').pop().replace('.jpg', '.dcm');
+    console.log("dp", fileName); // Este es el nombre que se va a usar
     setSelectedImage(fileName);
+    setSelectedImageD(fileName); // Verifica que este valor sea el esperado
+    console.log("selectedImageD:", fileName); // Asegúrate de que se esté actualizando
   };
+  
 
   return (
     <div className="visualizer-page">
@@ -31,8 +36,8 @@ function DiagnosticosPage() {
           )}
         </div>
         <div className="study-info">
-            {selectedImage ? (
-            <Diagnosticos fileName={selectedImage} />
+            {selectedImageD ? (
+            <Diagnosticos selectedFile={selectedImageD} />
           ) : (
             <p>Selecciona una miniatura para emitir un diagnostico.</p>
           )}

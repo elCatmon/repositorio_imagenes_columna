@@ -1,48 +1,99 @@
 import React, { useState } from 'react';
-import '../App.css'; 
+import { BASE_URL } from './config';
+import '../App.css';
 
-const DiagnosticForm = () => {
+const DiagnosticForm = ({ selectedFile }) => { // Recibe selectedFile como prop
   const [formData, setFormData] = useState({
     proyeccion: '',
     hallazgos: '',
     impresion: '',
     observaciones: ''
   });
+  
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
+    console.log(`Campo actualizado: ${name} = ${value}`);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
-    // Aquí puedes manejar el envío del formulario, como enviarlo a un servidor
+    console.log('Enviando el formulario con los siguientes datos:', formData);
+  
+    try {
+      // Primero, busca el estudio basado en el estudio_ID
+      console.log(`Buscando estudio con ID: ${selectedFile}`);
+      const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/${selectedFile}`);
+      
+      if (!fetchStudyResponse.ok) {
+        throw new Error('Error al obtener el estudio');
+      }
+  
+      const study = await fetchStudyResponse.json();
+      console.log('Estudio obtenido:', study);
+  
+      // Ahora, asegúrate de que el estudio existe
+      if (!study) {
+        throw new Error('Estudio no encontrado');
+      }
+  
+      // Agrega el nuevo diagnóstico al estudio existente
+      const updatedDiagnostico = {
+        proyeccion: formData.proyeccion,
+        hallazgos: formData.hallazgos,
+        impresion: formData.impresion,
+        observaciones: formData.observaciones,
+      };
+      console.log('Actualizando diagnóstico:', updatedDiagnostico);
+  
+      // Realiza la actualización del diagnóstico en el documento de estudios
+      const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study._id}`, {
+        method: 'PATCH', // O 'PUT' dependiendo de cómo manejes la actualización
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ diagnostico: updatedDiagnostico }),
+      });
+  
+      if (!updateResponse.ok) {
+        throw new Error('Error al actualizar el diagnóstico');
+      }
+  
+      const result = await updateResponse.json();
+      console.log('Respuesta del servidor:', result);
+      
+      setSuccessMessage('Diagnóstico guardado exitosamente');
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      setSuccessMessage('Error al enviar el diagnóstico. Por favor, inténtalo de nuevo.');
+    }
   };
-
+  
   return (
-    <div classname="form-diagnostico" style={{ margin: '20px' }}>
+    <div className="form-diagnostico" style={{ margin: '20px' }}>
       <h2>Formulario de Diagnóstico</h2>
       <form onSubmit={handleSubmit}>
-      <div className="form-group">
-            <label style={{ fontWeight: 'bold' }}>Region:</label>
-            <select
-              name="region"
-              value={formData.region}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Seleccione</option>
-              <option value="PA">Postero Anterior</option>
-              <option value="AP">Antero Posterior</option>
-              <option value="OB">Obliqua</option>
-              <option value="LI">Lateral Izquierda</option>
-              <option value="LA">Lateral Derecha</option>
-            </select>
-          </div>
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Proyección:</label>
+          <select
+            name="proyeccion"
+            value={formData.proyeccion}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="PA">Postero Anterior</option>
+            <option value="AP">Antero Posterior</option>
+            <option value="OB">Obliqua</option>
+            <option value="LI">Lateral Izquierda</option>
+            <option value="LA">Lateral Derecha</option>
+          </select>
+        </div>
 
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="hallazgos">Hallazgos:</label>
@@ -58,7 +109,7 @@ const DiagnosticForm = () => {
         </div>
 
         <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontWeight: 'bold' }} htmlFor="impresion">Impresión Diagnostica:</label>
+          <label style={{ fontWeight: 'bold' }} htmlFor="impresion">Impresión Diagnóstica:</label>
           <textarea
             id="impresion"
             name="impresion"
@@ -85,6 +136,8 @@ const DiagnosticForm = () => {
         <button type="submit" style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
           Enviar
         </button>
+
+        {successMessage && <div style={{ color: 'green', marginTop: '10px' }}>{successMessage}</div>}
       </form>
     </div>
   );

@@ -158,16 +158,16 @@ const Donaciones = () => {
         <div>
           <label htmlFor="tipo-estudio">Tipo de Estudio:</label>
           <select id="tipo-estudio" value={tipoEstudio} onChange={handleTipoEstudioChange}>
-            <option value="">Seleccione</option>
-            <option value="Radiografia">Radiografía</option>
-            <option value="TomografiaComputarizada">Tomografía Computarizada</option>
-            <option value="ResonanciaMagnetica">Resonancia Magnética</option>
-            <option value="Ultrasonido">Ultrasonido</option>
-            <option value="Mamografia">Mamografía</option>
-            <option value="Angiografia">Angiografía</option>
-            <option value="MedicinaNuclear">Medicina Nuclear</option>
-            <option value="RadioTerapia">Radio Terapia</option>
-            <option value="Fluoroscopia">Fluoroscopia</option>
+          <option value="00">Seleccione</option>
+              <option value="01">Radiografía</option>
+              <option value="02">Tomografía Computarizada</option>
+              <option value="03">Resonancia Magnética</option>
+              <option value="04">Ultrasonido</option>
+              <option value="05">Mamografía</option>
+              <option value="06">Angiografía</option>
+              <option value="07">Medicina Nuclear</option>
+              <option value="08">Radio Terapia</option>
+              <option value="09">Fluoroscopia</option>
           </select>
         </div>
 <br></br>
