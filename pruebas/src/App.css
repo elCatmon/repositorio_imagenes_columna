@@ -24,6 +24,7 @@ h1 {
   max-width: 1200px;
   padding: 20px;
   flex: 1; /* Asegura que el contenido ocupe toda la altura disponible */
+
 }
 
 
@@ -301,11 +302,11 @@ select {
 }
 
 .form-section {
-  width: 48%;
+  width: 50%;
 }
 
 .table-section {
-  width: 48%;
+  width: 100%;
 }
 
 .form-group {

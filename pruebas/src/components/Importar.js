@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from './config';
 import Header from './Header';
+import Footer from './Footer';
+import '../App.css'; 
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
@@ -132,12 +134,9 @@ const Importar = () => {
   };
 
   return (
-    
-    <div className="importar-container">
+    <div>
       <Header/>
-      <div className="header">
-        <button onClick={() => navigate('/')} className="back-button">← Regresar</button>
-      </div>
+      <div className="content">
       <div className="form-section">
         <h2>Formulario de Importación</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -283,7 +282,6 @@ const Importar = () => {
         {error && <p className="error-message">{error}</p>}
         {mensaje && <p className="success-message">{mensaje}</p>}
       </div>
-
       <div className="table-section">
         <h3>Datos Ingresados</h3>
         <table>
@@ -315,6 +313,8 @@ const Importar = () => {
           </tbody>
         </table>
       </div>
+      </div>
+      <Footer/>
     </div>
   );
 };
