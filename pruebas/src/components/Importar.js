@@ -14,9 +14,6 @@ const Importar = () => {
     imagenValida: '',
     edad: '',
     sexo: '',
-    fechaNacimiento: '',
-    fechaEstudio: '',
-    proyeccion: '',
     archivosAnonimizados: [],
     archivosOriginales: []
   });
@@ -31,6 +28,8 @@ const Importar = () => {
       ...prevData,
       [name]: type === 'checkbox' ? (checked ? 'Sí' : 'No') : value
     }));
+
+    console.log(`Campo cambiado: ${name}, Nuevo valor: ${value}`); // Log de cambios en el formulario
   };
 
   const handleFileChange = (e) => {
@@ -45,6 +44,8 @@ const Importar = () => {
       alert('Solo se permiten imágenes JPG de máximo 20MB.');
     }
 
+    console.log(`Archivos seleccionados para ${name}:`, validFiles); // Log de archivos seleccionados
+
     setFormData((prevData) => ({ 
       ...prevData, 
       [name]: validFiles 
@@ -58,7 +59,7 @@ const Importar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const noOperacion = generateRandomCode();
     const miniaturas = formData.archivosOriginales.map(file => URL.createObjectURL(file));
 
@@ -71,6 +72,8 @@ const Importar = () => {
       numeroArchivos: formData.archivosOriginales.length
     };
 
+    console.log("Nuevo registro a agregar:", nuevoRegistro); // Log del nuevo registro
+
     setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
 
     const formDataToSend = new FormData();
@@ -81,7 +84,7 @@ const Importar = () => {
     formDataToSend.append('imagenValida', formData.imagenValida);
     formDataToSend.append('sexo', formData.sexo);
     formDataToSend.append('edad', formData.edad);
-    formDataToSend.append('proyeccion', formData.proyeccion);
+
     // Solo agrega archivos anonimizados si hay
     if (formData.archivosAnonimizados.length > 0) {
       formData.archivosAnonimizados.forEach((file) => {
@@ -96,6 +99,8 @@ const Importar = () => {
       });
     }
 
+    console.log("Datos a enviar:", formDataToSend); // Log de los datos que se enviarán
+
     try {
       const response = await fetch(`${BASE_URL}/importar`, {
         method: 'POST',
@@ -103,8 +108,8 @@ const Importar = () => {
       });
 
       if (!response.ok) {
-        // Captura más información sobre el error
         const errorResponse = await response.text();
+        console.error("Error en la respuesta:", errorResponse); // Log de error en la respuesta
         throw new Error(`Error al enviar los datos: ${errorResponse}`);
       }
 
@@ -115,19 +120,17 @@ const Importar = () => {
       // Limpiar el formulario
       setFormData({
         tipoEstudio: '',
-        region:'',
+        region: '',
         donador: '',
         imagenValida: '',
         edad: '',
         sexo: '',
-        fechaNacimiento: '',
-        fechaEstudio: '',
-        proyeccion: '',
         archivosAnonimizados: [],
         archivosOriginales: []
       });
 
     } catch (error) {
+      console.error("Error al enviar los datos:", error); // Log del error
       setError(`Error al enviar los datos: ${error.message}`);
       setMensaje('');
     }
@@ -228,9 +231,9 @@ const Importar = () => {
           {/* Edad */}
           <div className="form-group">
             <label>Edad:</label>
-            <select name="sexo" value={formData.sexo} onChange={handleChange} required>
+            <select name="edad" value={formData.edad} onChange={handleChange} required>
               <option value="0">Seleccione</option>
-              <option value="1">"Lactante menores de 1 año</option>
+              <option value="1">Lactante menores de 1 año</option>
               <option value="2">Prescolar 1-5</option>
               <option value="3">Infante 6-12</option>
               <option value="4">Adolescente 13-18</option>
@@ -245,62 +248,62 @@ const Importar = () => {
             <label>Sexo:</label>
             <select name="sexo" value={formData.sexo} onChange={handleChange} required>
               <option value="0">Seleccione</option>
-              <option value="1">M</option>
-              <option value="2">F</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
             </select>
           </div>
 
-          {/* Archivos anonimizados */}
+          {/* Archivos Anonimizados */}
           <div className="form-group">
-            <label>Archivos anonimizados (JPG hasta 20MB):</label>
+            <label>Archivos Anonimizados:</label>
             <input
               type="file"
               name="archivosAnonimizados"
               onChange={handleFileChange}
-              accept=".jpg"
               multiple
-              required
+              accept="image/jpeg"
             />
           </div>
 
-          {/* Archivos originales */}
+          {/* Archivos Originales */}
           <div className="form-group">
-            <label>Archivos originales (JPG hasta 20MB):</label>
+            <label>Archivos Originales:</label>
             <input
               type="file"
               name="archivosOriginales"
               onChange={handleFileChange}
-              accept=".jpg"
               multiple
-              required
+              accept="image/jpeg"
             />
           </div>
 
           <button type="submit">Enviar</button>
         </form>
 
-        {error && <p className="error-message">{error}</p>}
-        {mensaje && <p className="success-message">{mensaje}</p>}
+        {error && <p className="error">{error}</p>}
+        {mensaje && <p className="success">{mensaje}</p>}
       </div>
+
+      {/* Tabla de datos importados */}
       <div className="table-section">
-        <h3>Datos Ingresados</h3>
+        <h2>Datos Importados</h2>
         <table>
           <thead>
             <tr>
-              <th>Miniatura</th>
+              <th>Miniaturas</th>
               <th>No. Operación</th>
               <th>Donador</th>
               <th>Fecha</th>
-              <th>Tipo de Estudio</th>
-              <th>Número de Archivos</th>
+              <th>Tipo de estudio</th>
+              <th>Número de archivos</th>
             </tr>
           </thead>
           <tbody>
             {tablaDatos.map((dato, index) => (
               <tr key={index}>
                 <td>
-                  {dato.miniaturas.map((miniatura, miniIndex) => (
-                    <img key={miniIndex} src={miniatura} alt="Miniatura" width="50" height="50" />
+                  {dato.miniaturas.map((miniatura, i) => (
+                    <img key={i} src={miniatura} alt="Miniatura" style={{ width: '50px', height: '50px' }} />
                   ))}
                 </td>
                 <td>{dato.noOperacion}</td>
@@ -313,9 +316,9 @@ const Importar = () => {
           </tbody>
         </table>
       </div>
-      </div>
-      <Footer/>
     </div>
+    <Footer/>
+  </div>
   );
 };
 

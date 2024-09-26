@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { BASE_URL } from './config';
 import '../App.css';
 
-const DiagnosticForm = ({ selectedFile }) => { // Recibe selectedFile como prop
+const DiagnosticForm = ({ selectedFile }) => {
   const [formData, setFormData] = useState({
     proyeccion: '',
     hallazgos: '',
     impresion: '',
-    observaciones: ''
+    observaciones: '',
+    tipoEstudio: '',
+    region: '',
+    valido: '',
+    sexo: '',
+    edad: '',
+    medico: ''
   });
   
   const [successMessage, setSuccessMessage] = useState('');
@@ -26,7 +32,6 @@ const DiagnosticForm = ({ selectedFile }) => { // Recibe selectedFile como prop
     console.log('Enviando el formulario con los siguientes datos:', formData);
   
     try {
-      // Primero, busca el estudio basado en el estudio_ID
       console.log(`Buscando estudio con ID: ${selectedFile}`);
       const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/${selectedFile}`);
       
@@ -37,23 +42,26 @@ const DiagnosticForm = ({ selectedFile }) => { // Recibe selectedFile como prop
       const study = await fetchStudyResponse.json();
       console.log('Estudio obtenido:', study);
   
-      // Ahora, asegúrate de que el estudio existe
       if (!study) {
         throw new Error('Estudio no encontrado');
       }
   
-      // Agrega el nuevo diagnóstico al estudio existente
       const updatedDiagnostico = {
         proyeccion: formData.proyeccion,
         hallazgos: formData.hallazgos,
         impresion: formData.impresion,
         observaciones: formData.observaciones,
+        tipoEstudio: formData.tipoEstudio,
+        region: formData.region,
+        valido: formData.valido,
+        sexo: formData.sexo,
+        edad: formData.edad,
+        medico: formData.medico
       };
       console.log('Actualizando diagnóstico:', updatedDiagnostico);
   
-      // Realiza la actualización del diagnóstico en el documento de estudios
       const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study._id}`, {
-        method: 'PATCH', // O 'PUT' dependiendo de cómo manejes la actualización
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -78,23 +86,6 @@ const DiagnosticForm = ({ selectedFile }) => { // Recibe selectedFile como prop
     <div className="form-diagnostico" style={{ margin: '20px' }}>
       <h2>Formulario de Diagnóstico</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label style={{ fontWeight: 'bold' }}>Proyección:</label>
-          <select
-            name="proyeccion"
-            value={formData.proyeccion}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Seleccione</option>
-            <option value="PA">Postero Anterior</option>
-            <option value="AP">Antero Posterior</option>
-            <option value="OB">Obliqua</option>
-            <option value="LI">Lateral Izquierda</option>
-            <option value="LA">Lateral Derecha</option>
-          </select>
-        </div>
-
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="hallazgos">Hallazgos:</label>
           <textarea
@@ -132,13 +123,130 @@ const DiagnosticForm = ({ selectedFile }) => { // Recibe selectedFile como prop
             style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
           />
         </div>
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Proyección:</label>
+          <select
+            name="proyeccion"
+            value={formData.proyeccion}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="PA">Postero Anterior</option>
+            <option value="AP">Antero Posterior</option>
+            <option value="OB">Obliqua</option>
+            <option value="LI">Lateral Izquierda</option>
+            <option value="LA">Lateral Derecha</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Tipo de Estudio:</label>
+          <select
+            name="tipoEstudio"
+            value={formData.tipoEstudio}
+            onChange={handleChange}
+            required
+          >
+              <option value="00">Seleccione</option>
+              <option value="01">Radiografía</option>
+              <option value="02">Tomografía Computarizada</option>
+              <option value="03">Resonancia Magnética</option>
+              <option value="04">Ultrasonido</option>
+              <option value="05">Mamografía</option>
+              <option value="06">Angiografía</option>
+              <option value="07">Medicina Nuclear</option>
+              <option value="08">Radio Terapia</option>
+              <option value="09">Fluoroscopia</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+            <label style={{ fontWeight: 'bold' }}>Region:</label>
+            <select
+              name="region"
+              value={formData.region}
+              onChange={handleChange}
+              required
+            >
+              <option value="00">Seleccione</option>
+              <option value="01">Cabeza</option>
+              <option value="02">Cuello</option>
+              <option value="03">Torax</option>
+              <option value="04">Abdomen</option>
+              <option value="05">Pelvis</option>
+              <option value="06">Brazo</option>
+              <option value="07">Manos</option>
+              <option value="08">Pernas</option>
+              <option value="09">Rdilla</option>
+              <option value="10">Tobillo</option>
+              <option value="11">Pie</option>
+            </select>
+          </div>
+
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Válido:</label>
+          <select
+            name="valido"
+            value={formData.valido}
+            onChange={handleChange}
+            required
+          >
+            <option value="0">Seleccione</option>
+            <option value="1">Sí</option>
+            <option value="2">No</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Sexo:</label>
+          <select
+            name="sexo"
+            value={formData.sexo}
+            onChange={handleChange}
+            required
+          >
+              <option value="0">Seleccione</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
+          </select>
+        </div>
+
+          {/* Edad */}
+          <div className="form-group">
+            <label style={{ fontWeight: 'bold' }}>Edad:</label>
+            <select name="edad" value={formData.edad} onChange={handleChange} required>
+              <option value="0">Seleccione</option>
+              <option value="1">Lactante menores de 1 año</option>
+              <option value="2">Prescolar 1-5</option>
+              <option value="3">Infante 6-12</option>
+              <option value="4">Adolescente 13-18</option>
+              <option value="5">Adulto joven 19-26</option>
+              <option value="6">Adulto 27-59</option>
+              <option value="7">Adulto mayor 60+</option>
+            </select>
+          </div>
+
+        {/* Campo para el médico */}
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ fontWeight: 'bold' }} htmlFor="medico">Médico que hizo el diagnóstico:</label>
+          <input
+            type="text"
+            id="medico"
+            name="medico"
+            placeholder="Ingresa el nombre del médico"
+            value={formData.medico}
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px' }}
+          />
+        </div>
 
         <button type="submit" style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
           Enviar
         </button>
-
-        {successMessage && <div style={{ color: 'green', marginTop: '10px' }}>{successMessage}</div>}
       </form>
+
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 };
