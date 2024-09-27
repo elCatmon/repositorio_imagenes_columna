@@ -15,15 +15,16 @@ const DiagnosticForm = ({ selectedFile }) => {
     edad: '',
     medico: ''
   });
-  
+
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
     console.log(`Campo actualizado: ${name} = ${value}`);
   };
 
@@ -32,33 +33,39 @@ const DiagnosticForm = ({ selectedFile }) => {
     console.log('Enviando el formulario con los siguientes datos:', formData);
   
     try {
-      console.log(`Buscando estudio con ID: ${selectedFile}`);
-      const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/${selectedFile}`);
-      
+      const fileName = selectedFile.split('/').pop(); // Obtener el nombre del archivo
+      const newFileName = fileName.replace(/\.jpg$/, '.dcm'); // Cambiar la extensión a .dcm
+      console.log(`Buscando estudio con ID: ${newFileName}`); // Log del nuevo nombre del archivo
+
+      const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom/${newFileName}`);
+      console.log('Respuesta de la búsqueda del estudio:', fetchStudyResponse);
+
       if (!fetchStudyResponse.ok) {
+        console.error('Error en la respuesta al obtener el estudio:', fetchStudyResponse.status);
         throw new Error('Error al obtener el estudio');
       }
   
       const study = await fetchStudyResponse.json();
       console.log('Estudio obtenido:', study);
   
-      if (!study) {
+      if (!study || !study._id) { // Verifica que el estudio tenga un ID válido
+        console.warn('Estudio no encontrado o ID inválido');
         throw new Error('Estudio no encontrado');
       }
   
       const updatedDiagnostico = {
-        proyeccion: formData.proyeccion,
         hallazgos: formData.hallazgos,
         impresion: formData.impresion,
         observaciones: formData.observaciones,
+        proyeccion: formData.proyeccion,
         tipoEstudio: formData.tipoEstudio,
         region: formData.region,
         valido: formData.valido,
         sexo: formData.sexo,
         edad: formData.edad,
-        medico: formData.medico
+        medico: formData.medico,
       };
-      console.log('Actualizando diagnóstico:', updatedDiagnostico);
+      console.log('Datos del diagnóstico a actualizar:', updatedDiagnostico);
   
       const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study._id}`, {
         method: 'PATCH',
@@ -67,18 +74,22 @@ const DiagnosticForm = ({ selectedFile }) => {
         },
         body: JSON.stringify({ diagnostico: updatedDiagnostico }),
       });
+      console.log('Respuesta de la actualización del diagnóstico:', updateResponse);
   
       if (!updateResponse.ok) {
+        console.error('Error en la respuesta al actualizar el diagnóstico:', updateResponse.status);
         throw new Error('Error al actualizar el diagnóstico');
       }
   
       const result = await updateResponse.json();
-      console.log('Respuesta del servidor:', result);
+      console.log('Respuesta del servidor tras la actualización:', result);
       
       setSuccessMessage('Diagnóstico guardado exitosamente');
+      setErrorMessage(''); // Limpiar mensajes de error
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
-      setSuccessMessage('Error al enviar el diagnóstico. Por favor, inténtalo de nuevo.');
+      setErrorMessage('Error al enviar el diagnóstico. Por favor, inténtalo de nuevo.');
+      setSuccessMessage(''); // Limpiar mensajes de éxito
     }
   };
   
@@ -131,12 +142,13 @@ const DiagnosticForm = ({ selectedFile }) => {
             onChange={handleChange}
             required
           >
-            <option value="">Seleccione</option>
-            <option value="PA">Postero Anterior</option>
-            <option value="AP">Antero Posterior</option>
-            <option value="OB">Obliqua</option>
-            <option value="LI">Lateral Izquierda</option>
-            <option value="LA">Lateral Derecha</option>
+            <option value="00">Seleccione</option>
+            <option value="01">Postero Anterior</option>
+            <option value="02">Antero Posterior</option>
+            <option value="03">Obliqua</option>
+            <option value="04">Lateral Izquierda</option>
+            <option value="05">Lateral Derecha</option>
+            <option value="06">Especial</option>
           </select>
         </div>
         <div className="form-group">

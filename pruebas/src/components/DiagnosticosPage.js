@@ -16,7 +16,7 @@ function DiagnosticosPage() {
     const fileName = image.split('/').pop().replace('.jpg', '.dcm');
     console.log("dp", fileName); // Este es el nombre que se va a usar
     setSelectedImage(fileName);
-    setSelectedImageD(fileName); // Verifica que este valor sea el esperado
+    setSelectedImageD(image); // Verifica que este valor sea el esperado
     console.log("selectedImageD:", fileName); // Asegúrate de que se esté actualizando
   };
   
