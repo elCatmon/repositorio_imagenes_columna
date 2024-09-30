@@ -1,8 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
+/* Estilo general para todo el cuerpo */
+html, body {
+    height: 100%; /* Asegura que el body ocupe el 100% de la ventana */
+    margin: 0; /* Elimina márgenes */
+    padding: 0; /* Elimina padding */
+    display: flex;
+    flex-direction: column; /* Asegura que el footer se mantenga en la parte inferior */
+}
+
+.container {
+    flex: 1; /* Hace que el contenido principal crezca y empuje el footer hacia abajo */
+}
+
+.footer {
+    background-color: #666666; /* Color de fondo del footer */
+    color: #fff; /* Color del texto blanco */
+    padding: 20px 10px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    margin-top: auto; /* Empuja el footer hacia el final de la página */
+    width: 100%; /* Asegura que el footer ocupe todo el ancho */
+    box-sizing: border-box; /* Asegura que el padding no incremente el tamaño del contenedor */
+}
+
 .footer .container {
-    max-width: 1100px; /* Ancho máximo del footer */
-    margin: 0 auto; /* Centra el footer horizontalmente */
+    max-width: 1100px; /* Ancho máximo del contenido del footer */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
 }
 
 .footer .footer-content {
@@ -18,21 +41,14 @@
     margin: 10px; /* Espaciado entre las secciones */
 }
 
-
 .footer h4 {
     font-size: 1.5rem; /* Tamaño del texto de los títulos */
     margin-bottom: 1rem; /* Margen inferior para separar del contenido */
     font-weight: bold; /* Texto en negrita */
 }
-.footer .footer-section h4 {
-    font-size: 20px; /* Tamaño de fuente para los títulos */
-    font-weight: bold; /* Mantiene los títulos fuertes */
-    margin-bottom: 10px; /* Espacio debajo de los títulos */
-}
 
 .footer .footer-section ul li a {
     font-size: 18px; /* Aumenta el tamaño de la fuente de los enlaces */
-    font-weight: normal; /* Mantiene el peso de los enlaces normal */
     padding: 5px 0; /* Espacio adicional para destacar los enlaces */
     color: #e2e8f0; /* Color para diferenciarse de los títulos */
     text-decoration: none; /* Quita el subrayado de los enlaces */
@@ -46,61 +62,11 @@
     margin-bottom: 0.5rem; /* Espacio entre elementos de la lista */
 }
 
-.footer {
-    background-color: #666666; /* Color de fondo azul */
-    color: #fff; /* Color del texto blanco */
-    padding: 5px 10px; /* Espaciado mínimo en la parte superior e inferior */
-    text-align: center; /* Centrar el texto */
-    margin-top: 50px; /* Mantiene el margen superior */
-    margin-bottom: 0; /* Elimina cualquier margen inferior */
-    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del contenedor */
-}
-.footer {
-    background-color: #666666; /* Color de fondo azul */
-    color: #fff; /* Color del texto blanco */
-    padding: 5px 10px; /* Espaciado mínimo en la parte superior e inferior */
-    text-align: center; /* Centrar el texto */
-    margin-top: 20px; /* Mantiene el margen superior */
-    margin-bottom: 0; /* Elimina cualquier margen inferior */
-    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño del contenedor */
-    overflow: hidden; /* Asegura que no haya contenido que expanda el footer */
-}
-
-.footer * {
-    margin: 0; /* Elimina márgenes de los elementos internos */
-    padding: 0; /* Elimina padding de los elementos internos */
-    line-height: 1.2; /* Ajusta la altura de línea de los elementos internos para mantener la legibilidad */
-    box-sizing: border-box; /* Asegura que los elementos internos no expandan el contenedor */
-}
-
-.footer h4 {
-    margin-bottom: 3px; /* Espacio debajo de los títulos */
-}
-
-.footer ul {
-    padding: 0;
-    margin: 0;
-}
-
-.footer ul li {
-    list-style: none;
-    margin: 10px 0; /* Reduce el margen entre los elementos de la lista */
-}
-
-.footer ul li a {
-    padding: 2px 0; /* Reduce el padding interno de los enlaces */
-}
-
 .footer .social-icons {
     display: flex;
     justify-content: center; /* Centra los íconos */
     gap: 16px; /* Espacio entre los íconos */
     margin-top: 20px; /* Aumenta el margen superior para bajar los íconos */
-}
-
-/* Específico para los íconos de contacto */
-.footer .contact-icons {
-    margin-top: 0; /* Reduce el margen superior de los íconos de contacto */
 }
 
 .footer .social-icons a {
@@ -115,4 +81,17 @@
     transform: translateY(-5px) scale(1.1); /* Mueve el ícono hacia arriba y lo escala ligeramente */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
     text-decoration: none; /* Asegura que no haya línea de bajo en hover */
+}
+
+/* Responsive: Asegura que el footer se vea bien en pantallas más pequeñas */
+@media (max-width: 768px) {
+    .footer .footer-content {
+        flex-direction: column; /* En pantallas pequeñas, las secciones se apilan verticalmente */
+        align-items: center;
+    }
+
+    .footer .footer-section {
+        text-align: center; /* Centra el texto en pantallas pequeñas */
+        margin-bottom: 20px; /* Añade espacio debajo de cada sección */
+    }
 }

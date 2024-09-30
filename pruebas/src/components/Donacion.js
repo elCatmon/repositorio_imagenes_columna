@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
-import JSZip from 'jszip'; // Importar la biblioteca JSZip para manejar archivos zip
-import { useNavigate } from 'react-router-dom'; // Para redireccionar
+import React, { useState, useEffect } from 'react'; // Importar useEffect
+import JSZip from 'jszip'; 
+import { useNavigate } from 'react-router-dom'; 
 import { BASE_URL } from './config';
-import * as dicomParser from 'dicom-parser'; // Importar dicom-parser
+import * as dicomParser from 'dicom-parser'; 
 import Header from './Header';
 import Footer from './Footer';
 
 const Donaciones = () => {
-  const navigate = useNavigate(); // Inicializar la función navigate
+  const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [error, setError] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState('');
+
+  // useEffect para cambiar el mensaje después de 10 segundos
+  useEffect(() => {
+    let timer1, timer2;
+  
+    if (uploading) {
+      // Primer temporizador: cambiar el mensaje después de 10 segundos
+      timer1 = setTimeout(() => {
+        setLoadingMessage('Esto está tardando más de lo esperado, por favor espere...');
+  
+        // Segundo temporizador: cambiar el mensaje después de 20 segundos adicionales (30 segundos en total)
+        timer2 = setTimeout(() => {
+          setLoadingMessage('El tiempo de carga de los archivos depende de la cantidad de archivos, por por favor espera...');
+        }, 20000); // 20 segundos adicionales
+      }, 10000); // 10 segundos iniciales
+    }
+  
+    // Limpiar ambos temporizadores cuando el componente se desmonte
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [uploading]);
 
   const handleFileChange = async (event) => {
     const files = Array.from(event.target.files);
     const validFiles = [];
-    const maxSize = 50 * 1024 * 1024; // 50 MB
+    const maxSize = 50 * 1024 * 1024;
 
     for (const file of files) {
       if (file.size > maxSize) {
@@ -49,7 +73,7 @@ const Donaciones = () => {
 
     for (const filename in zipContent.files) {
       if (filename.endsWith('.dicom') || filename.endsWith('.dcm')) {
-        const fileContent = await zip.file(filename).async('arraybuffer'); // Cambiado a 'arraybuffer'
+        const fileContent = await zip.file(filename).async('arraybuffer');
         const dicomFile = new File([fileContent], filename);
         const metadata = await extractMetadata(dicomFile);
         dicomFiles.push({ file: dicomFile, tipoEstudio: tipoEstudio || 'No seleccionado', metadata });
@@ -66,17 +90,16 @@ const Donaciones = () => {
   const extractMetadata = async (file) => {
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const uint8Array = new Uint8Array(arrayBuffer); // Convertir a Uint8Array
+      const uint8Array = new Uint8Array(arrayBuffer);
       const dataSet = dicomParser.parseDicom(uint8Array);
 
-      // Extraer y formatear metadatos
-      const ageString = dataSet.string('x00101010'); // (0010,1010) Age
+      const ageString = dataSet.string('x00101010'); 
       const age = ageString ? parseInt(ageString) : 'No disponible';
 
-      const sex = dataSet.string('x00100040'); // (0010,0040) Sex
-      const region = dataSet.string('x00181020'); // (0018,1020) Body Part Examined
+      const sex = dataSet.string('x00100040'); 
+      const region = dataSet.string('x00181020'); 
 
-      const dateStr = dataSet.string('x00080022'); // (0008,0022) Acquisition Date
+      const dateStr = dataSet.string('x00080022'); 
       const date = dateStr ? formatDate(dateStr) : 'No disponible';
 
       return { age, sex, region, date };
@@ -86,9 +109,7 @@ const Donaciones = () => {
     }
   };
 
-  // Función para formatear la fecha en formato YYYY-MM-DD
   const formatDate = (dateStr) => {
-    // Asumiendo que dateStr está en formato YYYYMMDD
     if (dateStr.length === 8) {
       return `${dateStr.slice(0, 4)}-${dateStr.slice(4, 6)}-${dateStr.slice(6, 8)}`;
     }
@@ -118,11 +139,12 @@ const Donaciones = () => {
   
     try {
       setUploading(true);
+      setLoadingMessage('Por favor espera, se están cargando tus archivos, este proceso podría tardar un poco...');
       const response = await fetch(`${BASE_URL}/donacion`, {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json', // Ensure the backend returns a JSON response
+          'Accept': 'application/json', 
         },
       });
   
@@ -138,46 +160,44 @@ const Donaciones = () => {
       setError(`Error de red: ${error.message}`);
     } finally {
       setUploading(false);
+      setLoadingMessage(''); // Clear loading message
     }
   };
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily:'Poppins'}}>
-
       <Header/>
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
-<h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
-   Donación de archivos
-</h1>
-<p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
-   Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
-</p>
-</header>
+        <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
+           Donación de archivos
+        </h1>
+        <p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
+           Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
+        </p>
+      </header>
       <div className="donaciones-left" style={{marginLeft:'400px'}}>
-        
         <div>
           <label htmlFor="tipo-estudio">Tipo de Estudio:</label>
           <select id="tipo-estudio" value={tipoEstudio} onChange={handleTipoEstudioChange}>
-            <option value="">Seleccione</option>
-            <option value="Radiografia">Radiografía</option>
-            <option value="TomografiaComputarizada">Tomografía Computarizada</option>
-            <option value="ResonanciaMagnetica">Resonancia Magnética</option>
-            <option value="Ultrasonido">Ultrasonido</option>
-            <option value="Mamografia">Mamografía</option>
-            <option value="Angiografia">Angiografía</option>
-            <option value="MedicinaNuclear">Medicina Nuclear</option>
-            <option value="RadioTerapia">Radio Terapia</option>
-            <option value="Fluoroscopia">Fluoroscopia</option>
+            <option value="00">Seleccione</option>
+            <option value="01">Radiografía</option>
+            <option value="02">Tomografía Computarizada</option>
+            <option value="03">Resonancia Magnética</option>
+            <option value="04">Ultrasonido</option>
+            <option value="05">Mamografía</option>
+            <option value="06">Angiografía</option>
+            <option value="07">Medicina Nuclear</option>
+            <option value="08">Radio Terapia</option>
+            <option value="09">Fluoroscopia</option>
           </select>
         </div>
-<br></br>
+        <br></br>
         <input
           type="file"
           accept=".dcm, .dicom, .zip"
           multiple
           onChange={handleFileChange}
           className="file-input"
-          
         />
 
         <button
@@ -188,7 +208,14 @@ const Donaciones = () => {
           {uploading ? 'Subiendo...' : 'Subir Archivos'}
         </button>
 
+        {loadingMessage && <p className="loading-message">{loadingMessage}</p>} {/* Mostrar mensaje de carga */}
         {error && <p className="error-message">{error}</p>}
+
+        {uploading && (
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+          </div>
+        )}
       </div>
 
       <div className="donaciones-right">
@@ -201,12 +228,12 @@ const Donaciones = () => {
                 <th>Sexo</th>
                 <th>Región del cuerpo</th>
                 <th>Fecha de toma</th>
-                <th>Fecha y hora de subida</th>
+                <th>Fecha de carga</th>
                 <th>Tipo de estudio</th>
               </tr>
             </thead>
             <tbody>
-              {selectedFiles.map(({ file, tipoEstudio, metadata }, index) => (
+              {selectedFiles.map(({ file, metadata }, index) => (
                 <tr key={index}>
                   <td>{file.name}</td>
                   <td>{metadata.age || 'No disponible'}</td>
@@ -219,19 +246,12 @@ const Donaciones = () => {
               ))}
             </tbody>
           </table>
-          
         ) : (
-          
-          <p style={{marginLeft:'400px', marginTop:'20px',fontStyle:'italic'}}>No se han seleccionado archivos.</p>
+          <p>No hay archivos seleccionados.</p>
         )}
       </div>
-      <div class="text-center" style={{marginBottom:'50px', marginTop:'20px'}}>
-        <p>Al hacer tu donación estas aceptando nuestro <a href="/documentos/AVISO_PRIVACIDAD.pdf">Aviso de privacidad</a> así como los <a href="/documentos/TERMINOS_CONDICIONES.pdf">Términos y Condiciones</a></p>
-       
-      </div>
-      <Footer/>
+      <Footer />
     </div>
-    
   );
 };
 

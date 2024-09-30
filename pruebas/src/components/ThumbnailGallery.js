@@ -11,9 +11,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
 
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [region, setRegion] = useState('');
-  const [edadMin, setEdadMin] = useState('');
-  const [edadMax, setEdadMax] = useState('');
-  const [sexo, setSexo] = useState('');
 
   const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
@@ -22,9 +19,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
       const query = new URLSearchParams({
         tipoEstudio,
         region,
-        edadMin,
-        edadMax,
-        sexo,
         page: pageNumber,
         limit: 18 // Limitar a 18 imágenes por página
       }).toString();
@@ -44,14 +38,14 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     } catch (error) {
       setError('Error en la solicitud de imágenes: ' + error.message);
     }
-  }, [tipoEstudio, region, edadMin, edadMax, sexo]);
+  }, [tipoEstudio, region]);
 
   useEffect(() => {
     setImages([]); // Limpiar imágenes cuando cambian los filtros
     setPage(1); // Resetear la página
     setHasMore(true); // Volver a habilitar el botón de cargar más
     fetchImages(1); // Cargar la primera página
-  }, [fetchImages, tipoEstudio, region, edadMin, edadMax, sexo]);
+  }, [fetchImages, tipoEstudio, region]);
 
   const handleLoadMore = () => {
     if (hasMore) {
@@ -75,74 +69,35 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
         <label>
           Tipo de Estudio:
           <select value={tipoEstudio} onChange={(e) => setTipoEstudio(e.target.value)}>
-            <option value="">Seleccione</option>
-            <option value="Radiografia">Radiografía</option>
-            <option value="TomografiaComputarizada">Tomografía Computarizada</option>
-            <option value="ResonanciaMagnetica">Resonancia Magnética</option>
-            <option value="Ultrasonido">Ultrasonido</option>
-            <option value="Mamografia">Mamografía</option>
-            <option value="Angiografia">Angiografía</option>
-            <option value="MedicinaNuclear">Medicina Nuclear</option>
-            <option value="RadioTerapia">Radio Terapia</option>
-            <option value="Fluroscopia">Fluoroscopia</option>
+          <option value="">Seleccione</option>
+              <option value="01">Radiografía</option>
+              <option value="02">Tomografía Computarizada</option>
+              <option value="03">Resonancia Magnética</option>
+              <option value="04">Ultrasonido</option>
+              <option value="05">Mamografía</option>
+              <option value="06">Angiografía</option>
+              <option value="07">Medicina Nuclear</option>
+              <option value="08">Radio Terapia</option>
+              <option value="09">Fluoroscopia</option>
           </select>
         </label>
-
-        {tipoEstudio && (
-          <>
             <label>
               Región:
               <select value={region} onChange={(e) => setRegion(e.target.value)}>
-                <option value="">Seleccione</option>
-                <option value="cabeza-y-cuello">Cabeza y Cuello</option>
-                <option value="torso">Torso</option>
-                <option value="abdomen">Abdomen</option>
-                <option value="pelvis">Pelvis</option>
-                <option value="columna-vertebral">Columna Vertebral</option>
-                <option value="extremidades-superiores">Extremidades Superiores</option>
-                <option value="extremidades-inferiores">Extremidades Inferiores</option>
-                <option value="sistema-musculoesqueletico">Sistema Musculoesquelético</option>
-                <option value="sistema-cardiovascular">Sistema Cardiovascular</option>
-                <option value="sistema-respiratorio">Sistema Respiratorio</option>
-                <option value="sistema-digestivo">Sistema Digestivo</option>
-                <option value="sistema-urogenital">Sistema Urogenital</option>
+              <option value="">Seleccione</option>
+              <option value="01">Cabeza</option>
+              <option value="02">Cuello</option>
+              <option value="03">Torax</option>
+              <option value="04">Abdomen</option>
+              <option value="05">Pelvis</option>
+              <option value="06">Brazo</option>
+              <option value="07">Manos</option>
+              <option value="08">Pernas</option>
+              <option value="09">Rdilla</option>
+              <option value="10">Tobillo</option>
+              <option value="11">Pie</option>
               </select>
             </label>
-
-            <label>
-              Edad Min:
-              <input
-                type="number"
-                min="0"
-                max="120"
-                value={edadMin}
-                onChange={(e) => setEdadMin(e.target.value)}
-                placeholder="Edad mínima"
-              />
-            </label>
-
-            <label>
-              Edad Max:
-              <input
-                type="number"
-                min="0"
-                max="120"
-                value={edadMax}
-                onChange={(e) => setEdadMax(e.target.value)}
-                placeholder="Edad máxima"
-              />
-            </label>
-
-            <label>
-              Sexo:
-              <select value={sexo} onChange={(e) => setSexo(e.target.value)}>
-                <option value="">Seleccionar</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-              </select>
-            </label>
-          </>
-        )}
       </div>
       <div className="thumbnail-gallery">
         {loaded ? (
