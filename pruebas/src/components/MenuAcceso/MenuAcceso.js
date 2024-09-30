@@ -29,10 +29,24 @@ const Fisica = () => {
       </div>
     </a>
 
-    <a href="/Donacion"  className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">           
+    <a href="/donacion"  className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">           
       <div className="qr-card">
-        <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Donación de estudios</p>
+        <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Donación de estudios digitales</p>
         <p className="text-gray-500 mt-2"> Dona tus estudios médicos para contribuir al conocimiento</p>           
+      </div>
+    </a>
+
+    <a href="/importar"  className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">           
+      <div className="qr-card">
+        <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Donación de estudios fisicos</p>
+        <p className="text-gray-500 mt-2">Sube los archivos de las donaciones fisicas</p>           
+      </div>
+    </a>
+
+    <a href="/diagnostico"  className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">           
+      <div className="qr-card">
+        <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Diagnosticos</p>
+        <p className="text-gray-500 mt-2">Emite diagnosticos de los estudios almacenados</p>           
       </div>
     </a>
 

@@ -11,8 +11,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
 
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [region, setRegion] = useState('');
-  const [edad, setEdad] = useState('');
-  const [sexo, setSexo] = useState('');
 
   const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
@@ -21,8 +19,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
       const query = new URLSearchParams({
         tipoEstudio,
         region,
-        edad,
-        sexo,
         page: pageNumber,
         limit: 18 // Limitar a 18 imágenes por página
       }).toString();
@@ -42,14 +38,14 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     } catch (error) {
       setError('Error en la solicitud de imágenes: ' + error.message);
     }
-  }, [tipoEstudio, region, edad, sexo]);
+  }, [tipoEstudio, region]);
 
   useEffect(() => {
     setImages([]); // Limpiar imágenes cuando cambian los filtros
     setPage(1); // Resetear la página
     setHasMore(true); // Volver a habilitar el botón de cargar más
     fetchImages(1); // Cargar la primera página
-  }, [fetchImages, tipoEstudio, region, edad, sexo]);
+  }, [fetchImages, tipoEstudio, region]);
 
   const handleLoadMore = () => {
     if (hasMore) {
@@ -85,9 +81,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
               <option value="09">Fluoroscopia</option>
           </select>
         </label>
-
-        {tipoEstudio && (
-          <>
             <label>
               Región:
               <select value={region} onChange={(e) => setRegion(e.target.value)}>
@@ -105,30 +98,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
               <option value="11">Pie</option>
               </select>
             </label>
-
-          {/* Edad */}
-            <label>Edad:</label>
-            <select value={edad} onChange={(e) => setEdad(e.target.value)}>
-              <option value="">Seleccione</option>
-              <option value="1">"Lactante menores de 1 año</option>
-              <option value="2">Prescolar 1-5</option>
-              <option value="3">Infante 6-12</option>
-              <option value="4">Adolescente 13-18</option>
-              <option value="5">Adulto joven 19-26</option>
-              <option value="6">Adulto 27-59</option>
-              <option value="7">Adulto mayor 60+</option>
-            </select>
-
-            <label>
-              Sexo:
-              <select value={sexo} onChange={(e) => setSexo(e.target.value)}>
-                <option value="">Seleccionar</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
-              </select>
-            </label>
-          </>
-        )}
       </div>
       <div className="thumbnail-gallery">
         {loaded ? (
