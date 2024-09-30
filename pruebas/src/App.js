@@ -42,7 +42,7 @@ function App() {
       <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
       <Route path="/fisica" element={<Fisica />} />
       <Route path="/menu" element={<MenuAcceso />} />
-      <Route path="/diagnostico" element={<Diagnostico />} />
+      <Route path="/diagnosticos" element={<Diagnostico />} />
         
       
     </Routes>

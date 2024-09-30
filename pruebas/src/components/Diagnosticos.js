@@ -35,11 +35,12 @@ const DiagnosticForm = ({ selectedFile }) => {
     try {
       const fileName = selectedFile.split('/').pop(); // Obtener el nombre del archivo
       const newFileName = fileName.replace(/\.jpg$/, '.dcm'); // Cambiar la extensión a .dcm
-      console.log(`Buscando estudio con ID: ${newFileName}`); // Log del nuevo nombre del archivo
-
-      const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom/${newFileName}`);
+      console.log(`Buscando estudio con nombre: ${newFileName}`); // Log del nuevo nombre del archivo
+  
+      // Cambiar la forma en que se construye la URL para usar el parámetro de consulta
+      const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom?nombre=${newFileName}`);
       console.log('Respuesta de la búsqueda del estudio:', fetchStudyResponse);
-
+  
       if (!fetchStudyResponse.ok) {
         console.error('Error en la respuesta al obtener el estudio:', fetchStudyResponse.status);
         throw new Error('Error al obtener el estudio');
@@ -48,10 +49,13 @@ const DiagnosticForm = ({ selectedFile }) => {
       const study = await fetchStudyResponse.json();
       console.log('Estudio obtenido:', study);
   
-      if (!study || !study._id) { // Verifica que el estudio tenga un ID válido
+      // Asegurarse de que se obtuvo un ID válido
+      if (!study || !study.estudio_id) { 
         console.warn('Estudio no encontrado o ID inválido');
         throw new Error('Estudio no encontrado');
       }
+      
+      console.log(`ID del estudio obtenido: ${study._id}`); // Log del ID obtenido
   
       const updatedDiagnostico = {
         hallazgos: formData.hallazgos,
@@ -67,7 +71,7 @@ const DiagnosticForm = ({ selectedFile }) => {
       };
       console.log('Datos del diagnóstico a actualizar:', updatedDiagnostico);
   
-      const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study._id}`, {
+      const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study.estudio_id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +87,7 @@ const DiagnosticForm = ({ selectedFile }) => {
   
       const result = await updateResponse.json();
       console.log('Respuesta del servidor tras la actualización:', result);
-      
+  
       setSuccessMessage('Diagnóstico guardado exitosamente');
       setErrorMessage(''); // Limpiar mensajes de error
     } catch (error) {
@@ -92,6 +96,8 @@ const DiagnosticForm = ({ selectedFile }) => {
       setSuccessMessage(''); // Limpiar mensajes de éxito
     }
   };
+  
+  
   
   return (
     <div className="form-diagnostico" style={{ margin: '20px' }}>
