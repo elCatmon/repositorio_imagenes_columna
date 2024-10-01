@@ -137,6 +137,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             placeholder="Ingresa las observaciones"
             value={formData.observaciones}
             onChange={handleChange}
+            required
             style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
           />
         </div>
@@ -149,6 +150,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             required
           >
             <option value="00">Seleccione</option>
+            <option value="00">Desconocido</option>
             <option value="01">Postero Anterior</option>
             <option value="02">Antero Posterior</option>
             <option value="03">Obliqua</option>
@@ -166,6 +168,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             required
           >
               <option value="00">Seleccione</option>
+              <option value="00">Desconocido</option>
               <option value="01">Radiografía</option>
               <option value="02">Tomografía Computarizada</option>
               <option value="03">Resonancia Magnética</option>
@@ -187,6 +190,7 @@ const DiagnosticForm = ({ selectedFile }) => {
               required
             >
               <option value="00">Seleccione</option>
+              <option value="00">Desconocido</option>
               <option value="01">Cabeza</option>
               <option value="02">Cuello</option>
               <option value="03">Torax</option>
@@ -224,6 +228,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             required
           >
               <option value="0">Seleccione</option>
+              <option value="0">Desconocido</option>
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
           </select>
@@ -234,6 +239,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             <label style={{ fontWeight: 'bold' }}>Edad:</label>
             <select name="edad" value={formData.edad} onChange={handleChange} required>
               <option value="0">Seleccione</option>
+              <option value="0">Desconocido</option>
               <option value="1">Lactante menores de 1 año</option>
               <option value="2">Prescolar 1-5</option>
               <option value="3">Infante 6-12</option>
@@ -260,7 +266,7 @@ const DiagnosticForm = ({ selectedFile }) => {
         </div>
 
         <button type="submit" style={{ backgroundColor: '#28a745', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-          Enviar
+          Guardar diagnostico
         </button>
       </form>
 

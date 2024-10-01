@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ThumbnailGallery from './ThumbnailGallery';
 import DicomViewer from './DicomViewer';
+import DatasetDownload from './datasetDownload';
 import { useNavigate } from 'react-router-dom'; // For back navigation
 import Header from './Header';
 import Footer from './Footer';
@@ -29,6 +30,9 @@ function VisualizerPage() {
           ) : (
             <p>Selecciona una miniatura para ver la imagen DICOM.</p>
           )}
+        </div>
+        <div>
+            <DatasetDownload />
         </div>
       </div>
       <Footer />
