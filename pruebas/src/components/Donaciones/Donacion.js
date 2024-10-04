@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'; // Importar useEffect
 import JSZip from 'jszip'; 
 import { useNavigate } from 'react-router-dom'; 
-import { BASE_URL } from './config';
+import { BASE_URL } from '../config';
 import * as dicomParser from 'dicom-parser'; 
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../assets/Header';
+import Footer from '../assets/Footer';
 
 const Donaciones = () => {
   const navigate = useNavigate();

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ThumbnailGallery from './ThumbnailGallery';
-import DicomViewer from './DicomViewer';
+import ThumbnailGallery from '../Miniaturas/ThumbnailGallery';
+import DicomViewer from '../Visualizador/DicomViewer';
 import { useNavigate } from 'react-router-dom'; // For back navigation
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../assets/Header';
+import Footer from '../assets/Footer';
 import Diagnosticos from './Diagnosticos'
-import '../App.css'; 
+import '../assets/App.css'; 
 
 function DiagnosticosPage() {
   const [selectedImage, setSelectedImage] = useState(null);

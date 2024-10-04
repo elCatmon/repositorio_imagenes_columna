@@ -1,25 +1,20 @@
 import React from 'react';
-//import { useNavigate } from 'react-router-dom'; // Asumiendo que usas react-router para navegación
-//import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Conocenos from './components/Conocenos/Conocenos';
 import Contacto from './components/Contacto/Contacto';
 import Nosotros from './components/Nosotros/Nosotros';
-import Register from './components/Register';
-import Login from './components/Login';
-import VisualizerPage from './components/VisualizerPage';
-import Importar from './components/Importar';
-import Donacion from './components/Donacion';
+import Register from './components/Registro/Register';
+import Login from './components/LOGIN/Login';
+import VisualizerPage from './components/Visualizador/VisualizerPage';
+import Importar from './components/Donaciones/Importar';
+import Donacion from './components/Donaciones/Donacion';
 import PaginaInicio from './components/PaginaInicio/PaginaInicio';
 import Fisica from './components/Fisica/Fisica';
 import MenuAcceso from './components/MenuAcceso/MenuAcceso';
-import Diagnostico from './components/DiagnosticosPage';
+import Diagnostico from './components/Diagnosticos/DiagnosticosPage';
 
 
 function App() {
-  
-  //const navigate = useNavigate();
-
   return (
     <Router>
     <Routes>

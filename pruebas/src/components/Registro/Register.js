@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
-import { BASE_URL } from './config';
-import Footer from './/Footer';
-import Header from './Header';
+import { BASE_URL } from '../config';
+import Footer from '../assets/Footer';
+import Header from '../assets/Header';
 
 function Register() {
   const [name, setName] = useState('');

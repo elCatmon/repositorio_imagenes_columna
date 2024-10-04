@@ -3,7 +3,7 @@ import cornerstone from 'cornerstone-core';
 import cornerstoneTools from 'cornerstone-tools';
 import dicomParser from 'dicom-parser';
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
-import { BASE_URL } from './config';
+import { BASE_URL } from '../config';
 import { ZoomTool, PanTool, LengthTool, RotateTool } from 'cornerstone-tools';
 
 // Configurar el cargador de imágenes DICOM

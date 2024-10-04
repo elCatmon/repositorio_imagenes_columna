@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
-import { BASE_URL } from './config';
-import Header from './Header';
-import Footer from './Footer';
-import '../App.css'; 
+import { BASE_URL } from '../config';
+import Header from '../assets/Header';
+import Footer from '../assets/Footer';
+import '../assets/App.css'; 
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación

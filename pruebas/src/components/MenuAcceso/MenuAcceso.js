@@ -1,7 +1,7 @@
 import React from 'react';
 import './MenuAcceso.css';
-import Footer from '../Footer';
-import Header from '../Header';
+import Footer from '../assets/Footer';
+import Header from '../assets/Header';
 
 const Fisica = () => {
   return (
