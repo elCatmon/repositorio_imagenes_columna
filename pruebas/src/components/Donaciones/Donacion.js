@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Importar useEffect
 import JSZip from 'jszip'; 
 import { useNavigate } from 'react-router-dom'; 
-import { BASE_URL } from '../config';
+import { BASE_URL } from '../config/config';
 import * as dicomParser from 'dicom-parser'; 
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
