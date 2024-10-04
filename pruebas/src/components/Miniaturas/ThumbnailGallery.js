@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { BASE_URL } from '../config';
+import { BASE_URL } from '../config/config';
 import '../assets/App.css'; 
 
 const ThumbnailGallery = ({ onThumbnailClick }) => {
