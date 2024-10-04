@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
-import { BASE_URL } from './config';
-import Header from './Header';
-import Footer from './Footer';
-import '../App.css'; 
+import { BASE_URL } from '../config';
+import Header from '../assets/Header';
+import Footer from '../assets/Footer';
+import '../assets/App.css'; 
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
@@ -175,6 +175,7 @@ const Importar = () => {
               required
             >
               <option value="00">Seleccione</option>
+              <option value="00">Desconocido</option>
               <option value="01">Cabeza</option>
               <option value="02">Cuello</option>
               <option value="03">Torax</option>
@@ -182,8 +183,8 @@ const Importar = () => {
               <option value="05">Pelvis</option>
               <option value="06">Brazo</option>
               <option value="07">Manos</option>
-              <option value="08">Pernas</option>
-              <option value="09">Rdilla</option>
+              <option value="08">Piernas</option>
+              <option value="09">Rodilla</option>
               <option value="10">Tobillo</option>
               <option value="11">Pie</option>
             </select>
@@ -205,6 +206,16 @@ const Importar = () => {
           <div className="form-group">
             <label>Imagen válida:</label>
             <div>
+            <label>
+                <input
+                  type="radio"
+                  name="imagenValida"
+                  value=""
+                  checked={formData.imagenValida === '0'}
+                  onChange={handleChange}
+                />
+                Desconocido
+              </label>
               <label>
                 <input
                   type="radio"
@@ -233,6 +244,7 @@ const Importar = () => {
             <label>Edad:</label>
             <select name="edad" value={formData.edad} onChange={handleChange} required>
               <option value="0">Seleccione</option>
+              <option value="0">Desconocido</option>
               <option value="1">Lactante menores de 1 año</option>
               <option value="2">Prescolar 1-5</option>
               <option value="3">Infante 6-12</option>
@@ -248,6 +260,7 @@ const Importar = () => {
             <label>Sexo:</label>
             <select name="sexo" value={formData.sexo} onChange={handleChange} required>
               <option value="0">Seleccione</option>
+              <option value="0">Desconocido</option>
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
             </select>

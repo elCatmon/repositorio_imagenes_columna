@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import InfoCard from '../InfoCard';
+import InfoCard from '../assets/InfoCard';
 import './Conocenos.css';
-import Footer from '../Footer';
-import Header from '../Header';
+import Footer from '../assets/Footer';
+import Header from '../assets/Header';
 
 
 const Conocenos = () => {

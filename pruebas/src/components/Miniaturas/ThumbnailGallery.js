@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { BASE_URL } from './config';
-import '../App.css'; 
+import { BASE_URL } from '../config';
+import '../assets/App.css'; 
 
 const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [images, setImages] = useState([]);

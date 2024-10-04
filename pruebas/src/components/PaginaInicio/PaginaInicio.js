@@ -1,10 +1,10 @@
 import React from 'react';
 
 import './PaginaInicio.css';
-import Footer from '../Footer';
+import Footer from '../assets/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Header from '../Header';
+import Header from '../assets/Header';
 
 
 /*const NavLink = ({ href, icon, text }) => (
