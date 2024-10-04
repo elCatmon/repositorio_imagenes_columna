@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BASE_URL } from './config';
 import '../App.css';
 
@@ -13,11 +13,62 @@ const DiagnosticForm = ({ selectedFile }) => {
     valido: '',
     sexo: '',
     edad: '',
-    medico: ''
+    medico: '',
+    fecha: ''
   });
 
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const fetchLatestDiagnostico = async () => {
+    try {
+      const fileName = selectedFile.split('/').pop();
+      const newFileName = fileName.replace(/\.jpg$/, '.dcm');
+  
+      const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom?nombre=${newFileName}`);
+      if (!fetchStudyResponse.ok) {
+        console.error('Error en la respuesta al obtener el estudio:', fetchStudyResponse.status);
+        throw new Error('Error al obtener el estudio');
+      }
+  
+      const study = await fetchStudyResponse.json();
+      if (!study || !study.estudio_id) {
+        console.warn('Estudio no encontrado o ID inválido');
+        throw new Error('Estudio no encontrado');
+      }
+  
+      const fetchDiagnosticoResponse = await fetch(`${BASE_URL}/estudios/diagnostico?id=${study.estudio_id}`);
+      if (!fetchDiagnosticoResponse.ok) {
+        console.error('Error al obtener el diagnóstico:', fetchDiagnosticoResponse.status);
+        throw new Error('Error al obtener el diagnóstico');
+      }
+  
+      const diagnostico = await fetchDiagnosticoResponse.json();
+      console.log('Diagnóstico obtenido:', diagnostico); // Verifica que obtienes los datos correctos
+  
+      setFormData({
+        hallazgos: diagnostico.Hallazgos || '',
+        impresion: diagnostico.Impresion || '',
+        observaciones: diagnostico.Observaciones || '',
+        medico: diagnostico.Medico || '',
+        // Validación para la fecha
+        fecha: diagnostico.Fecha && diagnostico.Fecha !== "0001-01-01" 
+          ? diagnostico.Fecha.split('T')[0] 
+          : 'No disponible'
+      });
+      console.log('Diagnóstico mostrado:', diagnostico.Fecha)
+    } catch (error) {
+      console.error('Error al obtener el diagnóstico más reciente:', error);
+      setErrorMessage('Error al obtener el diagnóstico más reciente.');
+    }
+  };
+  
+
+  useEffect(() => {
+    if (selectedFile) {
+      fetchLatestDiagnostico();
+    }
+  }, [selectedFile]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,52 +76,30 @@ const DiagnosticForm = ({ selectedFile }) => {
       ...prevData,
       [name]: value,
     }));
-    console.log(`Campo actualizado: ${name} = ${value}`);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Enviando el formulario con los siguientes datos:', formData);
-  
     try {
-      const fileName = selectedFile.split('/').pop(); // Obtener el nombre del archivo
-      const newFileName = fileName.replace(/\.jpg$/, '.dcm'); // Cambiar la extensión a .dcm
-      console.log(`Buscando estudio con nombre: ${newFileName}`); // Log del nuevo nombre del archivo
-  
-      // Cambiar la forma en que se construye la URL para usar el parámetro de consulta
+      const fileName = selectedFile.split('/').pop();
+      const newFileName = fileName.replace(/\.jpg$/, '.dcm');
+      const formattedDate = new Date(formData.fecha).toISOString(); // Convierte a formato ISO 8601
+
       const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom?nombre=${newFileName}`);
-      console.log('Respuesta de la búsqueda del estudio:', fetchStudyResponse);
-  
       if (!fetchStudyResponse.ok) {
-        console.error('Error en la respuesta al obtener el estudio:', fetchStudyResponse.status);
         throw new Error('Error al obtener el estudio');
       }
-  
+
       const study = await fetchStudyResponse.json();
-      console.log('Estudio obtenido:', study);
-  
-      // Asegurarse de que se obtuvo un ID válido
-      if (!study || !study.estudio_id) { 
-        console.warn('Estudio no encontrado o ID inválido');
+      if (!study || !study.estudio_id) {
         throw new Error('Estudio no encontrado');
       }
-      
-      console.log(`ID del estudio obtenido: ${study._id}`); // Log del ID obtenido
-  
+
       const updatedDiagnostico = {
-        hallazgos: formData.hallazgos,
-        impresion: formData.impresion,
-        observaciones: formData.observaciones,
-        proyeccion: formData.proyeccion,
-        tipoEstudio: formData.tipoEstudio,
-        region: formData.region,
-        valido: formData.valido,
-        sexo: formData.sexo,
-        edad: formData.edad,
-        medico: formData.medico,
+        ...formData,
+        fecha: formattedDate,
       };
-      console.log('Datos del diagnóstico a actualizar:', updatedDiagnostico);
-  
+
       const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study.estudio_id}`, {
         method: 'PATCH',
         headers: {
@@ -78,31 +107,24 @@ const DiagnosticForm = ({ selectedFile }) => {
         },
         body: JSON.stringify({ diagnostico: updatedDiagnostico }),
       });
-      console.log('Respuesta de la actualización del diagnóstico:', updateResponse);
-  
+
       if (!updateResponse.ok) {
-        console.error('Error en la respuesta al actualizar el diagnóstico:', updateResponse.status);
         throw new Error('Error al actualizar el diagnóstico');
       }
-  
-      const result = await updateResponse.json();
-      console.log('Respuesta del servidor tras la actualización:', result);
-  
+
       setSuccessMessage('Diagnóstico guardado exitosamente');
-      setErrorMessage(''); // Limpiar mensajes de error
+      setErrorMessage('');
     } catch (error) {
-      console.error('Error al enviar el formulario:', error);
-      setErrorMessage('Error al enviar el diagnóstico. Por favor, inténtalo de nuevo.');
-      setSuccessMessage(''); // Limpiar mensajes de éxito
+      setErrorMessage('Error al enviar el diagnóstico.');
+      setSuccessMessage('');
     }
   };
-  
-  
-  
+
   return (
     <div className="form-diagnostico" style={{ margin: '20px' }}>
-      <h2>Formulario de Diagnóstico</h2>
+      <h2>Diagnóstico</h2>
       <form onSubmit={handleSubmit}>
+
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="hallazgos">Hallazgos:</label>
           <textarea
@@ -250,17 +272,45 @@ const DiagnosticForm = ({ selectedFile }) => {
             </select>
           </div>
 
+        {/* Campo para la fecha */}
+        <div style={{ marginBottom: '15px' }}>
+            <label style={{ fontWeight: 'bold' }} htmlFor="fecha">Fecha del diagnóstico:</label>
+            <input
+                type="date"
+                id="fecha"
+                name="fecha"
+                value={formData.fecha} // Asegúrate de que formData.fecha tenga un valor de fecha válido
+                onChange={handleChange}
+                readOnly
+                style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px' }}
+            />
+        </div>
+
         {/* Campo para el médico */}
         <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontWeight: 'bold' }} htmlFor="medico">Médico que hizo el diagnóstico:</label>
+          <label style={{ fontWeight: 'bold' }} htmlFor="medicoA">Médico que hizo el diagnóstico:</label>
+          <input
+            type="text"
+            id="medicoA"
+            name="medicoA"
+            placeholder="Ingresa el nombre del médico"
+            value={formData.medico}
+            onChange={handleChange}
+            readOnly
+            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px' }}
+          />
+        </div>
+
+        {/* Campo para el médico */}
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ fontWeight: 'bold' }} htmlFor="medico">Tu nombre:</label>
           <input
             type="text"
             id="medico"
             name="medico"
             placeholder="Ingresa el nombre del médico"
-            value={formData.medico}
+            value={formData.medicoNuevo}
             onChange={handleChange}
-            required
             style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px' }}
           />
         </div>
