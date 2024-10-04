@@ -25,7 +25,7 @@ const Donaciones = () => {
   
         // Segundo temporizador: cambiar el mensaje después de 20 segundos adicionales (30 segundos en total)
         timer2 = setTimeout(() => {
-          setLoadingMessage('El tiempo de carga de los archivos depende de la cantidad de archivos, por por favor espera...');
+          setLoadingMessage('El tiempo de subida y procesamiento depende de la cantidad de archivos, por favor espera...');
         }, 20000); // 20 segundos adicionales
       }, 10000); // 10 segundos iniciales
     }
