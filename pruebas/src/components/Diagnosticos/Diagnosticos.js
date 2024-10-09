@@ -4,17 +4,18 @@ import '../assets/App.css';
 
 const DiagnosticForm = ({ selectedFile }) => {
   const [formData, setFormData] = useState({
-    proyeccion: '',
     hallazgos: '',
     impresion: '',
     observaciones: '',
+    medico: '',
+    fecha: '',
     tipoEstudio: '',
     region: '',
+    proyeccion: '',
     valido: '',
+    obtencion: '',
     sexo: '',
-    edad: '',
-    medico: '',
-    fecha: ''
+    edad: ''
   });
 
   const [successMessage, setSuccessMessage] = useState('');
@@ -44,25 +45,30 @@ const DiagnosticForm = ({ selectedFile }) => {
       }
   
       const diagnostico = await fetchDiagnosticoResponse.json();
-      console.log('Diagnóstico obtenido:', diagnostico); // Verifica que obtienes los datos correctos
-  
+      console.log('Diagnóstico obtenido:', diagnostico);
+
+      // Populate the form with the received data
       setFormData({
         hallazgos: diagnostico.Hallazgos || '',
         impresion: diagnostico.Impresion || '',
         observaciones: diagnostico.Observaciones || '',
         medico: diagnostico.Medico || '',
-        // Validación para la fecha
         fecha: diagnostico.Fecha && diagnostico.Fecha !== "0001-01-01" 
           ? diagnostico.Fecha.split('T')[0] 
-          : 'No disponible'
+          : 'No disponible',
+        tipoEstudio: diagnostico.TipoEstudio || '',
+        region: diagnostico.Region || '',
+        proyeccion: diagnostico.Proyeccion || '',
+        valido: diagnostico.Valido || '',
+        obtencion: diagnostico.Obtencion || '',
+        sexo: diagnostico.Sexo || '',
+        edad: diagnostico.Edad || '',
       });
-      console.log('Diagnóstico mostrado:', diagnostico.Fecha)
     } catch (error) {
       console.error('Error al obtener el diagnóstico más reciente:', error);
       setErrorMessage('Error al obtener el diagnóstico más reciente.');
     }
   };
-  
 
   useEffect(() => {
     if (selectedFile) {
@@ -83,8 +89,9 @@ const DiagnosticForm = ({ selectedFile }) => {
     try {
       const fileName = selectedFile.split('/').pop();
       const newFileName = fileName.replace(/\.jpg$/, '.dcm');
-      const formattedDate = new Date(formData.fecha).toISOString(); // Convierte a formato ISO 8601
+      const formattedDate = new Date(formData.fecha).toISOString(); // Convert date to ISO format
 
+      // Fetch study based on the file
       const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom?nombre=${newFileName}`);
       if (!fetchStudyResponse.ok) {
         throw new Error('Error al obtener el estudio');
@@ -95,17 +102,44 @@ const DiagnosticForm = ({ selectedFile }) => {
         throw new Error('Estudio no encontrado');
       }
 
+      // Construct new key (clave) based on form data
+      const nuevaClave = formData.tipoEstudio+formData.region+formData.proyeccion+formData.valido+"1"+formData.obtencion+formData.sexo+formData.edad
+      console.log(formData.tipoEstudio)
+      console.log(formData.region)
+      console.log(formData.proyeccion)
+      console.log(formData.valido)
+      console.log(formData.obtencion)
+      console.log(formData.sexo)
+      console.log(formData.edad)
+      console.log('Nueva clave:', nuevaClave);
+
+      // Prepare updated diagnosis data
       const updatedDiagnostico = {
-        ...formData,
+        hallazgos: formData.hallazgos,
+        impresion: formData.impresion,
+        observaciones: formData.observaciones,
+        medico: formData.medico,
         fecha: formattedDate,
+        tipoEstudio: formData.tipoEstudio,
+        region: formData.region,
+        proyeccion: formData.proyeccion,
+        valido: formData.valido,
+        obtencion: formData.obtencion,
+        sexo: formData.sexo,
+        edad: formData.edad,
       };
 
+      // Send PATCH request to update diagnosis and image key
       const updateResponse = await fetch(`${BASE_URL}/diagnosticos/${study.estudio_id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ diagnostico: updatedDiagnostico }),
+        body: JSON.stringify({
+          imagenNombre: newFileName,  // Include image name
+          clave: nuevaClave,         // Include new key
+          diagnostico: updatedDiagnostico  // Include updated diagnostic info
+        }),
       });
 
       if (!updateResponse.ok) {
@@ -114,9 +148,26 @@ const DiagnosticForm = ({ selectedFile }) => {
 
       setSuccessMessage('Diagnóstico guardado exitosamente');
       setErrorMessage('');
+
+      // Reset form fields after successful update
+      setFormData({
+        hallazgos: '',
+        impresion: '',
+        observaciones: '',
+        medico: '',
+        fecha: '',
+        tipoEstudio: '',
+        region: '',
+        proyeccion: '',
+        origen: '1',
+        valido: '',
+        obtencion: '',
+        sexo: '',
+        edad: ''
+      });
     } catch (error) {
-      setErrorMessage('Error al enviar el diagnóstico.');
-      setSuccessMessage('');
+      console.error('Error al actualizar el diagnóstico:', error);
+      setErrorMessage('Error al actualizar el diagnóstico.');
     }
   };
 
@@ -238,6 +289,21 @@ const DiagnosticForm = ({ selectedFile }) => {
             <option value="0">Seleccione</option>
             <option value="1">Sí</option>
             <option value="2">No</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Obtencion:</label>
+          <select
+            name="obtencion"
+            value={formData.Obtencion}
+            onChange={handleChange}
+            required
+          >
+              <option value="0">Seleccione</option>
+              <option value="2">Desconocido</option>
+              <option value="1">Estudio digital</option>
+              <option value="2">Estudio Fisico</option>
           </select>
         </div>
 
