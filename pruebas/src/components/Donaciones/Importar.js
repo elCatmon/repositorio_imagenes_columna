@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from '../config/config';
 import Header from '../assets/Header';
@@ -9,14 +9,15 @@ const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
   const [formData, setFormData] = useState({
     tipoEstudio: '',
-    region: "",
     donador: '',
-    imagenValida: '',
     edad: '',
     sexo: '',
     archivosAnonimizados: [],
     archivosOriginales: []
   });
+
+  const archivosAnonimizadosRef = useRef(null); // Ref para el input de archivos anonimizados
+  const archivosOriginalesRef = useRef(null); // Ref para el input de archivos originales
 
   const [tablaDatos, setTablaDatos] = useState([]);
   const [error, setError] = useState('');
@@ -28,8 +29,6 @@ const Importar = () => {
       ...prevData,
       [name]: type === 'checkbox' ? (checked ? 'Sí' : 'No') : value
     }));
-
-    console.log(`Campo cambiado: ${name}, Nuevo valor: ${value}`); // Log de cambios en el formulario
   };
 
   const handleFileChange = (e) => {
@@ -44,8 +43,6 @@ const Importar = () => {
       alert('Solo se permiten imágenes JPG de máximo 20MB.');
     }
 
-    console.log(`Archivos seleccionados para ${name}:`, validFiles); // Log de archivos seleccionados
-
     setFormData((prevData) => ({ 
       ...prevData, 
       [name]: validFiles 
@@ -57,11 +54,27 @@ const Importar = () => {
     return code;
   };
 
+  const validateForm = () => {
+    const { tipoEstudio, donador, archivosOriginales } = formData;
+    
+    // Verifica si los campos principales están completos
+    if (!tipoEstudio || !donador || archivosOriginales.length === 0) {
+      setError('Por favor complete todos los campos requeridos y seleccione al menos un archivo.');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    if (!validateForm()) {
+      return;
+    }
+
     const noOperacion = generateRandomCode();
-    const miniaturas = formData.archivosOriginales.map(file => URL.createObjectURL(file));
+    const miniaturas = formData.archivosAnonimizados.map(file => URL.createObjectURL(file));
 
     const nuevoRegistro = {
       miniaturas,
@@ -72,44 +85,35 @@ const Importar = () => {
       numeroArchivos: formData.archivosOriginales.length
     };
 
-    console.log("Nuevo registro a agregar:", nuevoRegistro); // Log del nuevo registro
-
     setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
 
     const formDataToSend = new FormData();
     formDataToSend.append('estudio_ID', noOperacion);
     formDataToSend.append('donador', formData.donador);
     formDataToSend.append('estudio', formData.tipoEstudio);
-    formDataToSend.append('region', formData.region);
-    formDataToSend.append('imagenValida', formData.imagenValida);
     formDataToSend.append('sexo', formData.sexo);
     formDataToSend.append('edad', formData.edad);
 
-    // Solo agrega archivos anonimizados si hay
     if (formData.archivosAnonimizados.length > 0) {
       formData.archivosAnonimizados.forEach((file) => {
         formDataToSend.append('archivosAnonimizados', file);
       });
     }
 
-    // Solo agrega archivos originales si hay
     if (formData.archivosOriginales.length > 0) {
       formData.archivosOriginales.forEach((file) => {
         formDataToSend.append('archivosOriginales', file);
       });
     }
 
-    console.log("Datos a enviar:", formDataToSend); // Log de los datos que se enviarán
-
     try {
       const response = await fetch(`${BASE_URL}/importar`, {
         method: 'POST',
-        body: formDataToSend, // Usa formDataToSend aquí
+        body: formDataToSend,
       });
 
       if (!response.ok) {
         const errorResponse = await response.text();
-        console.error("Error en la respuesta:", errorResponse); // Log de error en la respuesta
         throw new Error(`Error al enviar los datos: ${errorResponse}`);
       }
 
@@ -117,20 +121,25 @@ const Importar = () => {
       setMensaje('Datos enviados correctamente');
       setError('');
 
-      // Limpiar el formulario
+      // Limpia el formulario y los inputs de archivos
       setFormData({
         tipoEstudio: '',
-        region: '',
         donador: '',
-        imagenValida: '',
         edad: '',
         sexo: '',
         archivosAnonimizados: [],
         archivosOriginales: []
       });
 
+      // Limpia el valor de los inputs de archivos solo si están disponibles
+      if (archivosAnonimizadosRef.current) {
+        archivosAnonimizadosRef.current.value = ''; // Limpia el input de archivos anonimizados
+      }
+      if (archivosOriginalesRef.current) {
+        archivosOriginalesRef.current.value = ''; // Limpia el input de archivos originales
+      }
+
     } catch (error) {
-      console.error("Error al enviar los datos:", error); // Log del error
       setError(`Error al enviar los datos: ${error.message}`);
       setMensaje('');
     }
@@ -165,31 +174,6 @@ const Importar = () => {
             </select>
           </div>
 
-          {/* Region */}
-          <div className="form-group">
-            <label>Region:</label>
-            <select
-              name="region"
-              value={formData.region}
-              onChange={handleChange}
-              required
-            >
-              <option value="00">Seleccione</option>
-              <option value="00">Desconocido</option>
-              <option value="01">Cabeza</option>
-              <option value="02">Cuello</option>
-              <option value="03">Torax</option>
-              <option value="04">Abdomen</option>
-              <option value="05">Pelvis</option>
-              <option value="06">Brazo</option>
-              <option value="07">Manos</option>
-              <option value="08">Piernas</option>
-              <option value="09">Rodilla</option>
-              <option value="10">Tobillo</option>
-              <option value="11">Pie</option>
-            </select>
-          </div>
-
           {/* Donador */}
           <div className="form-group">
             <label>Donador:</label>
@@ -200,43 +184,6 @@ const Importar = () => {
               onChange={handleChange}
               required
             />
-          </div>
-
-          {/* Imagen válida */}
-          <div className="form-group">
-            <label>Imagen válida:</label>
-            <div>
-            <label>
-                <input
-                  type="radio"
-                  name="imagenValida"
-                  value=""
-                  checked={formData.imagenValida === '0'}
-                  onChange={handleChange}
-                />
-                Desconocido
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="imagenValida"
-                  value="1"
-                  checked={formData.imagenValida === '1'}
-                  onChange={handleChange}
-                />
-                Sí
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="imagenValida"
-                  value="2"
-                  checked={formData.imagenValida === '2'}
-                  onChange={handleChange}
-                />
-                No
-              </label>
-            </div>
           </div>
 
           {/* Edad */}
@@ -266,29 +213,30 @@ const Importar = () => {
             </select>
           </div>
 
-          {/* Archivos Anonimizados */}
           <div className="form-group">
-            <label>Archivos Anonimizados:</label>
-            <input
-              type="file"
-              name="archivosAnonimizados"
-              onChange={handleFileChange}
-              multiple
-              accept="image/jpeg"
-            />
-          </div>
+              <label>Archivos Anonimizados:</label>
+              <input
+                type="file"
+                name="archivosAnonimizados"
+                onChange={handleFileChange}
+                multiple
+                accept="image/jpeg"
+                ref={archivosAnonimizadosRef} // Añadimos la ref para este input
+              />
+            </div>
 
-          {/* Archivos Originales */}
-          <div className="form-group">
-            <label>Archivos Originales:</label>
-            <input
-              type="file"
-              name="archivosOriginales"
-              onChange={handleFileChange}
-              multiple
-              accept="image/jpeg"
-            />
-          </div>
+            <div className="form-group">
+              <label>Archivos Originales:</label>
+              <input
+                type="file"
+                name="archivosOriginales"
+                onChange={handleFileChange}
+                multiple
+                accept="image/jpeg"
+                ref={archivosOriginalesRef} // Añadimos la ref para este input
+                required
+              />
+            </div>
 
           <button type="submit">Enviar</button>
         </form>
@@ -299,15 +247,13 @@ const Importar = () => {
 
       {/* Tabla de datos importados */}
       <div className="table-section">
-        <h2>Datos Importados</h2>
+        <h2>Imagenes importadas</h2>
         <table>
           <thead>
             <tr>
               <th>Miniaturas</th>
               <th>No. Operación</th>
               <th>Donador</th>
-              <th>Fecha</th>
-              <th>Tipo de estudio</th>
               <th>Número de archivos</th>
             </tr>
           </thead>
@@ -321,8 +267,6 @@ const Importar = () => {
                 </td>
                 <td>{dato.noOperacion}</td>
                 <td>{dato.donador}</td>
-                <td>{dato.fecha}</td>
-                <td>{dato.tipoEstudio}</td>
                 <td>{dato.numeroArchivos}</td>
               </tr>
             ))}

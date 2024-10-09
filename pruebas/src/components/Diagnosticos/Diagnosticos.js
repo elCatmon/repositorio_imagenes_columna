@@ -103,7 +103,7 @@ const DiagnosticForm = ({ selectedFile }) => {
       }
 
       // Construct new key (clave) based on form data
-      const nuevaClave = formData.tipoEstudio+formData.region+formData.proyeccion+formData.valido+"0"+formData.obtencion+formData.sexo+formData.edad
+      const nuevaClave = formData.tipoEstudio+formData.region+formData.proyeccion+formData.valido+"1"+formData.obtencion+formData.sexo+formData.edad
       console.log(formData.tipoEstudio)
       console.log(formData.region)
       console.log(formData.proyeccion)
