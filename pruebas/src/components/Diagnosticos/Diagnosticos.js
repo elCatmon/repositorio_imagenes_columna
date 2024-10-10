@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../config/config';
-import '../assets/App.css'; 
+import '../assets/App.css';
 
 const DiagnosticForm = ({ selectedFile }) => {
   const [formData, setFormData] = useState({
@@ -18,52 +18,56 @@ const DiagnosticForm = ({ selectedFile }) => {
     edad: ''
   });
 
+  const [clave, setClave] = useState(''); // Estado para almacenar la clave
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const fetchLatestDiagnostico = async () => {
+    clearFormFields();
     try {
       const fileName = selectedFile.split('/').pop();
       const newFileName = fileName.replace(/\.jpg$/, '.dcm');
-  
+
       const fetchStudyResponse = await fetch(`${BASE_URL}/estudios/dicom?nombre=${newFileName}`);
       if (!fetchStudyResponse.ok) {
         console.error('Error en la respuesta al obtener el estudio:', fetchStudyResponse.status);
         throw new Error('Error al obtener el estudio');
       }
-  
+
       const study = await fetchStudyResponse.json();
       if (!study || !study.estudio_id) {
         console.warn('Estudio no encontrado o ID inválido');
         throw new Error('Estudio no encontrado');
       }
-  
-      const fetchDiagnosticoResponse = await fetch(`${BASE_URL}/estudios/diagnostico?id=${study.estudio_id}`);
+
+      const fetchDiagnosticoResponse = await fetch(`${BASE_URL}/estudios/diagnostico?id=${study.estudio_id}&nombreImagen=${newFileName}`);
       if (!fetchDiagnosticoResponse.ok) {
         console.error('Error al obtener el diagnóstico:', fetchDiagnosticoResponse.status);
         throw new Error('Error al obtener el diagnóstico');
       }
-  
-      const diagnostico = await fetchDiagnosticoResponse.json();
-      console.log('Diagnóstico obtenido:', diagnostico);
 
-      // Populate the form with the received data
-      setFormData({
-        hallazgos: diagnostico.Hallazgos || '',
-        impresion: diagnostico.Impresion || '',
-        observaciones: diagnostico.Observaciones || '',
-        medico: diagnostico.Medico || '',
+      const response = await fetchDiagnosticoResponse.json();
+      const diagnostico = response.diagnostico; // Suponemos que el JSON tiene el campo 'diagnostico'
+      const claveImagen = response.clave; // Y un campo 'clave'
+
+      // Guardamos la clave en su estado
+      setClave(claveImagen);
+
+      // Actualizar solo los campos relacionados a la clave, sin alterar los otros valores del formulario
+      const valoresClave = obtenerValoresDesdeClave(claveImagen);
+
+      setFormData((prevData) => ({
+        ...prevData,
+        ...valoresClave,
+        hallazgos: diagnostico.Hallazgos || prevData.hallazgos,
+        impresion: diagnostico.Impresion || prevData.impresion,
+        observaciones: diagnostico.Observaciones || prevData.observaciones,
+        medico: diagnostico.Medico || prevData.medico,
         fecha: diagnostico.Fecha && diagnostico.Fecha !== "0001-01-01" 
           ? diagnostico.Fecha.split('T')[0] 
-          : 'No disponible',
-        tipoEstudio: diagnostico.TipoEstudio || '',
-        region: diagnostico.Region || '',
-        proyeccion: diagnostico.Proyeccion || '',
-        valido: diagnostico.Valido || '',
-        obtencion: diagnostico.Obtencion || '',
-        sexo: diagnostico.Sexo || '',
-        edad: diagnostico.Edad || '',
-      });
+          : prevData.fecha,
+      }));
+
     } catch (error) {
       console.error('Error al obtener el diagnóstico más reciente:', error);
       setErrorMessage('Error al obtener el diagnóstico más reciente.');
@@ -82,6 +86,35 @@ const DiagnosticForm = ({ selectedFile }) => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const clearFormFields = () => {
+    setFormData({
+      hallazgos: '',
+      impresion: '',
+      observaciones: '',
+      medico: '',
+      fecha: '',
+      tipoEstudio: '',
+      region: '',
+      proyeccion: '',
+      valido: '',
+      obtencion: '',
+      sexo: '',
+      edad: ''
+    });
+  };
+
+  const obtenerValoresDesdeClave = (clave) => {
+    return {
+      tipoEstudio: clave.substring(0, 2),  // Caracteres 1 y 2
+      region: clave.substring(2, 4),       // Caracteres 3 y 4
+      proyeccion: clave.substring(4, 6),   // Caracteres 5 y 6
+      valido: clave.substring(6, 7),       // Caracter 7
+      obtencion: clave.substring(8, 9),    // Caracter 9
+      sexo: clave.substring(9, 10),        // Caracter 10
+      edad: clave.substring(10, 11)        // Caracter 11
+    };
   };
 
   const handleSubmit = async (e) => {
@@ -103,14 +136,7 @@ const DiagnosticForm = ({ selectedFile }) => {
       }
 
       // Construct new key (clave) based on form data
-      const nuevaClave = formData.tipoEstudio+formData.region+formData.proyeccion+formData.valido+"1"+formData.obtencion+formData.sexo+formData.edad
-      console.log(formData.tipoEstudio)
-      console.log(formData.region)
-      console.log(formData.proyeccion)
-      console.log(formData.valido)
-      console.log(formData.obtencion)
-      console.log(formData.sexo)
-      console.log(formData.edad)
+      const nuevaClave = formData.tipoEstudio + formData.region + formData.proyeccion + formData.valido + "1" + formData.obtencion + formData.sexo + formData.edad;
       console.log('Nueva clave:', nuevaClave);
 
       // Prepare updated diagnosis data
@@ -159,7 +185,6 @@ const DiagnosticForm = ({ selectedFile }) => {
         tipoEstudio: '',
         region: '',
         proyeccion: '',
-        origen: '1',
         valido: '',
         obtencion: '',
         sexo: '',
@@ -170,7 +195,6 @@ const DiagnosticForm = ({ selectedFile }) => {
       setErrorMessage('Error al actualizar el diagnóstico.');
     }
   };
-
   return (
     <div className="form-diagnostico" style={{ margin: '20px' }}>
       <h2>Diagnóstico</h2>
@@ -222,7 +246,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             onChange={handleChange}
             required
           >
-            <option value="00">Seleccione</option>
+            <option value="">Seleccione</option>
             <option value="00">Desconocido</option>
             <option value="01">Postero Anterior</option>
             <option value="02">Antero Posterior</option>
@@ -240,7 +264,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             onChange={handleChange}
             required
           >
-              <option value="00">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="00">Desconocido</option>
               <option value="01">Radiografía</option>
               <option value="02">Tomografía Computarizada</option>
@@ -262,7 +286,7 @@ const DiagnosticForm = ({ selectedFile }) => {
               onChange={handleChange}
               required
             >
-              <option value="00">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="00">Desconocido</option>
               <option value="01">Cabeza</option>
               <option value="02">Cuello</option>
@@ -286,7 +310,8 @@ const DiagnosticForm = ({ selectedFile }) => {
             onChange={handleChange}
             required
           >
-            <option value="0">Seleccione</option>
+            <option value="">Seleccione</option>
+            <option value="0">Desconocido</option>
             <option value="1">Sí</option>
             <option value="2">No</option>
           </select>
@@ -300,7 +325,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             onChange={handleChange}
             required
           >
-              <option value="0">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="2">Desconocido</option>
               <option value="1">Estudio digital</option>
               <option value="2">Estudio Fisico</option>
@@ -315,7 +340,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             onChange={handleChange}
             required
           >
-              <option value="0">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="0">Desconocido</option>
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
@@ -326,7 +351,7 @@ const DiagnosticForm = ({ selectedFile }) => {
           <div className="form-group">
             <label style={{ fontWeight: 'bold' }}>Edad:</label>
             <select name="edad" value={formData.edad} onChange={handleChange} required>
-              <option value="0">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="0">Desconocido</option>
               <option value="1">Lactante menores de 1 año</option>
               <option value="2">Prescolar 1-5</option>

@@ -9,6 +9,7 @@ const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación
   const [formData, setFormData] = useState({
     tipoEstudio: '',
+    region: "",
     donador: '',
     edad: '',
     sexo: '',
@@ -22,6 +23,7 @@ const Importar = () => {
   const [tablaDatos, setTablaDatos] = useState([]);
   const [error, setError] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [subiendo, setSubiendo] = useState(false); // Para mostrar el estado de carga
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -73,24 +75,16 @@ const Importar = () => {
       return;
     }
 
+    setSubiendo(true); // Indica que el proceso de subida ha comenzado
+
     const noOperacion = generateRandomCode();
     const miniaturas = formData.archivosAnonimizados.map(file => URL.createObjectURL(file));
-
-    const nuevoRegistro = {
-      miniaturas,
-      noOperacion,
-      donador: formData.donador,
-      fecha: formData.fechaEstudio,
-      tipoEstudio: formData.tipoEstudio,
-      numeroArchivos: formData.archivosOriginales.length
-    };
-
-    setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
 
     const formDataToSend = new FormData();
     formDataToSend.append('estudio_ID', noOperacion);
     formDataToSend.append('donador', formData.donador);
     formDataToSend.append('estudio', formData.tipoEstudio);
+    formDataToSend.append('region', formData.region);
     formDataToSend.append('sexo', formData.sexo);
     formDataToSend.append('edad', formData.edad);
 
@@ -120,11 +114,23 @@ const Importar = () => {
       const responseData = await response.json();
       setMensaje('Datos enviados correctamente');
       setError('');
+      
+      // Agregar datos a la tabla solo si la subida fue exitosa
+      const nuevoRegistro = {
+        miniaturas,
+        noOperacion,
+        donador: formData.donador,
+        fecha: formData.fechaEstudio,
+        tipoEstudio: formData.tipoEstudio,
+        numeroArchivos: formData.archivosOriginales.length
+      };
+      setTablaDatos((prevData) => [...prevData, nuevoRegistro]);
 
       // Limpia el formulario y los inputs de archivos
       setFormData({
         tipoEstudio: '',
         donador: '',
+        region: '',
         edad: '',
         sexo: '',
         archivosAnonimizados: [],
@@ -142,6 +148,8 @@ const Importar = () => {
     } catch (error) {
       setError(`Error al enviar los datos: ${error.message}`);
       setMensaje('');
+    } finally {
+      setSubiendo(false); // Termina el estado de subida
     }
   };
 
@@ -174,6 +182,31 @@ const Importar = () => {
             </select>
           </div>
 
+                    {/* Region */}
+                    <div className="form-group">
+            <label>Region:</label>
+            <select
+              name="region"
+              value={formData.region}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Seleccione</option>
+              <option value="00">Desconocido</option>
+              <option value="01">Cabeza</option>
+              <option value="02">Cuello</option>
+              <option value="03">Torax</option>
+              <option value="04">Abdomen</option>
+              <option value="05">Pelvis</option>
+              <option value="06">Brazo</option>
+              <option value="07">Manos</option>
+              <option value="08">Piernas</option>
+              <option value="09">Rodilla</option>
+              <option value="10">Tobillo</option>
+              <option value="11">Pie</option>
+            </select>
+          </div>
+
           {/* Donador */}
           <div className="form-group">
             <label>Donador:</label>
@@ -190,7 +223,7 @@ const Importar = () => {
           <div className="form-group">
             <label>Edad:</label>
             <select name="edad" value={formData.edad} onChange={handleChange} required>
-              <option value="0">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="0">Desconocido</option>
               <option value="1">Lactante menores de 1 año</option>
               <option value="2">Prescolar 1-5</option>
@@ -206,7 +239,7 @@ const Importar = () => {
           <div className="form-group">
             <label>Sexo:</label>
             <select name="sexo" value={formData.sexo} onChange={handleChange} required>
-              <option value="0">Seleccione</option>
+              <option value="">Seleccione</option>
               <option value="0">Desconocido</option>
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
@@ -234,27 +267,29 @@ const Importar = () => {
                 multiple
                 accept="image/jpeg"
                 ref={archivosOriginalesRef} // Añadimos la ref para este input
-                required
               />
             </div>
 
-          <button type="submit">Enviar</button>
-        </form>
+          {subiendo && <p>Cargando archivos, por favor espere...</p>}
+          {mensaje && <p className="success-message">{mensaje}</p>}
+          {error && <p className="error-message">{error}</p>}
 
-        {error && <p className="error">{error}</p>}
-        {mensaje && <p className="success">{mensaje}</p>}
+          <button type="submit" className="btn btn-success">
+            Enviar
+          </button>
+        </form>
       </div>
 
-      {/* Tabla de datos importados */}
       <div className="table-section">
-        <h2>Imagenes importadas</h2>
+        <h2>Datos Importados</h2>
         <table>
           <thead>
             <tr>
-              <th>Miniaturas</th>
+              <th>Miniatura</th>
               <th>No. Operación</th>
               <th>Donador</th>
-              <th>Número de archivos</th>
+              <th>Tipo de Estudio</th>
+              <th>Número de Archivos</th>
             </tr>
           </thead>
           <tbody>
@@ -262,20 +297,21 @@ const Importar = () => {
               <tr key={index}>
                 <td>
                   {dato.miniaturas.map((miniatura, i) => (
-                    <img key={i} src={miniatura} alt="Miniatura" style={{ width: '50px', height: '50px' }} />
+                    <img key={i} src={miniatura} alt="Miniatura" width="50" />
                   ))}
                 </td>
                 <td>{dato.noOperacion}</td>
                 <td>{dato.donador}</td>
+                <td>{dato.tipoEstudio}</td>
                 <td>{dato.numeroArchivos}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      </div>
+      <Footer/>
     </div>
-    <Footer/>
-  </div>
   );
 };
 

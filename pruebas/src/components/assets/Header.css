@@ -27,19 +27,25 @@
   }
   
   .title {
-    color: white;
+    color: black;
     font-size: 1.2em;
     font-weight: bold;
   }
   
   .right a {
     margin-right: 19px;
-    color: white;
+    color: black !important; /* Forzar el color blanco */
     text-decoration: none;
-    display: flex; /* Flexbox para alinear ícono y texto */
-  align-items: center; /* Centrar verticalmente */
-  margin-right: 9px;
+    display: flex;
+    align-items: center;
+    margin-right: 9px;
   }
+
+  .right a:hover {
+    color: black; /* Un color gris claro al pasar el mouse, si lo prefieres */
+  }
+  
+  
   
   .right a:not(.notification-link) i {
     margin-right: 9px; /* Ajusta este valor para separar más los íconos de los textos */
@@ -51,7 +57,7 @@
   
   .notification-badge {
     background-color: #e74c3c;
-    color: white;
+    color: black;
     border-radius: 50%;
     width: 16px;
     height: 16px;
@@ -66,7 +72,7 @@
   
   .icon {
     font-size: 1.5rem;
-    color: white;
+    color: black;
   }
   .logo-container {
     display: flex;

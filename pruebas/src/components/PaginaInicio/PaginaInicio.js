@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import Header from '../assets/Header';
 
 
+
 /*const NavLink = ({ href, icon, text }) => (
   <a href={href} className="flex items-center hover:text-teal-300 text-white transition-transform duration-300">
     <i className={`${icon} mr-2`}></i>
