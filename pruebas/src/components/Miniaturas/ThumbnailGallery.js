@@ -22,44 +22,59 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
       { value: '06', label: 'Sacra' },
       { value: '07', label: 'Coxis' }
     ],
-    '09': [
-      { value: '10', label: 'Hombro' },
-      { value: '11', label: 'Humero' },
-      { value: '12', label: 'Codo' },
-      { value: '13', label: 'Antebrazo' },
-      { value: '14', label: 'Muñeca' },
-      { value: '15', label: 'Mano' }
+    '08': [
+      { value: '09', label: 'Tele de Torax' }
     ],
-    '17': [
-      { value: '18', label: 'Femur' },
-      { value: '19', label: 'Rodilla' },
-      { value: '20', label: 'Tibia y Perone' },
-      { value: '21', label: 'Tobillo' },
-      { value: '22', label: 'Pie' }
+    '10': [
+      { value: '11', label: 'Hombro' },
+      { value: '12', label: 'Humero' },
+      { value: '13', label: 'Codo' },
+      { value: '14', label: 'Antebrazo' },
+      { value: '15', label: 'Muñeca' },
+      { value: '16', label: 'Mano' }
+    ],
+    '18': [
+      { value: '19', label: 'Femur' },
+      { value: '20', label: 'Rodilla' },
+      { value: '21', label: 'Tibia y Perone' },
+      { value: '22', label: 'Tobillo' },
+      { value: '23', label: 'Pie' }
     ],
   };
 
   const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
-    
-    const selectedRegion = subregion || region; // Utilizar subregion si está seleccionada
-
+  
+    // Verificar si se ha seleccionado una subregión; si no, usamos el valor de la región
+    const selectedRegion = subregion || region;
+  
     try {
+      // Crear los parámetros de búsqueda
       const query = new URLSearchParams({
-        tipoEstudio,
-        region: selectedRegion,
+        tipoEstudio: tipoEstudio,
+        // Solo agregar la región si está seleccionada
+        ...(selectedRegion && { region: selectedRegion }),
         page: pageNumber,
-        limit: 18
+        limit: 18 // Límite de imágenes por página
       }).toString();
-
+  
       const response = await fetch(`${BASE_URL}/thumbnails?${query}`);
       
       if (response.ok) {
         const data = await response.json();
+        
+        // Si es la primera página, reinicia las imágenes, de lo contrario agrega
+        if (pageNumber === 1) {
+          setImages(data);
+        } else {
+          setImages(prevImages => [...prevImages, ...data]);
+        }
+  
+        // Si recibimos menos de 18 imágenes, desactiva la carga de más imágenes
         if (data.length < 18) {
           setHasMore(false);
         }
-        setImages(prevImages => [...prevImages, ...data]);
+        
         setLoaded(true);
       } else {
         setError('Error al obtener las imágenes');
@@ -67,8 +82,8 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     } catch (error) {
       setError('Error en la solicitud de imágenes: ' + error.message);
     }
-  }, [tipoEstudio, region, subregion]);
-
+  }, [region, subregion, tipoEstudio]);
+  
   useEffect(() => {
     // Resetear estado de imágenes y paginación al cambiar filtros
     setImages([]);
@@ -131,8 +146,8 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
             <option value="02">Columna Vertebral</option>
             <option value="08">Torax</option>
             <option value="09">Extremidad Superior</option>
-            <option value="16">Pelvis</option>
-            <option value="17">Extremidad Inferior</option>
+            <option value="17">Pelvis</option>
+            <option value="18">Extremidad Inferior</option>
           </select>
         </label>
 

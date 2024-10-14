@@ -20,27 +20,30 @@ const DiagnosticForm = ({ selectedFile }) => {
 
   // Define subregiones según la región seleccionada
   const subregionesOptions = {
-    '02': [ // Columna Vertebral
+    '02': [
       { value: '03', label: 'Cervical' },
       { value: '04', label: 'Torácica' },
       { value: '05', label: 'Lumbar' },
       { value: '06', label: 'Sacra' },
       { value: '07', label: 'Coxis' }
     ],
-    '09': [ // Extremidad Superior
-      { value: '10', label: 'Hombro' },
-      { value: '11', label: 'Humero' },
-      { value: '12', label: 'Codo' },
-      { value: '13', label: 'Antebrazo' },
-      { value: '14', label: 'Muñeca' },
-      { value: '15', label: 'Mano' }
+    '08': [
+      { value: '09', label: 'Tele de Torax' }
     ],
-    '17': [ // Extremidad Inferior
-      { value: '18', label: 'Femur' },
-      { value: '19', label: 'Rodilla' },
-      { value: '20', label: 'Tibia y Perone' },
-      { value: '21', label: 'Tobillo' },
-      { value: '22', label: 'Pie' }
+    '10': [
+      { value: '11', label: 'Hombro' },
+      { value: '12', label: 'Humero' },
+      { value: '13', label: 'Codo' },
+      { value: '14', label: 'Antebrazo' },
+      { value: '15', label: 'Muñeca' },
+      { value: '16', label: 'Mano' }
+    ],
+    '18': [
+      { value: '19', label: 'Femur' },
+      { value: '20', label: 'Rodilla' },
+      { value: '21', label: 'Tibia y Perone' },
+      { value: '22', label: 'Tobillo' },
+      { value: '23', label: 'Pie' }
     ],
   };
 
@@ -276,14 +279,15 @@ const DiagnosticForm = ({ selectedFile }) => {
           onChange={handleChange}
           required
         >
-          <option value="">Seleccione</option>
-          <option value="00">Desconocido</option>
-          <option value="01">Craneo</option>
-          <option value="02">Columna Vertebral</option>
-          <option value="08">Torax</option>
-          <option value="09">Extremidad Superior</option>
-          <option value="16">Pelvis</option>
-          <option value="17">Extremidad Inferior</option>
+            <option value="">Seleccione</option>
+            <option value="">Seleccione</option>
+            <option value="00">Desconocido</option>
+            <option value="01">Craneo</option>
+            <option value="02">Columna Vertebral</option>
+            <option value="08">Torax</option>
+            <option value="09">Extremidad Superior</option>
+            <option value="17">Pelvis</option>
+            <option value="18">Extremidad Inferior</option>
         </select>
       </div>
 
