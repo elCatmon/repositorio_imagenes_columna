@@ -280,7 +280,6 @@ const DiagnosticForm = ({ selectedFile }) => {
           required
         >
             <option value="">Seleccione</option>
-            <option value="">Seleccione</option>
             <option value="00">Desconocido</option>
             <option value="01">Craneo</option>
             <option value="02">Columna Vertebral</option>
