@@ -145,7 +145,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
             <option value="01">Craneo</option>
             <option value="02">Columna Vertebral</option>
             <option value="08">Torax</option>
-            <option value="09">Extremidad Superior</option>
+            <option value="10">Extremidad Superior</option>
             <option value="17">Pelvis</option>
             <option value="18">Extremidad Inferior</option>
           </select>

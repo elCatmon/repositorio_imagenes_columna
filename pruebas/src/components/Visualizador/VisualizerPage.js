@@ -32,7 +32,7 @@ function VisualizerPage() {
           )}
         </div>
         <div>
-            {/*<DatasetDownload />*/}
+            <DatasetDownload />
         </div>
       </div>
       <Footer />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BASE_URL } from '../config/config';
 
 const StudyForm = () => {
   const [formData, setFormData] = useState({
@@ -13,31 +14,65 @@ const StudyForm = () => {
 
   useEffect(() => {
     // Mostrar campos de dimensiones si el formato es JPG o DICOM & JPG
-    if (formData.formato === '1' || formData.formato === '2') {
-      setShowDimensions(true);
-    } else {
-      setShowDimensions(false);
-    }
+    setShowDimensions(formData.formato === 'jpg' || formData.formato === 'both');
   }, [formData.formato]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(prevState => ({
+      ...prevState,
       [name]: value
-    });
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Lógica para manejar el envío del formulario aquí
-    console.log('Datos del formulario:', formData);
+    // Construir la URL de la solicitud
+    const queryParams = new URLSearchParams({
+      type: formData.formato,
+      tipoEstudio: formData.tipoEstudio,
+      region: formData.region,
+      dimensionX: formData.dimensionX,
+      dimensionY: formData.dimensionY,
+    }).toString();
+
+    const url = `${BASE_URL}/dataset/descarga?${queryParams}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/zip', // Especificar que es un archivo ZIP
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la solicitud: ' + response.statusText);
+      }
+
+      // Recibir el archivo como un blob
+      const blob = await response.blob();
+
+      // Crear una URL de descarga a partir del blob
+      const downloadUrl = window.URL.createObjectURL(blob);
+
+      // Crear un enlace temporal para descargar el archivo
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.setAttribute('download', 'dataset.zip'); // Nombre del archivo
+      document.body.appendChild(link);
+      link.click();
+      link.remove(); // Eliminar el enlace después de hacer clic
+    } catch (error) {
+      console.error('Error al hacer la solicitud:', error);
+    }
   };
 
   return (
     <div>
       <h2>Opciones de descarga del dataset</h2>
       <form onSubmit={handleSubmit}>
+        {/* Campo Tipo de Estudio */}
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="tipoEstudio">Tipo de Estudio:</label>
           <select
@@ -47,7 +82,7 @@ const StudyForm = () => {
             onChange={handleChange}
             required
           >
-            <option value="">Seleccione</option>
+            <option value="00">Seleccione</option>
             <option value="">Todos</option>
             <option value="01">Radiografía</option>
             <option value="02">Tomografía Computarizada</option>
@@ -61,6 +96,7 @@ const StudyForm = () => {
           </select>
         </div>
 
+        {/* Campo Región */}
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="region">Región:</label>
           <select
@@ -68,7 +104,6 @@ const StudyForm = () => {
             name="region"
             value={formData.region}
             onChange={handleChange}
-            required
           >
             <option value="">Seleccione</option>
             <option value="">Todas</option>
@@ -79,13 +114,14 @@ const StudyForm = () => {
             <option value="05">Pelvis</option>
             <option value="06">Brazo</option>
             <option value="07">Manos</option>
-            <option value="08">Pernas</option>
-            <option value="09">Rdilla</option>
+            <option value="08">Piernas</option>
+            <option value="09">Rodilla</option>
             <option value="10">Tobillo</option>
             <option value="11">Pie</option>
           </select>
         </div>
 
+        {/* Campo Formato */}
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="formato">Formato:</label>
           <select
@@ -96,12 +132,13 @@ const StudyForm = () => {
             required
           >
             <option value="">Seleccione</option>
-            <option value="0">DICOM</option>
-            <option value="1">JPG</option>
-            <option value="2">DICOM & JPG</option>
+            <option value="dcm">DICOM</option>
+            <option value="jpg">JPG</option>
+            <option value="both">DICOM & JPG</option>
           </select>
         </div>
 
+        {/* Campos de dimensiones (X e Y) */}
         {showDimensions && (
           <>
             <div style={{ marginBottom: '15px' }}>
@@ -132,7 +169,11 @@ const StudyForm = () => {
           </>
         )}
 
-        <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        {/* Botón de envío */}
+        <button
+          type="submit"
+          style={{ padding: '10px 15px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+        >
           Generar dataset
         </button>
       </form>
