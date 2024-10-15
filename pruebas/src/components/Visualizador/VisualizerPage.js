@@ -31,9 +31,6 @@ function VisualizerPage() {
             <p>Selecciona una miniatura para ver la imagen DICOM.</p>
           )}
         </div>
-        <div>
-            <DatasetDownload />
-        </div>
       </div>
       <Footer />
     </div>

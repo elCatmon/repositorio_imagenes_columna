@@ -1,16 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../config/config';
+import Header from '../assets/Header';
+import Footer from '../assets/Footer';
+import '../assets/App.css'; 
+import './datasetDownload.css';
 
 const StudyForm = () => {
   const [formData, setFormData] = useState({
     tipoEstudio: '',
     region: '',
+    subregion: '',
+    proyeccion: '',
     formato: '',
     dimensionX: '',
     dimensionY: ''
   });
-
   const [showDimensions, setShowDimensions] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Nuevo estado para la carga
+
+    // Define subregiones según la región seleccionada
+    const subregionesOptions = {
+      '02': [
+        { value: '03', label: 'Cervical' },
+        { value: '04', label: 'Torácica' },
+        { value: '05', label: 'Lumbar' },
+        { value: '06', label: 'Sacra' },
+        { value: '07', label: 'Coxis' }
+      ],
+      '08': [
+        { value: '09', label: 'Tele de Torax' }
+      ],
+      '10': [
+        { value: '11', label: 'Hombro' },
+        { value: '12', label: 'Humero' },
+        { value: '13', label: 'Codo' },
+        { value: '14', label: 'Antebrazo' },
+        { value: '15', label: 'Muñeca' },
+        { value: '16', label: 'Mano' }
+      ],
+      '18': [
+        { value: '19', label: 'Femur' },
+        { value: '20', label: 'Rodilla' },
+        { value: '21', label: 'Tibia y Perone' },
+        { value: '22', label: 'Tobillo' },
+        { value: '23', label: 'Pie' }
+      ],
+    };
 
   useEffect(() => {
     // Mostrar campos de dimensiones si el formato es JPG o DICOM & JPG
@@ -27,11 +62,16 @@ const StudyForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Mostrar la animación de carga al enviar el formulario
+    if (formData.subregion != ''){
+      formData.region = formData.subregion;
+    } 
     // Construir la URL de la solicitud
     const queryParams = new URLSearchParams({
       type: formData.formato,
       tipoEstudio: formData.tipoEstudio,
       region: formData.region,
+      proyeccion: formData.proyeccion,
       dimensionX: formData.dimensionX,
       dimensionY: formData.dimensionY,
     }).toString();
@@ -42,7 +82,7 @@ const StudyForm = () => {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/zip', // Especificar que es un archivo ZIP
+          'Content-Type': 'application/zip',
         },
       });
 
@@ -65,12 +105,16 @@ const StudyForm = () => {
       link.remove(); // Eliminar el enlace después de hacer clic
     } catch (error) {
       console.error('Error al hacer la solicitud:', error);
+    } finally {
+      setIsLoading(false); // Ocultar la animación de carga cuando la solicitud finalice
     }
   };
 
   return (
+    
     <div>
-      <h2>Opciones de descarga del dataset</h2>
+      <Header/>
+      <h2>Opciones de descarga del conjunto de datos</h2>
       <form onSubmit={handleSubmit}>
         {/* Campo Tipo de Estudio */}
         <div style={{ marginBottom: '15px' }}>
@@ -97,27 +141,55 @@ const StudyForm = () => {
         </div>
 
         {/* Campo Región */}
-        <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontWeight: 'bold' }} htmlFor="region">Región:</label>
+        <div className="form-group">
+        <label style={{ fontWeight: 'bold' }}>Región:</label>
+        <select
+          name="region"
+          value={formData.region}
+          onChange={handleChange}
+        >
+            <option value="">Seleccione</option>
+            <option value="01">Craneo</option>
+            <option value="02">Columna Vertebral</option>
+            <option value="08">Torax</option>
+            <option value="09">Extremidad Superior</option>
+            <option value="17">Pelvis</option>
+            <option value="18">Extremidad Inferior</option>
+        </select>
+      </div>
+
+      {formData.region && subregionesOptions[formData.region] && (
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Subregión:</label>
           <select
-            id="region"
-            name="region"
-            value={formData.region}
+            name="subregion"
+            value={formData.subregion}
             onChange={handleChange}
           >
             <option value="">Seleccione</option>
-            <option value="">Todas</option>
-            <option value="01">Cabeza</option>
-            <option value="02">Cuello</option>
-            <option value="03">Torax</option>
-            <option value="04">Abdomen</option>
-            <option value="05">Pelvis</option>
-            <option value="06">Brazo</option>
-            <option value="07">Manos</option>
-            <option value="08">Piernas</option>
-            <option value="09">Rodilla</option>
-            <option value="10">Tobillo</option>
-            <option value="11">Pie</option>
+            {subregionesOptions[formData.region].map(option2 => (
+              <option key={option2.value} value={option2.value}>
+                {option2.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Proyección:</label>
+          <select
+            name="proyeccion"
+            value={formData.proyeccion}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione</option>
+            <option value="01">Postero Anterior</option>
+            <option value="02">Antero Posterior</option>
+            <option value="03">Obliqua</option>
+            <option value="04">Lateral Izquierda</option>
+            <option value="05">Lateral Derecha</option>
+            <option value="06">Especial</option>
           </select>
         </div>
 
@@ -177,6 +249,23 @@ const StudyForm = () => {
           Generar dataset
         </button>
       </form>
+
+      {/* Mostrar la animación de carga */}
+      {isLoading && (
+        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+          <p>Esto puede tardar un rato por favor espera...</p>
+          <div className="spinner" style={{ border: '4px solid rgba(0,0,0,.1)', borderLeftColor: '#4CAF50', borderRadius: '50%', width: '40px', height: '40px', animation: 'spin 1s linear infinite' }}></div>
+        </div>
+      )}
+
+      {/* Añadir la animación CSS para el spinner */}
+      <style>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
+      <Footer/>
     </div>
   );
 };
