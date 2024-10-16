@@ -80,18 +80,40 @@ html, body {
     color: #e2e8f0; /* Color del ícono al hacer hover */
     transform: translateY(-5px) scale(1.1); /* Mueve el ícono hacia arriba y lo escala ligeramente */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
-    text-decoration: none; /* Asegura que no haya línea de bajo en hover */
 }
 
 /* Responsive: Asegura que el footer se vea bien en pantallas más pequeñas */
 @media (max-width: 768px) {
     .footer .footer-content {
         flex-direction: column; /* En pantallas pequeñas, las secciones se apilan verticalmente */
-        align-items: center;
+        align-items: center; /* Alinea los elementos en el centro */
     }
 
     .footer .footer-section {
         text-align: center; /* Centra el texto en pantallas pequeñas */
         margin-bottom: 20px; /* Añade espacio debajo de cada sección */
+        min-width: 0; /* Permite que la sección se ajuste en pantallas más pequeñas */
+    }
+
+    .footer h4 {
+        font-size: 1.2rem; /* Reduce el tamaño de los títulos en pantallas pequeñas */
+    }
+
+    .footer .footer-section ul li a {
+        font-size: 16px; /* Reduce el tamaño de la fuente de los enlaces en pantallas pequeñas */
+    }
+
+    .footer .social-icons a {
+        font-size: 1.5rem; /* Reduce el tamaño de los íconos en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer h4 {
+        font-size: 1.1rem; /* Reduce aún más el tamaño de los títulos en pantallas muy pequeñas */
+    }
+
+    .footer .footer-section ul li a {
+        font-size: 14px; /* Reduce el tamaño de la fuente de los enlaces en pantallas muy pequeñas */
     }
 }

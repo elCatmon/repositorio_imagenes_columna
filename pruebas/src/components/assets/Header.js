@@ -4,7 +4,7 @@ import './Header.css';
 function Header({ toggleSidebar }) {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-    <nav className="navbar text-white py-4 px-6 flex items-center justify-between shadow-lg">
+    <nav className="navbar py-2 px-0 flex items-start justify-between shadow-lg">
        <div className="flex items-center">
          {/* <button className="menu-button transition-transform duration-300">
            <i 

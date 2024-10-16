@@ -15,12 +15,13 @@ body {
     opacity: 1;
   }
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #26798E;
-  padding: 10px 20px;
+  padding: 10px 2%; /* Cambia el padding a porcentajes para mejor adaptación */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,8 +44,9 @@ body {
   font-weight: bold;
   color: #ffffff;
   margin-right: 20px;
-  margin-left: 50px; /* Aumenta el margen izquierdo para mover el título a la derecha */
+  margin-left: 5%; /* Reducción del margen para pantallas pequeñas */
 }
+
 .title-white {
   color: #ffffff; /* Cambia el color del texto a blanco */
   font-size: 2rem;
@@ -53,19 +55,17 @@ body {
   margin-bottom: 20px;
 }
 
-
 .first-logo {
   height: 70px; /* Aumenta la altura del logo UPP */
   width: auto; /* Mantén la proporción del ancho automáticamente */
-  margin-left: 100px; /* Aumenta el margen izquierdo para alinear con el título */
+  margin-left: 5%; /* Reducción del margen para pantallas pequeñas */
 }
 
 .second-logo {
   width: 140px; /* Ajusta el ancho del logo CITEDI */
   height: auto; /* Mantén la proporción */
-  margin-left: 50px; /* Aumenta el espacio entre los logos */
+  margin-left: 2%; /* Aumenta el espacio entre los logos */
 }
-
 
 .user-icon {
   font-size: 30px; /* Tamaño más grande para el ícono del usuario */
@@ -73,6 +73,7 @@ body {
   margin-left: 0; /* Asegúrate de que no haya margen izquierdo */
   transition: transform 0.3s ease, color 0.3s ease;
 }
+
 .navbar-right {
   display: flex;
   align-items: center;
@@ -99,24 +100,16 @@ body {
   transform: scale(1.1);
 }
 
-.nav-link i:hover {
-  color: #38b2ac;
-  transform: scale(1.1);
-}
-
 .user-icon {
   font-size: 30px; /* Tamaño del ícono de usuario */
   color: #ffffff;
   transition: transform 0.3s ease, color 0.3s ease;
- 
 }
-
 
 .user-icon:hover {
   color: #38b2ac;
   transform: scale(1.1);
 }
-
 
 .title {
   margin-right: 20px;
@@ -175,7 +168,6 @@ body {
   cursor: pointer;
 }
 
-
 .btn-primary {
   background-color: #26798E;
   transition: background-color 0.3s ease;
@@ -189,7 +181,6 @@ body {
   transform: scale(1.02);
 }
 
-
 .modal-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -200,7 +191,6 @@ body {
 .modal-header .modal-title {
   color: white !important; /* Cambia el color del título a blanco y agrega !important */
 }
-
 
 .modal-header .close {
   background: none;
@@ -221,6 +211,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .modal-body:hover {
   background-color: #f8f9fa;
 }
@@ -289,7 +280,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Tamaño mínimo de columna de 250px */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Tamaño mínimo de columna de 250px */
   gap: 20px;
 }
 
@@ -310,7 +301,6 @@ body {
 .info-card img {
   width: 100%;
   height: auto;
-  transition: transform 0.3s;
 }
 
 /* Estilos para el overlay en la tarjeta */
@@ -319,116 +309,71 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  padding: 1rem; /* Puedes cambiar a 10px si prefieres */
+  background: rgba(38, 121, 142, 0.9);
+  color: white;
+  text-align: center;
+  padding: 10px;
   opacity: 0;
   transition: opacity 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
 }
 
-.modal-content {
-  background-color: #ffffff; /* Fondo del modal */
-  border-radius: 8px; /* Bordes redondeados */
-  max-width: 90%; /* Ancho máximo del modal */
-  max-height: 80%; /* Alto máximo del modal */
-  overflow-y: auto; /* Permite el desplazamiento vertical si el contenido es más grande */
-  padding: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra del modal */
-  position: relative; /* Posición relativa para posicionar el botón de cerrar */
-  
+.info-card:hover .info-overlay {
+  opacity: 1;
 }
 
-.modal-body {
-  padding: 20px; /* Padding en el cuerpo del modal */
-  color: black; /* Color del texto en negro para contraste */
-  background-color: white; /* Fondo blanco para el cuerpo */
+/* Estilos para la tabla */
+table {
+  width: 100%; /* Ajusta la tabla para que ocupe todo el ancho disponible */
+  border-collapse: collapse;
 }
 
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #666666; /* Color de fondo del header del modal */
-  padding: 20px;
-  color: white;
-  width: 100%; /* Asegura que el header cubra todo el ancho del modal */
-  border-top-left-radius: 8px; /* Mantén el radio en la esquina superior izquierda */
-  border-top-right-radius: 8px; /* Mantén el radio en la esquina superior derecha */
-  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
-  position: absolute;
-  top: 0; /* Posiciona el header en la parte superior */
-  left: 0; /* Posiciona el header en el borde izquierdo */
-  z-index: 10; /* Asegura que el header esté por encima del contenido del modal */
+th, td {
+  padding: 10px;
+  border: 1px solid #26798E;
+  text-align: left; /* Alinea el texto a la izquierda */
 }
 
-
-.modal-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+th {
+  background-color: #26798E; /* Color de fondo para el encabezado */
+  color: white; /* Color del texto en el encabezado */
 }
 
-.close {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo alternativo para filas */
 }
 
-
-.modal-overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+tr:hover {
+  background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
 }
 
-.cardConocenos {
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* Sombra más suave */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  background-color: whitesmoke;
-  font-size: large;
-  font-family: Poppins;
-}
-
-.cardConocenos:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Sombra más prominente al hover */
-}
-
-.footer {
-  margin-top: 70px; /* Ajusta este valor para aumentar el espacio entre el contenido y el footer */
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Cambia a columna para pantallas pequeñas */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .title {
+    font-size: 1.5rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
   }
-}
 
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-in-out; /* Duración de la animación reducida a 0.5 segundos */
-}
-.main-container {
-  margin-bottom: 40px; /* Espacio adicional debajo del contenedor "¿Quiénes somos?" */
-}
+  .modal-body {
+    flex-direction: column; /* Cambia a columna para mejor adaptación */
+  }
 
-.grid {
-  margin-top: 40px; /* Espacio adicional arriba de las tarjetas */
+  .grid {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  .intro {
+    padding: 20px; /* Reduce el padding */
+  }
+
+  .intro h1 {
+    font-size: 2rem; /* Tamaño más pequeño para el encabezado */
+  }
+
+  .intro p {
+    font-size: 1rem; /* Ajusta el tamaño del texto */
+    max-width: 100%; /* Permite que el texto ocupe todo el ancho */
+  }
 }

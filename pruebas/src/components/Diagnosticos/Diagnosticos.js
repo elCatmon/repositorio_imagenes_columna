@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../config/config';
-import '../assets/App.css';
+import './Diagnosticos.css';
 
 const DiagnosticForm = ({ selectedFile }) => {
   const [formData, setFormData] = useState({

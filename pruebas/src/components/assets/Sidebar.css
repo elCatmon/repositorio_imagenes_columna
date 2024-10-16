@@ -1,42 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
+/* Estilo general para la sidebar */
 .sidebar {
-    width: 200px;
+    width: 250px; /* Ajustar a un ancho mayor para pantallas grandes */
     position: fixed;
     top: 60px; /* Debajo del navbar */
     left: 0;
-    height: calc(100% - 60px);
-    background-color: #CFD8DC; /* Gris claro */
-    transform: translateX(-100%); /* Oculta el sidebar fuera de la pantalla */
+    height: calc(100% - 60px); /* Calcula la altura disponible debajo del navbar */
+    background-color: #CFD8DC; /* Fondo gris claro */
+    transform: translateX(-100%); /* Oculta el sidebar por defecto */
     transition: transform 0.4s ease-in-out;
     z-index: 1000;
-  }
-  
-  .sidebar.sidebar-active {
-    transform: translateX(0); /* Mueve el sidebar a su posición visible */
-  }
-  
-  .sidebar nav ul {
+}
+
+/* Sidebar visible cuando se activa */
+.sidebar.sidebar-active {
+    transform: translateX(0); /* Hace visible el sidebar */
+}
+
+/* Lista de navegación */
+.sidebar nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .sidebar nav li {
+}
+
+/* Elementos de la lista de navegación */
+.sidebar nav li {
     padding: 15px;
-    color: #333; /* Color de texto */
+    color: #333; /* Color del texto */
     cursor: pointer;
     border-bottom: 1px solid #E0F2F1; /* Línea divisoria */
     transition: background-color 0.3s, padding-left 0.3s;
-  }
-  
-  .sidebar nav li:hover {
-    background-color: #B2DFDB;
-    padding-left: 20px;
-  }
-  
-  .sidebar nav li i {
+}
+
+/* Efecto hover para los elementos de la lista */
+.sidebar nav li:hover {
+    background-color: #B2DFDB; /* Cambia el color de fondo al pasar sobre el elemento */
+    padding-left: 20px; /* Desplaza ligeramente el texto hacia la derecha */
+}
+
+/* Iconos dentro de los elementos de la lista */
+.sidebar nav li i {
     margin-right: 10px;
     font-size: 1.2em;
-  }
-  
+}
+
+/* Media Queries para hacer el sidebar responsivo */
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Reduce el ancho del sidebar para pantallas pequeñas */
+    }
+
+    .sidebar nav li {
+        padding: 12px; /* Reduce el padding para elementos de la lista */
+    }
+
+    .sidebar nav li:hover {
+        padding-left: 15px; /* Menor desplazamiento en hover */
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%; /* Sidebar ocupará toda la pantalla en móviles */
+        height: 100vh; /* Asegura que el sidebar ocupe toda la altura de la pantalla */
+        transform: translateY(-100%); /* Oculta el sidebar desde arriba para una animación más intuitiva en móviles */
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .sidebar.sidebar-active {
+        transform: translateY(0); /* Mueve el sidebar desde arriba en móviles */
+    }
+
+    .sidebar nav li {
+        padding: 10px;
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente para pantallas pequeñas */
+    }
+}

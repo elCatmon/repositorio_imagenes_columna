@@ -1,55 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
+/* Contenedor general de la sección */
 .section-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  .section-header {
+}
+
+/* Estilo del encabezado de la sección */
+.section-header {
     text-align: center;
     margin-bottom: 40px;
-  }
-  
-  .section-header h2 {
+}
+
+.section-header h2 {
     font-size: 2rem;
     color: #26798E;
-  }
-  
-  .section-header p {
+}
+
+.section-header p {
     font-size: 1.25rem;
     color: #555;
-  }
-  
-  .team-section {
+}
+
+/* Estilo de la sección del equipo */
+.team-section {
     margin-bottom: 40px;
-  }
-  
-  .team-header {
+}
+
+/* Encabezado del equipo */
+.team-header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-  }
-  
-  .team-logo {
+}
+
+.team-logo {
     height: 60px;
     margin-right: 20px;
-  }
-  
-  .team-header h3 {
+}
+
+.team-header h3 {
     font-size: 1.75rem;
     color: #26798E;
-  }
-  
-  .team-members {
+}
+
+/* Contenedor de los miembros del equipo */
+.team-members {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 20px;
-  }
-  
-  .card {
+}
+
+/* Estilo de la tarjeta del miembro del equipo */
+.card {
     background: #fff;
     border-radius: 10px;
     padding: 20px;
@@ -62,42 +68,46 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-  }
-  
-  .card:hover {
+}
+
+.card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .member-image {
+}
+
+/* Imagen del miembro del equipo */
+.member-image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
     display: block;
-  }
-  
-  .card h3 {
+}
+
+/* Título y texto dentro de la tarjeta */
+.card h3 {
     font-size: 1.25rem;
     margin-bottom: 10px;
     color: #26798E;
-  }
-  
-  .card p {
+}
+
+.card p {
     font-size: 1rem;
     color: #555;
     margin-bottom: 20px;
-  }
-  
-  .card-content {
+}
+
+/* Contenido dentro de la tarjeta */
+.card-content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  .btn-primary {
+}
+
+/* Botón primario */
+.btn-primary {
     background-color: #26798E;
     color: #fff;
     padding: 10px 20px;
@@ -107,9 +117,109 @@
     transition: background-color 0.3s ease;
     border: none;
     margin-top: auto;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #1e5f75;
-  }
-  
+}
+
+/* Media Queries para hacer el diseño responsivo */
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (max-width: 992px) {
+    .team-members {
+        justify-content: center; /* Centrar las tarjetas en pantallas medianas */
+    }
+
+    .team-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .team-logo {
+        margin: 0 auto 20px;
+    }
+
+    .team-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        flex: 1 1 250px;
+    }
+
+    .card h3 {
+        font-size: 1.2rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .section-header p {
+        font-size: 1.1rem;
+    }
+
+    .team-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .team-members {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card {
+        max-width: 100%; /* Ocupar todo el ancho disponible en móviles */
+        flex: 1 1 100%;
+    }
+
+    .member-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .card h3 {
+        font-size: 1.1rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-header p {
+        font-size: 1rem;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .member-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card p {
+        font-size: 0.85rem;
+    }
+}

@@ -114,7 +114,6 @@ const DicomViewer = ({ fileName }) => {
   };
 
   return (
-    
     <div className="dicom-viewer-container">
       <div
         ref={elementRef}
@@ -124,34 +123,20 @@ const DicomViewer = ({ fileName }) => {
         {loading && <p>Cargando imagen DICOM...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
-      <div className="tool-buttons" style={{ position: 'absolute', bottom: 10, right: 10, zIndex: 1 }}>
-        <button onClick={zoomIn}>
-          Zoom +
-        </button>
-        <button onClick={zoomOut}>
-          Zoom -
-        </button>
-        <button onClick={moveDown}>
-          Mover ↑
-        </button>
-        <button onClick={rotateCounterClockwise}>
-          Rotar ←
-        </button>
-        <button onClick={rotateClockwise}>
-          Rotar →
-        </button>
-        <button onClick={moveRight}>
-          Mover ←
-        </button>
-        <button onClick={moveUp}>
-          Mover ↓
-        </button>
-        <button onClick={moveLeft}>
-          Mover →
-        </button>
+      
+      <div className="tool-buttons" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+        <button onClick={zoomIn}>Zoom +</button>
+        <button onClick={zoomOut}>Zoom -</button>
+        <button onClick={moveDown}>Mover ↑</button>
+        <button onClick={rotateCounterClockwise}>Rotar ←</button>
+        <button onClick={rotateClockwise}>Rotar →</button>
+        <button onClick={moveRight}>Mover ←</button>
+        <button onClick={moveUp}>Mover ↓</button>
+        <button onClick={moveLeft}>Mover →</button>
       </div>
     </div>
   );
+  
 };
 
 export default DicomViewer;

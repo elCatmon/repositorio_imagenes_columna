@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
+/* Fondo del modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -11,9 +12,10 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-  }
-  
-  .modal-content {
+}
+
+/* Contenido del modal */
+.modal-content {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 12px;
@@ -22,9 +24,10 @@
     width: 100%;
     position: relative;
     text-align: center;
-  }
-  
-  .modal-close {
+}
+
+/* Botón de cierre del modal */
+.modal-close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -33,26 +36,105 @@
     border: none;
     cursor: pointer;
     color: #666666;
-  }
-  
-  .modal-image {
+}
+
+/* Imagen dentro del modal */
+.modal-image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin-bottom: 20px;
     object-fit: cover;
     border: 4px solid #26798E;
-  }
-  
-  .modal-content h2 {
+}
+
+/* Título del modal */
+.modal-content h2 {
     font-size: 1.8rem;
     color: #26798E;
     margin-bottom: 15px;
-  }
-  
-  .modal-content p {
+}
+
+/* Texto dentro del modal */
+.modal-content p {
     font-size: 1.2rem;
     color: #555555;
     line-height: 1.6;
-  }
-  
+}
+
+/* Media Queries para hacer el modal responsivo */
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (max-width: 992px) {
+    .modal-content {
+        max-width: 500px;
+        padding: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .modal-content p {
+        font-size: 1.1rem;
+    }
+
+    .modal-image {
+        width: 130px;
+        height: 130px;
+    }
+
+    .modal-close {
+        font-size: 22px;
+    }
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-content p {
+        font-size: 1rem;
+    }
+
+    .modal-image {
+        width: 110px;
+        height: 110px;
+    }
+
+    .modal-close {
+        font-size: 20px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+    .modal-content {
+        max-width: 300px;
+        padding: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .modal-content p {
+        font-size: 0.9rem;
+    }
+
+    .modal-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .modal-close {
+        font-size: 18px;
+    }
+}

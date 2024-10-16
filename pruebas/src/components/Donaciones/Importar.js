@@ -4,6 +4,7 @@ import { BASE_URL } from '../config/config';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import '../assets/App.css'; 
+import './Importar.css'; 
 
 const Importar = () => {
   const navigate = useNavigate(); // Inicializa la función de navegación

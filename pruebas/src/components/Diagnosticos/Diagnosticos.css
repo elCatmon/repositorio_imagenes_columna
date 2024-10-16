@@ -1,0 +1,74 @@
+.form-diagnostico {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-diagnostico h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-diagnostico .form-group {
+    margin-bottom: 15px;
+}
+
+.form-diagnostico label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-diagnostico textarea, 
+.form-diagnostico input[type="text"], 
+.form-diagnostico select, 
+.form-diagnostico input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-diagnostico textarea {
+    height: 100px;
+    resize: vertical; /* Permitir el cambio de tamaño vertical */
+}
+
+.form-diagnostico button {
+    background-color: #28a745; /* Color verde */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Centrar el botón */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.form-diagnostico button:hover {
+    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+}
+
+.success-message {
+    color: #0bccd3; /* Corregido el color a un código hex válido */
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 600px) {
+    .form-diagnostico {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .form-diagnostico button {
+        width: 100%; /* Botón ocupa todo el ancho en pantallas pequeñas */
+    }
+}

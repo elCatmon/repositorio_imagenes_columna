@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
+
 .header-section {
   margin-top: 20px; /* Ajusta este valor si necesitas mover el título más hacia abajo */
   margin-bottom: 40px; /* Aumenta este valor para separar más el título del contenido debajo */
@@ -6,6 +7,7 @@
 
 .navbar {
   display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
   justify-content: space-between;
   align-items: center;
   background-color: #26798E;
@@ -34,6 +36,7 @@
   margin-right: 20px;
   margin-left: 50px; /* Aumenta el margen izquierdo para mover el título a la derecha */
 }
+
 .title-white {
   color: #ffffff; /* Cambia el color del texto a blanco */
   font-size: 2rem;
@@ -41,7 +44,6 @@
   text-align: center;
   margin-bottom: 20px;
 }
-
 
 .first-logo {
   height: 70px; /* Aumenta la altura del logo UPP */
@@ -55,13 +57,13 @@
   margin-left: 50px; /* Aumenta el espacio entre los logos */
 }
 
-
 .user-icon {
   font-size: 30px; /* Tamaño más grande para el ícono del usuario */
   color: #ffffff;
   margin-left: 0; /* Asegúrate de que no haya margen izquierdo */
   transition: transform 0.3s ease, color 0.3s ease;
 }
+
 .navbar-right {
   display: flex;
   align-items: center;
@@ -70,7 +72,7 @@
 }
 
 .nav-link {
-  color: 666666;
+  color: #666666; /* Añadido el símbolo # para el color */
   font-size: 18px;
   font-weight: bold;
   transition: transform 0.3s ease, color 0.3s ease;
@@ -93,20 +95,6 @@
   transform: scale(1.1);
 }
 
-.user-icon {
-  font-size: 30px; /* Tamaño del ícono de usuario */
-  color: #ffffff;
-  transition: transform 0.3s ease, color 0.3s ease;
- 
-}
-
-
-.user-icon:hover {
-  color: #38b2ac;
-  transform: scale(1.1);
-}
-
-
 .title {
   margin-right: 20px;
 }
@@ -125,16 +113,13 @@
   margin-left: 10px;
 }
 
-.grid-cols-3 {
+.grid-cols-3, .grid-cols-2 {
   display: flex;
+  flex-wrap: wrap; /* Permite que las columnas se ajusten */
   justify-content: center;
   gap: 30px; /* Aumenta el espacio entre las tarjetas */
 }
-.grid-cols-2 {
-  display: flex;
-  justify-content: center;
-  gap: 30px; /* Aumenta el espacio entre las tarjetas */
-}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -145,6 +130,7 @@
     transform: translateY(0);
   }
 }
+
 .persona-card {
   background-color: #ffffff;
   padding: 20px;
@@ -152,7 +138,8 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   min-height: 300px;
-  width: 320px; /* Fija un ancho para todas las tarjetas */
+  width: 100%; /* Cambiado a 100% para que se ajuste al contenedor */
+  max-width: 320px; /* Fija un ancho máximo para todas las tarjetas */
   margin: 0; /* Elimina el margen para que no se separen */
   display: flex;
   flex-direction: column;
@@ -160,6 +147,7 @@
   animation: fadeInUp 1s ease-in-out; /* Aplicar la animación */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .persona-card:hover {
   transform: scale(1.08) translateY(-10px); /* Aumenta el tamaño y desplaza hacia arriba */
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Aumenta la sombra para dar un efecto más pronunciado */
@@ -194,7 +182,6 @@
 .persona-card {
   padding-top: 10px; /* Reduce el padding superior de la tarjeta para que los íconos suban más */
 }
-
 
 .persona-img {
   width: 150px;
@@ -255,4 +242,41 @@
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Consultas de medios para hacer el diseño responsivo */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    align-items: flex-start; /* Alinear elementos a la izquierda */
+  }
+
+  .title {
+    margin-left: 0; /* Quitar margen izquierdo en pantallas pequeñas */
+  }
+
+  .first-logo,
+  .second-logo {
+    margin-left: 0; /* Quitar márgenes en pantallas pequeñas */
+    height: 50px; /* Ajustar tamaño del logo */
+  }
+
+  .persona-card {
+    width: 100%; /* Tarjetas ocupan el ancho completo en pantallas pequeñas */
+    max-width: none; /* Eliminar ancho máximo */
+    margin: 10px 0; /* Margen vertical entre tarjetas */
+  }
+
+  .grid-cols-3, .grid-cols-2 {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    align-items: center; /* Centrar elementos */
+  }
+
+  .navbar-right {
+    justify-content: center; /* Centrar los elementos del lado derecho en pantallas pequeñas */
+  }
+
+  .nav-link {
+    font-size: 16px; /* Disminuir tamaño de fuente */
+  }
 }
