@@ -1,2 +1,2 @@
 // config.js
-export const BASE_URL = 'http://10.0.15.94:8080';
+export const BASE_URL = 'http://148.204.125.121:80';

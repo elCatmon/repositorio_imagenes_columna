@@ -23,7 +23,7 @@ const Fisica = () => {
   <div className="grid-cols-3">
     <div className="qr-card">
     <p className=" text-2xl text-gray-600 mt-2 font-semibold ">Universidad Politécnica de Pachuca</p>
-      <img src="/Imagenes/QR_upp.png" alt="Ubicación" className="qr-img" />      
+      <img src="/imagenes/QR_upp.png" alt="Ubicación" className="qr-img" />      
       <p className="text-gray-600 mt-2 font-semibold">Carr. Pachuca - Cd. Sahhagún Km. 20, Ex-Hacienda de Santa Bárbara, Zempoala, Hidalgo, C. P. 43830</p>
       {/*<p className="text-gray-600 mt-2 font-semibold ">Contacto</p>*/}
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> ma.cosio.leon@upp.edu.mx</p>
@@ -33,7 +33,7 @@ const Fisica = () => {
     </div>
     <div className="qr-card">
     <p className=" text-2xl text-gray-600 mt-2 font-semibold "  style={{ fontSize:'23px'}}>Centro de Investigación y Desarrollo de Tecnología Digital - IPN</p>
-      <img src="/Imagenes/QR_citedi.png" alt="Ubicación" className="qr-img" />      
+      <img src="/imagenes/QR_citedi.png" alt="Ubicación" className="qr-img" />      
       <p className="text-gray-600 mt-2 font-semibold">Av. Instituto Politécnico Nacional, #1310, Colonia Nueva Tijuana, Tijuana, Baja California, C. P. 22435</p>
       {/*<p className="text-gray-600 mt-2 font-semibold ">Contacto</p>*/}
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oross@citedi.mx</p>
@@ -43,7 +43,7 @@ const Fisica = () => {
     </div>
     <div className="qr-card">
     <p className=" text-2xl text-gray-600 mt-2 font-semibold ">Universidad Autónoma de Baja California</p>
-      <img src="/Imagenes/QR_uabc.png" alt="Ubicación" className="qr-img" />      
+      <img src="/imagenes/QR_uabc.png" alt="Ubicación" className="qr-img" />      
       <p className="text-gray-600 mt-2 font-semibold">Av. Alvaro Obregón, Sin número, Colonia Nueva, Mexicali, Baja California, C. P. 21100</p>
       {/*<p className="text-gray-600 mt-2 font-semibold ">Contacto</p>*/}
       <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> aviles.gener@uabc.edu.mx</p>
