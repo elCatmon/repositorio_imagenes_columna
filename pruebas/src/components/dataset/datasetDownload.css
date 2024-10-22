@@ -1,0 +1,118 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Estilo para el título */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Estilo para las etiquetas */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para los select e input */
+select, input[type="number"] {
+  width: 100%; /* Cambiado a 100% para mejor responsividad */
+  max-width: 200px; /* Mantiene el ancho máximo */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* Centrar botón */
+button {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto 0;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Efecto hover del botón */
+button:hover {
+  background-color: #45a049;
+}
+
+/* Estilos del spinner */
+.spinner {
+  margin: 0 auto;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #4CAF50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+/* Centrar el contenedor del mensaje de carga */
+.spinner-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Animación de carga */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  form {
+      margin: 20px; /* Reduce el margen en pantallas más pequeñas */
+      padding: 15px; /* Reduce el padding en pantallas más pequeñas */
+  }
+
+  h2 {
+      font-size: 1.5rem; /* Ajusta el tamaño de la fuente del título */
+  }
+
+  select, input[type="number"] {
+      max-width: 100%; /* Permite que ocupen todo el ancho disponible */
+  }
+
+  button {
+      max-width: 100%; /* Permite que el botón ocupe todo el ancho disponible */
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+      font-size: 1.25rem; /* Ajusta el tamaño de la fuente del título para pantallas muy pequeñas */
+  }
+
+  button {
+      padding: 8px; /* Ajusta el padding del botón */
+  }
+}

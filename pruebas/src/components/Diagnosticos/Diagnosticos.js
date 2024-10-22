@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../config/config';
-import '../assets/App.css';
+import './Diagnosticos.css';
 
 const DiagnosticForm = ({ selectedFile }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +17,35 @@ const DiagnosticForm = ({ selectedFile }) => {
     sexo: '',
     edad: ''
   });
+
+  // Define subregiones según la región seleccionada
+  const subregionesOptions = {
+    '02': [
+      { value: '03', label: 'Cervical' },
+      { value: '04', label: 'Torácica' },
+      { value: '05', label: 'Lumbar' },
+      { value: '06', label: 'Sacra' },
+      { value: '07', label: 'Coxis' }
+    ],
+    '08': [
+      { value: '09', label: 'Tele de Torax' }
+    ],
+    '10': [
+      { value: '11', label: 'Hombro' },
+      { value: '12', label: 'Humero' },
+      { value: '13', label: 'Codo' },
+      { value: '14', label: 'Antebrazo' },
+      { value: '15', label: 'Muñeca' },
+      { value: '16', label: 'Mano' }
+    ],
+    '18': [
+      { value: '19', label: 'Femur' },
+      { value: '20', label: 'Rodilla' },
+      { value: '21', label: 'Tibia y Perone' },
+      { value: '22', label: 'Tobillo' },
+      { value: '23', label: 'Pie' }
+    ],
+  };
 
   const [clave, setClave] = useState(''); // Estado para almacenar la clave
   const [successMessage, setSuccessMessage] = useState('');
@@ -134,6 +163,9 @@ const DiagnosticForm = ({ selectedFile }) => {
       if (!study || !study.estudio_id) {
         throw new Error('Estudio no encontrado');
       }
+      if(formData.subregion!=''){
+        formData.region = formData.subregion
+      }
 
       // Construct new key (clave) based on form data
       const nuevaClave = formData.tipoEstudio + formData.region + formData.proyeccion + formData.valido + "1" + formData.obtencion + formData.sexo + formData.edad;
@@ -238,6 +270,45 @@ const DiagnosticForm = ({ selectedFile }) => {
             style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
           />
         </div>
+
+        <div className="form-group">
+        <label style={{ fontWeight: 'bold' }}>Región:</label>
+        <select
+          name="region"
+          value={formData.region}
+          onChange={handleChange}
+          required
+        >
+            <option value="">Seleccione</option>
+            <option value="00">Desconocido</option>
+            <option value="01">Craneo</option>
+            <option value="02">Columna Vertebral</option>
+            <option value="08">Torax</option>
+            <option value="09">Extremidad Superior</option>
+            <option value="17">Pelvis</option>
+            <option value="18">Extremidad Inferior</option>
+        </select>
+      </div>
+
+      {formData.region && subregionesOptions[formData.region] && (
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Subregión:</label>
+          <select
+            name="subregion"
+            value={formData.subregion}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            {subregionesOptions[formData.region].map(option2 => (
+              <option key={option2.value} value={option2.value}>
+                {option2.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
         <div className="form-group">
           <label style={{ fontWeight: 'bold' }}>Proyección:</label>
           <select
@@ -256,51 +327,6 @@ const DiagnosticForm = ({ selectedFile }) => {
             <option value="06">Especial</option>
           </select>
         </div>
-        <div className="form-group">
-          <label style={{ fontWeight: 'bold' }}>Tipo de Estudio:</label>
-          <select
-            name="tipoEstudio"
-            value={formData.tipoEstudio}
-            onChange={handleChange}
-            required
-          >
-              <option value="">Seleccione</option>
-              <option value="00">Desconocido</option>
-              <option value="01">Radiografía</option>
-              <option value="02">Tomografía Computarizada</option>
-              <option value="03">Resonancia Magnética</option>
-              <option value="04">Ultrasonido</option>
-              <option value="05">Mamografía</option>
-              <option value="06">Angiografía</option>
-              <option value="07">Medicina Nuclear</option>
-              <option value="08">Radio Terapia</option>
-              <option value="09">Fluoroscopia</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-            <label style={{ fontWeight: 'bold' }}>Region:</label>
-            <select
-              name="region"
-              value={formData.region}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Seleccione</option>
-              <option value="00">Desconocido</option>
-              <option value="01">Cabeza</option>
-              <option value="02">Cuello</option>
-              <option value="03">Torax</option>
-              <option value="04">Abdomen</option>
-              <option value="05">Pelvis</option>
-              <option value="06">Brazo</option>
-              <option value="07">Manos</option>
-              <option value="08">Pernas</option>
-              <option value="09">Rdilla</option>
-              <option value="10">Tobillo</option>
-              <option value="11">Pie</option>
-            </select>
-          </div>
 
         <div className="form-group">
           <label style={{ fontWeight: 'bold' }}>Válido:</label>

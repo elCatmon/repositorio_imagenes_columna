@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+/* Estilos para el banner */
 .banner {
     background-color: #26798E; /* Azul oscuro */
     padding: 10px 20px;
@@ -11,51 +13,57 @@
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     height: 60px;
-  }
-  
-  .left, .right {
+    transition: padding 0.3s ease-in-out;
+}
+
+/* Flexbox para alinear el contenido a la izquierda y derecha */
+.left, .right {
     display: flex;
     align-items: center;
-  }
-  
-  .menu-toggle {
-    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
-    padding: 0; /* Sin padding */
-    display: flex; /* Usar flexbox para alinear el ícono */
-    align-items: center; /* Centra verticalmente el ícono */
-    height: 8%; /* Asegura que ocupe toda la altura del navbar */
-  }
-  
-  .title {
+}
+
+/* Estilos para el ícono del menú */
+.menu-toggle {
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    height: 8%; /* Ocupa toda la altura del navbar */
+}
+
+/* Estilos para el título */
+.title {
     color: black;
     font-size: 1.2em;
     font-weight: bold;
-  }
-  
-  .right a {
+}
+
+/* Enlaces del lado derecho */
+.right a {
+    margin: 0 9px; /* Simplificar márgenes */
     margin-right: 19px;
-    color: black !important; /* Forzar el color blanco */
+    color: black !important; /* Forzar el color negro */
     text-decoration: none;
     display: flex;
     align-items: center;
     margin-right: 9px;
-  }
+}
 
-  .right a:hover {
-    color: black; /* Un color gris claro al pasar el mouse, si lo prefieres */
-  }
-  
-  
-  
-  .right a:not(.notification-link) i {
-    margin-right: 9px; /* Ajusta este valor para separar más los íconos de los textos */
-  }
-  
-  .notification-container {
+.right a:hover {
+    color: black; /* Puedes cambiarlo a un tono más claro si prefieres un hover distinto */
+}
+
+/* Espaciado entre íconos y texto */
+.right a:not(.notification-link) i {
+    margin-right: 9px;
+}
+
+/* Contenedor y badge de notificaciones */
+.notification-container {
     position: relative;
-  }
-  
-  .notification-badge {
+}
+
+.notification-badge {
     background-color: #e74c3c;
     color: black;
     border-radius: 50%;
@@ -68,23 +76,103 @@
     top: -5px;
     right: -5px;
     font-size: 0.75em;
-  }
-  
-  .icon {
+}
+
+/* Estilo para los íconos */
+.icon {
     font-size: 1.5rem;
     color: black;
-  }
-  .logo-container {
+}
+
+/* Contenedor de logos a la derecha */
+.logo-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Mueve las imágenes a la derecha */
-    margin-right: 30px; /* Ajusta este valor para mover más a la derecha */
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-  }
+    justify-content: flex-end;
+    margin-right: 30px;
+    width: 100%;
+}
 
-  .logo {
-    max-height: 80px; /* Ajusta según sea necesario */
-    margin-right: 10px; /* Añade espacio entre las imágenes */
-    vertical-align: middle; /* Asegura que las imágenes estén alineadas con el texto */
-  }
-  
+/* Estilos para los logos */
+.logo {
+    max-height: 70px; /* Cambiar según la altura deseada */
+    margin-right: 10px;
+    vertical-align: auto;
+}
+
+/* Media Queries para hacer el banner responsivo */
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (max-width: 992px) {
+    .banner {
+        padding: 10px 15px;
+    }
+
+    .title {
+        font-size: 1.1em;
+    }
+
+    .right a {
+        margin-right: 15px;
+    }
+
+    .icon {
+        font-size: 1.3rem;
+    }
+
+    .logo-container {
+        margin-right: 20px;
+    }
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .banner {
+        padding: 10px;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .title {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+
+    .right {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .logo-container {
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .logo {
+        max-height: 60px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+    .banner {
+        padding: 5px;
+    }
+
+    .title {
+        font-size: 0.9em;
+    }
+
+    .right a {
+        margin-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .icon {
+        font-size: 1.2rem;
+    }
+
+    .logo {
+        max-height: 50px;
+    }
+}

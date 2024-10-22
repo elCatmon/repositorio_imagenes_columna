@@ -1,0 +1,65 @@
+/* Contenedor principal que contiene la galería de miniaturas y el visualizador DICOM */
+.visualizer-page {
+    display: flex;
+    flex-direction: column; /* Mantener en columna para dispositivos móviles */
+    height: 100vh; /* Asegura que ocupe el 100% de la altura de la ventana */
+  }
+  
+  /* Contenedor para el contenido principal */
+  .content {
+    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
+    flex: 1; /* Permite que ocupe el espacio restante */
+    overflow: hidden; /* Evita el desbordamiento */
+  }
+  
+  /* Contenedor de la galería de miniaturas */
+  .thumbnail-gallery {
+    flex: 1; /* Hace que la galería ocupe un tercio del ancho disponible */
+    min-width: 280px; /* Ancho mínimo para mantener la responsividad */
+    max-height: 700px; /* Limita la altura de la galería de miniaturas */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+  }
+  
+  /* Contenedor del visualizador DICOM */
+  .dicom-viewer-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Cambiado a 100% para mejorar la responsividad */
+    height: 800px; /* Altura fija para el contenedor */
+    max-height: 850px; /* Limita la altura total del contenedor */
+  }
+  
+  .dicom-viewer {
+    flex: 1; /* Permite que el visualizador ocupe el espacio restante */
+    width: 100%;
+    height: 100%; /* Asegura que el visualizador ocupe toda la altura del contenedor */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Contenedor de información del estudio */
+  .study-info {
+    flex: 1; /* Hace que la sección de información ocupe el mismo espacio que la galería */
+    max-height: 700px; /* Limita la altura de la sección de diagnóstico */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+  }
+  
+  /* Media queries para responsividad */
+  @media (max-width: 800px) {
+    .content {
+      flex-direction: column; /* Cambiar a columna para pantallas más pequeñas */
+    }
+  
+    .thumbnail-gallery,
+    .dicom-viewer-container,
+    .study-info {
+      flex: 1 1 100%; /* Cada sección ocupa el 100% del ancho en pantallas pequeñas */
+      min-width: 100%; /* Asegura que ocupe el ancho completo */
+      max-height: none; /* Sin límite de altura en pantallas pequeñas */
+    }
+  
+    .dicom-viewer {
+      height: 100%; /* El visualizador ocupa toda la altura disponible */
+    }
+  }
+  

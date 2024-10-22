@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
+
 /* Estilos para el contenedor principal del contenido */
 .main-content {
     margin-top: 20px; /* Ajusta este valor para subir el contenido más arriba */
@@ -18,7 +19,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adaptable a diferentes tamaños de pantalla */
     gap: 20px;
-    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
 }
 
 /* Estilos para las tarjetas de servicio */
@@ -58,3 +58,57 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
 }
 
+/* Media Queries para hacer la cuadrícula responsiva */
+
+/* Ajustes para pantallas medianas (tabletas) */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: 1fr 1fr; /* Dos columnas para pantallas medianas */
+    }
+
+    .main-title {
+        font-size: 1.8em;
+    }
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+    }
+
+    .main-title {
+        font-size: 1.6em;
+    }
+
+    .service-card h2 {
+        font-size: 1.4em;
+    }
+
+    .service-card {
+        padding: 15px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    .main-title {
+        font-size: 1.4em;
+    }
+
+    .service-card h2 {
+        font-size: 1.3em;
+    }
+
+    .service-card {
+        padding: 10px;
+    }
+
+    .service-card p {
+        font-size: 0.9em;
+    }
+}

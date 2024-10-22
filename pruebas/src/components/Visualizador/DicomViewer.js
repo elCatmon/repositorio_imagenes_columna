@@ -67,13 +67,13 @@ const DicomViewer = ({ fileName }) => {
 
   const zoomIn = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.scale *= 1.1; // Incrementar el nivel de zoom
+    viewport.scale *= 1.2; // Incrementar el nivel de zoom
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const zoomOut = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.scale /= 1.1; // Decrementar el nivel de zoom
+    viewport.scale /= 1.2; // Decrementar el nivel de zoom
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
@@ -85,36 +85,35 @@ const DicomViewer = ({ fileName }) => {
 
   const moveRight = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.x += 10; // Mover a la derecha
+    viewport.translation.x += 20; // Mover a la derecha
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const moveUp = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.y -= 10; // Mover hacia arriba
+    viewport.translation.y -= 20; // Mover hacia arriba
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const moveDown = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.y += 10; // Mover hacia abajo
+    viewport.translation.y += 20; // Mover hacia abajo
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const rotateClockwise = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.rotation += 0.5; // Rotar en sentido horario
+    viewport.rotation += 0.75; // Rotar en sentido horario
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const rotateCounterClockwise = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.rotation -= 0.5; // Rotar en sentido antihorario
+    viewport.rotation -= 0.75; // Rotar en sentido antihorario
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   return (
-    
     <div className="dicom-viewer-container">
       <div
         ref={elementRef}
@@ -124,34 +123,20 @@ const DicomViewer = ({ fileName }) => {
         {loading && <p>Cargando imagen DICOM...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
-      <div className="tool-buttons" style={{ position: 'absolute', bottom: 10, right: 10, zIndex: 1 }}>
-        <button onClick={zoomIn}>
-          Zoom +
-        </button>
-        <button onClick={zoomOut}>
-          Zoom -
-        </button>
-        <button onClick={moveDown}>
-          Mover ↑
-        </button>
-        <button onClick={rotateCounterClockwise}>
-          Rotar ←
-        </button>
-        <button onClick={rotateClockwise}>
-          Rotar →
-        </button>
-        <button onClick={moveRight}>
-          Mover ←
-        </button>
-        <button onClick={moveUp}>
-          Mover ↓
-        </button>
-        <button onClick={moveLeft}>
-          Mover →
-        </button>
+      
+      <div className="tool-buttons" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+        <button onClick={zoomIn}>Zoom +</button>
+        <button onClick={zoomOut}>Zoom -</button>
+        <button onClick={moveDown}>Mover ↑</button>
+        <button onClick={rotateCounterClockwise}>Rotar ←</button>
+        <button onClick={rotateClockwise}>Rotar →</button>
+        <button onClick={moveRight}>Mover ←</button>
+        <button onClick={moveUp}>Mover ↓</button>
+        <button onClick={moveLeft}>Mover →</button>
       </div>
     </div>
   );
+  
 };
 
 export default DicomViewer;
