@@ -13,6 +13,7 @@ import Fisica from './components/Fisica/Fisica';
 import MenuAcceso from './components/MenuAcceso/MenuAcceso';
 import Diagnostico from './components/Diagnosticos/DiagnosticosPage';
 import Dataset from './components/dataset/datasetDownload'
+import ChangePassword from './components/CambiarContrasena/CambioContrasena';
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
       <Route path="/menu" element={<MenuAcceso />} />
       <Route path="/diagnosticos" element={<Diagnostico />} />
       <Route path="/dataset" element={<Dataset />} />
-      
+      <Route path="/cambiarcontrasena" element={<ChangePassword/>} />   
     </Routes>
   </Router>
   );

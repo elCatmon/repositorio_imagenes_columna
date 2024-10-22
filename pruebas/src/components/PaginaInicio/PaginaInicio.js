@@ -31,14 +31,11 @@ function PaginaInicio() {
       <Header/>
 
       {/* Banner */}
-      <section id="banner" className="relative text-white text-center py-16 mb-12" style={{ backgroundImage: "url('/imagenes/Principal.png')" }}>
-        <div className="absolute inset-0 "></div>
-        <div className="relative z-10">
-          <h1 className="text-5xl font-bold mb-4"> </h1>
-          <h2 className="text-3xl mb-6"> </h2>
-          <p className="text-lg"> </p>
-        </div>
-      </section>
+      <section id="banner">
+        <img className="banner-image" src="/imagenes/Principal.png" alt="Banner" />
+    </section>
+
+
 
       <div className="section-container">
                 <h3 className="section-title">Instituciones participantes del proyecto</h3>
