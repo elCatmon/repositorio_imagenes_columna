@@ -57,6 +57,13 @@ const Fisica = () => {
       </div>
     </a>
 
+    <a href="/muestra"  className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">           
+      <div className="qr-card">
+        <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Conjunto de datos muestra</p>
+        <p className="text-gray-500 mt-2">Descarga el conjunto de datos de muestra</p>           
+      </div>
+    </a>
+
   </div>
 
          
