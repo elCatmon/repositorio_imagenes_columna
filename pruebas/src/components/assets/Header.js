@@ -17,10 +17,10 @@ function Header({ toggleSidebar }) {
            ></i>
          </button> */}
          
-         <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo BDMDM" style={{ position: 'relative', left: '60px' }} />
-         <span className="title ml-4 text-lg font-semibold"> </span>
-         {/* <img src="/imagenes/upp.png" alt="Logo UPP" className="logo upp-logo ml-8" />
-         <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logo citedi-logo ml-8" /> */}
+         <img src="/imagenes/logo_upp.png" alt="Logo BDMDM" className="logo BDMDM" style={{ position: 'relative', left: '60px' }} />
+         {/*<span className="title ml-4 text-lg font-semibold"> </span>
+         <img src="/imagenes/upp.png" alt="Logo UPP" className="logo upp-logo ml-8" />
+         <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logo citedi-logo ml-8" />*/}
        </div>
        <div className="navbar-right flex items-center">
          <a href="/"

@@ -21,7 +21,14 @@ const Fisica = () => {
 <main className="max-w-6xl mx-auto py-10">
   {/* Contenedor para la primera fila */}
   <div className="grid-cols-3">
-    
+
+  <a href="/formulariodonacion" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+      <div className="qr-card">
+        <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Registro de donaciones</p>
+        <p className="text-gray-500 mt-2"> Registra las donaciones fisicas</p>           
+      </div>
+    </a>
+
     <a href="/visualizador" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
       <div className="qr-card">
         <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-binoculars"></i> Visualizador de Archivos</p>
