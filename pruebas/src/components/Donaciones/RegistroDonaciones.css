@@ -1,0 +1,62 @@
+/* styles.css */
+.container {
+    display: flex;
+    gap: 0px; /* Espacio entre columnas */
+    padding: 0px;
+    flex-wrap: wrap; /* Permite que las columnas se muevan a la siguiente línea en pantallas pequeñas */
+}
+
+.form-container {
+    flex: 1; /* Ocupa 1 parte del espacio */
+    min-width: 300px; /* Ancho mínimo */
+    max-width: 600px; /* Ancho máximo para evitar que crezca demasiado */
+}
+
+.table-container {
+    flex: 2; /* Ocupa 2 partes del espacio, mayor tamaño */
+    min-width: 400px; /* Ancho mínimo */
+    overflow-x: auto; /* Agrega scroll horizontal si es necesario */
+    max-width: 800px; /* Ancho máximo para evitar que crezca demasiado */
+}
+
+h2 {
+    margin-top: 0; /* Elimina margen superior en títulos */
+}
+
+.input-field,
+textarea {
+    width: 100%; /* Ancho completo */
+    padding: 5px; /* Espaciado interno */
+    margin-bottom: 5px; /* Espacio entre campos */
+    box-sizing: border-box; /* Incluye padding en el ancho total */
+}
+
+.data-table {
+    width: 100%; /* Ancho completo de la tabla */
+    border-collapse: collapse; /* Eliminar espacios entre celdas */
+}
+
+.data-table th,
+.data-table td {
+    padding: 5px; /* Espaciado interno en celdas */
+    border: 1px solid #837e7e; /* Borde de las celdas */
+    text-align: left; /* Alineación del texto */
+}
+
+.data-table th {
+    background-color: #38b2ac; /* Color de fondo para encabezados */
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Cambia la dirección de flex a columna */
+        gap: 10px; /* Reduce el espacio entre columnas */
+    }
+
+    .form-container, 
+    .table-container {
+        flex: none; /* Quita la flexibilidad */
+        width: 100%; /* Ancho completo en pantallas pequeñas */
+    }
+}

@@ -45,7 +45,7 @@ function PaginaInicio() {
                     
                     <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logocitedi ml-6" /> 
 
-                    <img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss ml-6" /> 
+                    {/*<img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss ml-6" /> */}
                         
                     </div>
                     {/* <div className="image-container">
