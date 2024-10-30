@@ -16,6 +16,7 @@ import Dataset from './components/dataset/datasetDownload'
 import ChangePassword from './components/CambiarContrasena/CambioContrasena';
 import Muestra from './components/dataset/datasetFijo';
 import FormDonacion from './components/Donaciones/RegistroDonaciones'
+import Editor from './components/Editor/Editor'
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Route path="/cambiarcontrasena" element={<ChangePassword/>} />   
       <Route path="/muestra" element={<Muestra/>} />   
       <Route path="/formulariodonacion" element={<FormDonacion/>} />
+      <Route path="/editor" element={<Editor/>} />
     </Routes>
   </Router>
   );
