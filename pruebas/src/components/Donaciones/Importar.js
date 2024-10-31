@@ -156,7 +156,9 @@ const Importar = () => {
 
   return (
     <div>
-      <Header/>
+        <div className="next-module">
+        <Header/>
+        </div>
       <div className="content">
       <div className="form-section">
         <h2>Formulario de Importación</h2>

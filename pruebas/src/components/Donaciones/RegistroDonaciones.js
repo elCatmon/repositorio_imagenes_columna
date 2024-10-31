@@ -24,8 +24,8 @@ function FormularioEstudios() {
 
   // Tipos de estudio
   const tiposEstudio = [
-    'Radiografía', 'Tomografía Computarizada', 'Resonancia Magnética', 
-    'Ultrasonido', 'Mastografía', 'Angiografía', 'Medicina Nuclear', 'Fluoroscopia'
+    'Radiografia', 'Tomografia Computarizada', 'Resonancia Magnetica', 
+    'Ultrasonido', 'Mastografia', 'Angiografia', 'Medicina Nuclear', 'Fluoroscopia'
   ];
 
   // Opciones de cuatrimestre
@@ -128,7 +128,9 @@ function FormularioEstudios() {
 
 return (
   <div>
-    <Header />
+        <div className="next-module">
+        <Header/>
+        </div>
     <div className="container">
       <div className="form-container">
         <form onSubmit={handleSubmit}>
@@ -279,10 +281,7 @@ return (
                 <th>Folio</th>
                 <th>Fecha de Recepción</th>
                 <th>Fecha de Devolución</th>
-                <th>Correo</th>
                 <th>CURP</th>
-                <th>Tipo</th>
-                <th>Observaciones</th>
               </tr>
             </thead>
             <tbody>
@@ -291,10 +290,7 @@ return (
                   <td>{registro.folio}</td>
                   <td>{formatDate(registro.fechaRecepcion)}</td>
                   <td>{formatDate(registro.fechaDevolucion)}</td>
-                  <td>{registro.correo}</td>
                   <td>{registro.curp}</td>
-                  <td>{registro.esDonacion ? 'Donación' : 'Préstamo'}</td>
-                  <td>{registro.observaciones || '-'}</td>
                 </tr>
               ))}
             </tbody>

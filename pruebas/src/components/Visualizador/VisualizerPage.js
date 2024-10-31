@@ -18,7 +18,9 @@ function VisualizerPage() {
 
   return (
     <div className="visualizer-page">
-      <Header/>
+        <div className="next-module">
+        <Header/>
+        </div>
 
       <div className="content">
         <div className="thumbnail-gallery">

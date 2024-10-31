@@ -1,5 +1,7 @@
 import React from 'react';
 import { BASE_URL } from '../config/config';
+import Header from '../assets/Header';
+import Footer from '../assets/Footer';
 
 const DatasetDownloader = () => {
     const descargarDataset = () => {
@@ -40,7 +42,11 @@ const DatasetDownloader = () => {
 
     return (
         <div>
+                    <div className="next-module">
+        <Header/>
+        </div>
             <button onClick={descargarDataset}>Descargar Dataset</button>
+            <Footer/>
         </div>
     );
 };

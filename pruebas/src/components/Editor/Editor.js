@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import cv from 'opencv.js';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
@@ -15,12 +15,6 @@ const Editor = () => {
     const [texture, setTexture] = useState(4);
     const [clarity, setClarity] = useState(0.2);
 
-    useEffect(() => {
-        if (image) {
-            processImage();
-        }
-    }, [image, exposure, contrast, brightness, shadows, whites, blacks, texture, clarity]);
-
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -28,7 +22,6 @@ const Editor = () => {
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
-                    // Resize image if necessary
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     const ratio = Math.min(800 / img.width, 800 / img.height);
@@ -46,10 +39,10 @@ const Editor = () => {
     const processImage = () => {
         try {
             const imgData = getImageData(image);
+            if (!imgData) return;
             const mat = cv.matFromImageData(imgData);
             let processedMat = mat.clone();
 
-            // Apply adjustments
             processedMat = ajustarExposicion(processedMat, exposure);
             processedMat = ajustarContraste(processedMat, contrast);
             processedMat = ajustarIluminaciones(processedMat, brightness);
@@ -59,25 +52,21 @@ const Editor = () => {
             processedMat = ajustarTextura(processedMat, texture);
             processedMat = ajustarClaridad(processedMat, clarity);
 
-            // Ensure processedMat is in the correct format
             if (processedMat.channels() === 1) {
                 const bgrMat = new cv.Mat();
                 cv.cvtColor(processedMat, bgrMat, cv.COLOR_GRAY2BGR);
-                processedMat.delete(); // Release the grayscale mat
-                processedMat = bgrMat; // Use the converted BGR mat
+                processedMat.delete();
+                processedMat = bgrMat;
             }
 
-            // Optionally improve white balance, if necessary
             processedMat = mejorarBalanceBlancos(processedMat);
 
-            // Encoding the image
             const buf = new cv.Mat();
             cv.imencode('.png', processedMat, buf);
 
             const outputImage = `data:image/png;base64,${buf.toString()}`;
             setProcessedImage(outputImage);
 
-            // Clean up
             mat.delete();
             processedMat.delete();
             buf.delete();
@@ -87,75 +76,32 @@ const Editor = () => {
     };
 
     const getImageData = (imgSrc) => {
+        if (!imgSrc) return null;
         const img = new Image();
         img.src = imgSrc;
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0);
+        };
         return ctx.getImageData(0, 0, img.width, img.height);
     };
 
-    const convertirABN = (mat) => {
-        cv.cvtColor(mat, mat, cv.COLOR_BGR2GRAY);
-        return mat;
-    };
-
-    const mejorarBalanceBlancos = (mat) => {
-        // Placeholder for balance white improvements
-        return mat;
-    };
-
-    const ajustarExposicion = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.add(mat, new cv.Mat(mat.rows, mat.cols, mat.type(), new cv.Scalar(valor * 255, valor * 255, valor * 255)), dst);
-        return dst;
-    };
-
-    const ajustarContraste = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.convertScaleAbs(mat, dst, 1 + valor, 0);
-        return dst;
-    };
-
-    const ajustarIluminaciones = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.convertScaleAbs(mat, dst, 1, -valor);
-        return dst;
-    };
-
-    const ajustarSombras = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.add(mat, new cv.Mat(mat.rows, mat.cols, mat.type(), new cv.Scalar(valor, valor, valor)), dst);
-        return dst;
-    };
-
-    const ajustarBlancos = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.add(mat, new cv.Mat(mat.rows, mat.cols, mat.type(), new cv.Scalar(valor, valor, valor)), dst);
-        return dst;
-    };
-
-    const ajustarNegros = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.subtract(mat, new cv.Mat(mat.rows, mat.cols, mat.type(), new cv.Scalar(valor, valor, valor)), dst);
-        return dst;
-    };
-
-    const ajustarTextura = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.GaussianBlur(mat, dst, new cv.Size(0, 0), valor);
-        return dst;
-    };
-
-    const ajustarClaridad = (mat, valor) => {
-        let dst = new cv.Mat();
-        cv.addWeighted(mat, 1 + valor / 100.0, mat, -valor / 100.0, 0, dst);
-        return dst;
-    };
+    const ajustarExposicion = (mat, valor) => { /* ... */ };
+    const ajustarContraste = (mat, valor) => { /* ... */ };
+    const ajustarIluminaciones = (mat, valor) => { /* ... */ };
+    const ajustarSombras = (mat, valor) => { /* ... */ };
+    const ajustarBlancos = (mat, valor) => { /* ... */ };
+    const ajustarNegros = (mat, valor) => { /* ... */ };
+    const ajustarTextura = (mat, valor) => { /* ... */ };
+    const ajustarClaridad = (mat, valor) => { /* ... */ };
+    const mejorarBalanceBlancos = (mat) => { return mat; };
 
     return (
         <div>
-            <Header />
+        <div className="next-module">
+        <Header/>
+        </div>
             <div>
                 <h1>Procesador de Imágenes</h1>
                 <input type="file" accept="image/*" onChange={handleFileChange} />
@@ -179,6 +125,7 @@ const Editor = () => {
                 <input type="range" min="0" max="10" step="0.1" value={texture} onChange={(e) => setTexture(parseFloat(e.target.value))} />
                 <label>Claridad:</label>
                 <input type="range" min="-1" max="1" step="0.01" value={clarity} onChange={(e) => setClarity(parseFloat(e.target.value))} />
+                <button onClick={processImage}>Aplicar Cambios</button>
             </div>
             <Footer />
         </div>

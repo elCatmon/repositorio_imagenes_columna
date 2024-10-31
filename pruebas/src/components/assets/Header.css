@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
-/* Estilos para el banner */
-.banner {
+/* Estilos generales para el navbar */
+.navbar {
     background-color: #26798E; /* Azul oscuro */
     padding: 10px 20px;
     display: flex;
@@ -12,167 +12,63 @@
     width: 100%;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    height: 60px;
     transition: padding 0.3s ease-in-out;
-}
-
-/* Flexbox para alinear el contenido a la izquierda y derecha */
-.left, .right {
-    display: flex;
-    align-items: center;
 }
 
 /* Estilos para el ícono del menú */
 .menu-toggle {
     cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    height: 8%; /* Ocupa toda la altura del navbar */
-}
-
-/* Estilos para el título */
-.title {
-    color: black;
-    font-size: 1.2em;
-    font-weight: bold;
+    display: flex; /* Mostrar siempre el ícono de menú */
 }
 
 /* Enlaces del lado derecho */
-.right a {
-    margin: 0 9px; /* Simplificar márgenes */
-    margin-right: 19px;
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.left-container > * {
+    margin-right: 25px; /* Espaciado de 15px a la derecha */
+}
+
+.left-container > *:last-child {
+    margin-right: 0; /* Eliminar el margen del último hijo */
+}
+
+
+/* Ocultar enlaces del navbar en pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-right {
+        display: none; /* Ocultar enlaces en pantallas pequeñas */
+    }
+}
+
+/* Dropdown del menú en pantallas pequeñas */
+.menu-dropdown {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 60px; /* Justo debajo del navbar */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar-right.active .menu-dropdown {
+    display: flex; /* Mostrar menú si está activo */
+}
+
+/* Estilos para los enlaces */
+.nav-link {
     color: black !important; /* Forzar el color negro */
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    margin-right: 9px;
-}
-
-.right a:hover {
-    color: black; /* Puedes cambiarlo a un tono más claro si prefieres un hover distinto */
-}
-
-/* Espaciado entre íconos y texto */
-.right a:not(.notification-link) i {
-    margin-right: 9px;
-}
-
-/* Contenedor y badge de notificaciones */
-.notification-container {
-    position: relative;
-}
-
-.notification-badge {
-    background-color: #e74c3c;
-    color: black;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    font-size: 0.75em;
-}
-
-/* Estilo para los íconos */
-.icon {
-    font-size: 1.5rem;
-    color: black;
-}
-
-/* Contenedor de logos a la derecha */
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 30px;
-    width: 100%;
-}
-
-/* Estilos para los logos */
-.logo {
-    max-height: 70px; /* Cambiar según la altura deseada */
-    margin-right: 10px;
-    vertical-align: auto;
+    margin: 0 10px;
 }
 
 /* Media Queries para hacer el banner responsivo */
-
-/* Ajustes para pantallas medianas (tabletas) */
-@media (max-width: 992px) {
-    .banner {
-        padding: 10px 15px;
-    }
-
-    .title {
-        font-size: 1.1em;
-    }
-
-    .right a {
-        margin-right: 15px;
-    }
-
-    .icon {
-        font-size: 1.3rem;
-    }
-
-    .logo-container {
-        margin-right: 20px;
-    }
-}
-
-/* Ajustes para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
-    .banner {
-        padding: 10px;
-        flex-direction: column;
-        height: auto;
-    }
-
-    .title {
-        font-size: 1em;
-        margin-bottom: 10px;
-    }
-
-    .right {
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .logo-container {
-        margin-right: 0;
-        justify-content: center;
-    }
-
-    .logo {
-        max-height: 60px;
-    }
-}
-
-/* Ajustes para pantallas muy pequeñas (móviles pequeños) */
-@media (max-width: 480px) {
-    .banner {
-        padding: 5px;
-    }
-
-    .title {
-        font-size: 0.9em;
-    }
-
-    .right a {
-        margin-right: 5px;
-        font-size: 0.9em;
-    }
-
-    .icon {
-        font-size: 1.2rem;
-    }
-
-    .logo {
-        max-height: 50px;
+    .menu-dropdown {
+        display: flex; /* Mostrar menú desplegable */
     }
 }

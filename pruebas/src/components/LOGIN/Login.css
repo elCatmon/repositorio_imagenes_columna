@@ -1,0 +1,86 @@
+
+
+h1 {
+  color: #666666;
+  margin-top: 20px;
+  font-weight: 900;
+  font-size: 2.5rem; /* Cambia a tamaño adecuado para pantallas pequeñas */
+}
+
+p {
+  color: #4b5563; /* Gray 700 */
+  margin-top: 20px;
+  font-size: 1.25rem; /* Cambia a tamaño adecuado para pantallas pequeñas */
+}
+/* Estilos del formulario */
+.form-outline {
+    margin-bottom: 1rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db; /* Gray 300 */
+  }
+  
+  .btn {
+    width: 100%; /* Botón ocupa todo el ancho */
+    margin: 1rem 0;
+    background-color: #666666;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    font-size: 1rem; /* Cambia el tamaño de fuente según el diseño */
+  }
+  
+  /* Estilos de la fila del formulario */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Ajusta el espacio entre los elementos */
+  }
+  
+  .col {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+  
+    p {
+      font-size: 1rem; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+  
+    .text-5xl {
+      width: 100%; /* Ancho completo en pantallas pequeñas */
+      margin-left: 0; /* Sin margen en pantallas pequeñas */
+    }
+  
+    .btn {
+      width: 100%; /* Ajustar el ancho del botón en pantallas pequeñas */
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.75rem; /* Tamaño de fuente más pequeño para móviles */
+    }
+  
+    .form-control {
+      font-size: 0.9rem; /* Ajustar el tamaño de fuente de los campos de entrada */
+    }
+  
+    .btn {
+      font-size: 0.9rem; /* Ajustar el tamaño de fuente del botón */
+    }
+  }
+  

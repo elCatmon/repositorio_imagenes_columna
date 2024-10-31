@@ -17,6 +17,7 @@ import ChangePassword from './components/CambiarContrasena/CambioContrasena';
 import Muestra from './components/dataset/datasetFijo';
 import FormDonacion from './components/Donaciones/RegistroDonaciones'
 import Editor from './components/Editor/Editor'
+import TablaDonaciones from './components/Donaciones/ConsultarDonaciones'
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Route path="/muestra" element={<Muestra/>} />   
       <Route path="/formulariodonacion" element={<FormDonacion/>} />
       <Route path="/editor" element={<Editor/>} />
+      <Route path="/consultardonaciones" element={<TablaDonaciones/>} />
     </Routes>
   </Router>
   );

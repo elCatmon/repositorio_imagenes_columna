@@ -113,7 +113,9 @@ const StudyForm = () => {
   return (
     
     <div>
-      <Header/>
+        <div className="next-module">
+        <Header/>
+        </div>
       <h2>Opciones de descarga del conjunto de datos</h2>
       <form onSubmit={handleSubmit}>
         {/* Campo Tipo de Estudio */}
