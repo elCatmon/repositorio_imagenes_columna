@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+/* Estilos del header */
+.header {
+  background-color: #26798E; /* Color de fondo del header */
+  padding: 10px 20px; /* Espaciado interno */
+  margin-bottom: 20px; /* Espacio entre el header y el siguiente módulo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+
+/* Estilos generales para el navbar */
+.navbar {
+  background-color: #f2f2f2;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  transition: padding 0.3s ease-in-out;
+  height: 100px;
+}
+
+/* Estilos para el contenedor izquierdo */
+.left-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo del botón de menú de hamburguesa */
+.menu-toggle {
+  cursor: pointer;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Alto del botón */
+  border-radius: 50%; /* Esquinas redondeadas */
+  background-color: #ffffff; /* Color de fondo blanco */
+  border: 2px solid #26798E; /* Bordes del color azul oscuro */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Cambios al pasar el mouse */
+.menu-toggle:hover {
+  background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
+  transform: scale(1.1); /* Aumentar el tamaño ligeramente */
+}
+
+/* Estilos para las líneas del ícono de hamburguesa */
+.menu-toggle i {
+  font-size: 1.5rem; /* Tamaño del ícono */
+  color: #26798E; /* Color del ícono */
+}
+
+/* Estilos para el logo */
+.logo {
+    max-height: 70px; /* Cambia según la altura deseada */
+}
+
+/* Enlaces del lado derecho */
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Ocultar enlaces del navbar en pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-right {
+        display: none; /* Ocultar enlaces en pantallas pequeñas */
+    }
+}
+
+/* Dropdown del menú en pantallas pequeñas */
+.menu-dropdown {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 60px; /* Justo debajo del navbar */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar-right.active .menu-dropdown {
+    display: flex; /* Mostrar menú si está activo */
+}
+
+/* Estilos para los enlaces */
+.nav-link {
+    color: black !important; /* Forzar el color negro */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* Media Queries para hacer el banner responsivo */
+@media (max-width: 768px) {
+    .menu-dropdown {
+        display: flex; /* Mostrar menú desplegable */
+    }
+}

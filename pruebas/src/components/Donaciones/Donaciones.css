@@ -1,0 +1,102 @@
+/* Estilo general para el contenedor principal */
+.bg-gradient-to-r {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para la sección del encabezado */
+.header-section {
+    text-align: center;
+    padding: 20px 10px; /* Ajustar padding para dispositivos móviles */
+}
+
+/* Estilos para los títulos y párrafos */
+h1 {
+    font-size: 2.5rem; /* Tamaño grande por defecto */
+    color: #666666;
+    margin: 10px 0; /* Espacio entre título y párrafo */
+}
+
+p {
+    font-size: 1.2rem; /* Tamaño del párrafo */
+    color: #707070; /* Color del texto */
+}
+
+/* Estilos para el contenedor de donaciones */
+.donaciones-left, .donaciones-right {
+    width: 90%; /* Ancho responsivo */
+    max-width: 800px; /* Ancho máximo */
+    margin: 20px auto; /* Centrar horizontalmente */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+}
+
+/* Estilos para el selector de tipo de estudio */
+select {
+    width: 100%; /* Hacer el select responsivo */
+    padding: 10px; /* Espacio interno */
+    margin-top: 10px; /* Margen superior */
+}
+
+/* Estilos para el botón de subir archivos */
+.upload-button {
+    background-color: #26798E; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor */
+    margin-top: 20px; /* Margen superior */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+/* Estilos para el botón al pasar el mouse */
+.upload-button:hover {
+    background-color: #1f6d7c; /* Color más oscuro al hacer hover */
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Colapsar bordes */
+    margin-top: 20px; /* Margen superior */
+}
+
+th, td {
+    padding: 10px; /* Espacio interno */
+    text-align: left; /* Alinear texto a la izquierda */
+    border-bottom: 1px solid #ddd; /* Línea debajo de las celdas */
+}
+
+/* Media Queries para hacer el diseño responsivo */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Reducir tamaño del título en pantallas pequeñas */
+    }
+
+    p {
+        font-size: 1rem; /* Reducir tamaño del párrafo */
+    }
+
+    .donaciones-left, .donaciones-right {
+        width: 95%; /* Ajustar ancho en pantallas pequeñas */
+        padding: 10px; /* Reducir padding */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Ajustar aún más para pantallas muy pequeñas */
+    }
+
+    p {
+        font-size: 0.9rem; /* Ajustar tamaño del párrafo */
+    }
+
+    .upload-button {
+        padding: 8px 16px; /* Reducir espaciado interno del botón */
+    }
+}

@@ -63,7 +63,7 @@ const StudyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); // Mostrar la animación de carga al enviar el formulario
-    if (formData.subregion != ''){
+    if (formData.subregion !== ''){
       formData.region = formData.subregion;
     } 
     // Construir la URL de la solicitud
@@ -113,7 +113,9 @@ const StudyForm = () => {
   return (
     
     <div>
-      <Header/>
+        <div className="next-module">
+        <Header/>
+        </div>
       <h2>Opciones de descarga del conjunto de datos</h2>
       <form onSubmit={handleSubmit}>
         {/* Campo Tipo de Estudio */}

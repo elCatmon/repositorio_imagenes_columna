@@ -7,7 +7,10 @@ import Header from '../assets/Header';
 const Contacto = () => {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-     <Header/>
+
+       <div className="next-module">
+        <Header/>
+        </div>
 
 
 <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>

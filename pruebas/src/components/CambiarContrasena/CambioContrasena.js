@@ -60,7 +60,9 @@ const ChangePassword = () => {
 
     return (
         <div>
-            <Header/>
+       <div className="next-module">
+        <Header/>
+        </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
 

@@ -28,7 +28,9 @@ const Card = ({ children, className }) => (
 function PaginaInicio() {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-      <Header/>
+        <div className="next-module">
+        <Header/>
+        </div>
 
       {/* Banner */}
       <section id="banner">
@@ -45,7 +47,7 @@ function PaginaInicio() {
                     
                     <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logocitedi ml-6" /> 
 
-                    {/*<img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss ml-6" /> */}
+                    <img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss ml-6" />
                         
                     </div>
                     {/* <div className="image-container">

@@ -5,6 +5,7 @@ import { BASE_URL } from '../config/config';
 import * as dicomParser from 'dicom-parser'; 
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
+import './Donaciones.css'; 
 
 const Donaciones = () => {
   const navigate = useNavigate();
@@ -166,7 +167,9 @@ const Donaciones = () => {
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily:'Poppins'}}>
-      <Header/>
+        <div className="next-module">
+        <Header/>
+        </div>
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
         <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
            Donación de archivos
@@ -175,7 +178,7 @@ const Donaciones = () => {
            Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
         </p>
       </header>
-      <div className="donaciones-left" style={{marginLeft:'400px'}}>
+      <div className="donaciones-left">
         <div>
           <label htmlFor="tipo-estudio">Tipo de Estudio:</label>
           <select id="tipo-estudio" value={tipoEstudio} onChange={handleTipoEstudioChange}>
