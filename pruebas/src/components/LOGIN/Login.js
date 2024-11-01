@@ -4,17 +4,19 @@ import { BASE_URL } from '../config/config';
 import Footer from '../assets/Footer';
 import Header from '../assets/Header';
 import './Login.css';
+import { useAuth } from '../../AuthContext'; // Importa el contexto de autenticació
 
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Hook para navegación
+  const { login } = useAuth(); // Usa la función de login del contexto
 
   // Función para manejar el login
   const handleLogin = async (event) => {
     event.preventDefault();
-
+    
     try {
       const response = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
@@ -26,25 +28,36 @@ function Login() {
           contrasena: password,
         }),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         alert('Login exitoso');
-        navigate('/menu')
+  
+        // Guardar el ID, rol y el timestamp de inicio de sesión
+        const currentTime = new Date().getTime(); // Obtiene el tiempo actual en milisegundos
+        localStorage.setItem('userID', data.id); // Almacena el ID del usuario
+        localStorage.setItem('role', data.rol); // Almacena el rol del usuario
+        localStorage.setItem('loginTime', currentTime); // Almacena el tiempo de inicio de sesión
+  
+        // Llama a la función de login del contexto con los parámetros
+        login(data.id, data.rol);
+  
+        // Redirigir según el rol
+        if (data.rol === 'consultor') {
+          navigate('/menu');
+        } else {
+          navigate('/'); // Redirigir a la página de inicio o a otra página predeterminada
+        }
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
-
       }
     } catch (error) {
       alert('Hubo un problema con el inicio de sesión. Por favor, intenta nuevamente.');
     }
   };
-
+  
   return (
-
-
-
 <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
 <div className="next-module">
         <Header/>
