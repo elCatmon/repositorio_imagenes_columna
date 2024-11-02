@@ -114,12 +114,6 @@
   margin-left: 10px;
 }
 
-.grid-cols-3, .grid-cols-2 {
-  display: flex;
-  justify-content: center;
-  gap: 30px; /* Aumenta el espacio entre las tarjetas */
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -131,14 +125,24 @@
   }
 }
 
+.grid-cols-3, .grid-cols-2 {
+  display: flex; /* O puedes usar display: grid; */
+  flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan */
+  justify-content: center; /* Centra las tarjetas */
+  gap: 40px; /* Espacio entre las tarjetas */
+}
+
 .qr-card {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+  max-height: 300px;
+  max-width: 350px; /* Ajusta el tamaño para que sea más responsivo */
   min-height: 300px;
-  width: 320px; /* Fija un ancho para todas las tarjetas */
+  min-width: 350px;
+  flex: 1 1 300px; /* Permite que las tarjetas se ajusten a 300px como base */
   margin: 0; /* Elimina el margen para que no se separen */
   display: flex;
   flex-direction: column;

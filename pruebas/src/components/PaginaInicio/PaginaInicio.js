@@ -6,25 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Header from '../assets/Header';
 
-
-
-/*const NavLink = ({ href, icon, text }) => (
-  <a href={href} className="flex items-center hover:text-teal-300 text-white transition-transform duration-300">
-    <i className={`${icon} mr-2`}></i>
-    <span>{text}</span>
-  </a>
-);
-
-const SectionTitle = ({ children }) => (
-  <h3 className="section-title text-4xl font-bold text-gray-800 mb-8">{children}</h3>
-);
-
-const Card = ({ children, className }) => (
-  <div className={`card p-6 mb-4 bg-white shadow-lg rounded-lg ${className}`}>
-    {children}
-  </div>
-);*/
-
 function PaginaInicio() {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
@@ -50,9 +31,6 @@ function PaginaInicio() {
                     <img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss ml-6" />
                         
                     </div>
-                    {/* <div className="image-container">
-                        <img src="/imagenes/radiografia.jpg" alt="Persona mostrando una radiografía" />
-                    </div> */}
                 </div>
             </div>
       {/* About Section */}
@@ -82,42 +60,6 @@ function PaginaInicio() {
                     </div> */}
                 </div>
             </div>
-
-{/* <div className="section-container">
-    <h3 className="section-title">Apoya Nuestra Causa</h3>
-    <div className="container">
-        <div className="image-container">
-            <img src="/imagenes/sala_hospital.jpg" alt="Sala de hospital" className="w-full h-full object-cover rounded-lg shadow-lg" />
-        </div>
-        <div className="card">
-            <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                El Centro de Investigación y Desarrollo de Tecnología Digital (CITEDI) del Instituto Politécnico Nacional (IPN), en colaboración con el Cuerpo Académico de Computo Suave y Analítica de Datos de la Universidad Politécnica de Pachuca (UPP) y la Universidad Autónoma de Baja California campus Ensenada, le invitan a participar con sus donaciones para la integración de la Biblioteca Digital Mexicana de Datos Médicos.
-            </p>
-            <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
-                <button className="btn-primary py-3 px-8 rounded-full text-white hover:bg-teal-800 focus:outline-none w-full md:w-auto mx-2 animate-bounce">Donación Presencial</button>
-                <button className="btn-primary py-3 px-8 rounded-full text-white hover:bg-teal-800 focus:outline-none w-full md:w-auto mx-2 animate-bounce">Donación Digital</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div className="section-container">
-    <h3 className="section-title">Seguimiento de Donaciones</h3>
-    <div className="container">
-        <div className="card">
-            <p className="mb-6 text-lg leading-relaxed text-gray-700">
-                Realiza el seguimiento del estado de tu donación realizada a través de nuestros centros de acopio mediante el siguiente enlace:
-            </p>
-            <div className="flex justify-center mt-8">
-                <button className="btn-primary py-3 px-8 rounded-full text-white hover:bg-blue-800 focus:outline-none animate-bounce">Iniciar Seguimiento</button>
-            </div>
-        </div>
-        <div className="image-container">
-            <img src="/imagenes/equipo_medico.jpg" alt="Equipo médico" className="w-full h-full object-cover rounded-lg shadow-lg" />
-        </div>
-    </div>
-</div>
- */}
       <Footer />
     </div>
   );

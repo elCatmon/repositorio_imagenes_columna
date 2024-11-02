@@ -41,13 +41,7 @@ function Login() {
   
         // Llama a la función de login del contexto con los parámetros
         login(data.id, data.rol);
-  
-        // Redirigir según el rol
-        if (data.rol === 'consultor') {
-          navigate('/menu');
-        } else {
-          navigate('/'); // Redirigir a la página de inicio o a otra página predeterminada
-        }
+        navigate('/menu');
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);

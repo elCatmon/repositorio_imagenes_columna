@@ -2,7 +2,7 @@
 
 /* Estilos generales para el navbar */
 .navbar {
-    background-color: #26798E; /* Azul oscuro */
+    background-color: #f1f1f1; /* Azul oscuro */
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;

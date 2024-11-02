@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
 import './Header.css';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    logout();          // Cierra la sesión
+    navigate('/');     // Redirige a la página principal
   };
 
   return (
@@ -25,7 +34,14 @@ function Header() {
           <a href="/conocenos" className="nav-link">Conócenos</a>
           <a href="/contacto" className="nav-link">Contacto</a>
           <a href="/fisica" className="nav-link">Donación física</a>
-          <a href="/login" className="nav-link">Acceder</a>
+          {isAuthenticated ? (
+            <a href="/menu" className="nav-link">Menu del Usuario</a>
+          ) : null}
+          {isAuthenticated ? (
+            <a href="/" onClick={handleLogout} className="nav-link">Cerrar Sesión</a>
+          ) : (
+            <a href="/login" className="nav-link">Acceder</a>
+          )}
         </div>
       </nav>
 
@@ -36,7 +52,14 @@ function Header() {
           <a href="/conocenos" className="nav-link">Conócenos</a>
           <a href="/contacto" className="nav-link">Contacto</a>
           <a href="/fisica" className="nav-link">Donación física</a>
-          <a href="/login" className="nav-link">Acceder</a>
+          {isAuthenticated ? (
+            <a href="/menu" className="nav-link">Menu del Usuario</a>
+          ) : null}
+          {isAuthenticated ? (
+            <a href="/" onClick={handleLogout} className="nav-link">Cerrar Sesión</a>
+          ) : (
+            <a href="/login" className="nav-link">Acceder</a>
+          )}
         </div>
       )}
     </div>

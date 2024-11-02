@@ -24,8 +24,8 @@ import PrivateRoute from './PrivateRoute'; // Importa el componente PrivateRoute
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<PaginaInicio />} />
           <Route path="/register" element={<Register />} />
@@ -35,91 +35,22 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/cambiarcontrasena" element={<ChangePassword />} />
-          <Route 
-            path="/visualizador" 
-            element={
-              <PrivateRoute>
-                <VisualizerPage />
-              </PrivateRoute>
-            } 
-          />
-          <Route 
-            path="/importar" 
-            element={
-              <PrivateRoute>
-                <Importar />
-              </PrivateRoute>
-            } 
-          />
-          <Route 
-            path="/donacion" 
-            element={
-              <PrivateRoute>
-                <Donacion />
-              </PrivateRoute>
-            } 
-          />
-          <Route 
-            path="/menu" 
-            element={
-              <PrivateRoute>
-                <MenuAcceso />
-              </PrivateRoute>
-            } 
-          />
-          <Route 
-            path="/diagnosticos" 
-            element={
-              <PrivateRoute>
-                <Diagnostico />
-              </PrivateRoute>
-            } 
-          />
-                    <Route 
-            path="/dataset" 
-            element={
-              <PrivateRoute>
-                <Dataset />
-              </PrivateRoute>
-            } 
-          />
-                    <Route 
-            path="/muestra" 
-            element={
-              <PrivateRoute>
-                <Muestra />
-              </PrivateRoute>
-            } 
-          />
-                    <Route 
-            path="/formulariodonacion" 
-            element={
-              <PrivateRoute>
-                <FormDonacion />
-              </PrivateRoute>
-            } 
-          />
-                    <Route 
-            path="/editor" 
-            element={
-              <PrivateRoute>
-                <Editor />
-              </PrivateRoute>
-            } 
-          />
-                    <Route 
-            path="/consultardonaciones" 
-            element={
-              <PrivateRoute>
-                <TablaDonaciones />
-              </PrivateRoute>
-            } 
-          />
+          <Route element={<PrivateRoute />}>
+            <Route path="/visualizador" element={<VisualizerPage />} />
+            <Route path="/importar" element={<Importar />} />
+            <Route path="/donacion" element={<Donacion />} />
+            <Route path="/menu" element={<MenuAcceso />} />
+            <Route path="/diagnosticos" element={<Diagnostico />} />
+            <Route path="/dataset" element={<Dataset />} />
+            <Route path="/muestra" element={<Muestra />} />
+            <Route path="/formulariodonacion" element={<FormDonacion />} />
+            <Route path="/editor" element={<Editor />} />
+            <Route path="/consultardonaciones" element={<TablaDonaciones />} />
+          </Route>
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
-  
 }
 
 export default App;

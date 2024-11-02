@@ -1,12 +1,22 @@
-// PrivateRoute.js
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
-const PrivateRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+const PrivateRoute = () => {
+  const { isAuthenticated, userID } = useAuth();
+  const [authChecked, setAuthChecked] = useState(false);
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  useEffect(() => {
+    // Check if authentication status is determined
+    setAuthChecked(true);
+  }, [isAuthenticated, userID]);
+
+  // Render the outlet if authenticated, otherwise navigate to login
+  if (!authChecked) {
+    return <div>Loading...</div>;
+  }
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
