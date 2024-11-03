@@ -158,16 +158,6 @@ body {
   color: #2c94ae;
 }
 
-.info-card {
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
-
 .btn-primary {
   background-color: #26798E;
   transition: background-color 0.3s ease;
@@ -278,32 +268,48 @@ body {
   margin: 0 auto; /* Centrar el texto */
 }
 
+/* Estilos para el contenedor de la cuadrícula */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Tamaño mínimo de columna de 250px */
+  grid-auto-flow: column;
   gap: 20px;
+  overflow-x: auto; /* Permite desplazamiento horizontal si el contenido es demasiado ancho */
+  overflow-y: auto;
 }
 
+
+/* Estilos para cada tarjeta */
 .info-card {
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
+  background-color: #f4f4f9;
+  border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column; /* Coloca los elementos dentro de la tarjeta en vertical */
+  align-items: center;
+  text-align: center;
+  max-height: 350px;
+  max-width: 350px;
 }
 
-.info-card:hover img {
-  transform: scale(1.1);
+.info-card:hover {
+  transform: translateY(-5px); /* Efecto de elevación en hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .info-card img {
   width: 100%;
   height: auto;
+  margin-bottom: 1rem; /* Espacio debajo de la imagen */
+  transition: transform 0.3s ease; /* Efecto suave en hover */
 }
 
-/* Estilos para el overlay en la tarjeta */
+.info-card:hover img {
+  transform: scale(1.5); /* Efecto zoom en hover */
+}
+
+/* Overlay en la tarjeta */
 .info-card .info-overlay {
   position: absolute;
   bottom: 0;
@@ -318,62 +324,65 @@ body {
 }
 
 .info-card:hover .info-overlay {
-  opacity: 1;
+  opacity: 1; /* Aparece el overlay en hover */
 }
 
-/* Estilos para la tabla */
+/* Tabla de estilos */
 table {
-  width: 100%; /* Ajusta la tabla para que ocupe todo el ancho disponible */
+  width: 100%;
   border-collapse: collapse;
 }
 
 th, td {
   padding: 10px;
   border: 1px solid #26798E;
-  text-align: left; /* Alinea el texto a la izquierda */
+  text-align: left;
 }
 
 th {
-  background-color: #26798E; /* Color de fondo para el encabezado */
-  color: white; /* Color del texto en el encabezado */
+  background-color: #26798E;
+  color: white;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2; /* Color de fondo alternativo para filas */
+  background-color: #f2f2f2;
 }
 
 tr:hover {
-  background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+  background-color: #e0e0e0;
 }
 
-/* Estilos para pantallas pequeñas */
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta columnas en tablets y pantallas medianas */
+  }
+}
+
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column; /* Cambia a columna para pantallas pequeñas */
-  }
-
-  .title {
-    font-size: 1.5rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
-  }
-
-  .modal-body {
-    flex-direction: column; /* Cambia a columna para mejor adaptación */
-  }
-
   .grid {
     grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
   }
 
+  .info-card {
+    max-width: 100%; /* Permite que la tarjeta ocupe todo el ancho en móviles */
+  }
+
+  /* Ajustes adicionales para textos y contenedores */
+  .title {
+    font-size: 1.5rem;
+  }
+
   .intro {
-    padding: 20px; /* Reduce el padding */
+    padding: 20px;
   }
 
   .intro h1 {
-    font-size: 2rem; /* Tamaño más pequeño para el encabezado */
+    font-size: 2rem;
   }
 
   .intro p {
-    font-size: 1rem; /* Ajusta el tamaño del texto */
-    max-width: 100%; /* Permite que el texto ocupe todo el ancho */
+    font-size: 1rem;
+    max-width: 100%;
   }
 }

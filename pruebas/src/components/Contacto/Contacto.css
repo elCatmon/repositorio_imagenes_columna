@@ -10,7 +10,6 @@
   flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples líneas si es necesario */
   justify-content: space-between;
   align-items: center;
-  background-color: #26798E;
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -137,9 +136,9 @@
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  min-height: 300px;
+  min-height: 400px;
   width: 100%; /* Cambiado a 100% para que se ajuste al contenedor */
-  max-width: 320px; /* Fija un ancho máximo para todas las tarjetas */
+  max-width: 400px; /* Fija un ancho máximo para todas las tarjetas */
   margin: 0; /* Elimina el margen para que no se separen */
   display: flex;
   flex-direction: column;

@@ -2,9 +2,20 @@ import React from 'react';
 import { BASE_URL } from '../config/config';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
+import { useAuth } from '../../AuthContext'; // Asegúrate de ajustar la ruta según tu estructura
+import { useNavigate } from 'react-router-dom'; // Para redirección
 
 const DatasetDownloader = () => {
+    const { isAuthenticated } = useAuth(); // Obtener el estado de autenticación
+    const navigate = useNavigate(); // Para redirigir al usuario
+
     const descargarDataset = () => {
+        if (!isAuthenticated) {
+            // Si el usuario no está autenticado, redirigir al login
+            navigate('/login'); // Ajusta la ruta según sea necesario
+            return;
+        }
+
         fetch(`${BASE_URL}/dataset/predeterminado`, {
             method: 'GET',
         })
@@ -42,10 +53,12 @@ const DatasetDownloader = () => {
 
     return (
         <div>
-                    <div className="next-module">
-        <Header/>
-        </div>
+            <div className="next-module">
+                <Header/>
+            </div>
+            <div className="next-module"/>
             <button onClick={descargarDataset}>Descargar Dataset</button>
+            <div className="next-module"/>
             <Footer/>
         </div>
     );

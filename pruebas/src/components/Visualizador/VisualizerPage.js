@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ThumbnailGallery from '../Miniaturas/ThumbnailGallery';
 import DicomViewer from './DicomViewer';
-import DatasetDownload from '../dataset/datasetDownload';
-import { useNavigate } from 'react-router-dom'; // For back navigation
+import { useNavigate } from 'react-router-dom'; // Para la navegación
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import '../assets/App.css'; 
+import { useAuth } from '../../AuthContext'; // Asegúrate de que la ruta sea correcta
 
 function VisualizerPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth(); // Usa el contexto de autenticación
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login'); // Redirige al login si no está autenticado
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleThumbnailClick = (image) => {
     const fileName = image.split('/').pop().replace('.jpg', '.dcm');
@@ -18,9 +25,10 @@ function VisualizerPage() {
 
   return (
     <div className="visualizer-page">
-        <div className="next-module">
-        <Header/>
-        </div>
+      <div className="next-module">
+        <Header />
+      </div>
+      <div className="next-module"/>
 
       <div className="content">
         <div className="thumbnail-gallery">

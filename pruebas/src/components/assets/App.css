@@ -302,5 +302,5 @@ thead th:nth-child(5), tbody td:nth-child(5) {
 
 /* Estilos del siguiente módulo */
 .next-module {
-  padding-top: 100px; /* Espacio arriba del siguiente módulo */
+  padding-top: 80px; /* Espacio arriba del siguiente módulo */
 }
