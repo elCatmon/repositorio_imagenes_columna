@@ -39,7 +39,7 @@ function EstudiosTable() {
         </div>
         <div className="next-module"/>
       <h2>Lista de Estudios</h2>
-      <table>
+      <table onContextMenu={(e) => e.preventDefault()}>
         <thead>
           <tr>
             <th>Folio</th>

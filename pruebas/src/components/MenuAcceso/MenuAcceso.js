@@ -7,7 +7,7 @@ import { useAuth } from '../../AuthContext';
 const MenuUsuarios = () => {
   const { role } = useAuth();
   return (
-    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
+    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" >
       <div className="next-module">
         <Header />
       </div>
@@ -21,7 +21,7 @@ const MenuUsuarios = () => {
         </p>
       </header>
 
-      <main className="max-w-6xl mx-auto py-10">
+      <main className="max-w-6xl mx-auto py-10" onContextMenu={(e) => e.preventDefault()}>
         {/* Contenedor para la primera fila */}
         <div className="grid-cols-3">
 

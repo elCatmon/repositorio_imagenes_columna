@@ -6,19 +6,21 @@ import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import { BASE_URL } from '../config/config';
 import { ZoomTool, PanTool, LengthTool, RotateTool } from 'cornerstone-tools';
 
+// Configurar el cargador de imágenes DICOM
 cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
 cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 
+// Configurar herramientas
 const configureTools = () => {
   cornerstoneTools.addTool(ZoomTool);
   cornerstoneTools.addTool(PanTool);
   cornerstoneTools.addTool(LengthTool);
-  cornerstoneTools.addTool(RotateTool);
+  cornerstoneTools.addTool(RotateTool); // Asumiendo que existe RotateTool
 
   cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
   cornerstoneTools.setToolActive('Pan', { mouseButtonMask: 1 });
   cornerstoneTools.setToolActive('Length', { mouseButtonMask: 1 });
-  cornerstoneTools.setToolActive('Rotate', { mouseButtonMask: 1 });
+  cornerstoneTools.setToolActive('Rotate', { mouseButtonMask: 1 }); // Asumiendo que existe RotateTool
 };
 
 const DicomViewer = ({ fileName }) => {
@@ -28,102 +30,114 @@ const DicomViewer = ({ fileName }) => {
 
   useEffect(() => {
     const element = elementRef.current;
-    const jpgUrl = `${BASE_URL}/convertDicomToJpg/${fileName}`;
 
-    const loadImage = async () => {
-      setLoading(true);
-      setError(null);
+    if (element && fileName) {
+      const imageId = `wadouri:${BASE_URL}/image/${fileName}`;
 
-      try {
-        cornerstone.enable(element);
-        configureTools();
+      const loadImage = async () => {
+        setLoading(true);
+        setError(null);
 
-        const image = await cornerstone.loadImage(jpgUrl);
-        cornerstone.displayImage(element, image);
-        cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
-      } catch (error) {
-        setError('Error loading the converted JPG image.');
-      } finally {
-        setLoading(false);
-      }
-    };
+        try {
+          cornerstone.enable(element);
+          configureTools();
 
-    if (element && fileName) loadImage();
+          const image = await cornerstone.loadImage(imageId);
+          cornerstone.displayImage(element, image);
 
-    return () => {
-      if (element) {
-        cornerstone.disable(element);
-      }
-    };
+          // Activar la herramienta de zoom por defecto
+          cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 });
+
+        } catch (error) {
+          setError('Error al cargar la imagen DICOM.');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      loadImage();
+
+      return () => {
+        if (element) {
+          cornerstone.disable(element);
+        }
+      };
+    }
   }, [fileName]);
 
   const zoomIn = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.scale *= 1.2;
+    viewport.scale *= 1.2; // Incrementar el nivel de zoom
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const zoomOut = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.scale /= 1.2;
+    viewport.scale /= 1.2; // Decrementar el nivel de zoom
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const moveLeft = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.x -= 10;
+    viewport.translation.x -= 10; // Mover a la izquierda
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const moveRight = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.x += 10;
+    viewport.translation.x += 20; // Mover a la derecha
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const moveUp = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.y -= 10;
+    viewport.translation.y -= 20; // Mover hacia arriba
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const moveDown = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.translation.y += 10;
+    viewport.translation.y += 20; // Mover hacia abajo
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const rotateClockwise = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.rotation += 0.75;
+    viewport.rotation += 0.75; // Rotar en sentido horario
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   const rotateCounterClockwise = () => {
     const viewport = cornerstone.getViewport(elementRef.current);
-    viewport.rotation -= 0.75;
+    viewport.rotation -= 0.75; // Rotar en sentido antihorario
     cornerstone.setViewport(elementRef.current, viewport);
   };
 
   return (
     <div className="dicom-viewer-container">
-      <div ref={elementRef} className="dicom-viewer" style={{ width: '100%', height: '100%' }}>
-        {loading && <p>Cargando imagen JPG...</p>}
+      <div
+        onContextMenu={(e) => e.preventDefault()}
+        ref={elementRef}
+        className="dicom-viewer"
+        style={{ width: '100%', height: '100%' }}
+      >
+        {loading && <p>Cargando imagen DICOM...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </div>
-      
+
       <div className="tool-buttons" style={{ marginTop: '10px', display: 'flex', justifyContent: 'center', gap: '10px' }}>
         <button onClick={zoomIn}>Zoom +</button>
         <button onClick={zoomOut}>Zoom -</button>
-        <button onClick={moveUp}>Mover ↑</button>
-        <button onClick={moveDown}>Mover ↓</button>
-        <button onClick={moveLeft}>Mover ←</button>
-        <button onClick={moveRight}>Mover →</button>
-        <button onClick={rotateClockwise}>Rotar →</button>
+        <button onClick={moveDown}>Mover ↑</button>
         <button onClick={rotateCounterClockwise}>Rotar ←</button>
+        <button onClick={rotateClockwise}>Rotar →</button>
+        <button onClick={moveRight}>Mover ←</button>
+        <button onClick={moveUp}>Mover ↓</button>
+        <button onClick={moveLeft}>Mover →</button>
       </div>
     </div>
   );
+
 };
 
 export default DicomViewer;

@@ -96,3 +96,9 @@ html, body {
         font-size: 14px; /* Reduce el tamaño de la fuente de los enlaces en pantallas muy pequeñas */
     }
 }
+
+.pC{
+    color: #fff;              /* Color del texto */
+    font-size: 15px;          /* Tamaño de fuente */
+    margin: 0;                /* Elimina margen predeterminado */
+}

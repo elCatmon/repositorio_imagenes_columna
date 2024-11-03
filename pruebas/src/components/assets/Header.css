@@ -11,14 +11,19 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     transition: padding 0.3s ease-in-out;
 }
 
 /* Estilos para el ícono del menú */
 .menu-toggle {
     cursor: pointer;
-    display: flex; /* Mostrar siempre el ícono de menú */
+    display: flex; /* Mostrar como flex para centrar contenido */
+    align-items: center; /* Centrar verticalmente el contenido del botón */
+    height: 100%; /* Asegura que ocupe toda la altura del contenedor */
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    padding: 0; /* Sin padding */
 }
 
 /* Enlaces del lado derecho */
