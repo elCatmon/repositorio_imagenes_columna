@@ -8,9 +8,9 @@ const Footer = () => {
           <h4>Enlaces de interés</h4>
           <ul>
             <li><a href="/nosotros">Nosotros</a></li>
-            <li>Servicios</li>
-            <li>Políticas de privacidad</li>
-            <li>Programas de afiliación</li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Políticas de privacidad</a></li>
+            <li><a href="#">Programas de afiliación</a></li>
           </ul>
         </div>
         <div class="footer-section">
@@ -25,12 +25,15 @@ const Footer = () => {
         <div class="footer-section">
           <h4>Ayuda</h4>
           <ul>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="/contacto">Contacto</a></li>
             <li><a href="#">FAQs</a></li>
             <li><a href="#">Soporte</a></li>
             <li><a href="#">Contáctanos</a></li>
           </ul>
         </div>
+      </div>
+      <div>
+      <p className='pC'>&copy; 2024 BDMDM. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

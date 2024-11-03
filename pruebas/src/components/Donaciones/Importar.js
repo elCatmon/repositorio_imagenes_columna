@@ -159,7 +159,7 @@ const Importar = () => {
         <div className="next-module">
         <Header/>
         </div>
-      <div className="content">
+      <div className="content"onContextMenu={(e) => e.preventDefault()}>
       <div className="form-section">
         <h2>Formulario de Importación</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">

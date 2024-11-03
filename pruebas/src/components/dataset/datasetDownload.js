@@ -118,7 +118,7 @@ const StudyForm = () => {
         </div>
         <div className="next-module"/>
       <h2>Opciones de descarga del conjunto de datos</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onContextMenu={(e) => e.preventDefault()}>
         {/* Campo Tipo de Estudio */}
         <div style={{ marginBottom: '15px' }}>
           <label style={{ fontWeight: 'bold' }} htmlFor="tipoEstudio">Tipo de Estudio:</label>

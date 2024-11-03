@@ -20,8 +20,7 @@ import Muestra from './components/dataset/datasetFijo';
 import FormDonacion from './components/Donaciones/RegistroDonaciones';
 import Editor from './components/Editor/Editor';
 import TablaDonaciones from './components/Donaciones/ConsultarDonaciones';
-import PrivateRoute from './PrivateRoute'; // Importa el componente PrivateRoute
-
+import PrivateRoute from './PrivateRoute'; // Importa el componente 
 function App() {
   return (
     <Router>
@@ -35,7 +34,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/cambiarcontrasena" element={<ChangePassword />} />
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateRoute />} >
             <Route path="/visualizador" element={<VisualizerPage />} />
             <Route path="/importar" element={<Importar />} />
             <Route path="/donacion" element={<Donacion />} />

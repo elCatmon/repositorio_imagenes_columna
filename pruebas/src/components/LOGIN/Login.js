@@ -69,7 +69,7 @@ function Login() {
       <main className="max-w-6xl mx-auto py-10">
         {/* Contenedor para la primera fila */}
 
-        <div className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins', width: '60%', marginLeft: '20%' }}>
+        <div className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins', width: '80%', marginLeft: '15%' }}>
           <form onSubmit={handleLogin}>
             <div data-mdb-input-init class="form-outline mb-4">
               <input type="email" id="form2Example1" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -97,7 +97,7 @@ function Login() {
               </div>
             </div>
 
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init style={{ width: '43%', marginLeft: '31%', backgroundColor: '#666666', color: '#ffffff' }} class="btn btn-block mb-4">Iniciar sesión</button>
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init style={{ width: '70%', marginLeft: '15%', backgroundColor: '#666666', color: '#ffffff' }} class="btn btn-block mb-4">Iniciar sesión</button>
             <div class="text-center">
               <p>¿No tienes cuenta? <a href="/Register">Registrarse</a></p>
             </div>

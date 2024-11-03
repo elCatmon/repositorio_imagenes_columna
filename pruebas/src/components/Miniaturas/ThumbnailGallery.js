@@ -175,6 +175,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
                 key={index}
                 style={thumbnailContainerStyle}
                 onClick={() => onThumbnailClick(image)}
+                onContextMenu={(e) => e.preventDefault()} 
               >
                 <img
                   src={image}

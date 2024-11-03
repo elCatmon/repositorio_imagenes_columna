@@ -20,7 +20,7 @@ const Contacto = () => {
         </p>
       </header>
 
-      <main className="max-w-6xl mx-auto py-10">
+      <main className="max-w-6xl mx-auto py-10 " onContextMenu={(e) => e.preventDefault()}>
         {/* Contenedor para la primera fila */}
         <div className="grid-cols-3">
           <div className="persona-card">

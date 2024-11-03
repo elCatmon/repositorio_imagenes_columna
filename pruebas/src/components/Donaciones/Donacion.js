@@ -178,7 +178,7 @@ const Donaciones = () => {
            Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
         </p>
       </header>
-      <div className="donaciones-left">
+      <div className="donaciones-left" onContextMenu={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="tipo-estudio">Tipo de Estudio:</label>
           <select id="tipo-estudio" value={tipoEstudio} onChange={handleTipoEstudioChange}>

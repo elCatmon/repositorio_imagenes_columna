@@ -24,8 +24,8 @@ function Header() {
           <button className="menu-toggle" onClick={toggleMenu}>
             <i className="fas fa-bars"></i>
           </button>
-          <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo" />
-          <img src="/imagenes/logo_upp.png" alt="Logo BDMDM" className="logo" />
+          <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo" onContextMenu={(e) => e.preventDefault()}/>
+          <img src="/imagenes/logo_upp.png" alt="Logo BDMDM" className="logo" onContextMenu={(e) => e.preventDefault()}/>
         </div>
 
         {/* Mostrar enlaces solo en pantallas grandes */}

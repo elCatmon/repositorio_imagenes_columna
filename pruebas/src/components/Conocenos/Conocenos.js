@@ -8,7 +8,7 @@ import Header from '../assets/Header';
 
 const Conocenos = () => {
   return (
-    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
+    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
       <div className="next-module">
         <Header />
       </div>
@@ -18,9 +18,9 @@ const Conocenos = () => {
           Conócenos
         </h1>
       </header>
-      <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
+      <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen"onContextMenu={(e) => e.preventDefault()}>
         <main className="max-w-6xl mx-auto py-10">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 ">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 " >
             <InfoCard
               image="/imagenes/oscar.jpeg"
               name="Dr. Oscar Montiel Ross"
