@@ -269,9 +269,6 @@ const Editor = () => {
                 <input type="file" accept="image/*" onChange={handleFileChange} />
                 {image && <img src={image} alt="Cargada" />}
                 {processedImage && <img src={processedImage} alt="Procesada" />}
-            </div>
-            <div className="next-module"></div>
-            <div>
                 <label>Exposición:</label>
                 <input type="range" min="-1" max="1" step="0.01" value={exposure} onChange={(e) => setExposure(parseFloat(e.target.value))} />
                 <label>Contraste:</label>

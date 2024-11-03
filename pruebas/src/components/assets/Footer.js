@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css';
+import './Footer.css';                          
 const Footer = () => {
   return (
     <footer class="footer">
@@ -8,7 +8,7 @@ const Footer = () => {
           <h4>Enlaces de interés</h4>
           <ul>
             <li><a href="/nosotros">Nosotros</a></li>
-            <li><a href="#">Servicios</a></li>
+            <li><a href="/menu">Servicios</a></li>
             <li><a href="#">Políticas de privacidad</a></li>
             <li><a href="#">Programas de afiliación</a></li>
           </ul>

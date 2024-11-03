@@ -33,10 +33,8 @@ function Header() {
           <a href="/" className="nav-link">Inicio</a>
           <a href="/conocenos" className="nav-link">Conócenos</a>
           <a href="/contacto" className="nav-link">Contacto</a>
-          <a href="/fisica" className="nav-link">Donación física</a>
-          {isAuthenticated ? (
-            <a href="/menu" className="nav-link">Menu del Usuario</a>
-          ) : null}
+          <a href="/fisica" className="nav-link">Donación física</a>   
+            <a href="/menu" className="nav-link">Menu</a>
           {isAuthenticated ? (
             <a href="/" onClick={handleLogout} className="nav-link">Cerrar Sesión</a>
           ) : (
