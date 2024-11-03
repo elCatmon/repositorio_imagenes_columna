@@ -263,12 +263,14 @@ const Editor = () => {
         <div className="next-module">
         <Header/>
         </div>
+        <div className="next-module"/>
             <div>
                 <h1>Procesador de Imágenes</h1>
                 <input type="file" accept="image/*" onChange={handleFileChange} />
                 {image && <img src={image} alt="Cargada" />}
                 {processedImage && <img src={processedImage} alt="Procesada" />}
             </div>
+            <div className="next-module"></div>
             <div>
                 <label>Exposición:</label>
                 <input type="range" min="-1" max="1" step="0.01" value={exposure} onChange={(e) => setExposure(parseFloat(e.target.value))} />
@@ -288,6 +290,7 @@ const Editor = () => {
                 <input type="range" min="-1" max="1" step="0.01" value={clarity} onChange={(e) => setClarity(parseFloat(e.target.value))} />
                 <button onClick={processImage}>Aplicar Cambios</button>
             </div>
+            <div className="next-module"/>
             <Footer />
         </div>
     );

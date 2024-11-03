@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ThumbnailGallery from '../Miniaturas/ThumbnailGallery';
 import DicomViewer from './DicomViewer';
-import DatasetDownload from '../dataset/datasetDownload';
 import { useNavigate } from 'react-router-dom'; // Para la navegación
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
@@ -29,7 +28,7 @@ function VisualizerPage() {
       <div className="next-module">
         <Header />
       </div>
-      <button onClick={() => navigate('/menu')}> ← Regresar</button>
+      <div className="next-module"/>
 
       <div className="content">
         <div className="thumbnail-gallery">

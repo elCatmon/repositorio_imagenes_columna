@@ -116,6 +116,7 @@ const StudyForm = () => {
         <div className="next-module">
         <Header/>
         </div>
+        <div className="next-module"/>
       <h2>Opciones de descarga del conjunto de datos</h2>
       <form onSubmit={handleSubmit}>
         {/* Campo Tipo de Estudio */}
@@ -267,6 +268,7 @@ const StudyForm = () => {
           100% { transform: rotate(360deg); }
         }
       `}</style>
+       <div className="next-module"/>
       <Footer/>
     </div>
   );

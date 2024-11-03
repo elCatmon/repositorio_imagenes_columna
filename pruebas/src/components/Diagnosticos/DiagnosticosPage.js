@@ -26,6 +26,7 @@ function DiagnosticosPage() {
         <div className="next-module">
         <Header/>
         </div>
+        <div className="next-module"/>
       <div className="content">
         <div className="thumbnail-gallery">
           <ThumbnailGallery onThumbnailClick={handleThumbnailClick} />
@@ -46,6 +47,7 @@ function DiagnosticosPage() {
         </div>
 
       </div>
+      <div className="next-module"/>
       <Footer />
     </div>
   );

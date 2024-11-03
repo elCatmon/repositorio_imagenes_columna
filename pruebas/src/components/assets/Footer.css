@@ -16,7 +16,7 @@ html, body {
 .footer {
     background-color: #666666; /* Color de fondo del footer */
     color: #fff; /* Color del texto blanco */
-    padding: 20px 10px; /* Espaciado interno */
+    padding: 10px 5px; /* Espaciado interno */
     text-align: center; /* Centrar el texto */
     margin-top: auto; /* Empuja el footer hacia el final de la página */
     width: 100%; /* Asegura que el footer ocupe todo el ancho */
@@ -37,18 +37,17 @@ html, body {
 
 .footer .footer-section {
     flex: 1; /* Hace que cada sección ocupe el mismo espacio */
-    min-width: 150px; /* Define un ancho mínimo para cada sección */
-    margin: 10px; /* Espaciado entre las secciones */
+    margin: px; /* Espaciado entre las secciones */
 }
 
 .footer h4 {
     font-size: 1.5rem; /* Tamaño del texto de los títulos */
-    margin-bottom: 1rem; /* Margen inferior para separar del contenido */
+    margin-bottom: 0.5rem; /* Margen inferior para separar del contenido */
     font-weight: bold; /* Texto en negrita */
 }
 
 .footer .footer-section ul li a {
-    font-size: 18px; /* Aumenta el tamaño de la fuente de los enlaces */
+    font-size: 16px; /* Aumenta el tamaño de la fuente de los enlaces */
     padding: 5px 0; /* Espacio adicional para destacar los enlaces */
     color: #e2e8f0; /* Color para diferenciarse de los títulos */
     text-decoration: none; /* Quita el subrayado de los enlaces */
@@ -59,27 +58,7 @@ html, body {
 }
 
 .footer ul li {
-    margin-bottom: 0.5rem; /* Espacio entre elementos de la lista */
-}
-
-.footer .social-icons {
-    display: flex;
-    justify-content: center; /* Centra los íconos */
-    gap: 16px; /* Espacio entre los íconos */
-    margin-top: 20px; /* Aumenta el margen superior para bajar los íconos */
-}
-
-.footer .social-icons a {
-    color: #fff; /* Color de los íconos sociales */
-    font-size: 2rem; /* Tamaño de los íconos */
-    transition: color 0.3s ease; /* Transición suave para el hover */
-    text-decoration: none; /* Elimina la línea de bajo */
-}
-
-.footer .social-icons a:hover {
-    color: #e2e8f0; /* Color del ícono al hacer hover */
-    transform: translateY(-5px) scale(1.1); /* Mueve el ícono hacia arriba y lo escala ligeramente */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+    margin-bottom: 0.2rem; /* Espacio entre elementos de la lista */
 }
 
 /* Responsive: Asegura que el footer se vea bien en pantallas más pequeñas */

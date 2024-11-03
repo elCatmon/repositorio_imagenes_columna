@@ -62,6 +62,7 @@ const ChangePassword = () => {
         <div>
        <div className="next-module">
         <Header/>
+        <div className="next-module"/>
         </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
@@ -111,6 +112,7 @@ const ChangePassword = () => {
                     <button type="submit">Cambiar Contraseña</button>
                 </form>
             )}
+            <div className="next-module"/>
             <Footer/>
         </div>
     );

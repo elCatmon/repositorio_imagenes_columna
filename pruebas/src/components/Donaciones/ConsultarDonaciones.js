@@ -37,6 +37,7 @@ function EstudiosTable() {
         <div className="next-module">
         <Header/>
         </div>
+        <div className="next-module"/>
       <h2>Lista de Estudios</h2>
       <table>
         <thead>
@@ -66,6 +67,7 @@ function EstudiosTable() {
           ))}
         </tbody>
       </table>
+      <div className="next-module"/>
       <Footer/>
     </div>
   );    

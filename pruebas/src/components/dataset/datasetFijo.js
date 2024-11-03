@@ -56,7 +56,9 @@ const DatasetDownloader = () => {
             <div className="next-module">
                 <Header/>
             </div>
+            <div className="next-module"/>
             <button onClick={descargarDataset}>Descargar Dataset</button>
+            <div className="next-module"/>
             <Footer/>
         </div>
     );

@@ -131,14 +131,14 @@
   }
 }
 
-.qr-card {
+.qr-cardDF {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  min-height: 300px;
-  width: 320px; /* Fija un ancho para todas las tarjetas */
+  min-height: 400px;
+  width: 400px; /* Fija un ancho para todas las tarjetas */
   margin: 0; /* Elimina el margen para que no se separen */
   display: flex;
   flex-direction: column;
@@ -148,13 +148,13 @@
   margin-bottom: 5%;
 }
 
-.qr-card:hover {
+.qr-cardDF:hover {
   transform: scale(1.08) translateY(-10px); /* Aumenta el tamaño y desplaza hacia arriba */
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Aumenta la sombra para dar un efecto más pronunciado */
   border-color: #1B5C6B; /* Cambia el color del borde al pasar el mouse */
 }
 
-.qr-card img {
+.qr-cardDF img {
   border-radius: 0%; /* Haz que la imagen sea circular */
   width: 120px; /* Ajusta el tamaño de la imagen */
   height: 120px; /* Mantén la altura y el ancho iguales para asegurar que sea un círculo */
@@ -164,26 +164,26 @@
   border: 4px solid #666666; /* Añade un borde de color */
 }
 
-.qr-card h2 {
+.qr-cardDF h2 {
   margin-bottom: 10px; /* Ajusta el margen debajo del título */
 }
 
-.qr-card p {
+.qr-cardDF p {
   margin-bottom: 0px; /* Elimina completamente el espacio debajo de los párrafos */
 }
 
-.qr-card .flex {
+.qr-DF .flex {
   margin-top: -30px; /* Incrementa el margen negativo para subir los íconos aún más */
   justify-content: center;
   gap: 15px; /* Mantén la separación entre los íconos */
   padding-top: 0px; /* Asegura que no haya espacio en la parte superior del contenedor de los íconos */
 }
 
-.qr-card {
+.qr-cardDF {
   padding-top: 10px; /* Reduce el padding superior de la tarjeta para que los íconos suban más */
 }
 
-.qr-img {
+.qr-imgDF {
   border-radius: 0%; /* Haz que la imagen sea circular */
   width: 120px; /* Ajusta el tamaño de la imagen */
   height: 120px; /* Mantén la altura y el ancho iguales para asegurar que sea un círculo */

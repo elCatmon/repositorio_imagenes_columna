@@ -298,6 +298,7 @@ return (
         </div>
       )}
     </div>
+    <div className="next-module"/>
     <Footer />
   </div>
 );
