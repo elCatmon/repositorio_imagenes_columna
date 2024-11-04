@@ -80,3 +80,7 @@
         display: flex; /* Mostrar menú desplegable */
     }
 }
+
+.logo1{
+    height: 65px;
+}

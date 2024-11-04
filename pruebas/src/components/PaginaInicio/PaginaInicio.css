@@ -39,6 +39,7 @@ h3 {
     background-color: whitesmoke;
     font-size: large;
     font-family: Poppins;
+    text-align: justify;
 }
 
 .cardHome:hover {

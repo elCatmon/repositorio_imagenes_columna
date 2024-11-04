@@ -289,13 +289,14 @@ body {
   flex-direction: column; /* Coloca los elementos dentro de la tarjeta en vertical */
   align-items: center;
   text-align: center;
-  max-height: 350px;
-  max-width: 350px;
+  height: 400px;
+  width: 400px;
 }
 
 .info-card:hover {
   transform: translateY(-5px); /* Efecto de elevación en hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño en hover */
 }
 
 .info-card img {
@@ -306,7 +307,7 @@ body {
 }
 
 .info-card:hover img {
-  transform: scale(1.5); /* Efecto zoom en hover */
+  transform: scale(1.1); /* Efecto zoom en hover */
 }
 
 /* Overlay en la tarjeta */
@@ -385,4 +386,43 @@ tr:hover {
     font-size: 1rem;
     max-width: 100%;
   }
+}
+
+.main-carousel-container {
+  max-width: 80%; /* Ajusta esto según necesites más o menos espacio lateral */
+  margin: 0 auto; /* Centra el contenedor del carrusel */
+}
+
+.react-modal-content {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: white;
+}
+
+button {
+  background-color: #26798e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1b5b6a;
+}
+
+.info-card-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.info-card-title {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.2rem;
 }
