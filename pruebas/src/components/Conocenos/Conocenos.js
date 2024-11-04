@@ -1,11 +1,12 @@
 import React from 'react';
 import Slider from "react-slick"; // Asegúrate de que esta línea esté presente
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Conocenos.css';
 import Footer from '../assets/Footer';
 import Header from '../assets/Header';
+import Video from '../assets/video';
 import InfoCard from './InfoCard';
 
 const Conocenos = () => {
@@ -16,12 +17,12 @@ const Conocenos = () => {
     infinite: true,
     speed: 700,
     slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     centerMode: true,
     centerPadding: "0px",
-    variableWidth: false, // Esto puede reducir espacios extra si todas las tarjetas tienen el mismo ancho
+    variableWidth: false,
     autoplay: true,
-    autoplaySpeed: 4000, // Cambia cada 4 segundos
+    autoplaySpeed: 2500,
     pauseOnHover: true,
     responsive: [
       {
@@ -29,7 +30,7 @@ const Conocenos = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "30px",
+          centerPadding: "0px",
         }
       },
       {
@@ -37,7 +38,7 @@ const Conocenos = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "40px",
+          centerPadding: "0px",
         }
       },
       {
@@ -45,25 +46,34 @@ const Conocenos = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "50px",
+          centerPadding: "00px",
           dots: false, // Opcionalmente oculta los puntos en pantallas pequeñas
         }
       }
     ]
   };
-  
-  
+
+
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
-      <Header />
-      <header className="header-section text-center py-12 mt-8" style={{ paddingTop: '10px' }}>
-        <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins' }}>
-          Conócenos
-        </h1>
-      </header>
+      <div className="next-module"><Header /></div>
+      <div className="next-module" />
+      <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 45 }}>
+        Conócenos
+      </h1>
       <main className="main-carousel-container  mx-auto py-10">
-      <Slider {...settings}>
+        <div>
+          <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
+            ¿Quiénes somos?
+          </h1>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', margin: '20px 0' }}>
+            <Video/>
+          </div>
+        </div>
+        <div className="next-module" />
+        <h1 className='center-textC' style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins', fontSize: 30 }}>Lideres del proyecto</h1>
+        <Slider {...settings}>
           <InfoCard
             image="/imagenes/oscar.jpeg"
             name="Dr. Oscar Montiel Ross"
@@ -95,9 +105,40 @@ const Conocenos = () => {
             description="Médico por la Universidad de Montemorelos, Nuevo León. Maestro y Doctor en Ciencias por la Universidad Autónoma de Baja California (UABC) con acentuación en analítica de datos y estadística computacional. Miembro del Sistema Nacional de Investigadoras e Investigadores y de la Academia Jóven de México. Profesor Investigador de tiempo completo en la Escuela de Ciencias de la Salud de la UABC campus Enesenada. Líder del grupo de Medicina Computacional y colaborador con el Laboratorio de Telemática en la Facultad de Ingeniería, Arquitectura y Diseño de la misma Universidad. Sus intereses en investigación están enfocados actualmente en el uso de herramientas de aprendizaje automatizado, análisis topológico de datos e inteligencia artificial para la caracterización de individuos y poblaciones en el continuo salud-enfermedad."
           />
         </Slider>
+        <div className="next-module" />
+        <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>Nuestro equipo</h1>
+        <Slider {...settings}>
+          <InfoCard
+            image="/imagenes/cesar.jpeg"
+            name="Cesar Andres Ortega Herrera"
+            title="Ingenieria en Software"
+            description="Actualmente es investigador del Centro de Investigación y Desarrollo de Tecnología Digital (CITEDI-IPN). Recibió el grado de Doctor en Ciencias de la Computación por la Universidad Autónoma de Baja California (UABC) en 2006, la Maestría en Ciencias de la Computación por el Instituto Tecnológico de Tijuana en el año 2000, la Maestría en Sistemas Digitales por el Instituto Politécnico Nacional (IPN) en 1999, y Licenciatura en Ciencias de la Ingeniería Eléctrica en Electrónica por la UABC en 1985, Ha publicado artículos, libros y capítulos de libros sobre computación cuántica, computación evolutiva, robótica móvil, lógica difusa mediativa, colonias de hormigas, sistemas difusos tipo 2 y sistemas integrados. Ha liderado 20 proyectos de investigación y participado en otros 20, la mayoría de ellos en el campo de la Inteligencia Computacional. Es miembro senior del Instituto de Ingenieros Eléctricos y Electrónicos, miembro de la Asociación Internacional de Ingenieros (IANG) y de la Fundación Mexicana para la Ciencia CONACYT (Consejo Nacional de Ciencia y Tecnología). Tiene experiencia editando y publicando libros. Es miembro del Consejo Editorial de la Revista Axioms, Editor Asociado de Sistemas Expertos con Aplicaciones, como Editor Invitado ha publicado números especiales para las revistas Advances in Fuzzy Systems, Computación y Sistemas, Axioms y Soft Computing. Recibió el Premio de Investigación en 2016 del IPN. Es Cofundador y Miembro Activo de la HAFSA (Asociación Hispanoamericana de Sistemas Difusos) y del Capítulo Mexicano de la Sociedad de Inteligencia Computacional (IEEE). Es miembro de la Academia de Ciencias de Baja California, México."
+          />
+          <InfoCard
+            image="/imagenes/dieter.jpeg"
+            name="Dieter Valderrabano Garcia"
+            title="Ingenieria en Biomedica"
+            description="Realizó su formación doctoral en la Universidad Autónoma de Baja California (MyDCI PNPC CONAHCyT) con la tesis 'Privacidad en la Ubicación de la Fuente de Datos', bajo la dirección del Dr. Juan Iván Nieto Hipólito, obteniendo el grado de Doctora en Ciencias con Mención Honorífica en diciembre de 2012. Obtuvo la maestría en la Universidad de Colima (PNPC CONACyT) con un proyecto de colaboración México-USA UC NEXUS-CICESE, desarrollando el algoritmo PANDORA para redes ad-hoc, bajo la dirección del Dr. Raúl Aquino Santos, recibiendo el grado en agosto de 2007. Además, cuenta con una licenciatura en Comercio Internacional (febrero de 2002, ESCA-SADE-Instituto Politécnico Nacional) y una en Ingeniería en Sistemas Computacionales (febrero de 1992, Instituto Tecnológico de Zacatecas). Colaboradora de la Universidad Politécnica de Pachuca como profesor investigador nivel C en la Dirección de Innovación, Investigación y Posgrado (DIIP), es parte de los núcleos académicos de la Maestría en Tecnologías de la Información y del Doctorado en Ciencias y Tecnologías Avanzadas, imparte clases de Inteligencia Artificial, Minería de Datos, Algoritmos y Proyecto de Tesis. Líder del cuerpo académico de Cómputo Suave y Analítica de Datos, el cual cuenta con un laboratorio especializado, cuenta con el reconocimiento SNII I y realiza colaboración con diversos centros de investigación, incluyendo CICESE, CITEDI Tijuana y CICATA, así como con la Universidad Autónoma de Baja California, Universidad de Colima, y Universidad Autónoma de Nuevo León, entre otras. Ha dirigido cuatro tesis doctorales en la Universidad Autónoma de Baja California (tres con reconocimiento SNII Candidato) y participó en comités doctorales en UPPachuca, CITEDI Tijuana y CICATA, Querétaro (SNII Candidato). Además, ha dirigido y codirigido cuatro tesis de maestría (tres con grado de doctor) y ha formado parte de comités de tesis de maestría en UPPachuca. Ha efectuado estancias de investigación y capacitación en el HUAWEI International Training Center en Hangzhou, China, en el área de Inteligencia Artificial, específicamente en modelos LLM y Transformers (mayo de 2024), obteniendo la certificación HCIA-AI por HUAWEI, así mismo ha cursado un diplomado en inteligencia artificial aplicada en IPICyT y ha laborado en TU-Darmstadt DEEDS Lab en Alemania y en la Universidad Politécnica de Cataluña, España, desarrollando procesos de privacidad en sistemas embebidos y el algoritmo metaheurístico ACO para proveer privacidad en la transmisión de datos. Actualmente, se encuentra realizando el proyecto estrella en colaboración con CITEDI Tijuana integrando algoritmos clásicos y cuánticos de Inteligencia Artificial y tecnologías de blockchain, especialmente Hyperledger Fabric, aplicado al área médica, en el cual, también trabajan cinco estudiantes de las ingenierías de software y biomédica"
+          />
+          <InfoCard
+            image="/imagenes/rodrigo.jpeg"
+            name="Ing. Rodrigo"
+            title="Ingenieria en Telematica"
+            description="" />
+          <InfoCard
+            image="/imagenes/miguel.jpeg"
+            name="Miguel Ángel Butrón Gómez"
+            title="Ingenieria en Biomedica"
+            description="" />
+          <InfoCard
+            image="/imagenes/gener.jpeg"
+            name="Aris"
+            title="Ingenieria en Biomedica"
+            description="" />
+        </Slider>
       </main>
       <div className="next-module" />
-      
+
       <Footer />
     </div>
   );

@@ -289,7 +289,7 @@ body {
   flex-direction: column; /* Coloca los elementos dentro de la tarjeta en vertical */
   align-items: center;
   text-align: center;
-  height: 400px;
+  height: 430px;
   width: 400px;
 }
 
@@ -425,4 +425,16 @@ button:hover {
   font-size: 1rem;
   color: #555;
   margin-top: 0.2rem;
+}
+
+.center-textC {
+  text-align: center;
+}
+
+.JustifyModal {
+  text-align: justify;
+}
+
+.btnModal{
+  background-color: #26798e;
 }

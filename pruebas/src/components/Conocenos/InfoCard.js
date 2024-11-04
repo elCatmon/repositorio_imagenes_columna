@@ -39,8 +39,8 @@ const InfoCard = ({ image, name,title, description }) => {
       >
         <h2>{title}</h2>
         <h2 className="info-card-name">{name}</h2>
-        <p>{description}</p>
-        <button onClick={closeModal} style={{ marginTop: '20px', padding: '10px' }}>
+        <p className='JustifyModal'>{description}</p>
+        <button className="btnModal" onClick={closeModal} style={{ marginTop: '20px', padding: '10px' }}>
           Cerrar
         </button>
       </Modal>

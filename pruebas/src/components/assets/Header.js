@@ -50,9 +50,8 @@ function Header() {
           <a href="/conocenos" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Conócenos</a>
           <a href="/contacto" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Contacto</a>
           <a href="/fisica" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Donación física</a>
-          {isAuthenticated ? (
-            <a href="/menu" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Menu del Usuario</a>
-          ) : null}
+          <a href="/menu" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Menu del usuario</a>
+
           {isAuthenticated ? (
             <a href="/" onClick={handleLogout} className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Cerrar Sesión</a>
           ) : (

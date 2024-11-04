@@ -48,7 +48,7 @@ const Nosotros = () => {
             </div>
           </div>
           <div className="persona-card">
-            <img src="/imagenes/Rodrigo.jpg" alt="Rodrigo Efren Tellez Guerrero" className="persona-img" />
+            <img src="/imagenes/rodrigo.jpeg" alt="Rodrigo Efren Tellez Guerrero" className="persona-img" />
             <h2 className="mt-6 text-2xl font-semibold text-gray-900">Rodrigo Efren Tellez Guerrero </h2>
             <p className="text-gray-600 mt-2">Ingeniero en Telématica</p>
             <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> rodrigo.tellez@upp.edu.mx</p>
