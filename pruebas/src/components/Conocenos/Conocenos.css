@@ -277,57 +277,6 @@ body {
   overflow-y: auto;
 }
 
-
-/* Estilos para cada tarjeta */
-.info-card {
-  background-color: #f4f4f9;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column; /* Coloca los elementos dentro de la tarjeta en vertical */
-  align-items: center;
-  text-align: center;
-  height: 430px;
-  width: 400px;
-}
-
-.info-card:hover {
-  transform: translateY(-5px); /* Efecto de elevación en hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1); /* Aumenta ligeramente el tamaño en hover */
-}
-
-.info-card img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem; /* Espacio debajo de la imagen */
-  transition: transform 0.3s ease; /* Efecto suave en hover */
-}
-
-.info-card:hover img {
-  transform: scale(1.1); /* Efecto zoom en hover */
-}
-
-/* Overlay en la tarjeta */
-.info-card .info-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(38, 121, 142, 0.9);
-  color: white;
-  text-align: center;
-  padding: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.info-card:hover .info-overlay {
-  opacity: 1; /* Aparece el overlay en hover */
-}
-
 /* Tabla de estilos */
 table {
   width: 100%;
@@ -414,17 +363,71 @@ button:hover {
   background-color: #1b5b6a;
 }
 
+
+/* Estilos para cada tarjeta */
+.info-card {
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column; /* Coloca los elementos dentro de la tarjeta en vertical */
+  align-items: center;
+  text-align: center;
+  height: 390px;
+  width: 350px;
+}
+
+.info-card:hover {
+  transform: translateY(-5px); /* Efecto de elevación en hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño en hover */
+}
+
+.info-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem; /* Espacio debajo de la imagen */
+  transition: transform 0.3s ease; /* Efecto suave en hover */
+}
+
+.info-card:hover img {
+  transform: scale(1.1); /* Efecto zoom en hover */
+}
+
+/* Overlay en la tarjeta */
+.info-card .info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(38, 121, 142, 0.9);
+  color: white;
+  text-align: center;
+  padding: 40px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.info-card:hover .info-overlay {
+  opacity: 1; /* Aparece el overlay en hover */
+}
+
+
 .info-card-name {
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
 }
 
 .info-card-title {
   font-size: 1rem;
   color: #555;
-  margin-top: 0.2rem;
+  margin-top: 0.1rem;
 }
 
 .center-textC {
@@ -437,4 +440,29 @@ button:hover {
 
 .btnModal{
   background-color: #26798e;
+}
+
+/* CSS para agrandar la tarjeta en el centro del carrusel */
+/* Ajusta el tamaño de la tarjeta central en el carrusel */
+/* Contenedor principal del carrusel */
+.carousel-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: visible; /* Asegura que el carrusel no recorte el contenido */
+  position: relative; /* Para garantizar que los elementos sean visibles */
+  z-index: 1; /* Para controlar la profundidad */
+}
+
+/* Aumenta el tamaño de la tarjeta central sin recorte */
+.slick-center .info-card {
+  transform: scale(1.15); /* Ajusta el valor según el tamaño deseado */
+  transition: transform 0.3s ease-in-out;
+  z-index: 2; /* Asegura que la tarjeta central esté encima de las demás */
+}
+
+/* Asegúrate de que las tarjetas no se recorten */
+.slick-slide {
+  overflow: visible; /* Permite ver las tarjetas agrandadas */
+  padding: 35px 35px; /* Añade espacio vertical */
 }

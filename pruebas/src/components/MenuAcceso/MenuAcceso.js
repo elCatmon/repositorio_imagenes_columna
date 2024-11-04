@@ -112,13 +112,13 @@ const MenuUsuarios = () => {
             Accede a los servicios que tenemos para ti
           </p>
           <div className="grid-cols-3">
-              <a href="/servicios" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+              <a href="/convertidor" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
                 <div className="qr-card">
                   <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-exchange-alt"></i> Conversor de archivos</p>
                   <p className="text-gray-500 mt-2"> Convierte tus archivos dicom a formato jpg, png, entre otros</p>
                 </div>
               </a>
-              <a href="/menu" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+              <a href="/visualizadordicom" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
                 <div className="qr-card">
                   <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-eye"></i> Visualizador DICOM</p>
                   <p className="text-gray-500 mt-2"> Visualiza tus archivos DICOM</p>

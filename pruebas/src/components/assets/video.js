@@ -12,7 +12,7 @@ const Video = () => {
       margin: '15px 0' 
     }}>
             <iframe width="820" height="461" 
-            src="https://www.youtube.com/embed/CMIg3z9bVVE?si=WjineC6ZwdkKX1Sn" 
+            src="https://www.youtube.com/embed/GgQOvXtMKh4?si=b24ra4S-cFYy6xH0" 
             title="YouTube video player" 
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

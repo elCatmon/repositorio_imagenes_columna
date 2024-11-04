@@ -28,6 +28,7 @@ const InfoCard = ({ image, name,title, description }) => {
           content: {
             width: '80%',
             maxWidth: '500px',
+            maxHeight: '600px',
             margin: 'auto',
             padding: '20px',
             borderRadius: '8px',

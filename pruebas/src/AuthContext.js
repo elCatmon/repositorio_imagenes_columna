@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     setUserID(null);
     setRole(null);
-    navigate('/login'); // Redirige a la página de login tras cerrar sesión
+    navigate('/'); // Redirige a la página de login tras cerrar sesión
   }, [navigate]);
 
   useEffect(() => {

@@ -22,6 +22,7 @@ import Editor from './components/Editor/Editor';
 import TablaDonaciones from './components/Donaciones/ConsultarDonaciones';
 import PrivateRoute from './PrivateRoute'; // Importa el componente
 import Servicios from './components/Servicios/Sevicios'
+import Visualizador from './components/Visualizador/VisualizadorPublico'
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
           <Route path="/cambiarcontrasena" element={<ChangePassword />} />
           <Route path="/editor" element={<Editor />} />
           <Route path="/menu" element={<MenuAcceso />} />
-          <Route path="/servicios" element={<Servicios/>}/>
+          <Route path="/convertidor" element={<Servicios/>}/>
+          <Route path="/visualizadordicom" element={<Visualizador />} />
           <Route element={<PrivateRoute />} >
             <Route path="/visualizador" element={<VisualizerPage />} />
             <Route path="/importar" element={<Importar />} />
