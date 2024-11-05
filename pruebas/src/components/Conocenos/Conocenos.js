@@ -65,7 +65,13 @@ const Conocenos = () => {
           <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
             ¿Quiénes somos?
           </h1>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', margin: '20px 0' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            margin: '20px 0'
+          }}>
             <Video />
           </div>
         </div>
@@ -107,38 +113,38 @@ const Conocenos = () => {
         </div>
         <div className="next-module" />
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>Nuestro equipo</h1>
-        <Slider {...settings}>
-          <InfoCard
-            image="/imagenes/cesar.jpeg"
-            name="Cesar Andres Ortega Herrera"
-            title="Ingenieria en Software"
-            description="Actualmente soy estudiante de Ingeniería en Software en la Universidad Politécnica de Pachuca y Técnico en Programación, egresado del Centro de Bachillerato Tecnológico Industrial y de Servicios No. 8. A lo largo de mi carrera, he trabajado en proyectos como desarrollador fullstack, especializándome en arquitecturas de software (SOA, cliente-servidor), diseño de bases de datos relacionales (SQL) y no relacionales (NoSQL), optimización de procesos y estandarización. Entre los proyectos destacados, participé en el desarrollo de la biblioteca digital mexicana de datos, donde diseñé y desarrollé tanto el web service como la página web. También colaboré en un proyecto de redes de comunicación con drones, implementando la interfaz de usuario, y desarrollé sistemas de punto de venta personalizados, optimizando procesos y aumentando la eficiencia para diferentes negocios. En otro proyecto, contribuí a la implementación y mantenimiento de una base de datos escolar, asegurando la integridad y disponibilidad de la información. Además, tengo un gran interés en el análisis de datos y la inteligencia artificial. Fuera del ámbito académico y profesional, disfruto explorando nuevas tecnologías y actividades como la fotografía, lo que me mantiene en constante aprendizaje."
-          />
-          <InfoCard
-            image="/imagenes/dieter.jpeg"
-            name="Dieter Valderrabano Garcia"
-            title="Ingenieria en Biomedica"
-            description="Realizó su formación doctoral en la Universidad Autónoma de Baja California (MyDCI PNPC CONAHCyT) con la tesis 'Privacidad en la Ubicación de la Fuente de Datos', bajo la dirección del Dr. Juan Iván Nieto Hipólito, obteniendo el grado de Doctora en Ciencias con Mención Honorífica en diciembre de 2012. Obtuvo la maestría en la Universidad de Colima (PNPC CONACyT) con un proyecto de colaboración México-USA UC NEXUS-CICESE, desarrollando el algoritmo PANDORA para redes ad-hoc, bajo la dirección del Dr. Raúl Aquino Santos, recibiendo el grado en agosto de 2007. Además, cuenta con una licenciatura en Comercio Internacional (febrero de 2002, ESCA-SADE-Instituto Politécnico Nacional) y una en Ingeniería en Sistemas Computacionales (febrero de 1992, Instituto Tecnológico de Zacatecas). Colaboradora de la Universidad Politécnica de Pachuca como profesor investigador nivel C en la Dirección de Innovación, Investigación y Posgrado (DIIP), es parte de los núcleos académicos de la Maestría en Tecnologías de la Información y del Doctorado en Ciencias y Tecnologías Avanzadas, imparte clases de Inteligencia Artificial, Minería de Datos, Algoritmos y Proyecto de Tesis. Líder del cuerpo académico de Cómputo Suave y Analítica de Datos, el cual cuenta con un laboratorio especializado, cuenta con el reconocimiento SNII I y realiza colaboración con diversos centros de investigación, incluyendo CICESE, CITEDI Tijuana y CICATA, así como con la Universidad Autónoma de Baja California, Universidad de Colima, y Universidad Autónoma de Nuevo León, entre otras. Ha dirigido cuatro tesis doctorales en la Universidad Autónoma de Baja California (tres con reconocimiento SNII Candidato) y participó en comités doctorales en UPPachuca, CITEDI Tijuana y CICATA, Querétaro (SNII Candidato). Además, ha dirigido y codirigido cuatro tesis de maestría (tres con grado de doctor) y ha formado parte de comités de tesis de maestría en UPPachuca. Ha efectuado estancias de investigación y capacitación en el HUAWEI International Training Center en Hangzhou, China, en el área de Inteligencia Artificial, específicamente en modelos LLM y Transformers (mayo de 2024), obteniendo la certificación HCIA-AI por HUAWEI, así mismo ha cursado un diplomado en inteligencia artificial aplicada en IPICyT y ha laborado en TU-Darmstadt DEEDS Lab en Alemania y en la Universidad Politécnica de Cataluña, España, desarrollando procesos de privacidad en sistemas embebidos y el algoritmo metaheurístico ACO para proveer privacidad en la transmisión de datos. Actualmente, se encuentra realizando el proyecto estrella en colaboración con CITEDI Tijuana integrando algoritmos clásicos y cuánticos de Inteligencia Artificial y tecnologías de blockchain, especialmente Hyperledger Fabric, aplicado al área médica, en el cual, también trabajan cinco estudiantes de las ingenierías de software y biomédica"
-          />
-          <InfoCard
-            image="/imagenes/rodrigo.jpeg"
-            name="Ing. Rodrigo"
-            title="Ingenieria en Telematica"
-            description="" />
-          <InfoCard
-            image="/imagenes/miguel.jpeg"
-            name="Miguel Ángel Butrón Gómez"
-            title="Ingenieria en Biomedica"
-            description="" />
-          <InfoCard
-            image="/imagenes/gener.jpeg"
-            name="Aris"
-            title="Ingenieria en Biomedica"
-            description="" />
-        </Slider>
+        <div className="carousel-container">
+          <Slider {...settings}>
+            <InfoCard
+              image="/imagenes/cesar.jpeg"
+              name="Cesar Andres Ortega Herrera"
+              title="Ingenieria en Software"
+              description="Actualmente soy estudiante de Ingeniería en Software en la Universidad Politécnica de Pachuca y Técnico en Programación, egresado del Centro de Bachillerato Tecnológico Industrial y de Servicios No. 8. A lo largo de mi carrera, he trabajado en proyectos como desarrollador fullstack, especializándome en arquitecturas de software (SOA, cliente-servidor), diseño de bases de datos relacionales (SQL) y no relacionales (NoSQL), optimización de procesos y estandarización. Entre los proyectos destacados, participé en el desarrollo de la biblioteca digital mexicana de datos, donde diseñé y desarrollé tanto el web service como la página web. También colaboré en un proyecto de redes de comunicación con drones, implementando la interfaz de usuario, y desarrollé sistemas de punto de venta personalizados, optimizando procesos y aumentando la eficiencia para diferentes negocios. En otro proyecto, contribuí a la implementación y mantenimiento de una base de datos escolar, asegurando la integridad y disponibilidad de la información. Además, tengo un gran interés en el análisis de datos y la inteligencia artificial. Fuera del ámbito académico y profesional, disfruto explorando nuevas tecnologías y actividades como la fotografía, lo que me mantiene en constante aprendizaje."
+            />
+            <InfoCard
+              image="/imagenes/dieter.jpeg"
+              name="Al Dieter Valderrabano Garcia"
+              title="Ingenieria en Biomedica"
+              description="" />
+            <InfoCard
+              image="/imagenes/rodrigo.jpeg"
+              name="Rodrigo Efren Tellez Guerrero"
+              title="Ingenieria en Telematica"
+              description="" />
+            <InfoCard
+              image="/imagenes/miguel.jpeg"
+              name="Miguel Ángel Butrón Gómez"
+              title="Ingenieria en Biomedica"
+              description="" />
+            <InfoCard
+              image="/imagenes/gener.jpeg"
+              name="Aris"
+              title="Ingenieria en Biomedica"
+              description="" />
+          </Slider>
+        </div>
       </main>
       <div className="next-module" />
-
       <Footer />
     </div>
   );
