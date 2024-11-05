@@ -15,7 +15,7 @@ const Conocenos = () => {
     dots: true,
     arrows: true,
     infinite: true,
-    speed: 700,
+    speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 2,
     centerMode: true,
@@ -113,7 +113,7 @@ const Conocenos = () => {
         </div>
         <div className="next-module" />
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>Nuestro equipo</h1>
-        <div className="carousel-container">
+        <div>
           <Slider {...settings}>
             <InfoCard
               image="/imagenes/cesar.jpeg"
