@@ -13,6 +13,12 @@
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     transition: padding 0.3s ease-in-out;
+    vertical-align: middle;
+}
+
+.burgerH{
+    vertical-align: middle;
+    align-items: center; /* Centrar verticalmente el contenido del botón */
 }
 
 /* Estilos para el ícono del menú */
@@ -20,16 +26,19 @@
     cursor: pointer;
     display: flex; /* Mostrar como flex para centrar contenido */
     align-items: center; /* Centrar verticalmente el contenido del botón */
-    height: 100%; /* Asegura que ocupe toda la altura del contenedor */
+    height: 50%; /* Asegura que ocupe toda la altura del contenedor */
     background: none; /* Sin fondo */
     border: none; /* Sin borde */
     padding: 0; /* Sin padding */
+    vertical-align: middle;
+    margin-top: -1px;
 }
 
 /* Enlaces del lado derecho */
 .navbar-right {
     display: flex;
     align-items: center;
+    vertical-align: middle;
     
 }
 

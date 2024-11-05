@@ -32,6 +32,7 @@ const InfoCard = ({ image, name,title, description }) => {
             margin: 'auto',
             padding: '20px',
             borderRadius: '8px',
+            zIndex: 1000,
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)',

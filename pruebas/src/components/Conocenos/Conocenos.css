@@ -368,7 +368,6 @@ button:hover {
 .info-card {
   background-color: #f4f4f9;
   border-radius: 8px;
-  overflow: hidden;
   transition: transform 0.2s ease-in-out;
   padding: 1rem;
   display: flex;
@@ -377,6 +376,7 @@ button:hover {
   text-align: center;
   height: 390px;
   width: 350px;
+  z-index: 1000;
 }
 
 .info-card:hover {
@@ -449,20 +449,41 @@ button:hover {
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
-  overflow: visible; /* Asegura que el carrusel no recorte el contenido */
-  position: relative; /* Para garantizar que los elementos sean visibles */
-  z-index: 1; /* Para controlar la profundidad */
+  /*overflow: hidden;*/
+  position: relative;
+  z-index: 1; /* Baja el z-index del carrusel */
 }
 
 /* Aumenta el tamaño de la tarjeta central sin recorte */
 .slick-center .info-card {
   transform: scale(1.15); /* Ajusta el valor según el tamaño deseado */
   transition: transform 0.3s ease-in-out;
-  z-index: 2; /* Asegura que la tarjeta central esté encima de las demás */
+  z-index: 1; /* Asegura que la tarjeta central esté encima de las demás */
 }
 
 /* Asegúrate de que las tarjetas no se recorten */
 .slick-slide {
-  overflow: visible; /* Permite ver las tarjetas agrandadas */
+  /*overflow: visible; /* Permite ver las tarjetas agrandadas */
   padding: 35px 35px; /* Añade espacio vertical */
+}
+
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1051; /* Asegura que el contenido del modal esté sobre todo */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050; /* Nivel alto para que esté sobre el carrusel */
 }

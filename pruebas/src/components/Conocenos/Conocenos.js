@@ -19,8 +19,7 @@ const Conocenos = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: "50px", // Añade más espacio alrededor de la tarjeta central
-    variableWidth: false,    // Desactiva el ancho variable para evitar problemas de ajuste
+    centerPadding: "40px",
     autoplay: true,
     autoplaySpeed: 2500,
     pauseOnHover: true,
@@ -29,24 +28,19 @@ const Conocenos = () => {
         breakpoint: 1000,
         settings: {
           slidesToShow: 2,
-          centerPadding: "30px",
+          centerPadding: "20px",
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          dots: false,
+          centerPadding: "10px",
         }
       }
     ]
   };
+  
     
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
@@ -55,7 +49,7 @@ const Conocenos = () => {
       <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 45 }}>
         Conócenos
       </h1>
-      <main className='mainca'>
+      <main>
         <div>
           <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
             ¿Quiénes somos?
