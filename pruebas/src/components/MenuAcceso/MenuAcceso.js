@@ -130,6 +130,12 @@ const MenuUsuarios = () => {
                   <p className="text-gray-500 mt-2"> Realiza el revelado de tus imagenes</p>
                 </div>
               </a>
+              <a href="/editor" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+                <div className="qr-card">
+                  <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-pencil-alt"></i> Anonimizador de archivos</p>
+                  <p className="text-gray-500 mt-2"> Elimina los datos personales de los archivos DICOM</p>
+                </div>
+              </a>
           </div>
         </div>
       </div>
