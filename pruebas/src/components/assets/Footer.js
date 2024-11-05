@@ -8,7 +8,7 @@ const Footer = () => {
           <h4>Enlaces de interés</h4>
           <ul>
             <li><a href="/nosotros">Nosotros</a></li>
-            <li><a href="#">Servicios</a></li>
+            <li><a href="/menu">Servicios</a></li>
             <li><a href="#">Políticas de privacidad</a></li>
             <li><a href="#">Programas de afiliación</a></li>
           </ul>
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-      <p className='pC'>&copy; 2024 BDMDM. Todos los derechos reservados.</p>
+        <p className='pC'>&copy; 2024 BDMDM. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

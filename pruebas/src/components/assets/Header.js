@@ -24,7 +24,7 @@ function Header() {
           <button className="menu-toggle" onClick={toggleMenu}>
             <i className="fas fa-bars"></i>
           </button>
-          <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo" onContextMenu={(e) => e.preventDefault()}/>
+          <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo1" onContextMenu={(e) => e.preventDefault()}/>
           <img src="/imagenes/logo_upp.png" alt="Logo BDMDM" className="logo" onContextMenu={(e) => e.preventDefault()}/>
         </div>
 
@@ -33,10 +33,8 @@ function Header() {
           <a href="/" className="nav-link">Inicio</a>
           <a href="/conocenos" className="nav-link">Conócenos</a>
           <a href="/contacto" className="nav-link">Contacto</a>
-          <a href="/fisica" className="nav-link">Donación física</a>
-          {isAuthenticated ? (
-            <a href="/menu" className="nav-link">Menu del Usuario</a>
-          ) : null}
+          <a href="/fisica" className="nav-link">Donación física</a>   
+            <a href="/menu" className="nav-link">Menu</a>
           {isAuthenticated ? (
             <a href="/" onClick={handleLogout} className="nav-link">Cerrar Sesión</a>
           ) : (
@@ -52,9 +50,8 @@ function Header() {
           <a href="/conocenos" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Conócenos</a>
           <a href="/contacto" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Contacto</a>
           <a href="/fisica" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Donación física</a>
-          {isAuthenticated ? (
-            <a href="/menu" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Menu del Usuario</a>
-          ) : null}
+          <a href="/menu" className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Menu del usuario</a>
+
           {isAuthenticated ? (
             <a href="/" onClick={handleLogout} className="nav-link" style={{ fontSize: '20px', padding: '5px', textAlign: 'center' }}>Cerrar Sesión</a>
           ) : (

@@ -24,15 +24,19 @@
     "react-bootstrap-submenu": "^3.0.3",
     "react-dom": "^18.3.1",
     "react-modal": "^3.16.1",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.26.1",
     "react-scripts": "^5.0.1",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.14",
     "vm-browserify": "^1.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired build",
+    "test": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

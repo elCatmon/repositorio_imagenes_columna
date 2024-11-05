@@ -33,6 +33,7 @@ function PaginaInicio() {
         </div>
       </div>
       {/* About Section */}
+      <div className="next-module" />
       <div className="section-container">
         <h3 className="section-title">¿Qué hacemos?</h3>
         <div className="container">
@@ -54,9 +55,6 @@ function PaginaInicio() {
               • Esta plataforma representa una herramienta clave para el desarrollo de soluciones innovadoras en salud y tecnología.
             </p>
           </div>
-          {/* <div className="image-container">
-                        <img src="/imagenes/radiografia.jpg" alt="Persona mostrando una radiografía" />
-                    </div> */}
         </div>
       </div>
       <div className="next-module" />

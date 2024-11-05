@@ -20,6 +20,9 @@ const MenuUsuarios = () => {
           Elige una de las opciones que la biblioteca digital tiene para ti
         </p>
       </header>
+      {!role && (
+    <p className="text-lg text-red-500 mt-4">Por favor, inicia sesión para acceder a más opciones.</p>
+  )}
 
       <main className="max-w-6xl mx-auto py-10" onContextMenu={(e) => e.preventDefault()}>
         {/* Contenedor para la primera fila */}
@@ -109,30 +112,30 @@ const MenuUsuarios = () => {
             Accede a los servicios que tenemos para ti
           </p>
           <div className="grid-cols-3">
-            {role && (
-              <a href="/menu" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+              <a href="/servicios" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
                 <div className="qr-card">
                   <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-exchange-alt"></i> Conversor de archivos</p>
-                  <p className="text-gray-500 mt-2"> Convierte tus archivos dicom a formato jpg, png, xml entre otros</p>
+                  <p className="text-gray-500 mt-2"> Convierte tus archivos dicom a formato jpg, png, entre otros</p>
                 </div>
               </a>
-            )}
-            {role && (
               <a href="/menu" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
                 <div className="qr-card">
                   <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-eye"></i> Visualizador DICOM</p>
                   <p className="text-gray-500 mt-2"> Visualiza tus archivos DICOM</p>
                 </div>
               </a>
-            )}
-            {role && (
               <a href="/editor" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
                 <div className="qr-card">
                   <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-pencil-alt"></i> Editor de imagenes</p>
                   <p className="text-gray-500 mt-2"> Realiza el revelado de tus imagenes</p>
                 </div>
               </a>
-            )}
+              <a href="/editor" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+                <div className="qr-card">
+                  <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-pencil-alt"></i> Anonimizador de archivos</p>
+                  <p className="text-gray-500 mt-2"> Elimina los datos personales de los archivos DICOM</p>
+                </div>
+              </a>
           </div>
         </div>
       </div>

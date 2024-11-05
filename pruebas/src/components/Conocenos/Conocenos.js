@@ -1,26 +1,84 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import InfoCard from '../assets/InfoCard';
+import Slider from "react-slick"; // Asegúrate de que esta línea esté presente
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Conocenos.css';
 import Footer from '../assets/Footer';
 import Header from '../assets/Header';
-
+import Video from '../assets/video';
+import InfoCard from './InfoCard';
 
 const Conocenos = () => {
+
+  const settings = {
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 700,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    centerMode: true,
+    centerPadding: "40px",
+    variableWidth: false,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1200, // Pantallas grandes
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerPadding: "20px",
+        }
+      },
+      {
+        breakpoint: 768, // Tablets
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: "10px",
+        }
+      },
+      {
+        breakpoint: 480, // Móviles
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: "0px",
+          dots: false, // Opcionalmente oculta los puntos en pantallas pequeñas
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
-      <div className="next-module">
-        <Header />
-      </div>
-      {/* Contenido Principal */}
-      <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
-        <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins' }}>
-          Conócenos
-        </h1>
-      </header>
-      <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen"onContextMenu={(e) => e.preventDefault()}>
-        <main className="max-w-6xl mx-auto py-10">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 " >
+      <div className="next-module"><Header /></div>
+      <div className="next-module" />
+      <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 45 }}>
+        Conócenos
+      </h1>
+      <main className="main-carousel-container  mx-auto py-10">
+        <div>
+          <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
+            ¿Quiénes somos?
+          </h1>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            margin: '20px 0'
+          }}>
+            <Video />
+          </div>
+        </div>
+        <div className="next-module" />
+        <h1 className='center-textC' style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins', fontSize: 30 }}>Lideres del proyecto</h1>
+        <div>
+          <Slider {...settings}>
             <InfoCard
               image="/imagenes/oscar.jpeg"
               name="Dr. Oscar Montiel Ross"
@@ -51,10 +109,42 @@ const Conocenos = () => {
               title="Asesor Clínico"
               description="Médico por la Universidad de Montemorelos, Nuevo León. Maestro y Doctor en Ciencias por la Universidad Autónoma de Baja California (UABC) con acentuación en analítica de datos y estadística computacional. Miembro del Sistema Nacional de Investigadoras e Investigadores y de la Academia Jóven de México. Profesor Investigador de tiempo completo en la Escuela de Ciencias de la Salud de la UABC campus Enesenada. Líder del grupo de Medicina Computacional y colaborador con el Laboratorio de Telemática en la Facultad de Ingeniería, Arquitectura y Diseño de la misma Universidad. Sus intereses en investigación están enfocados actualmente en el uso de herramientas de aprendizaje automatizado, análisis topológico de datos e inteligencia artificial para la caracterización de individuos y poblaciones en el continuo salud-enfermedad."
             />
-          </div>
-        </main>
-        <div className="next-module"/>
-      </div>
+          </Slider>
+        </div>
+        <div className="next-module" />
+        <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>Nuestro equipo</h1>
+        <div className="carousel-container">
+          <Slider {...settings}>
+            <InfoCard
+              image="/imagenes/cesar.jpeg"
+              name="Cesar Andres Ortega Herrera"
+              title="Ingenieria en Software"
+              description="Actualmente soy estudiante de Ingeniería en Software en la Universidad Politécnica de Pachuca y Técnico en Programación, egresado del Centro de Bachillerato Tecnológico Industrial y de Servicios No. 8. A lo largo de mi carrera, he trabajado en proyectos como desarrollador fullstack, especializándome en arquitecturas de software (SOA, cliente-servidor), diseño de bases de datos relacionales (SQL) y no relacionales (NoSQL), optimización de procesos y estandarización. Entre los proyectos destacados, participé en el desarrollo de la biblioteca digital mexicana de datos, donde diseñé y desarrollé tanto el web service como la página web. También colaboré en un proyecto de redes de comunicación con drones, implementando la interfaz de usuario, y desarrollé sistemas de punto de venta personalizados, optimizando procesos y aumentando la eficiencia para diferentes negocios. En otro proyecto, contribuí a la implementación y mantenimiento de una base de datos escolar, asegurando la integridad y disponibilidad de la información. Además, tengo un gran interés en el análisis de datos y la inteligencia artificial. Fuera del ámbito académico y profesional, disfruto explorando nuevas tecnologías y actividades como la fotografía, lo que me mantiene en constante aprendizaje."
+            />
+            <InfoCard
+              image="/imagenes/dieter.jpeg"
+              name="Al Dieter Valderrabano Garcia"
+              title="Ingenieria en Biomedica"
+              description="" />
+            <InfoCard
+              image="/imagenes/rodrigo.jpeg"
+              name="Rodrigo Efren Tellez Guerrero"
+              title="Ingenieria en Telematica"
+              description="" />
+            <InfoCard
+              image="/imagenes/miguel.jpeg"
+              name="Miguel Ángel Butrón Gómez"
+              title="Ingenieria en Biomedica"
+              description="" />
+            <InfoCard
+              image="/imagenes/gener.jpeg"
+              name="Aris"
+              title="Ingenieria en Biomedica"
+              description="" />
+          </Slider>
+        </div>
+      </main>
+      <div className="next-module" />
       <Footer />
     </div>
   );
