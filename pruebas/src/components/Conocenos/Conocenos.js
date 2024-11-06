@@ -40,8 +40,8 @@ const Conocenos = () => {
       }
     ]
   };
-  
-    
+
+
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
       <div className="next-module"><Header /></div>
@@ -58,7 +58,20 @@ const Conocenos = () => {
             <Video />
           </div>
         </div>
-        <div className="next-module" />
+        <div class="contenedorConocenos">
+          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
+            Misión
+          </h2>
+          <p>Nuestra misión es SI</p>
+          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
+            Vision
+          </h2>
+          <p>Nuestra visión es SI</p>
+          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
+            Valores
+          </h2>
+          <p>Nuestros valores son SIs</p>
+        </div>
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins', fontSize: 30 }}>Lideres del proyecto</h1>
         <div className="carousel-container">
           <Slider {...settings}>
@@ -105,14 +118,14 @@ const Conocenos = () => {
               description="Actualmente soy estudiante de Ingeniería en Software en la Universidad Politécnica de Pachuca y Técnico en Programación, egresado del Centro de Bachillerato Tecnológico Industrial y de Servicios No. 8. A lo largo de mi carrera, he trabajado en proyectos como desarrollador fullstack, especializándome en arquitecturas de software (SOA, cliente-servidor), diseño de bases de datos relacionales (SQL) y no relacionales (NoSQL), optimización de procesos y estandarización. Entre los proyectos destacados, participé en el desarrollo de la biblioteca digital mexicana de datos, donde diseñé y desarrollé tanto el web service como la página web. También colaboré en un proyecto de redes de comunicación con drones, implementando la interfaz de usuario, y desarrollé sistemas de punto de venta personalizados, optimizando procesos y aumentando la eficiencia para diferentes negocios. En otro proyecto, contribuí a la implementación y mantenimiento de una base de datos escolar, asegurando la integridad y disponibilidad de la información. Además, tengo un gran interés en el análisis de datos y la inteligencia artificial. Fuera del ámbito académico y profesional, disfruto explorando nuevas tecnologías y actividades como la fotografía, lo que me mantiene en constante aprendizaje."
             />
             <InfoCard
-              image="/imagenes/dieter.jpeg"
-              name="Al Dieter Valderrabano Garcia"
-              title="Ingenieria en Biomedica"
-              description="" />
-            <InfoCard
               image="/imagenes/rodrigo.jpeg"
               name="Rodrigo Efren Tellez Guerrero"
               title="Ingenieria en Telematica"
+              description="" />
+            <InfoCard
+              image="/imagenes/dieter.jpeg"
+              name="Al Dieter Valderrabano Garcia"
+              title="Ingenieria en Biomedica"
               description="" />
             <InfoCard
               image="/imagenes/miguel.jpeg"

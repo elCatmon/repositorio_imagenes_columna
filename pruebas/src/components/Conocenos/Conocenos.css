@@ -337,11 +337,6 @@ tr:hover {
   }
 }
 
-.main-carousel-container {
-  max-width: 80%; /* Ajusta esto según necesites más o menos espacio lateral */
-  margin: 0 auto; /* Centra el contenedor del carrusel */
-}
-
 .react-modal-content {
   width: 100%;
   max-width: 600px;
@@ -450,14 +445,13 @@ button:hover {
   max-width: 1400px;
   margin: 0 auto;
   /*overflow: hidden;*/
-  position: relative;
   z-index: 1; /* Baja el z-index del carrusel */
 }
 
 /* Aumenta el tamaño de la tarjeta central sin recorte */
 .slick-center .info-card {
   transform: scale(1.15); /* Ajusta el valor según el tamaño deseado */
-  transition: transform 0.3s ease-in-out;
+  transition: transform 1s ease-in-out;
   z-index: 1; /* Asegura que la tarjeta central esté encima de las demás */
 }
 
@@ -469,12 +463,12 @@ button:hover {
 
 .modal-content {
   position: fixed;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 30px;
+  border-radius: 15px;
   z-index: 1051; /* Asegura que el contenido del modal esté sobre todo */
 }
 
@@ -486,4 +480,15 @@ button:hover {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1050; /* Nivel alto para que esté sobre el carrusel */
+}
+
+.contenedorConocenos {
+  background-color: white; /* Fondo blanco */
+  color: #333; /* Color de texto */
+  padding: 50px; /* Espacio interno */
+  max-width: 800px; /* Ancho máximo del contenedor */
+  margin: 20px auto; /* Centrar el contenedor */
+  border-radius: 8px; /* Esquinas redondeadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  text-align: justify; /* Justificar texto */
 }
