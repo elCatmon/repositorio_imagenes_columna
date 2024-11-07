@@ -1,8 +1,7 @@
-// EstudiosTable.js
 import React, { useEffect, useState } from 'react';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
-import './ConsultarDonaciones.css'; 
+import './ConsultarDonaciones.css';
 
 function EstudiosTable() {
   const [estudios, setEstudios] = useState([]);
@@ -12,32 +11,45 @@ function EstudiosTable() {
   useEffect(() => {
     const fetchEstudios = async () => {
       try {
-        const response = await fetch('http://192.168.100.5:8081/api/estudios/consulta'); // URL del endpoint ajustada
+        const response = await fetch('http://192.168.252.129:8081/api/estudios/consulta'); // URL del endpoint ajustada
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
         const data = await response.json();
-        setEstudios(data);
+
+        // Procesar los datos para asegurar la estructura correcta
+        const processedEstudios = data.map(estudio => ({
+          Folio: estudio.Folio,
+          FechaRecepcion: estudio.FechaRecepcion,
+          FechaDevolucion: estudio.FechaDevolucion,
+          Correo: estudio.Correo,
+          CURP: estudio.CURP,
+          Carrera: estudio.Carrera,
+          Cuatrimestre: estudio.Cuatrimestre,
+          Area: estudio.Area,
+          DetallesEstudios: estudio.DetallesEstudios || [], // Si DetallesEstudios es undefined, se inicializa como array vacío
+        }));
+
+        setEstudios(processedEstudios);
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
       }
     };
-  
+
     fetchEstudios();
   }, []);
-  
 
   if (loading) return <p>Cargando registros...</p>;
   if (error) return <p>Error al cargar registros: {error}</p>;
 
   return (
     <div>
-        <div className="next-module">
-        <Header/>
-        </div>
-        <div className="next-module"/>
+      <div className="next-module">
+        <Header />
+      </div>
+      <div className="next-module" />
       <h2>Lista de Estudios</h2>
       <table onContextMenu={(e) => e.preventDefault()}>
         <thead>
@@ -47,9 +59,7 @@ function EstudiosTable() {
             <th>Fecha de Devolución</th>
             <th>Correo</th>
             <th>CURP</th>
-            <th>Tipo de Estudio</th>
-            <th>Cantidad de Imágenes</th>
-            <th>Observaciones</th>
+            <th>Detalles del Estudio</th>
           </tr>
         </thead>
         <tbody>
@@ -60,17 +70,30 @@ function EstudiosTable() {
               <td>{estudio.FechaDevolucion ? new Date(estudio.FechaDevolucion).toLocaleDateString() : 'N/A'}</td>
               <td>{estudio.Correo}</td>
               <td>{estudio.CURP}</td>
-              <td>{estudio.TipoEstudio}</td>
-              <td>{estudio.CantidadImagenes}</td>
-              <td>{estudio.Observaciones}</td>
+              <td>
+                <ul>
+                  {estudio.DetallesEstudios && estudio.DetallesEstudios.length > 0 ? (
+                    estudio.DetallesEstudios.map((detalle, index) => (
+                      <li key={index}>
+                        <strong>Tipo de Estudio:</strong> {detalle.TipoEstudio}, 
+                        <strong> Cantidad de Imágenes:</strong> {detalle.CantidadImagenes}, 
+                        <strong> Observaciones:</strong> {detalle.Observaciones}, 
+                        <strong> Donación:</strong> {detalle.EsDonacion ? "Sí" : "No"}
+                      </li>
+                    ))
+                  ) : (
+                    <li>No hay detalles disponibles</li>
+                  )}
+                </ul>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="next-module"/>
-      <Footer/>
+      <div className="next-module" />
+      <Footer />
     </div>
-  );    
+  );
 }
 
 export default EstudiosTable;

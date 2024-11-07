@@ -13,10 +13,10 @@ function FormularioEstudios() {
     area: ''
   });
 
-  // Cambiado para manejar múltiples estudios
   const [datosEstudios, setDatosEstudios] = useState([
-    { tipoEstudio: '', cantidadImagenes: 0 }
+    { tipoEstudio: '', cantidadImagenes: 0, esDonacion: false, observaciones: '' }
   ]);
+  
   const [registros, setRegistros] = useState([]);
 
   const tiposEstudio = [
@@ -36,19 +36,23 @@ function FormularioEstudios() {
     }));
   };
 
-  const handleEstudioChange = (index, e) => {
-    const { name, value, type } = e.target;
-    setDatosEstudios((prevDatosEstudios) => {
-      const nuevosEstudios = [...prevDatosEstudios];
-      nuevosEstudios[index][name] = type === 'number' ? Number(value) : value;
-      return nuevosEstudios;
+  const handleEstudioChange = (index, event) => {
+    const { name, value, type, checked } = event.target;
+  
+    setDatosEstudios(prevState => {
+      const newState = [...prevState];
+      newState[index] = {
+        ...newState[index],
+        [name]: type === 'checkbox' ? checked : name === 'cantidadImagenes' ? parseInt(value, 10) || 0 : value,
+      };
+      return newState;
     });
   };
-
+  
   const agregarOtroEstudio = () => {
     setDatosEstudios((prevDatosEstudios) => [
       ...prevDatosEstudios,
-      { tipoEstudio: '', cantidadImagenes: 0 }
+      { tipoEstudio: '', cantidadImagenes: 0, esDonacion: false, observaciones: '' }
     ]);
   };
 
@@ -66,56 +70,61 @@ function FormularioEstudios() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const folio = 'D' + Math.floor(Math.random() * 1e11).toString().padStart(11, '0');
     const fechaRecepcion = new Date().toISOString();
     const fechaDevolucion = calcularFechaPrestamo();
-
-    // Concatenar tipos de estudio y sumar cantidad de imágenes
+  
     const tiposDeEstudioConcatenados = datosEstudios.map(estudio => estudio.tipoEstudio).join(', ');
     const totalCantidadImagenes = datosEstudios.reduce((total, estudio) => total + estudio.cantidadImagenes, 0);
-
-    // Crear el registro nuevo con los estudios concatenados y cantidad total de imágenes
+    const estudiosConDonacionesYObservaciones = datosEstudios.map(estudio => ({
+      tipoEstudio: estudio.tipoEstudio,
+      cantidadImagenes: parseInt(estudio.cantidadImagenes, 10),  // Convertir a número
+      esDonacion: estudio.esDonacion,
+      observaciones: estudio.observaciones
+    }));
+  
     const nuevoRegistro = {
       folio,
       fechaRecepcion,
       fechaDevolucion,
       ...datosPersona,
-      estudios: tiposDeEstudioConcatenados,  // Estudios concatenados
-      cantidadTotalImagenes: totalCantidadImagenes,  // Suma de imágenes
-      esDonacion: datosEstudios.esDonacion,
-      observaciones: datosEstudios.observaciones
+      estudios: tiposDeEstudioConcatenados,
+      cantidadTotalImagenes: totalCantidadImagenes,
+      detallesEstudios: estudiosConDonacionesYObservaciones,
     };
-    console.log(nuevoRegistro.estudios)
-    console.log(nuevoRegistro.cantidadTotalImagenes)
-
+  
+    console.log(nuevoRegistro.estudios);
+    console.log(nuevoRegistro.cantidadTotalImagenes);
+    console.log(nuevoRegistro.detallesEstudios);
+  
     try {
-      const response = await fetch('http://192.168.100.5:8081/api/estudios', {
+      const response = await fetch('http://192.168.252.129:8081/api/estudios', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(nuevoRegistro)
+        body: JSON.stringify(nuevoRegistro),
       });
-
+  
       if (!response.ok) {
         throw new Error('Error al guardar el estudio');
       }
-
+  
       setRegistros((prevRegistros) => [...prevRegistros, nuevoRegistro]);
-
+  
       // Reiniciar los campos
       setDatosPersona({
         correo: '',
         curp: '',
         carrera: '',
         cuatrimestre: '',
-        area: ''
+        area: '',
       });
-      setDatosEstudios([{ tipoEstudio: '', cantidadImagenes: 0 }]);
+      setDatosEstudios([{ tipoEstudio: '', cantidadImagenes: 0, esDonacion: false, observaciones: '' }]);
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
+  
   const formatDate = (date) => {
     if (!date) return '-';
     const d = new Date(date);
@@ -229,7 +238,7 @@ function FormularioEstudios() {
                   <select
                     name="tipoEstudio"
                     value={estudio.tipoEstudio}
-                    onChange={(e) => handleEstudioChange(index, e)}
+                    onChange={(e) => handleEstudioChange(index, e)}  // Ensure event is passed
                     required
                     className="input-field"
                   >
@@ -246,36 +255,40 @@ function FormularioEstudios() {
                     type="number"
                     name="cantidadImagenes"
                     value={estudio.cantidadImagenes}
-                    onChange={(e) => handleEstudioChange(index, e)}
+                    onChange={(e) => handleEstudioChange(index, e)}  // Ensure event is passed
                     min="1"
                     required
                     className="input-field"
                   />
                 </label>
+                <div>
+                  <label>
+                    Donación:
+                    <input
+                      type="checkbox"
+                      name="esDonacion"
+                      checked={datosEstudios.esDonacion}
+                      onChange={(event) => handleEstudioChange(index, event)}
+                    />
+                  </label>
+
+                  <label>
+                    Observaciones:
+                    <textarea
+                      name="observaciones"
+                      value={datosEstudios.observaciones}
+                      onChange={(event) => handleEstudioChange(index, event)}
+                      className="input-field"
+                    />
+                  </label>
+                </div>
+
               </div>
             ))}
+
             <button type="button" onClick={agregarOtroEstudio} className="add-study-button">
               Agregar otro estudio
             </button>
-            <label>
-              Donación:
-              <input
-                type="checkbox"
-                name="esDonacion"
-                checked={datosEstudios.esDonacion}
-                onChange={handleEstudioChange}
-              />
-            </label>
-
-            <label>
-              Observaciones:
-              <textarea
-                name="observaciones"
-                value={datosEstudios.observaciones}
-                onChange={handleEstudioChange}
-                className="input-field"
-              />
-            </label>
             <button type="submit">Guardar</button>
           </form>
         </div>
