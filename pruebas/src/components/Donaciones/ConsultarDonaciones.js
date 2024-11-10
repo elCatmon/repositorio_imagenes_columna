@@ -3,97 +3,200 @@ import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import './ConsultarDonaciones.css';
 
-function EstudiosTable() {
+function Estudios() {
   const [estudios, setEstudios] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [filtros, setFiltros] = useState({
+    folio: '',
+    correo: '',
+    curp: '',
+    FechaRecepcion: ''
+  });
 
-  useEffect(() => {
-    const fetchEstudios = async () => {
-      try {
-        const response = await fetch('http://192.168.252.129:8081/api/estudios/consulta'); // URL del endpoint ajustada
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
+  const handleFiltroChange = (e) => {
+    const { name, value } = e.target;
+    setFiltros((prevFiltros) => ({
+      ...prevFiltros,
+      [name]: value,
+    }));
+  };
+
+  const handleBuscar = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const queryParams = new URLSearchParams();
+    if (filtros.folio) queryParams.append("folio", filtros.folio);
+    if (filtros.correo) queryParams.append("correo", filtros.correo);
+    if (filtros.curp) queryParams.append("curp", filtros.curp);
+    if (filtros.FechaRecepcion) queryParams.append("FechaRecepcion", filtros.FechaRecepcion);
+
+    // Log antes de la solicitud
+    console.log("Parámetros de búsqueda:", queryParams.toString());
+
+    try {
+      const response = await fetch(`http://192.168.100.5:8081/api/estudios/consulta?${queryParams.toString()}`);
+      if (!response.ok) throw new Error("Error en la solicitud");
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
         const data = await response.json();
 
-        // Procesar los datos para asegurar la estructura correcta
-        const processedEstudios = data.map(estudio => ({
-          Folio: estudio.Folio,
-          FechaRecepcion: estudio.FechaRecepcion,
-          FechaDevolucion: estudio.FechaDevolucion,
-          Correo: estudio.Correo,
-          CURP: estudio.CURP,
-          Carrera: estudio.Carrera,
-          Cuatrimestre: estudio.Cuatrimestre,
-          Area: estudio.Area,
-          DetallesEstudios: estudio.DetallesEstudios || [], // Si DetallesEstudios es undefined, se inicializa como array vacío
-        }));
+        // Log de la respuesta recibida
+        console.log("Datos recibidos:", data);
 
-        setEstudios(processedEstudios);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
+        setEstudios(data);
+      } else {
+        console.error("Respuesta no es JSON:", await response.text());
       }
-    };
+    } catch (error) {
+      setError("Error al buscar estudios.");
+      console.error("Error al buscar estudios:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchEstudios();
-  }, []);
-
-  if (loading) return <p>Cargando registros...</p>;
-  if (error) return <p>Error al cargar registros: {error}</p>;
+  // Log de los estudios antes de renderizarlos
+  useEffect(() => {
+    console.log("Estudios en estado:", estudios);
+  }, [estudios]);
 
   return (
     <div>
       <div className="next-module">
         <Header />
       </div>
-      <div className="next-module" />
-      <h2>Lista de Estudios</h2>
-      <table onContextMenu={(e) => e.preventDefault()}>
-        <thead>
-          <tr>
-            <th>Folio</th>
-            <th>Fecha de Recepción</th>
-            <th>Fecha de Devolución</th>
-            <th>Correo</th>
-            <th>CURP</th>
-            <th>Detalles del Estudio</th>
-          </tr>
-        </thead>
-        <tbody>
-          {estudios.map((estudio) => (
-            <tr key={estudio.Folio}>
-              <td>{estudio.Folio}</td>
-              <td>{new Date(estudio.FechaRecepcion).toLocaleDateString()}</td>
-              <td>{estudio.FechaDevolucion ? new Date(estudio.FechaDevolucion).toLocaleDateString() : 'N/A'}</td>
-              <td>{estudio.Correo}</td>
-              <td>{estudio.CURP}</td>
-              <td>
-                <ul>
-                  {estudio.DetallesEstudios && estudio.DetallesEstudios.length > 0 ? (
-                    estudio.DetallesEstudios.map((detalle, index) => (
-                      <li key={index}>
-                        <strong>Tipo de Estudio:</strong> {detalle.TipoEstudio}, 
-                        <strong> Cantidad de Imágenes:</strong> {detalle.CantidadImagenes}, 
-                        <strong> Observaciones:</strong> {detalle.Observaciones}, 
-                        <strong> Donación:</strong> {detalle.EsDonacion ? "Sí" : "No"}
-                      </li>
+
+      <div className="contenido-principal">
+        <div className="columna-formulario">
+          <form onSubmit={handleBuscar}>
+            <h2>Buscar donaciones</h2>
+            <label>
+              Folio:
+              <input
+                name="folio"
+                value={filtros.folio}
+                onChange={handleFiltroChange}
+                className="input-field"
+              />
+            </label>
+            <label>
+              Correo:
+              <input
+                type="email"
+                name="correo"
+                value={filtros.correo}
+                onChange={handleFiltroChange}
+                className="input-field"
+              />
+            </label>
+            <label>
+              CURP:
+              <input
+                name="curp"
+                value={filtros.curp}
+                onChange={handleFiltroChange}
+                className="input-field"
+              />
+            </label>
+            <label>
+              Fecha de Recepción:
+              <input
+                type="date"
+                name="FechaRecepcion"
+                value={filtros.FechaRecepcion}
+                onChange={handleFiltroChange}
+                className="input-field"
+              />
+            </label>
+            <button className="btnBuscarDoancion" type="submit">Buscar</button>
+          </form>
+        </div>
+
+        <div className="columna-tabla">
+          <div className="next-module">
+            <h2>Lista de donaciones</h2>
+          </div>
+
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p>{error}</p>
+          ) : (
+            <div class="tablaConsultDonaciones-wrapper">
+              <table class="tablaConsultDonaciones">
+                <thead>
+                  <tr>
+                    <th className="table-headerDonaiones">Folio</th>
+                    <th className="table-headerDonaiones">Fecha de Recepción</th>
+                    <th className="table-headerDonaiones">Fecha de Devolución</th>
+                    <th className="table-headerDonaiones">Donador</th>
+                    <th className="table-headerDonaiones">Detalles del Estudio</th>
+                    <th className="table-headerDonaiones">Operaciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {estudios.length > 0 ? (
+                    estudios.map((estudio) => (
+                      <tr key={estudio.folio}>
+                        <td className='informacion'>{estudio.folio}</td>
+                        <td className='informacion'>{new Date(estudio.fechaRecepcion).toLocaleDateString()}</td>
+                        <td className='informacion'>{estudio.fechaDevolucion ? new Date(estudio.fechaDevolucion).toLocaleDateString() : 'N/A'}</td>
+                        <td className='informacion'>{estudio.curp}</td>
+                        <td className='detalles'>
+                          <ul>
+                            {estudio.detallesEstudios && estudio.detallesEstudios.length > 0 ? (
+                              estudio.detallesEstudios.map((detalle, index) => (
+                                <li key={index}>
+                                  <table>
+                                    <tbody>
+                                      <tr>
+                                        <td><strong>Tipo de Estudio:</strong></td>
+                                        <td>{detalle.tipoEstudio || 'No disponible'}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Cantidad de Imágenes:</strong></td>
+                                        <td>{detalle.cantidadImagenes || 'No disponible'}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Observaciones:</strong></td>
+                                        <td>{detalle.observaciones || 'No disponible'}</td>
+                                      </tr>
+                                      <tr>
+                                        <td><strong>Donación:</strong></td>
+                                        <td>{detalle.esDonacion ? "Sí" : "No"}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </li>
+                              ))
+                            ) : (
+                              <li>No hay detalles disponibles</li>
+                            )}
+                          </ul>
+                        </td>
+                        <td className='informacion'>
+                            < button className='btnOperaciones'>Acciones</button>
+                        </td>
+                      </tr>
                     ))
                   ) : (
-                    <li>No hay detalles disponibles</li>
+                    <tr><td colSpan="4">No se encontraron donaciones.</td></tr>
                   )}
-                </ul>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="next-module" />
       <Footer />
     </div>
   );
 }
 
-export default EstudiosTable;
+export default Estudios;

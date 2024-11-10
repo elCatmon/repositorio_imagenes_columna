@@ -29,7 +29,7 @@ h1 {
 
 /* Estilo para botones */
 button, .app-button {
-  background-color: #26798e; /* Fondo verde para los botones */
+  background-color: #38b2ac; /* Fondo verde para los botones */
   color: white; /* Texto blanco en los botones */
   border: none; /* Sin borde */
   padding: 10px 20px; /* Espaciado dentro del botón */
@@ -48,7 +48,7 @@ button:hover, .app-button:hover {
 
 /* Estilo para el botón de regresar */
 .back-button {
-  background-color: #26798e; /* Fondo verde para los botones */
+  background-color: #38b2ac; /* Fondo verde para los botones */
   color: white; /* Texto blanco en los botones */
   border: none; /* Sin borde */
   padding: 10px 20px; /* Espaciado dentro del botón */

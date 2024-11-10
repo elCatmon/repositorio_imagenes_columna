@@ -105,3 +105,163 @@
         display: flex; /* Mostrar menú desplegable */
     }
 }
+
+/* Estudios.css */
+
+.contenido-principal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Espacio entre columnas */
+  padding: 20px;
+}
+
+.columna-formulario {
+  flex: 0 0 30%;
+  /* Alternativamente, puedes usar width: 30%; */
+}
+
+.columna-tabla {
+  flex: 0 0 70%;
+  /* Alternativamente, puedes usar width: 70%; */
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Estilo general de la tabla */
+.tablaConsultDonaciones {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* Permite que el ancho de las celdas se ajuste automáticamente */
+}
+
+/* Estilos para las celdas de la tabla */
+.tablaConsultDonaciones th, .tablaConsultDonaciones td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word; /* Evita el desbordamiento del texto */
+  overflow: hidden; /* Oculta contenido que se desborda */
+}
+
+/* Ajuste de columnas */
+.tablaConsultDonaciones th:nth-child(1), .tablaConsultDonaciones td:nth-child(1) {
+  width: 130px;
+}
+
+.tablaConsultDonaciones th:nth-child(2), .tablaConsultDonaciones td:nth-child(2) {
+  width: 120px;
+}
+
+.tablaConsultDonaciones th:nth-child(3), .tablaConsultDonaciones td:nth-child(3) {
+  width: 120px;
+}
+
+.tablaConsultDonaciones th:nth-child(4), .tablaConsultDonaciones td:nth-child(4) {
+  width: 210px;
+}
+
+.tablaConsultDonaciones th:nth-child(5), .tablaConsultDonaciones td:nth-child(5) {
+  width: auto;
+}
+
+.tablaConsultDonaciones th:last-child, .tablaConsultDonaciones td:last-child {
+  width: 130px; /* Ancho fijo para la última columna */
+}
+
+/* Columna de detalles con espacio flexible */
+.tablaConsultDonaciones td.detalles {
+  flex-grow: 1;
+  width: auto;
+}
+
+/* Evitar desbordamiento de texto largo */
+.tablaConsultDonaciones td {
+  word-wrap: break-word;
+  max-width: 210px; /* Limita el tamaño de las celdas */
+}
+
+/* Estilos para la cabecera */
+.table-headerDonaiones {
+  background-color: #38b2ac !important;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Barra de desplazamiento horizontal */
+.tablaConsultDonaciones-wrapper {
+  overflow-x: auto; /* Barra de desplazamiento horizontal si el contenido desborda */
+  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en dispositivos táctiles */
+  width: 100%;
+}
+
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  /* Ajusta el diseño de la tabla en pantallas pequeñas */
+  .tablaConsultDonaciones th, .tablaConsultDonaciones td {
+    padding: 6px; /* Menos padding en pantallas pequeñas */
+  }
+
+  /* Hace que la tabla sea desplazable horizontalmente */
+  .tablaConsultDonaciones-wrapper {
+    overflow-x: scroll;
+  }
+
+  .contenido-principal
+  {
+    flex-direction: column; /* Asegura que se apilen en dispositivos móviles */
+  }
+
+  /* Ajuste de las columnas para que se adapten mejor */
+  .tablaConsultDonaciones th:nth-child(1), .tablaConsultDonaciones td:nth-child(1),
+  .tablaConsultDonaciones th:nth-child(2), .tablaConsultDonaciones td:nth-child(2),
+  .tablaConsultDonaciones th:nth-child(3), .tablaConsultDonaciones td:nth-child(3),
+  .tablaConsultDonaciones th:nth-child(4), .tablaConsultDonaciones td:nth-child(4) {
+    width: auto; /* Las columnas se ajustan automáticamente */
+  }
+
+  .tablaConsultDonaciones td.detalles {
+    width: auto; /* Asegura que la columna de detalles ocupe el espacio restante */
+  }
+
+  /* En dispositivos pequeños, puedes mostrar los encabezados en lugar de las columnas */
+  .tablaConsultDonaciones th {
+    display: none;
+  }
+
+  .tablaConsultDonaciones td {
+    display: block;
+    width: 100%; /* Las celdas ocupan todo el ancho disponible */
+    text-align: right; /* Alineación de texto a la derecha para un mejor formato */
+    position: relative;
+  }
+
+  .tablaConsultDonaciones td::before {
+    content: attr(data-label); /* Muestra el nombre del encabezado como etiqueta */
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    font-weight: bold;
+  }
+}
+
+.btnBuscarDoancion{
+  background-color: #38b2ac;
+}
+
+.btnOperaciones{
+  background-color: #38b2ac;
+  width: 100px;
+}
