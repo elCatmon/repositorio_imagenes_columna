@@ -19,7 +19,6 @@ const InfoCard = ({ image, name,title, description }) => {
       <h3 className="info-card-title">{title}</h3>
       </div>
 
-      {/* Modal */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import './ConsultarDonaciones.css';
+import ModalAcciones from './modalAcciones';
 
 function Estudios() {
   const [estudios, setEstudios] = useState([]);
@@ -13,6 +14,20 @@ function Estudios() {
     curp: '',
     FechaRecepcion: ''
   });
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({ folio: '', fecha_Recepcion: '', correoD: ''});
+
+  const handleShowModal = (folio, fecha_Recepcion, correoD) => {
+    setModalData({ folio, fecha_Recepcion, correoD}); // Establece el folio, id y fechaRecepcion
+    console.log(folio, fecha_Recepcion, correoD)
+    setShowModal(true); // Muestra el modal
+  };
+
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Cerrar el modal
+  };
 
   const handleFiltroChange = (e) => {
     const { name, value } = e.target;
@@ -33,36 +48,21 @@ function Estudios() {
     if (filtros.curp) queryParams.append("curp", filtros.curp);
     if (filtros.FechaRecepcion) queryParams.append("FechaRecepcion", filtros.FechaRecepcion);
 
-    // Log antes de la solicitud
-    console.log("Parámetros de búsqueda:", queryParams.toString());
-
     try {
-      const response = await fetch(`http://192.168.100.5:8081/api/estudios/consulta?${queryParams.toString()}`);
+      const response = await fetch(`http://192.168.100.5:8080/api/estudios/consulta?${queryParams.toString()}`);
       if (!response.ok) throw new Error("Error en la solicitud");
 
       const contentType = response.headers.get("content-type");
       if (contentType && contentType.includes("application/json")) {
         const data = await response.json();
-
-        // Log de la respuesta recibida
-        console.log("Datos recibidos:", data);
-
-        setEstudios(data);
-      } else {
-        console.error("Respuesta no es JSON:", await response.text());
+        setEstudios(data || []);
       }
     } catch (error) {
       setError("Error al buscar estudios.");
-      console.error("Error al buscar estudios:", error);
     } finally {
       setLoading(false);
     }
   };
-
-  // Log de los estudios antes de renderizarlos
-  useEffect(() => {
-    console.log("Estudios en estado:", estudios);
-  }, [estudios]);
 
   return (
     <div>
@@ -117,17 +117,14 @@ function Estudios() {
         </div>
 
         <div className="columna-tabla">
-          <div className="next-module">
-            <h2>Lista de donaciones</h2>
-          </div>
-
+          <h2>Lista de donaciones</h2>
           {loading ? (
             <p>Loading...</p>
           ) : error ? (
             <p>{error}</p>
           ) : (
-            <div class="tablaConsultDonaciones-wrapper">
-              <table class="tablaConsultDonaciones">
+            <div className="tablaConsultDonaciones-wrapper">
+              <table className="tablaConsultDonaciones">
                 <thead>
                   <tr>
                     <th className="table-headerDonaiones">Folio</th>
@@ -142,11 +139,11 @@ function Estudios() {
                   {estudios.length > 0 ? (
                     estudios.map((estudio) => (
                       <tr key={estudio.folio}>
-                        <td className='informacion'>{estudio.folio}</td>
-                        <td className='informacion'>{new Date(estudio.fechaRecepcion).toLocaleDateString()}</td>
-                        <td className='informacion'>{estudio.fechaDevolucion ? new Date(estudio.fechaDevolucion).toLocaleDateString() : 'N/A'}</td>
-                        <td className='informacion'>{estudio.curp}</td>
-                        <td className='detalles'>
+                        <td className="informacion">{estudio.folio}</td>
+                        <td className="informacion">{new Date(estudio.fechaRecepcion).toISOString().split("T")[0].split("-").reverse().join("/")}</td>
+                        <td className="informacion">{estudio.fechaDevolucion ? new Date(estudio.fechaDevolucion).toISOString().split("T")[0].split("-").reverse().join("/") : 'N/A'}</td>
+                        <td className="informacion">{estudio.curp}</td>
+                        <td className="detalles">
                           <ul>
                             {estudio.detallesEstudios && estudio.detallesEstudios.length > 0 ? (
                               estudio.detallesEstudios.map((detalle, index) => (
@@ -178,8 +175,10 @@ function Estudios() {
                             )}
                           </ul>
                         </td>
-                        <td className='informacion'>
-                            < button className='btnOperaciones'>Acciones</button>
+                        <td className="informacion">
+                          <button className='btnOperaciones' onClick={() => handleShowModal(estudio.folio, estudio.fechaRecepcion, estudio.correo)}>
+                            Acciones
+                          </button>
                         </td>
                       </tr>
                     ))
@@ -192,9 +191,16 @@ function Estudios() {
           )}
         </div>
       </div>
-
-      <div className="next-module" />
-      <Footer />
+      <div className="next-module">
+        <Footer />
+      </div>
+      <ModalAcciones
+        folio={modalData.folio}
+        fecha_recepcion={modalData.fecha_Recepcion}
+        Correo={modalData.correoD}
+        show={showModal}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

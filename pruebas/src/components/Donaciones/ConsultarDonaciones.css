@@ -111,18 +111,16 @@
 .contenido-principal {
   display: flex;
   flex-direction: row;
-  gap: 20px; /* Espacio entre columnas */
+  gap: 20px;
   padding: 20px;
 }
 
 .columna-formulario {
   flex: 0 0 30%;
-  /* Alternativamente, puedes usar width: 30%; */
 }
 
 .columna-tabla {
   flex: 0 0 70%;
-  /* Alternativamente, puedes usar width: 70%; */
 }
 
 .input-field {
@@ -138,24 +136,54 @@ form label {
   margin-bottom: 10px;
 }
 
-/* Estilo general de la tabla */
+.contenido-principal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+}
+
+.columna-formulario {
+  flex: 0 0 25%;
+}
+
+.columna-tabla {
+  flex: 0 0 75%;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.tablaConsultDonaciones-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
 .tablaConsultDonaciones {
   width: 100%;
   border-collapse: collapse;
-  table-layout: auto; /* Permite que el ancho de las celdas se ajuste automáticamente */
+  table-layout: fixed; /* Permite anchos de columnas fijos */
 }
 
-/* Estilos para las celdas de la tabla */
 .tablaConsultDonaciones th, .tablaConsultDonaciones td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
   vertical-align: top;
-  word-wrap: break-word; /* Evita el desbordamiento del texto */
-  overflow: hidden; /* Oculta contenido que se desborda */
+  word-wrap: break-word;
 }
 
-/* Ajuste de columnas */
 .tablaConsultDonaciones th:nth-child(1), .tablaConsultDonaciones td:nth-child(1) {
   width: 130px;
 }
@@ -173,26 +201,13 @@ form label {
 }
 
 .tablaConsultDonaciones th:nth-child(5), .tablaConsultDonaciones td:nth-child(5) {
-  width: auto;
+  width: 600px;
 }
 
 .tablaConsultDonaciones th:last-child, .tablaConsultDonaciones td:last-child {
-  width: 130px; /* Ancho fijo para la última columna */
+  width: 130px;
 }
 
-/* Columna de detalles con espacio flexible */
-.tablaConsultDonaciones td.detalles {
-  flex-grow: 1;
-  width: auto;
-}
-
-/* Evitar desbordamiento de texto largo */
-.tablaConsultDonaciones td {
-  word-wrap: break-word;
-  max-width: 210px; /* Limita el tamaño de las celdas */
-}
-
-/* Estilos para la cabecera */
 .table-headerDonaiones {
   background-color: #38b2ac !important;
   color: white;
@@ -200,60 +215,24 @@ form label {
   text-align: left;
 }
 
-/* Barra de desplazamiento horizontal */
-.tablaConsultDonaciones-wrapper {
-  overflow-x: auto; /* Barra de desplazamiento horizontal si el contenido desborda */
-  -webkit-overflow-scrolling: touch; /* Desplazamiento suave en dispositivos táctiles */
-  width: 100%;
-}
-
-/* Media Query para pantallas más pequeñas */
+/* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
-  /* Ajusta el diseño de la tabla en pantallas pequeñas */
-  .tablaConsultDonaciones th, .tablaConsultDonaciones td {
-    padding: 6px; /* Menos padding en pantallas pequeñas */
+  .contenido-principal {
+    flex-direction: column;
   }
 
-  /* Hace que la tabla sea desplazable horizontalmente */
+  .columna-formulario,
+  .columna-tabla {
+    flex: 1 0 100%;
+  }
+
+  /* Evita cambios en el tamaño de los campos de la tabla */
   .tablaConsultDonaciones-wrapper {
-    overflow-x: scroll;
+    overflow-x: auto;
   }
 
-  .contenido-principal
-  {
-    flex-direction: column; /* Asegura que se apilen en dispositivos móviles */
-  }
-
-  /* Ajuste de las columnas para que se adapten mejor */
-  .tablaConsultDonaciones th:nth-child(1), .tablaConsultDonaciones td:nth-child(1),
-  .tablaConsultDonaciones th:nth-child(2), .tablaConsultDonaciones td:nth-child(2),
-  .tablaConsultDonaciones th:nth-child(3), .tablaConsultDonaciones td:nth-child(3),
-  .tablaConsultDonaciones th:nth-child(4), .tablaConsultDonaciones td:nth-child(4) {
-    width: auto; /* Las columnas se ajustan automáticamente */
-  }
-
-  .tablaConsultDonaciones td.detalles {
-    width: auto; /* Asegura que la columna de detalles ocupe el espacio restante */
-  }
-
-  /* En dispositivos pequeños, puedes mostrar los encabezados en lugar de las columnas */
-  .tablaConsultDonaciones th {
-    display: none;
-  }
-
-  .tablaConsultDonaciones td {
-    display: block;
-    width: 100%; /* Las celdas ocupan todo el ancho disponible */
-    text-align: right; /* Alineación de texto a la derecha para un mejor formato */
-    position: relative;
-  }
-
-  .tablaConsultDonaciones td::before {
-    content: attr(data-label); /* Muestra el nombre del encabezado como etiqueta */
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    font-weight: bold;
+  .tablaConsultDonaciones {
+    width: 800px; /* Ancho mínimo para mantener los tamaños de columnas */
   }
 }
 
@@ -264,4 +243,18 @@ form label {
 .btnOperaciones{
   background-color: #38b2ac;
   width: 100px;
+}
+
+.btnModal{
+  background-color: #38b2ac;
+  margin-top: -10px;
+}
+
+.modalText{
+  text-align: center;
+  padding-top: 30px;
+}
+
+.modalID{
+  text-align: center;
 }

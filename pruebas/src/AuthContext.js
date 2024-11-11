@@ -35,8 +35,8 @@ export const AuthProvider = ({ children }) => {
     // Configura un intervalo para verificar el tiempo de inactividad
     const interval = setInterval(() => {
       const currentTime = new Date().getTime();
-      // Si han pasado más de 10 minutos desde la última interacción, cierra sesión
-      if (currentTime - lastActivityTime > 600000) {
+      // Si han pasado más de 15 minutos desde la última interacción, cierra sesión
+      if (currentTime - lastActivityTime > 750000) {
         logout();
       }
     }, 1000);

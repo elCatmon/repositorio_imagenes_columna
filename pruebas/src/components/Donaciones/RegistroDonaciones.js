@@ -99,7 +99,7 @@ function FormularioEstudios() {
     console.log(nuevoRegistro.detallesEstudios);
   
     try {
-      const response = await fetch('http://192.168.100.5:8081/api/estudios', {
+      const response = await fetch('http://192.168.100.5:8080/api/estudios', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoRegistro),
