@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import './RegistroDonaciones.css';
+import { BASE_URL } from '../config/config';
 
 function FormularioEstudios() {
   const [tipoPersona, setTipoPersona] = useState('');
@@ -99,7 +100,7 @@ function FormularioEstudios() {
     console.log(nuevoRegistro.detallesEstudios);
   
     try {
-      const response = await fetch('http://192.168.100.5:8080/api/estudios', {
+      const response = await fetch(`${BASE_URL}/api/estudios`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoRegistro),

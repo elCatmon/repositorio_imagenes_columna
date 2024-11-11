@@ -3,6 +3,7 @@ import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import './ConsultarDonaciones.css';
 import ModalAcciones from './modalAcciones';
+import { BASE_URL } from '../config/config';
 
 function Estudios() {
   const [estudios, setEstudios] = useState([]);
@@ -16,10 +17,10 @@ function Estudios() {
   });
 
   const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState({ folio: '', fecha_Recepcion: '', correoD: ''});
+  const [modalData, setModalData] = useState({ folio: '', fecha_Recepcion: '', correoD: '' });
 
   const handleShowModal = (folio, fecha_Recepcion, correoD) => {
-    setModalData({ folio, fecha_Recepcion, correoD}); // Establece el folio, id y fechaRecepcion
+    setModalData({ folio, fecha_Recepcion, correoD }); // Establece el folio, id y fechaRecepcion
     console.log(folio, fecha_Recepcion, correoD)
     setShowModal(true); // Muestra el modal
   };
@@ -49,7 +50,7 @@ function Estudios() {
     if (filtros.FechaRecepcion) queryParams.append("FechaRecepcion", filtros.FechaRecepcion);
 
     try {
-      const response = await fetch(`http://192.168.100.5:8080/api/estudios/consulta?${queryParams.toString()}`);
+      const response = await fetch(`${BASE_URL}/api/estudios/consulta?${queryParams.toString()}`);
       if (!response.ok) throw new Error("Error en la solicitud");
 
       const contentType = response.headers.get("content-type");
@@ -150,6 +151,10 @@ function Estudios() {
                                 <li key={index}>
                                   <table>
                                     <tbody>
+                                      <tr>
+                                        <td><strong>ID:</strong></td>
+                                        <td>{detalle.id || 'No disponible'}</td>
+                                      </tr>
                                       <tr>
                                         <td><strong>Tipo de Estudio:</strong></td>
                                         <td>{detalle.tipoEstudio || 'No disponible'}</td>

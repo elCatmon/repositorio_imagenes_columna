@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './ConsultarDonaciones.css'
 import Modal from 'react-modal';
+import { BASE_URL } from '../config/config';
 
 const ModalAcciones = ({ folio, fecha_recepcion, Correo, show, onClose }) => {
 
     const handleSendEmail = () => {
         console.log(fecha_recepcion, Correo)
-        fetch("http://192.168.100.5:8080/api/estudios/confirmar-digitalizacion", {
+        fetch(`${BASE_URL}/api/estudios/confirmar-digitalizacion`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
