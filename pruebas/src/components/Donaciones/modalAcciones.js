@@ -57,7 +57,13 @@ const ModalAcciones = ({ folio, fecha_recepcion, Correo, show, onClose }) => {
             <div>
                 <p className='modalText'>Si el proceso de digitalizacion fue realizado</p>
                 <button className='btnModal' onClick={handleSendEmail}>
-                    Mandar Correo
+                    Enviar Correo
+                </button>
+            </div>
+            <div>
+                <p className='modalText'>Si los estudios ya han sido anonimizados</p>
+                <button className='btnModal' onClick={handleCancelDonation}>
+                    Enviar Correo
                 </button>
             </div>
             <div>
@@ -67,7 +73,7 @@ const ModalAcciones = ({ folio, fecha_recepcion, Correo, show, onClose }) => {
                 </button>
             </div>
             <div>
-                <div className="next-module">
+                <div>
                     <button className='btnModal' onClick={onClose} style={{ marginTop: '20px', padding: '10px' }}>
                         Cerrar
                     </button>

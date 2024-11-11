@@ -113,38 +113,11 @@
   flex-direction: row;
   gap: 20px;
   padding: 20px;
+  
 }
 
 .columna-formulario {
-  flex: 0 0 30%;
-}
-
-.columna-tabla {
-  flex: 0 0 70%;
-}
-
-.input-field {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-}
-
-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.contenido-principal {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  padding: 20px;
-}
-
-.columna-formulario {
-  flex: 0 0 25%;
+  flex: 0 0 20%;
 }
 
 .columna-tabla {
@@ -164,19 +137,54 @@ form label {
   margin-bottom: 10px;
 }
 
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
 .tablaConsultDonaciones-wrapper {
   overflow-x: auto;
+  overflow-y: hidden; /* Oculta el desplazamiento vertical del contenedor principal */
   -webkit-overflow-scrolling: touch;
   width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
 }
 
 .tablaConsultDonaciones {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Permite anchos de columnas fijos */
+  table-layout: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* La tabla ocupa todo el contenedor */
 }
 
-.tablaConsultDonaciones th, .tablaConsultDonaciones td {
+.tablaConsultDonaciones thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0; /* Evita que el encabezado cambie de tamaño */
+}
+
+.tablaConsultDonaciones tbody {
+  display: block;
+  overflow-y: auto;
+  height: 100%; /* Asegura que el tbody ocupe el espacio restante */
+  width: 100%;
+}
+
+.tablaConsultDonaciones th,
+.tablaConsultDonaciones td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -184,27 +192,33 @@ form label {
   word-wrap: break-word;
 }
 
-.tablaConsultDonaciones th:nth-child(1), .tablaConsultDonaciones td:nth-child(1) {
+.tablaConsultDonaciones th:nth-child(1),
+.tablaConsultDonaciones td:nth-child(1) {
   width: 130px;
 }
 
-.tablaConsultDonaciones th:nth-child(2), .tablaConsultDonaciones td:nth-child(2) {
+.tablaConsultDonaciones th:nth-child(2),
+.tablaConsultDonaciones td:nth-child(2) {
   width: 120px;
 }
 
-.tablaConsultDonaciones th:nth-child(3), .tablaConsultDonaciones td:nth-child(3) {
+.tablaConsultDonaciones th:nth-child(3),
+.tablaConsultDonaciones td:nth-child(3) {
   width: 120px;
 }
 
-.tablaConsultDonaciones th:nth-child(4), .tablaConsultDonaciones td:nth-child(4) {
+.tablaConsultDonaciones th:nth-child(4),
+.tablaConsultDonaciones td:nth-child(4) {
   width: 210px;
 }
 
-.tablaConsultDonaciones th:nth-child(5), .tablaConsultDonaciones td:nth-child(5) {
+.tablaConsultDonaciones th:nth-child(5),
+.tablaConsultDonaciones td:nth-child(5) {
   width: 600px;
 }
 
-.tablaConsultDonaciones th:last-child, .tablaConsultDonaciones td:last-child {
+.tablaConsultDonaciones th:last-child,
+.tablaConsultDonaciones td:last-child {
   width: 130px;
 }
 
@@ -215,7 +229,6 @@ form label {
   text-align: left;
 }
 
-/* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
   .contenido-principal {
     flex-direction: column;
@@ -226,7 +239,6 @@ form label {
     flex: 1 0 100%;
   }
 
-  /* Evita cambios en el tamaño de los campos de la tabla */
   .tablaConsultDonaciones-wrapper {
     overflow-x: auto;
   }

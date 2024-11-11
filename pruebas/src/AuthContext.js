@@ -14,11 +14,10 @@ export const AuthProvider = ({ children }) => {
     // Borra los datos de sesión y redirige a la página de inicio de sesión
     localStorage.removeItem('userID');
     localStorage.removeItem('role');
-    localStorage.removeItem('loginTime');
     setIsAuthenticated(false);
     setUserID(null);
     setRole(null);
-    navigate('/'); // Redirige a la página de login tras cerrar sesión
+    navigate('/login'); // Redirige a la página de login tras cerrar sesión
   }, [navigate]);
 
   useEffect(() => {
@@ -36,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     const interval = setInterval(() => {
       const currentTime = new Date().getTime();
       // Si han pasado más de 15 minutos desde la última interacción, cierra sesión
-      if (currentTime - lastActivityTime > 750000) {
+      if (currentTime - lastActivityTime > 900000) { // 15 minutos en milisegundos
         logout();
       }
     }, 1000);
@@ -52,29 +51,23 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Verifica la autenticación en el inicio de la aplicación
-    const loginTime = localStorage.getItem('loginTime');
-    const currentTime = new Date().getTime();
+    const userID = localStorage.getItem('userID');
+    const role = localStorage.getItem('role');
 
-    console.log('Verificando autenticación:', loginTime, currentTime);
-
-    // Si han pasado más de 10 minutos desde el inicio de sesión, cierra sesión
-    if (loginTime && currentTime - loginTime > 600000) {
-      logout();
-    } else if (loginTime) {
-      // Si el tiempo de sesión es válido, establece la autenticación
+    if (userID && role) {
+      // Si los datos de sesión son válidos, establece la autenticación
       setIsAuthenticated(true);
-      setUserID(localStorage.getItem('userID'));
-      setRole(localStorage.getItem('role'));
-      setLastActivityTime(currentTime); // Establece el tiempo de la última actividad al inicio
+      setUserID(userID);
+      setRole(role);
+      setLastActivityTime(new Date().getTime()); // Establece el tiempo de la última actividad al inicio
     }
-  }, [logout]);
+  }, []);
 
   const login = (id, userRole) => {
     // Guarda los datos en localStorage y actualiza el estado
     const currentTime = new Date().getTime();
     localStorage.setItem('userID', id);
     localStorage.setItem('role', userRole);
-    localStorage.setItem('loginTime', currentTime);
     setIsAuthenticated(true);
     setUserID(id);
     setRole(userRole);
