@@ -99,6 +99,15 @@ const MenuUsuarios = () => {
             </a>
           )}
 
+          {['interno', 'administrador', 'medico', 'consultor'].includes(role) && (
+            <a href="/visualizador" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+              <div className="qr-card">
+                <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-exchange-alt"></i> Transcripcion</p>
+                <p className="text-gray-500 mt-2"> Convertir diagnosticos de audio a texto</p>
+              </div>
+            </a>
+          )}
+
           {role === "administrador" && (
             <a href="/cambiarcontrasena" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
               <div className="qr-card">

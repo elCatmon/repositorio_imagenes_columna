@@ -42,13 +42,6 @@
     margin-right: 0; /* Eliminar el margen del último hijo */
 }
 
-/* Ocultar enlaces del navbar en pantallas pequeñas */
-@media (max-width: 768px) {
-    .navbar-right {
-        display: none; /* Ocultar enlaces en pantallas pequeñas */
-    }
-}
-
 /* Dropdown del menú en pantallas pequeñas */
 .menu-dropdown {
     display: none; /* Oculto por defecto */
@@ -77,11 +70,24 @@
 
 /* Media Queries para hacer el banner responsivo */
 @media (max-width: 768px) {
+    .navbar-right {
+        display: none; /* Ocultar enlaces en pantallas pequeñas */
+    }
     .menu-dropdown {
         display: flex; /* Mostrar menú desplegable */
     }
+    .logo {
+        display: none;
+    }
+    .logo2 {
+        display: none;
+    }
 }
 
-.logo1{
+.logo1 {
+    height: 65px;
+}
+
+.logo2 {
     height: 65px;
 }

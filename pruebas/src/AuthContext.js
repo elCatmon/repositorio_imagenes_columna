@@ -6,6 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userID, setUserID] = useState(null);
+  const [curp, setCurp] = useState(null)
   const [role, setRole] = useState(null);
   const [lastActivityTime, setLastActivityTime] = useState(new Date().getTime());
   const navigate = useNavigate();
@@ -13,9 +14,11 @@ export const AuthProvider = ({ children }) => {
   const logout = useCallback(() => {
     // Borra los datos de sesión y redirige a la página de inicio de sesión
     localStorage.removeItem('userID');
+    localStorage.removeItem('curp')
     localStorage.removeItem('role');
     setIsAuthenticated(false);
     setUserID(null);
+    setCurp(null)
     setRole(null);
     navigate('/login'); // Redirige a la página de login tras cerrar sesión
   }, [navigate]);
@@ -52,30 +55,34 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Verifica la autenticación en el inicio de la aplicación
     const userID = localStorage.getItem('userID');
+    const curp = localStorage.getItem('curp')
     const role = localStorage.getItem('role');
 
-    if (userID && role) {
+    if (userID && curp && role) {
       // Si los datos de sesión son válidos, establece la autenticación
       setIsAuthenticated(true);
       setUserID(userID);
+      setCurp(curp)
       setRole(role);
       setLastActivityTime(new Date().getTime()); // Establece el tiempo de la última actividad al inicio
     }
   }, []);
 
-  const login = (id, userRole) => {
+  const login = (id, Curp, userRole) => {
     // Guarda los datos en localStorage y actualiza el estado
     const currentTime = new Date().getTime();
     localStorage.setItem('userID', id);
+    localStorage.setItem('curp', Curp);
     localStorage.setItem('role', userRole);
     setIsAuthenticated(true);
     setUserID(id);
+    setCurp(Curp);
     setRole(userRole);
     setLastActivityTime(currentTime); // Inicia el tiempo de la última actividad al hacer login
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userID, role, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, userID, curp, role, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

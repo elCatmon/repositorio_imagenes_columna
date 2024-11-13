@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Para redireccionar
+import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../config/config';
 import Footer from '../assets/Footer';
 import Header from '../assets/Header';
 
 function Register() {
   const [name, setName] = useState('');
+  const [curp, setCurp] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Hook para redireccionar
+  const navigate = useNavigate();
 
-  // Función para manejar el registro
   const handleRegister = async (event) => {
-    event.preventDefault(); // Prevenir la recarga de la página
+    event.preventDefault();
 
-    // Validar el correo electrónico
     if (!isValidEmail(email)) {
       alert('Por favor, ingresa un correo electrónico válido.');
+      return;
+    }
+
+    if (!isValidCURP(curp)) {
+      alert('Por favor, ingresa un CURP válido.');
       return;
     }
 
@@ -28,21 +32,22 @@ function Register() {
         },
         body: JSON.stringify({
           nombre: name,
+          curp: curp,
           correo: email,
           contrasena: password,
         }),
       });
 
-      const text = await response.text(); // Obtener el texto de la respuesta para depuración
+      const text = await response.text();
       const contentType = response.headers.get('Content-Type');
 
       if (contentType && contentType.includes('application/json')) {
-        const data = JSON.parse(text); // Intentar analizar el JSON
+        const data = JSON.parse(text);
         if (response.ok) {
-          alert(data.message); // Mostrar mensaje de éxito del 
-          navigate('/menu')
+          alert(data.message);
+          navigate('/menu');
         } else {
-          alert(data.error || 'Error en la solicitud'); // Mostrar mensaje de error si existe
+          alert(data.error || 'Error en la solicitud');
         }
       } else {
         console.error('Respuesta del servidor no es JSON:', text);
@@ -54,10 +59,14 @@ function Register() {
     }
   };
 
-  // Función para validar el formato del correo electrónico
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  };
+
+  const isValidCURP = (curp) => {
+    const curpRegex = /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]{2}$/;
+    return curpRegex.test(curp);
   };
 
   return (
@@ -65,7 +74,6 @@ function Register() {
       <div className="next-module">
         <Header />
       </div>
-
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
         <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins' }}>
           Registrarse
@@ -74,24 +82,36 @@ function Register() {
           Introduce tus datos para registrarte
         </p>
       </header>
-
       <div className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', fontWeight: '900', fontFamily: 'Poppins', width: '80%', marginLeft: '0%' }}>
-
         <form onSubmit={handleRegister}>
-
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input type="text" id="form2Example1" className="form-control" value={name} onChange={(e) => setName(e.target.value)} required />
-            <label class="form-label" for="form2Example1">Nombre completo</label>
+          <div data-mdb-input-init className="form-outline mb-4">
+            <input type="text" id="nombre" className="form-control" value={name} onChange={(e) => setName(e.target.value)} required />
+            <label className="form-label" htmlFor="nombre">Nombre completo</label>
           </div>
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input type="email" id="form2Example2" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <label className="form-label" for="form2Example1">Correo electrónico</label>
+          <div data-mdb-input-init className="form-outline mb-4">
+            <input type="text" id="curp" className="form-control" value={curp} onChange={(e) => setCurp(e.target.value)} required maxLength={18}/>
+            <label className="form-label" htmlFor="curp">CURP</label>
           </div>
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input type="password" id="form2Example3" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            <label className="form-label" for="form2Example1">Contraseña</label>
+          <div data-mdb-input-init className="form-outline mb-4">
+            <input type="email" id="correo" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <label className="form-label" htmlFor="correo">Correo electrónico</label>
           </div>
-          <button type="submit" data-mdb-button-init data-mdb-ripple-init style={{ width: '50%', marginLeft: '25%', backgroundColor: '#666666', color: '#ffffff' }} className="btn btn-block mb-4">Registrarse</button>
+          <div data-mdb-input-init className="form-outline mb-4">
+            <input type="password" id="contrasena" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <label className="form-label" htmlFor="contrasena">Contraseña</label>
+          </div>
+          <button type="submit" style={{ width: '50%', marginLeft: '25%', backgroundColor: '#666666', color: '#ffffff' }} className="btn btn-block mb-4">Registrarse</button>
+          <div class="text-center">
+              <p>Al crear tu cuenta aceptas que has leído y aceptado nuestros
+                <a href="/documentos/TERMINOS_CONDICIONES.pdf" target="_blank" rel="noopener noreferrer" aria-label="Términos y Condiciones">
+                  Términos y Condiciones
+                </a>
+                y has leído nuestro
+                <a href="/documentos/AVISO_PRIVACIDAD.pdf" target="_blank" rel="noopener noreferrer" aria-label="Aviso de Privacidad">
+                  Aviso de Privacidad
+                </a>.
+              </p>
+            </div>
         </form>
       </div>
       <Footer />

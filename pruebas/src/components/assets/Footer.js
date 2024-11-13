@@ -9,15 +9,19 @@ const Footer = () => {
           <ul>
             <li><a href="/nosotros">Nosotros</a></li>
             <li><a href="/menu">Servicios</a></li>
-            <li><a href="#">Políticas de privacidad</a></li>
+            <li><a href="/documentos/AVISO_PRIVACIDAD.pdf" target="_blank" rel="noopener noreferrer">Políticas de privacidad</a></li>
             <li><a href="#">Programas de afiliación</a></li>
           </ul>
         </div>
         <div class="footer-section">
-          <h4>Asociados</h4>
+          <h4>Legales</h4>
           <ul>
-            <li><a href="#">Asociado 1</a></li>
-            <li><a href="#">Asociado 2</a></li>
+            <li><a href="/documentos/TERMINOS_CONDICIONES.pdf" target="_blank" rel="noopener noreferrer" aria-label="Términos y Condiciones">
+                   Términos y Condiciones
+                </a></li>
+            <li><a href="/documentos/AVISO_PRIVACIDAD.pdf" target="_blank" rel="noopener noreferrer" aria-label="Aviso de Privacidad">
+                  Aviso de Privacidad
+                </a></li>
             <li><a href="#">Asociado 3</a></li>
             <li><a href="#">Asociado 4</a></li>
           </ul>

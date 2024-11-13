@@ -43,6 +43,11 @@ function Estudios() {
     setLoading(true);
     setError(null);
 
+    if (!isValidCURP(filtros.curp)) {
+      alert('Por favor, ingresa un CURP válido.');
+      return;
+    }
+
     const queryParams = new URLSearchParams();
     if (filtros.folio) queryParams.append("folio", filtros.folio);
     if (filtros.correo) queryParams.append("correo", filtros.correo);
@@ -63,6 +68,11 @@ function Estudios() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const isValidCURP = (curp) => {
+    const curpRegex = /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]{2}$/;
+    return curpRegex.test(curp);
   };
 
   return (

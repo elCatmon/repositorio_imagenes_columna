@@ -38,7 +38,7 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/editor" element={<Editor />} />
           <Route path="/menu" element={<MenuAcceso />} />
-          <Route path="/convertidor" element={<Servicios/>}/>
+          <Route path="/convertidor" element={<Servicios />} />
           <Route path="/visualizadordicom" element={<Visualizador />} />
           <Route element={<PrivateRoute />} >
             <Route path="/visualizador" element={<VisualizerPage />} />

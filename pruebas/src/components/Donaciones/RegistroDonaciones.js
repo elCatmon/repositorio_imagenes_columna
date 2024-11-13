@@ -71,33 +71,34 @@ function FormularioEstudios() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isValidCURP(datosPersona.curp)) {
+      alert('Por favor, ingresa un CURP válido.');
+      return;
+    }
   
     const folio = Math.floor(Math.random() * 1e11).toString().padStart(12, '0');
     const fechaRecepcion = new Date().toISOString();
-    const fechaDevolucion = calcularFechaPrestamo();
+  
+    const estudiosConDonacionesYObservaciones = datosEstudios.map(estudio => ({
+      tipoEstudio: estudio.tipoEstudio,
+      cantidadImagenes: parseInt(estudio.cantidadImagenes, 10),
+      esDonacion: estudio.esDonacion,
+      observaciones: estudio.observaciones,
+      fechaDevolucion: estudio.esDonacion ? '' : calcularFechaPrestamo() // Enviar vacío si es donación
+    }));
   
     const tiposDeEstudioConcatenados = datosEstudios.map(estudio => estudio.tipoEstudio).join(', ');
     const totalCantidadImagenes = datosEstudios.reduce((total, estudio) => total + estudio.cantidadImagenes, 0);
-    const estudiosConDonacionesYObservaciones = datosEstudios.map(estudio => ({
-      tipoEstudio: estudio.tipoEstudio,
-      cantidadImagenes: parseInt(estudio.cantidadImagenes, 10),  // Convertir a número
-      esDonacion: estudio.esDonacion,
-      observaciones: estudio.observaciones
-    }));
   
     const nuevoRegistro = {
       folio,
       fechaRecepcion,
-      fechaDevolucion,
       ...datosPersona,
       estudios: tiposDeEstudioConcatenados,
       cantidadTotalImagenes: totalCantidadImagenes,
       detallesEstudios: estudiosConDonacionesYObservaciones,
     };
-  
-    console.log(nuevoRegistro.estudios);
-    console.log(nuevoRegistro.cantidadTotalImagenes);
-    console.log(nuevoRegistro.detallesEstudios);
   
     try {
       const response = await fetch(`${BASE_URL}/api/estudios`, {
@@ -130,6 +131,11 @@ function FormularioEstudios() {
     if (!date) return '-';
     const d = new Date(date);
     return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+  };
+
+  const isValidCURP = (curp) => {
+    const curpRegex = /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]{2}$/;
+    return curpRegex.test(curp);
   };
 
   return (
