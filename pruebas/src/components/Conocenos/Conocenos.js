@@ -15,43 +15,32 @@ const Conocenos = () => {
     dots: true,
     arrows: true,
     infinite: true,
-    speed: 1000,
+    speed: 700,
     slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     centerMode: true,
     centerPadding: "40px",
-    variableWidth: false,
     autoplay: true,
     autoplaySpeed: 2500,
     pauseOnHover: true,
     responsive: [
       {
-        breakpoint: 1200, // Pantallas grandes
+        breakpoint: 1000,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
           centerPadding: "20px",
         }
       },
       {
-        breakpoint: 768, // Tablets
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
           centerPadding: "10px",
-        }
-      },
-      {
-        breakpoint: 480, // Móviles
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerPadding: "0px",
-          dots: false, // Opcionalmente oculta los puntos en pantallas pequeñas
         }
       }
     ]
   };
+
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
@@ -60,24 +49,31 @@ const Conocenos = () => {
       <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 45 }}>
         Conócenos
       </h1>
-      <main className="main-carousel-container  mx-auto py-10">
+      <main>
         <div>
           <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
             ¿Quiénes somos?
           </h1>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            margin: '20px 0'
-          }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', margin: '20px 0' }}>
             <Video />
           </div>
         </div>
-        <div className="next-module" />
+        <div class="contenedorConocenos">
+          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
+            Misión
+          </h2>
+          <p>Nuestra misión es SI</p>
+          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
+            Vision
+          </h2>
+          <p>Nuestra visión es SI</p>
+          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
+            Valores
+          </h2>
+          <p>Nuestros valores son SIs</p>
+        </div>
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins', fontSize: 30 }}>Lideres del proyecto</h1>
-        <div>
+        <div className="carousel-container">
           <Slider {...settings}>
             <InfoCard
               image="/imagenes/oscar.jpeg"
@@ -98,7 +94,7 @@ const Conocenos = () => {
               description="Realizó estudios de Ingeniería en Sistemas Computacionales en el Instituto Tecnológico de San Luis Potosí, México. Tiene Maestría en Computación con especialidad en Redes y Conectividad por la Universidad de Colima, México. Es Doctora en Ciencias por la Universidad Autónoma de Baja California Campus Mexicali, México. Realizó una estancia posdoctoral en el Centro de Investigación y Desarrollo de Tecnología Digital del Instituto Politécnico Nacional (CITEDI-IPN) en Tijuana, México. Recientemente, realizó un diplomado en Inteligencia Artificial Aplicada en el IPICYT y Pertenece al Sistema Nacional de Investigadores (SNI) de CONAHCYT en el nivel 1. Es miembro de la Academia Mexicana de Computación (AMEXCOMP), la Sociedad Mexicana de Investigación de Operaciones (SMIO) y la Red Temática de Inteligencia Computacional Aplicada (RedICA) de CONAHCYT. Sus líneas de interés son algoritmos bio-inspirados y optimización. Actualmente es Profesora Investigadora Titular “C” en la Universidad Politécnica de Pachuca. Pertenece a los núcleos básicos de la Maestría en TIC y del Doctorado en Ciencias y Tecnologías Avanzadas. Es miembro del Cuerpo Académico Cómputo Suave y Analítica de Datos."
             />
             <InfoCard
-              image="/imagenes/tania.jpg"
+              image="/imagenes/tania.jpeg"
               name="Dra. Tania Inés Aparicio Monroy"
               title="Área Médica"
               description="Nacida en Poza Rica de Hidalgo Veracruz en 1969, recibiendo la educación básica en el Estado de Puebla y la educación superior en el Estado de Hidalgo, es graduada como Médico cirujano por la Universidad Autónoma del Estado de Hidalgo en 1994. Ha tenido la oportunidad de ejercer la medicina asistencial y quirúrgica desde la iniciativa privada y pública. Inició desde 1996 el ejercer de la docencia en el nivel de educación medio superior, impartiendo asignaturas de ciencias de la salud. Posteriormente en el año 2000 laboró en la Secretaría de Salud del Estado de Tabasco, en la Dirección de Atención Médica como supervisor médico en área normativa y colaboró de manera interinstitucional con instituciones filantrópicas como “I Care Internacional y el grupo Rotario Tabasco”, fue nombrada miembro Honorario por organizar campañas en pro de la salud visual. Desde el año 2005 radica en la ciudad de Pachuca de Soto Hidalgo, colaboró en el Hospital Obstétrico donde junto con el Médico especialista en Genética Rogelio Edmundo Méndez Llaca, para la creación del Departamento de Genética con un proyecto llamado “Clínica de cuidados preconcepciones”. A partir del año 2007 se desempeñó como docente de tiempo completo en la Universidad Politécnica de Pachuca, donde tuve la oportunidad de dar inicio a la inserción de la Lic. en Terapia Física, colaborando con el diseño del mapa curricular, así como la creación y revisión de los temarios de asignatura, así mismo recibió el curso de Equinoterapia dentro de la misma Institución educativa. En el año 2008 desarrolló un proyecto para la apertura de la Clínica Universitaria de Rehabilitación y hasta la actualidad funciona otorgando servicio asistencial a la comunidad de Zempoala, Hidalgo y lugares de afluencia de pacientes con diferentes tipos de discapacidad (motriz, visual, auditiva, de lenguaje o cognitiva), incluyendo a todos los grupos etarios. Como docente de tiempo completo he impartido clases en la Lic. de Terapia Física, Lic. En Médico Cirujano y la Ingeniería Biomédica. Como Médico cirujano las asignaturas que ha tenido la oportunidad de impartir son, anatomía del sistema musculo esquelético, anatomía de aparatos y sistemas, neuroanatomía, fisiología, neurofisiología, atención pre hospitalaria, farmacología, Imagenología, Histología, Patología, neuropatología, salud Publica, salud Laboral, legislación en salud. En el año 2019, estuvo a cargo del Servicio de Atención y Promoción a la Salud. Ha organizado Ferias de la Salud para los distintos programas educativos, atendiendo una población de cinco mil estudiantes, con enfoque en la medicina preventiva y promoción a la salud principalmente, así como medicina asistencial de urgencias y dando seguimiento a los diferentes programas de salud, como Diabetes Mellitus, Hipertensión, vacunación control de natalidad mediante uso de los diferentes métodos anticonceptivos. Ha recibido clases de dibujo y pintura por parte de la Casa de Cultura de Playas de Tijuana, modalidad virtual, como una estrategia de enseñanza a sus estudiantes en cuanto a la morfología en la anatomía macroscópica y microscópica, que al dar la clase vayan dibujando y haciendo trazos de células, tejidos, y músculos y órganos que componen al cuerpo humano. También ha participado con la Sociedad Mexicana de Histología y de Anatomía, con el objetivo de mantenerse a la vanguardia en los avances en cuanto a estas asignaturas y las estrategias de enseñanza. Realiza apoyos de manera filantrópica a la Fundación Hidalguense de Craneosinostosis México Asociación Civil, elaborando propuestas que puedan ser presentadas ante el Congreso del Estado, en la Cámara de Diputados a fin de mejorar el diagnóstico temprano en este tipo de pacientes y algunas otras enfermedades genéticas que conforman el grupo de las llamadas enfermedades raras. Actualmente recibe de manera virtual un Diplomado por parte del Instituto Mexicano de la Propiedad Industrial a través de la Universidad Autónoma del Estado de México."
@@ -113,7 +109,7 @@ const Conocenos = () => {
         </div>
         <div className="next-module" />
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>Nuestro equipo</h1>
-        <div>
+        <div className="carousel-container">
           <Slider {...settings}>
             <InfoCard
               image="/imagenes/cesar.jpeg"
@@ -122,14 +118,14 @@ const Conocenos = () => {
               description="Actualmente soy estudiante de Ingeniería en Software en la Universidad Politécnica de Pachuca y Técnico en Programación, egresado del Centro de Bachillerato Tecnológico Industrial y de Servicios No. 8. A lo largo de mi carrera, he trabajado en proyectos como desarrollador fullstack, especializándome en arquitecturas de software (SOA, cliente-servidor), diseño de bases de datos relacionales (SQL) y no relacionales (NoSQL), optimización de procesos y estandarización. Entre los proyectos destacados, participé en el desarrollo de la biblioteca digital mexicana de datos, donde diseñé y desarrollé tanto el web service como la página web. También colaboré en un proyecto de redes de comunicación con drones, implementando la interfaz de usuario, y desarrollé sistemas de punto de venta personalizados, optimizando procesos y aumentando la eficiencia para diferentes negocios. En otro proyecto, contribuí a la implementación y mantenimiento de una base de datos escolar, asegurando la integridad y disponibilidad de la información. Además, tengo un gran interés en el análisis de datos y la inteligencia artificial. Fuera del ámbito académico y profesional, disfruto explorando nuevas tecnologías y actividades como la fotografía, lo que me mantiene en constante aprendizaje."
             />
             <InfoCard
-              image="/imagenes/dieter.jpeg"
-              name="Al Dieter Valderrabano Garcia"
-              title="Ingenieria en Biomedica"
-              description="" />
-            <InfoCard
               image="/imagenes/rodrigo.jpeg"
               name="Rodrigo Efren Tellez Guerrero"
               title="Ingenieria en Telematica"
+              description="" />
+            <InfoCard
+              image="/imagenes/dieter.jpeg"
+              name="Al Dieter Valderrabano Garcia"
+              title="Ingenieria en Biomedica"
               description="" />
             <InfoCard
               image="/imagenes/miguel.jpeg"
@@ -151,3 +147,4 @@ const Conocenos = () => {
 };
 
 export default Conocenos;
+

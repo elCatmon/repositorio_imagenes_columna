@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'; // Importar useEffect
-import JSZip from 'jszip'; 
-import { useNavigate } from 'react-router-dom'; 
+import JSZip from 'jszip';
+import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../config/config';
-import * as dicomParser from 'dicom-parser'; 
+import * as dicomParser from 'dicom-parser';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
-import './Donaciones.css'; 
+import './Donaciones.css';
 
 const Donaciones = () => {
   const navigate = useNavigate();
@@ -18,19 +18,19 @@ const Donaciones = () => {
   // useEffect para cambiar el mensaje después de 10 segundos
   useEffect(() => {
     let timer1, timer2;
-  
+
     if (uploading) {
       // Primer temporizador: cambiar el mensaje después de 10 segundos
       timer1 = setTimeout(() => {
         setLoadingMessage('Esto está tardando más de lo esperado, por favor espere...');
-  
+
         // Segundo temporizador: cambiar el mensaje después de 20 segundos adicionales (30 segundos en total)
         timer2 = setTimeout(() => {
           setLoadingMessage('El tiempo de subida y procesamiento depende de la cantidad de archivos, por favor espera...');
         }, 20000); // 20 segundos adicionales
       }, 10000); // 10 segundos iniciales
     }
-  
+
     // Limpiar ambos temporizadores cuando el componente se desmonte
     return () => {
       clearTimeout(timer1);
@@ -94,13 +94,13 @@ const Donaciones = () => {
       const uint8Array = new Uint8Array(arrayBuffer);
       const dataSet = dicomParser.parseDicom(uint8Array);
 
-      const ageString = dataSet.string('x00101010'); 
+      const ageString = dataSet.string('x00101010');
       const age = ageString ? parseInt(ageString) : 'No disponible';
 
-      const sex = dataSet.string('x00100040'); 
-      const region = dataSet.string('x00181020'); 
+      const sex = dataSet.string('x00100040');
+      const region = dataSet.string('x00181020');
 
-      const dateStr = dataSet.string('x00080022'); 
+      const dateStr = dataSet.string('x00080022');
       const date = dateStr ? formatDate(dateStr) : 'No disponible';
 
       return { age, sex, region, date };
@@ -126,18 +126,22 @@ const Donaciones = () => {
       alert('Por favor, seleccione un tipo de estudio.');
       return;
     }
-  
+
     if (selectedFiles.length === 0) {
       alert('No hay archivos seleccionados para subir.');
       return;
     }
-  
+
     const formData = new FormData();
     selectedFiles.forEach(({ file }) => {
       formData.append('files', file);
     });
+    const donador = ("D" + Math.floor(Math.random() * 1e11).toString().padStart(11, '0'));
+    const estudioid = Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
+    formData.append('estudioID', estudioid)
     formData.append('tipoEstudio', tipoEstudio);
-  
+    formData.append('donador', donador)
+
     try {
       setUploading(true);
       setLoadingMessage('Por favor espera, se están cargando tus archivos, este proceso podría tardar un poco...');
@@ -145,10 +149,10 @@ const Donaciones = () => {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json', 
+          'Accept': 'application/json',
         },
       });
-  
+
       if (response.ok) {
         alert('Archivos subidos exitosamente.');
         setSelectedFiles([]);
@@ -166,16 +170,16 @@ const Donaciones = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily:'Poppins'}}>
-        <div className="next-module">
-        <Header/>
-        </div>
+    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily: 'Poppins' }}>
+      <div className="next-module">
+        <Header />
+      </div>
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
-        <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily:'Poppins' }}>
-           Donación de archivos
+        <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins' }}>
+          Donación de archivos
         </h1>
-        <p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize:'20px', fontFamily:'Poppins' }}>
-           Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
+        <p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize: '20px', fontFamily: 'Poppins' }}>
+          Elige el tipo de estudio y los archivos correspondientes para realizar tu donación
         </p>
       </header>
       <div className="donaciones-left" onContextMenu={(e) => e.preventDefault()}>
@@ -210,6 +214,18 @@ const Donaciones = () => {
         >
           {uploading ? 'Subiendo...' : 'Subir Archivos'}
         </button>
+
+        <div class="text-center">
+          <p>Al subir tus archivos aceptas que has leído nuestro
+            <a href="/documentos/AVISO_PRIVACIDAD.pdf" target="_blank" rel="noopener noreferrer" aria-label="Términos y Condiciones">
+              Aviso de Privacidad
+            </a>
+            y has aceptado nuestros
+            <a href="/documentos/TERMINOS_CONDICIONES.pdf" target="_blank" rel="noopener noreferrer" aria-label="Aviso de Privacidad">
+              Términos y Condiciones
+            </a>.
+          </p>
+        </div>
 
         {loadingMessage && <p className="loading-message">{loadingMessage}</p>} {/* Mostrar mensaje de carga */}
         {error && <p className="error-message">{error}</p>}
@@ -253,6 +269,7 @@ const Donaciones = () => {
           <p>No hay archivos seleccionados.</p>
         )}
       </div>
+      <div className='next-module' />
       <Footer />
     </div>
   );

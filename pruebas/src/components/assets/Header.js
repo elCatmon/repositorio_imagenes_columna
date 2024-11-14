@@ -26,6 +26,7 @@ function Header() {
           </button>
           <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo1" onContextMenu={(e) => e.preventDefault()}/>
           <img src="/imagenes/logo_upp.png" alt="Logo BDMDM" className="logo" onContextMenu={(e) => e.preventDefault()}/>
+          <img src="/imagenes/logo_citedi.png" alt="Logo BDMDM" className="logo2" onContextMenu={(e) => e.preventDefault()}/>
         </div>
 
         {/* Mostrar enlaces solo en pantallas grandes */}

@@ -77,9 +77,6 @@ const Nosotros = () => {
       <Footer />
     </div>
 
-
-
-
   );
 }
 

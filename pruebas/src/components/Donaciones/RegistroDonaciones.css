@@ -47,6 +47,17 @@ textarea {
     background-color: #38b2ac; /* Color de fondo para encabezados */
 }
 
+.submit-button {
+    background-color: #38b2ac;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
     .container {

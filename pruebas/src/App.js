@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './AuthContext'; // Importa el AuthProvider
+import { AuthProvider } from './AuthContext';
 import Conocenos from './components/Conocenos/Conocenos';
 import Contacto from './components/Contacto/Contacto';
 import Nosotros from './components/Nosotros/Nosotros';
@@ -20,8 +20,9 @@ import Muestra from './components/dataset/datasetFijo';
 import FormDonacion from './components/Donaciones/RegistroDonaciones';
 import Editor from './components/Editor/Editor';
 import TablaDonaciones from './components/Donaciones/ConsultarDonaciones';
-import PrivateRoute from './PrivateRoute'; // Importa el componente
+import PrivateRoute from './PrivateRoute';
 import Servicios from './components/Servicios/Sevicios'
+import Visualizador from './components/Visualizador/VisualizadorPublico'
 
 function App() {
   return (
@@ -35,10 +36,10 @@ function App() {
           <Route path="/conocenos" element={<Conocenos />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/cambiarcontrasena" element={<ChangePassword />} />
           <Route path="/editor" element={<Editor />} />
           <Route path="/menu" element={<MenuAcceso />} />
-          <Route path="/servicios" element={<Servicios/>}/>
+          <Route path="/convertidor" element={<Servicios />} />
+          <Route path="/visualizadordicom" element={<Visualizador />} />
           <Route element={<PrivateRoute />} >
             <Route path="/visualizador" element={<VisualizerPage />} />
             <Route path="/importar" element={<Importar />} />
@@ -48,6 +49,7 @@ function App() {
             <Route path="/muestra" element={<Muestra />} />
             <Route path="/formulariodonacion" element={<FormDonacion />} />
             <Route path="/consultardonaciones" element={<TablaDonaciones />} />
+            <Route path="/cambiarcontrasena" element={<ChangePassword />} />
           </Route>
         </Routes>
       </AuthProvider>

@@ -11,7 +11,7 @@ const Importar = () => {
   const [formData, setFormData] = useState({
     tipoEstudio: '',
     region: "",
-    donador: '',
+    folio: '',
     edad: '',
     sexo: '',
     archivosAnonimizados: [],
@@ -58,10 +58,10 @@ const Importar = () => {
   };
 
   const validateForm = () => {
-    const { tipoEstudio, donador, archivosOriginales } = formData;
+    const { tipoEstudio, folio, archivosOriginales } = formData;
     
     // Verifica si los campos principales están completos
-    if (!tipoEstudio || !donador || archivosOriginales.length === 0) {
+    if (!tipoEstudio || !folio || archivosOriginales.length === 0) {
       setError('Por favor complete todos los campos requeridos y seleccione al menos un archivo.');
       return false;
     }
@@ -83,7 +83,7 @@ const Importar = () => {
 
     const formDataToSend = new FormData();
     formDataToSend.append('estudio_ID', noOperacion);
-    formDataToSend.append('donador', formData.donador);
+    formDataToSend.append('folio', formData.folio);
     formDataToSend.append('estudio', formData.tipoEstudio);
     formDataToSend.append('region', formData.region);
     formDataToSend.append('sexo', formData.sexo);
@@ -120,7 +120,7 @@ const Importar = () => {
       const nuevoRegistro = {
         miniaturas,
         noOperacion,
-        donador: formData.donador,
+        folio: formData.folio,
         fecha: formData.fechaEstudio,
         tipoEstudio: formData.tipoEstudio,
         numeroArchivos: formData.archivosOriginales.length
@@ -130,7 +130,7 @@ const Importar = () => {
       // Limpia el formulario y los inputs de archivos
       setFormData({
         tipoEstudio: '',
-        donador: '',
+        folio: '',
         region: '',
         edad: '',
         sexo: '',
@@ -163,6 +163,19 @@ const Importar = () => {
       <div className="form-section">
         <h2>Formulario de Importación</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
+          {/* Folio */}
+          <div className="form-group">
+            <label>Folio:</label>
+            <input
+              type="text"
+              name="folio"
+              value={formData.folio}
+              onChange={handleChange}
+              maxLength={12}
+              required
+            />
+          </div>
+
           {/* Tipo de estudio */}
           <div className="form-group">
             <label>Tipo de estudio:</label>
@@ -220,19 +233,6 @@ const Importar = () => {
             <option value="22">Tobillo</option>
             <option value="23">Pie</option>
             </select>
-          </div>
-          
-
-          {/* Donador */}
-          <div className="form-group">
-            <label>Donador:</label>
-            <input
-              type="text"
-              name="donador"
-              value={formData.donador}
-              onChange={handleChange}
-              required
-            />
           </div>
 
           {/* Edad */}
@@ -303,7 +303,7 @@ const Importar = () => {
             <tr>
               <th>Miniatura</th>
               <th>No. Operación</th>
-              <th>Donador</th>
+              <th>Folio</th>
               <th>Tipo de Estudio</th>
               <th>Número de Archivos</th>
             </tr>
@@ -317,7 +317,7 @@ const Importar = () => {
                   ))}
                 </td>
                 <td>{dato.noOperacion}</td>
-                <td>{dato.donador}</td>
+                <td>{dato.folio}</td>
                 <td>{dato.tipoEstudio}</td>
                 <td>{dato.numeroArchivos}</td>
               </tr>

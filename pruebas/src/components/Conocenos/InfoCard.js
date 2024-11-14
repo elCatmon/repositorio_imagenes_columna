@@ -19,7 +19,6 @@ const InfoCard = ({ image, name,title, description }) => {
       <h3 className="info-card-title">{title}</h3>
       </div>
 
-      {/* Modal */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -28,9 +27,11 @@ const InfoCard = ({ image, name,title, description }) => {
           content: {
             width: '80%',
             maxWidth: '500px',
+            maxHeight: '600px',
             margin: 'auto',
             padding: '20px',
             borderRadius: '8px',
+            zIndex: 1000,
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.7)',

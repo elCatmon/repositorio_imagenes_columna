@@ -105,3 +105,168 @@
         display: flex; /* Mostrar menú desplegable */
     }
 }
+
+/* Estudios.css */
+
+.contenido-principal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  
+}
+
+.columna-formulario {
+  flex: 0 0 20%;
+}
+
+.columna-tabla {
+  flex: 0 0 75%;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.tablaConsultDonaciones-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden; /* Oculta el desplazamiento vertical del contenedor principal */
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tablaConsultDonaciones {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* La tabla ocupa todo el contenedor */
+}
+
+.tablaConsultDonaciones thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  flex-shrink: 0; /* Evita que el encabezado cambie de tamaño */
+}
+
+.tablaConsultDonaciones tbody {
+  display: block;
+  overflow-y: auto;
+  height: 100%; /* Asegura que el tbody ocupe el espacio restante */
+  width: 100%;
+}
+
+.tablaConsultDonaciones th,
+.tablaConsultDonaciones td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
+.tablaConsultDonaciones th:nth-child(1),
+.tablaConsultDonaciones td:nth-child(1) {
+  width: 130px;
+}
+
+.tablaConsultDonaciones th:nth-child(2),
+.tablaConsultDonaciones td:nth-child(2) {
+  width: 120px;
+}
+
+.tablaConsultDonaciones th:nth-child(3),
+.tablaConsultDonaciones td:nth-child(3) {
+  width: 120px;
+}
+
+.tablaConsultDonaciones th:nth-child(4),
+.tablaConsultDonaciones td:nth-child(4) {
+  width: 210px;
+}
+
+.tablaConsultDonaciones th:nth-child(5),
+.tablaConsultDonaciones td:nth-child(5) {
+  width: 600px;
+}
+
+.tablaConsultDonaciones th:last-child,
+.tablaConsultDonaciones td:last-child {
+  width: 130px;
+}
+
+.table-headerDonaiones {
+  background-color: #38b2ac !important;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .contenido-principal {
+    flex-direction: column;
+  }
+
+  .columna-formulario,
+  .columna-tabla {
+    flex: 1 0 100%;
+  }
+
+  .tablaConsultDonaciones-wrapper {
+    overflow-x: auto;
+  }
+
+  .tablaConsultDonaciones {
+    width: 800px; /* Ancho mínimo para mantener los tamaños de columnas */
+  }
+}
+
+.btnBuscarDoancion{
+  background-color: #38b2ac;
+}
+
+.btnOperaciones{
+  background-color: #38b2ac;
+  width: 100px;
+}
+
+.btnModal{
+  background-color: #38b2ac;
+  margin-top: -10px;
+}
+
+.modalText{
+  text-align: center;
+  padding-top: 30px;
+}
+
+.modalID{
+  text-align: center;
+}
