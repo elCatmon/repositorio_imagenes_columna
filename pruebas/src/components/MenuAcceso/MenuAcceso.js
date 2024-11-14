@@ -99,7 +99,7 @@ const MenuUsuarios = () => {
             </a>
           )}
 
-          {['interno', 'administrador', 'medico', 'consultor'].includes(role) && (
+          {['interno', 'administrador', 'medico'].includes(role) && (
             <a href="/visualizador" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
               <div className="qr-card">
                 <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-exchange-alt"></i> Transcripcion</p>
@@ -108,7 +108,7 @@ const MenuUsuarios = () => {
             </a>
           )}
 
-          {role === "administrador" && (
+          {role && (
             <a href="/cambiarcontrasena" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
               <div className="qr-card">
                 <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Cambiar contraseña</p>
