@@ -24,10 +24,7 @@ function PaginaInicio() {
           <div className='cardHome'  >
             
             <img src="/imagenes/logo_upp.png" alt="Logo UPP" className="logoupp"  onContextMenu={(e) => e.preventDefault()}/>
-
             <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logocitedi" onContextMenu={(e) => e.preventDefault()}/>
-
-            <img src="/imagenes/imssBienestar.png" alt="Logo IMSS-Bienestar" className="logoimss" onContextMenu={(e) => e.preventDefault()}/>
 
           </div>
         </div>

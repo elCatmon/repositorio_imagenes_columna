@@ -51,26 +51,6 @@ const Conocenos = () => {
       </h1>
       <main>
         <div>
-          <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
-            ¿Quiénes somos?
-          </h1>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', margin: '20px 0' }}>
-            <Video />
-          </div>
-        </div>
-        <div class="contenedorConocenos">
-          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
-            Misión
-          </h2>
-          <p>Nuestra misión es SI</p>
-          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
-            Vision
-          </h2>
-          <p>Nuestra visión es SI</p>
-          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
-            Valores
-          </h2>
-          <p>Nuestros valores son SIs</p>
         </div>
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins', fontSize: 30 }}>Lideres del proyecto</h1>
         <div className="carousel-container">
