@@ -113,8 +113,8 @@ const Conocenos = () => {
               title="Ingenieria en Biomedica"
               description="" />
             <InfoCard
-              image="/imagenes/gener.jpeg"
-              name="Aris"
+              image="/imagenes/ariana.jpeg"
+              name="Ariana Calvo Velasco"
               title="Ingenieria en Biomedica"
               description="" />
           </Slider>

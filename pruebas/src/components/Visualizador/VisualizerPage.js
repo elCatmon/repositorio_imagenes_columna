@@ -42,6 +42,7 @@ function VisualizerPage() {
           )}
         </div>
       </div>
+      <div className="next-module"/>
       <Footer />
     </div>
   );

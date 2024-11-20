@@ -37,11 +37,12 @@ function Login() {
         const currentTime = new Date().getTime(); // Obtiene el tiempo actual en milisegundos
         localStorage.setItem('userID', data.id); // Almacena el ID del usuario
         localStorage.setItem('curp', data.curp);
+        localStorage.setItem('nombre', data.nombre);
         localStorage.setItem('role', data.rol); // Almacena el rol del usuario
         localStorage.setItem('loginTime', currentTime); // Almacena el tiempo de inicio de sesión
 
         // Llama a la función de login del contexto con los parámetros
-        login(data.id, data.curp, data.rol);
+        login(data.id, data.curp, data.rol, data.nombre);
         navigate('/menu');
       } else {
         const errorData = await response.json();
