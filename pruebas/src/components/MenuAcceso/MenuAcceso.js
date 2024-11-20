@@ -17,7 +17,7 @@ const MenuUsuarios = () => {
           Escritorio
         </h1>
         <p className="text-xl text-gray-700" style={{ backgroundColor: 'transparent !important', marginTop: '20px', fontSize: '20px', fontFamily: 'Poppins' }}>
-          Elige una de las opciones que la biblioteca digital tiene para ti
+          Elige una de las opciones que el repositorio tiene para ti
         </p>
       </header>
       {!role && (

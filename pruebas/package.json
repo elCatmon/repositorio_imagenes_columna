@@ -35,9 +35,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired start",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired build",
-    "test": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired test",
+    "start": "cross-env NODE_OPTIONS='--max-old-space-size=10240' react-app-rewired start",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=10240' react-app-rewired build",
+    "test": "cross-env NODE_OPTIONS='--max-old-space-size=10240' react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
