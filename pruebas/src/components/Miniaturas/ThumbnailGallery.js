@@ -13,15 +13,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [region, setRegion] = useState('');
   const [subregion, setSubregion] = useState('');
 
-  const filenameStyle = {
-    textAlign: 'center',
-    fontSize: '14px',
-    color: '#666', // Color del texto
-    marginTop: '5px',
-    wordBreak: 'break-word', // Para manejar nombres largos
-  };
-
-
   // Define subregiones según la región seleccionada
   const subregionesOptions = {
     '02': [
@@ -160,8 +151,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
           images.length > 0 ? (
             <div style={galleryStyle}>
               {images.map((image, index) => {
-                // Extraer el nombre del archivo de la URL
-                const fileName = image.split('/').pop();
 
                 return (
                   <div
@@ -176,8 +165,6 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
                       style={thumbnailStyle}
                       onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150'; }}
                     />
-                    {/* Mostrar el nombre del archivo */}
-                    <p style={fileNameStyle}>{fileName}</p>
                   </div>
                 );
               })}
@@ -248,13 +235,6 @@ const buttonStyle = {
 
 const buttonHoverStyle = {
   backgroundColor: '#26798e', // Cambia el color al pasar el ratón
-};
-
-const fileNameStyle = {
-  fontSize: '14px',
-  color: '#333',
-  marginTop: '8px',
-  wordWrap: 'break-word', // Ajusta el texto si el nombre es muy largo
 };
 
 export default ThumbnailGallery;

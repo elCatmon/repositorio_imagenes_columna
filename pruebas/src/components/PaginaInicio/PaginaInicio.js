@@ -15,17 +15,38 @@ function PaginaInicio() {
 
       {/* Banner */}
       <section id="banner">
-        <img className="banner-image" src="/imagenes/Principal.png" alt="Banner" onContextMenu={(e) => e.preventDefault()}/>
+        <img className="banner-image" src="/imagenes/Principal.png" alt="Banner" onContextMenu={(e) => e.preventDefault()} />
       </section>
 
       <div className="section-container">
         <h3 className="section-title">Instituciones participantes del proyecto</h3>
         <div className="container">
           <div className='cardHome'  >
-            
-            <img src="/imagenes/Logo_CONAHCYT.png" alt="Logo UPP" className="logoupp"  onContextMenu={(e) => e.preventDefault()}/>
-            <img src="/imagenes/logo_citedi.png" alt="Logo CITEDI" className="logocitedi" onContextMenu={(e) => e.preventDefault()}/>
-            <img src="/imagenes/logo_upp.png" alt="Logo UPP" className="logoupp"  onContextMenu={(e) => e.preventDefault()}/>
+            <a href="https://conahcyt.mx/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/imagenes/Logo_CONAHCYT.png"
+                alt="Logo CONAHCYT"
+                className="logoupp"
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </a>
+            <a href="https://www.citedi.mx/portal/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/imagenes/logo_citedi.png"
+                alt="Logo CITEDI"
+                className="logocitedi"
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </a>
+            <a href="https://www.upp.edu.mx/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/imagenes/logo_upp.png"
+                alt="Logo UPP"
+                className="logoupp"
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </a>
+
 
           </div>
         </div>

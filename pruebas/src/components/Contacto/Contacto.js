@@ -60,7 +60,7 @@ const Contacto = () => {
             </div>
           </div>
         <div className="persona-card">
-          <img src="/imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
+          <img src="/imagenes/tania.jpeg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
           <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
           <p className="text-gray-600 mt-2">Asesor Clínico UPP</p>
           <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> taniaaparicio@upp.edu.mx</p>
