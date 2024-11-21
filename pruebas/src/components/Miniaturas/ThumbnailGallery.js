@@ -39,45 +39,43 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
 
   const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
-
-    // Verificar si se ha seleccionado una subregión; si no, usamos el valor de la región
+  
     const selectedRegion = subregion || region;
-
+  
     try {
-      // Crear los parámetros de búsqueda
       const query = new URLSearchParams({
         tipoEstudio: tipoEstudio,
-        // Solo agregar la región si está seleccionada
         ...(selectedRegion && { region: selectedRegion }),
         page: pageNumber,
-        limit: 9 // Límite de imágenes por página
+        limit: 9, // Límite de imágenes por página
       }).toString();
-
+  
       const response = await fetch(`${BASE_URL}/thumbnails?${query}`);
-
+  
       if (response.ok) {
-        const data = await response.json();
-
-        // Si es la primera página, reinicia las imágenes, de lo contrario agrega
+        const { images, total } = await response.json();
+  
         if (pageNumber === 1) {
-          setImages(data);
+          setImages(images);
         } else {
-          setImages(prevImages => [...prevImages, ...data]);
+          setImages((prevImages) => [...prevImages, ...images]);
         }
-
-        // Si recibimos menos de 18 imágenes, desactiva la carga de más imágenes
-        if (data.length < 9) {
+  
+        // Desactivar más cargas si hemos alcanzado el total
+        if (pageNumber * 9 >= total) {
           setHasMore(false);
+        } else {
+          setHasMore(true);
         }
-
+  
         setLoaded(true);
       } else {
-        setError('Error al obtener las imágenes');
+        setError("Error al obtener las imágenes");
       }
     } catch (error) {
-      setError('Error en la solicitud de imágenes: ' + error.message);
+      setError("Error en la solicitud de imágenes: " + error.message);
     }
-  }, [region, subregion, tipoEstudio]);
+  }, [region, subregion, tipoEstudio]);  
 
   useEffect(() => {
     // Resetear estado de imágenes y paginación al cambiar filtros

@@ -41,7 +41,7 @@ const Donaciones = () => {
   const handleFileChange = async (event) => {
     const files = Array.from(event.target.files);
     const validFiles = [];
-    const maxSize = 50 * 1024 * 1024;
+    const maxSize = 1024 * 1024 * 1024;
 
     for (const file of files) {
       if (file.size > maxSize) {
