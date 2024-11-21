@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // Para redireccionar
 import { BASE_URL } from '../config/config';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
@@ -7,7 +6,6 @@ import '../assets/App.css';
 import './Importar.css'; 
 
 const Importar = () => {
-  const navigate = useNavigate(); // Inicializa la función de navegación
   const [formData, setFormData] = useState({
     tipoEstudio: '',
     region: "",
@@ -111,8 +109,6 @@ const Importar = () => {
         const errorResponse = await response.text();
         throw new Error(`Error al enviar los datos: ${errorResponse}`);
       }
-
-      const responseData = await response.json();
       setMensaje('Datos enviados correctamente');
       setError('');
       
@@ -209,29 +205,14 @@ const Importar = () => {
             >
             <option value="">Seleccione</option>
             <option value="00">Desconocido</option>
-            <option value="01">Craneo</option>
             <option value="02">Columna Vertebral</option>
             <option value="03">Cervical</option>
             <option value="04">Torácica</option>
             <option value="05">Lumbar</option>
             <option value="06">Sacra</option>
             <option value="07">Coxis</option>
-            <option value="08">Torax</option>
-            <option value="09">Tele de Torax</option>
-            <option value="10">Extremidad Superior</option>
-            <option value="11">Hombro</option>
-            <option value="12">Humero</option>
-            <option value="13">Codo</option>
-            <option value="14">Antebrazo</option>
-            <option value="15">Muñeca</option>
-            <option value="16">Mano</option>
-            <option value="17">Pelvis</option>
-            <option value="18">Extremidad Inferior</option>
-            <option value="19">Femur</option>
-            <option value="20">Rodilla</option>
-            <option value="21">Tibia y Perone</option>
-            <option value="22">Tobillo</option>
-            <option value="23">Pie</option>
+            <option value="18">Pelvis Adulto</option>
+            <option value="19">Pelvis Infantil</option>
             </select>
           </div>
 

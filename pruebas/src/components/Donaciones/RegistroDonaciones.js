@@ -5,13 +5,9 @@ import './RegistroDonaciones.css';
 import { BASE_URL } from '../config/config';
 
 function FormularioEstudios() {
-  const [tipoPersona, setTipoPersona] = useState('');
   const [datosPersona, setDatosPersona] = useState({
     correo: '',
     curp: '',
-    carrera: '',
-    cuatrimestre: '',
-    area: ''
   });
 
   const [datosEstudios, setDatosEstudios] = useState([
@@ -23,10 +19,6 @@ function FormularioEstudios() {
   const tiposEstudio = [
     'Radiografia', 'Tomografia Computarizada', 'Resonancia Magnetica',
     'Ultrasonido', 'Mastografia', 'Angiografia', 'Medicina Nuclear', 'Fluoroscopia'
-  ];
-
-  const cuatrimestres = [
-    '1ro', '2do', '3ro', '4to', '5to', '6to', '8vo', '9no', 'Estadía'
   ];
 
   const handlePersonaChange = (e) => {
@@ -117,9 +109,6 @@ function FormularioEstudios() {
       setDatosPersona({
         correo: '',
         curp: '',
-        carrera: '',
-        cuatrimestre: '',
-        area: ''
       });
       setDatosEstudios([{ tipoEstudio: '', cantidadImagenes: 0, esDonacion: false, observaciones: '' }]);
     } catch (error) {
@@ -145,15 +134,6 @@ function FormularioEstudios() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <h2>Datos de la Persona</h2>
-            <label>
-              Tipo de Persona:
-              <select value={tipoPersona} onChange={(e) => setTipoPersona(e.target.value)} className="input-field">
-                <option value="">Seleccionar</option>
-                <option value="alumno">Alumno</option>
-                <option value="trabajador">Trabajador</option>
-                <option value="externo">Externo</option>
-              </select>
-            </label>
 
             <label>
               Correo:
@@ -179,63 +159,6 @@ function FormularioEstudios() {
                 maxLength={18}
               />
             </label>
-
-            {tipoPersona === 'alumno' && (
-              <>
-                <label>
-                  Carrera:
-                  <select
-                    name="carrera"
-                    value={datosPersona.carrera}
-                    onChange={handlePersonaChange}
-                    required
-                    className="input-field"
-                  >
-                    <option value="">Selecciona una carrera</option>
-                    <option value="Ingenieria Biomedica">Ingeniería Biomedica</option>
-                    <option value="Ingenieria en Biotecnologia">Ingeniería en Biotecnología</option>
-                    <option value="Ingenieria Financiera">Ingeniería Financiera</option>
-                    <option value="Ingenieria en Tecnologias de la Informacion e Innovacion Digital">Ingeniería en Tecnologías de la Información e Innovación Digital</option>
-                    <option value="Ingenieria Mecanica Automotriz">Ingeniería Mecánica Automotriz</option>
-                    <option value="Ingenieria Mecatronica">Ingeniería Mecatrónica</option>
-                    <option value="Ingenieria Mecatronica mixto">Ingeniería Mecatrónica Mixto</option>
-                    <option value="Ingenieria Industrial">Ingeniería Industrial</option>
-                    <option value="Licenciatura en Terapia Fisica">Licenciatura en Terapia Física</option>
-                    <option value="Licenciatura en Medico Cirujano">Licenciatura en Médico Cirujano</option>
-                    <option value="Ingenieria en Software">Ingeniería en Software</option>
-                  </select>
-                </label>
-                <label>
-                  Cuatrimestre:
-                  <select
-                    name="cuatrimestre"
-                    value={datosPersona.cuatrimestre}
-                    onChange={handlePersonaChange}
-                    required
-                    className="input-field"
-                  >
-                    <option value="">Seleccionar</option>
-                    {cuatrimestres.map((cuatri, index) => (
-                      <option key={index} value={cuatri}>{cuatri}</option>
-                    ))}
-                  </select>
-                </label>
-              </>
-            )}
-
-            {tipoPersona === 'trabajador' && (
-              <label>
-                Área:
-                <input
-                  type="text"
-                  name="area"
-                  value={datosPersona.area}
-                  onChange={handlePersonaChange}
-                  required
-                  className="input-field"
-                />
-              </label>
-            )}
 
             <h2>Datos de los Estudios</h2>
             {datosEstudios.map((estudio, index) => (

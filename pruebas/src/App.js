@@ -16,13 +16,9 @@ import MenuAcceso from './components/MenuAcceso/MenuAcceso';
 import Diagnostico from './components/Diagnosticos/DiagnosticosPage';
 import Dataset from './components/dataset/datasetDownload';
 import ChangePassword from './components/CambiarContrasena/CambioContrasena';
-import Muestra from './components/dataset/datasetFijo';
 import FormDonacion from './components/Donaciones/RegistroDonaciones';
-import Editor from './components/Editor/Editor';
 import TablaDonaciones from './components/Donaciones/ConsultarDonaciones';
 import PrivateRoute from './PrivateRoute';
-import Servicios from './components/Servicios/Sevicios'
-import Visualizador from './components/Visualizador/VisualizadorPublico'
 
 function App() {
   return (
@@ -36,17 +32,13 @@ function App() {
           <Route path="/conocenos" element={<Conocenos />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/editor" element={<Editor />} />
           <Route path="/menu" element={<MenuAcceso />} />
-          <Route path="/convertidor" element={<Servicios />} />
-          <Route path="/visualizadordicom" element={<Visualizador />} />
           <Route element={<PrivateRoute />} >
             <Route path="/visualizador" element={<VisualizerPage />} />
             <Route path="/importar" element={<Importar />} />
             <Route path="/donacion" element={<Donacion />} />
             <Route path="/diagnosticos" element={<Diagnostico />} />
             <Route path="/dataset" element={<Dataset />} />
-            <Route path="/muestra" element={<Muestra />} />
             <Route path="/formulariodonacion" element={<FormDonacion />} />
             <Route path="/consultardonaciones" element={<TablaDonaciones />} />
             <Route path="/cambiarcontrasena" element={<ChangePassword />} />

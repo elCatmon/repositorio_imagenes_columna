@@ -28,29 +28,9 @@ const DiagnosticForm = ({ selectedFile }) => {
       { value: '06', label: 'Sacra' },
       { value: '07', label: 'Coxis' }
     ],
-    '08': [
-      { value: '09', label: 'Tele de Torax' },
-      { value: '26', label: 'Abdomen simple' }
-    ],
-    '10': [
-      { value: '11', label: 'Hombro' },
-      { value: '12', label: 'Humero' },
-      { value: '13', label: 'Codo' },
-      { value: '14', label: 'Antebrazo' },
-      { value: '15', label: 'Mano' },
-      { value: '16', label: 'Comparativa Manos' },
-      { value: '17', label: 'Falanges' }
-    ],
     '26': [
       { value: '18', label: 'Pelvis Adulto' },
       { value: '19', label: 'Pelvis Infantil' },
-    ],
-    '20': [
-      { value: '21', label: 'Femur' },
-      { value: '22', label: 'Rodilla' },
-      { value: '23', label: 'Tibia y Perone' },
-      { value: '24', label: 'Tobillo' },
-      { value: '25', label: 'Pie' }
     ],
   };
   
@@ -292,12 +272,8 @@ const DiagnosticForm = ({ selectedFile }) => {
           >
             <option value="">Seleccione</option>
             <option value="00">Desconocido</option>
-            <option value="01">Craneo</option>
             <option value="02">Columna Vertebral</option>
-            <option value="08">Torax</option>
-            <option value="10">Extremidad Superior</option>
             <option value="26">Pelvis</option>
-            <option value="20">Extremidad Inferior</option>
           </select>
         </div>
 

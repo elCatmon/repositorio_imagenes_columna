@@ -6,7 +6,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Conocenos.css';
 import Footer from '../assets/Footer';
 import Header from '../assets/Header';
-import Video from '../assets/video';
 import InfoCard from './InfoCard';
 
 const Conocenos = () => {
