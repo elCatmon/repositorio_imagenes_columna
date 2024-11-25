@@ -84,9 +84,7 @@ const StudyForm = () => {
   return (
 
     <div>
-      <div className="next-module">
-        <Header />
-      </div>
+      <Header />
       <div className="next-module" />
       <h2>Opciones de descarga del conjunto de datos</h2>
       <form onSubmit={handleSubmit} onContextMenu={(e) => e.preventDefault()}>

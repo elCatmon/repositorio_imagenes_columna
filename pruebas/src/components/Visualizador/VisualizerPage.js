@@ -4,7 +4,7 @@ import DicomViewer from './DicomViewer';
 import { useNavigate } from 'react-router-dom'; // Para la navegación
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
-import '../assets/App.css'; 
+import '../assets/App.css';
 import { useAuth } from '../../AuthContext'; // Asegúrate de que la ruta sea correcta
 
 function VisualizerPage() {
@@ -25,10 +25,8 @@ function VisualizerPage() {
 
   return (
     <div className="visualizer-page">
-      <div className="next-module">
-        <Header />
-      </div>
-      <div className="next-module"/>
+      <Header />
+      <div className="next-module" />
 
       <div className="content">
         <div className="thumbnail-gallery">
@@ -42,7 +40,7 @@ function VisualizerPage() {
           )}
         </div>
       </div>
-      <div className="next-module"/>
+      <div className="next-module" />
       <Footer />
     </div>
   );

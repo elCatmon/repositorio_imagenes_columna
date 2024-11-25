@@ -193,8 +193,8 @@ const DiagnosticForm = ({ selectedFile }) => {
       if (!updateResponse.ok) {
         throw new Error('Error al actualizar el diagnóstico');
       }
-
-      setSuccessMessage('Diagnóstico guardado exitosamente');
+      
+      alert('Diagnóstico guardado exitosamente');
       setErrorMessage('');
 
       // Reset form fields after successful update

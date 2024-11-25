@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './PaginaInicio.css';
+import "./PaginaInicio.css";
 import Footer from '../assets/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -9,9 +9,7 @@ import Header from '../assets/Header';
 function PaginaInicio() {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-      <div className="next-module">
-        <Header />
-      </div>
+      <Header />
 
       {/* Banner */}
       <section id="banner">

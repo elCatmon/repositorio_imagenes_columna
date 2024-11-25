@@ -1,18 +1,18 @@
 /* styles.css */
-.container {
+.registro-container {
     display: flex;
     gap: 0px; /* Espacio entre columnas */
     padding: 0px;
     flex-wrap: wrap; /* Permite que las columnas se muevan a la siguiente línea en pantallas pequeñas */
 }
 
-.form-container {
+.formR-container {
     flex: 1; /* Ocupa 1 parte del espacio */
     min-width: 300px; /* Ancho mínimo */
     max-width: 600px; /* Ancho máximo para evitar que crezca demasiado */
 }
 
-.table-container {
+.tableR-container {
     flex: 2; /* Ocupa 2 partes del espacio, mayor tamaño */
     min-width: 400px; /* Ancho mínimo */
     overflow-x: auto; /* Agrega scroll horizontal si es necesario */
@@ -23,7 +23,7 @@ h2 {
     margin-top: 0; /* Elimina margen superior en títulos */
 }
 
-.input-field,
+.input-field-R,
 textarea {
     width: 100%; /* Ancho completo */
     padding: 5px; /* Espaciado interno */
@@ -31,19 +31,19 @@ textarea {
     box-sizing: border-box; /* Incluye padding en el ancho total */
 }
 
-.data-table {
+.data-table-R {
     width: 100%; /* Ancho completo de la tabla */
     border-collapse: collapse; /* Eliminar espacios entre celdas */
 }
 
-.data-table th,
-.data-table td {
+.data-table-R th,
+.data-table-R td {
     padding: 5px; /* Espaciado interno en celdas */
     border: 1px solid #837e7e; /* Borde de las celdas */
     text-align: left; /* Alineación del texto */
 }
 
-.data-table th {
+.data-table-R th {
     background-color: #38b2ac; /* Color de fondo para encabezados */
 }
 
@@ -60,13 +60,13 @@ textarea {
 
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
-    .container {
+    .Registro-container {
         flex-direction: column; /* Cambia la dirección de flex a columna */
         gap: 10px; /* Reduce el espacio entre columnas */
     }
 
-    .form-container, 
-    .table-container {
+    .formR-container, 
+    .tableR-container {
         flex: none; /* Quita la flexibilidad */
         width: 100%; /* Ancho completo en pantallas pequeñas */
     }

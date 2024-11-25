@@ -2,9 +2,9 @@ import React from 'react';
 import './Footer.css';
 const Footer = () => {
   return (
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section">
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-section">
           <h4>Enlaces de interés</h4>
           <ul>
             <li><a href="/nosotros">Nosotros</a></li>
@@ -13,7 +13,7 @@ const Footer = () => {
             <li><a href="#">Programas de afiliación</a></li>
           </ul>
         </div>
-        <div class="footer-section">
+        <div className="footer-section">
           <h4>Legales</h4>
           <ul>
             <li><a href="/documentos/TERMINOS_CONDICIONES.pdf" target="_blank" rel="noopener noreferrer" aria-label="Términos y Condiciones">
@@ -26,7 +26,7 @@ const Footer = () => {
             <li><a href="#">Asociado 4</a></li>
           </ul>
         </div>
-        <div class="footer-section">
+        <div className="footer-section">
           <h4>Ayuda</h4>
           <ul>
             <li><a href="/contacto">Contacto</a></li>
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <p className='pC'>&copy; 2024 BDMDM. Todos los derechos reservados.</p>
+        <p className='pC'>&copy; 2024 BMDM. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

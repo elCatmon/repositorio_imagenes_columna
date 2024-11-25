@@ -55,23 +55,25 @@ export const AuthProvider = ({ children }) => {
     };
   }, [lastActivityTime, logout]);
 
+  const [, setLoadingAuth] = useState(true); // Estado para indicar la carga inicial
+
   useEffect(() => {
-    // Verifica la autenticación en el inicio de la aplicación
     const userID = localStorage.getItem('userID');
     const curp = localStorage.getItem('curp');
     const role = localStorage.getItem('role');
     const nombre = localStorage.getItem('nombre');
-
+  
     if (userID && curp && role && nombre) {
-      // Si los datos de sesión son válidos, establece la autenticación
       setIsAuthenticated(true);
       setUserID(userID);
       setCurp(curp);
       setNombre(nombre);
       setRole(role);
-      setLastActivityTime(new Date().getTime()); // Establece el tiempo de la última actividad al inicio
+      setLastActivityTime(new Date().getTime());
     }
+    setLoadingAuth(false); // Finaliza la carga inicial
   }, []);
+  
 
   const login = (id, Curp, userRole, Nombre) => {
     // Guarda los datos en localStorage y actualiza el estado

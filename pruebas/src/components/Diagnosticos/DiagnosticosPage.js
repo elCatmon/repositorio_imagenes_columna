@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'; // For back navigation
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
 import Diagnosticos from './Diagnosticos'
-import '../assets/App.css'; 
+import '../assets/App.css';
 
 function DiagnosticosPage() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,14 +19,12 @@ function DiagnosticosPage() {
     setSelectedImageD(image); // Verifica que este valor sea el esperado
     console.log("selectedImageD:", fileName); // Asegúrate de que se esté actualizando
   };
-  
+
 
   return (
     <div className="visualizer-page">
-        <div className="next-module">
-        <Header/>
-        </div>
-        <div className="next-module"/>
+      <Header />
+      <div className="next-module" />
       <div className="content">
         <div className="thumbnail-gallery">
           <ThumbnailGallery onThumbnailClick={handleThumbnailClick} />
@@ -39,7 +37,7 @@ function DiagnosticosPage() {
           )}
         </div>
         <div className="study-info">
-            {selectedImageD ? (
+          {selectedImageD ? (
             <Diagnosticos selectedFile={selectedImageD} />
           ) : (
             <p>Selecciona una miniatura para emitir un diagnostico.</p>
@@ -47,7 +45,7 @@ function DiagnosticosPage() {
         </div>
 
       </div>
-      <div className="next-module"/>
+      <div className="next-module" />
       <Footer />
     </div>
   );

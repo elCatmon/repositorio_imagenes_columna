@@ -67,9 +67,7 @@ function Estudios() {
 
   return (
     <div>
-      <div className="next-module">
-        <Header />
-      </div>
+      <Header />
       <div className="next-module">
         <div className="contenido-principal">
           <div className="columna-formulario">

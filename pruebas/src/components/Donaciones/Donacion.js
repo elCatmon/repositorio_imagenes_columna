@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'; // Importar useEffect
 import JSZip from 'jszip';
-import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../config/config';
 import * as dicomParser from 'dicom-parser';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
-import './Donaciones.css';
+import "./Donaciones.css";
 
 const Donaciones = () => {
-  const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [error, setError] = useState(null);
@@ -170,10 +168,8 @@ const Donaciones = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily: 'Poppins' }}>
-      <div className="next-module">
-        <Header />
-      </div>
+    <div>
+      <Header />
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
         <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins' }}>
           Donación de archivos
