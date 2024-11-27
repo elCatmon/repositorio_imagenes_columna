@@ -1,0 +1,109 @@
+/* src/App.css */
+.App {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.search-form div {
+    margin-bottom: 10px;
+}
+
+.search-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.search-form button {
+    padding: 10px 15px;
+    background-color: #38b2ac;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #38b2ac;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.columna-formulario {
+    flex: 0 0 30%;
+}
+
+.contenido-principal-revision {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.form-diagnostico-revison {
+    margin: 20px;
+    flex: 0 0 40%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-diagnostico-revison h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-diagnostico-revison .form-group {
+    margin-bottom: 15px;
+}
+
+.form-diagnostico-revison label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-diagnostico-revison textarea,
+.form-diagnostico-revison input[type="text"],
+.form-diagnostico-revison select,
+.form-diagnostico-revison input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-diagnostico-revison textarea {
+    height: 100px;
+    resize: vertical;
+    /* Permitir el cambio de tamaño vertical */
+}
+
+.revision-formulario {
+    flex: 0 0 20%;
+    /* Toma el 30% del espacio */
+    box-sizing: border-box;
+}
+
+.TablaDiagnosticos {
+    flex: 0 0 60%;
+    /* Toma el 50% del espacio */
+    box-sizing: border-box;
+}
+
+.imageEstudio{
+    flex: 1; /* Toma el espacio restante */
+    box-sizing: border-box;
+}

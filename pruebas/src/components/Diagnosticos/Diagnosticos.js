@@ -223,46 +223,7 @@ const DiagnosticForm = ({ selectedFile }) => {
       <h2>Diagnóstico</h2>
       <form onSubmit={handleSubmit}>
 
-        <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontWeight: 'bold' }} htmlFor="hallazgos">Hallazgos:</label>
-          <textarea
-            id="hallazgos"
-            name="hallazgos"
-            placeholder="Ingresa los hallazgos"
-            value={formData.hallazgos}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
-          />
-        </div>
-
-        <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontWeight: 'bold' }} htmlFor="impresion">Impresión Diagnóstica:</label>
-          <textarea
-            id="impresion"
-            name="impresion"
-            placeholder="Ingresa la impresión diagnóstica"
-            value={formData.impresion}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
-          />
-        </div>
-
-        <div style={{ marginBottom: '15px' }}>
-          <label style={{ fontWeight: 'bold' }} htmlFor="observaciones">Observaciones:</label>
-          <textarea
-            id="observaciones"
-            name="observaciones"
-            placeholder="Ingresa las observaciones"
-            value={formData.observaciones}
-            onChange={handleChange}
-            required
-            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
-          />
-        </div>
-
-        <div className="form-group">
+      <div className="form-group">
           <label style={{ fontWeight: 'bold' }}>Región:</label>
           <select
             name="region"
@@ -316,34 +277,43 @@ const DiagnosticForm = ({ selectedFile }) => {
           </select>
         </div>
 
-        <div className="form-group">
-          <label style={{ fontWeight: 'bold' }}>Válido:</label>
-          <select
-            name="valido"
-            value={formData.valido}
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ fontWeight: 'bold' }} htmlFor="hallazgos">Hallazgos:</label>
+          <textarea
+            id="hallazgos"
+            name="hallazgos"
+            placeholder="Ingresa los hallazgos"
+            value={formData.hallazgos}
             onChange={handleChange}
             required
-          >
-            <option value="">Seleccione</option>
-            <option value="0">Desconocido</option>
-            <option value="1">Sí</option>
-            <option value="2">No</option>
-          </select>
+            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
+          />
         </div>
 
-        <div className="form-group">
-          <label style={{ fontWeight: 'bold' }}>Obtencion:</label>
-          <select
-            name="obtencion"
-            value={formData.Obtencion}
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ fontWeight: 'bold' }} htmlFor="impresion">Impresión Diagnóstica:</label>
+          <textarea
+            id="impresion"
+            name="impresion"
+            placeholder="Ingresa la impresión diagnóstica"
+            value={formData.impresion}
             onChange={handleChange}
             required
-          >
-            <option value="">Seleccione</option>
-            <option value="2">Desconocido</option>
-            <option value="1">Estudio digital</option>
-            <option value="2">Estudio Fisico</option>
-          </select>
+            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
+          />
+        </div>
+
+        <div style={{ marginBottom: '15px' }}>
+          <label style={{ fontWeight: 'bold' }} htmlFor="observaciones">Observaciones:</label>
+          <textarea
+            id="observaciones"
+            name="observaciones"
+            placeholder="Ingresa las observaciones"
+            value={formData.observaciones}
+            onChange={handleChange}
+            required
+            style={{ width: '100%', padding: '10px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '5px', height: '100px', resize: 'vertical' }}
+          />
         </div>
 
         <div className="form-group">
@@ -374,6 +344,36 @@ const DiagnosticForm = ({ selectedFile }) => {
             <option value="5">Adulto joven 19-26</option>
             <option value="6">Adulto 27-59</option>
             <option value="7">Adulto mayor 60+</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Válido:</label>
+          <select
+            name="valido"
+            value={formData.valido}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="0">Desconocido</option>
+            <option value="1">Sí</option>
+            <option value="2">No</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Obtencion:</label>
+          <select
+            name="obtencion"
+            value={formData.Obtencion}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Seleccione</option>
+            <option value="2">Desconocido</option>
+            <option value="1">Estudio digital</option>
+            <option value="2">Estudio Fisico</option>
           </select>
         </div>
 

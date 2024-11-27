@@ -18,6 +18,7 @@ const PaginaInicio = lazy(() => import("./components/PaginaInicio/PaginaInicio")
 const Fisica = lazy(() => import("./components/Fisica/Fisica"));
 const MenuAcceso = lazy(() => import("./components/MenuAcceso/MenuAcceso"));
 const Diagnostico = lazy(() => import("./components/Diagnosticos/DiagnosticosPage"));
+const RevisionDiagnostico = lazy(() => import("./components/Diagnosticos/RevisionDiag"));
 const Dataset = lazy(() => import("./components/dataset/datasetDownload"));
 const ChangePassword = lazy(() => import("./components/CambiarContrasena/CambioContrasena"));
 const FormDonacion = lazy(() => import("./components/Donaciones/RegistroDonaciones"));
@@ -45,6 +46,7 @@ function App() {
               <Route path="/importar" element={<Importar />} />
               <Route path="/donacion" element={<Donacion />} />
               <Route path="/diagnosticos" element={<Diagnostico />} />
+              <Route path="/revision-diagnosticos" element={<RevisionDiagnostico />} />
               <Route path="/dataset" element={<Dataset />} />
               <Route path="/formulariodonacion" element={<FormDonacion />} />
               <Route path="/consultardonaciones" element={<TablaDonaciones />} />

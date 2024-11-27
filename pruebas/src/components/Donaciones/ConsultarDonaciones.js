@@ -118,7 +118,6 @@ function Estudios() {
           <div className="columna-tabla">
 
             <h2>Lista de donaciones</h2>
-
             {loading ? (
               <p>Loading...</p>
             ) : error ? (

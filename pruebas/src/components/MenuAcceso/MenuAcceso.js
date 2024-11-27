@@ -80,6 +80,15 @@ const MenuUsuarios = () => {
           )}
 
           {['interno', 'administrador'].includes(role) && (
+            <a href="/revision-diagnosticos" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
+              <div className="qr-card">
+                <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-circle-plus"></i> Revision Diagnosticos</p>
+                <p className="text-gray-500 mt-2">Revisa y realiza comentarios a los diagnosticos emitidos</p>
+              </div>
+            </a>
+          )}
+
+          {['interno', 'administrador'].includes(role) && (
             <a href="/dataset" className="nav-link transform hover:scale-110 transition-transform duration-300 ml-6">
               <div className="qr-card">
                 <p className=" text-2xl text-gray-600 mt-2 font-semibold "><i className="fas fa-file-download"></i> Conjunto de datos</p>

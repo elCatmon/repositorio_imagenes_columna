@@ -40,7 +40,7 @@
 }
 
 .form-diagnostico button {
-    background-color: #28a745; /* Color verde */
+    background-color: #38b2ac; /* Color verde */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -52,7 +52,7 @@
 }
 
 .form-diagnostico button:hover {
-    background-color: #218838; /* Color verde más oscuro al pasar el mouse */
+    background-color: #38b2ac; /* Color verde más oscuro al pasar el mouse */
 }
 
 .success-message {

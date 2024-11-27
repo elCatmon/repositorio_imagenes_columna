@@ -183,6 +183,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     </div>
   );
 };
+
 // Estilos para la galería de miniaturas
 const galleryStyle = {
   display: 'grid',
