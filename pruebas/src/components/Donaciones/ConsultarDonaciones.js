@@ -21,7 +21,6 @@ function Estudios() {
 
   const handleShowModal = (folio, fecha_Recepcion, correoD) => {
     setModalData({ folio, fecha_Recepcion, correoD }); // Establece el folio, id y fechaRecepcion
-    console.log(folio, fecha_Recepcion, correoD)
     setShowModal(true); // Muestra el modal
   };
 

@@ -126,11 +126,9 @@ function Register() {
           alert(data.error || 'Error en la solicitud');
         }
       } else {
-        console.error('Respuesta del servidor no es JSON:', text);
         alert('Respuesta del servidor no es JSON válido.');
       }
     } catch (error) {
-      console.error('Error al registrar:', error);
       alert('Hubo un problema con el registro. Por favor, intenta nuevamente.');
     }
   };

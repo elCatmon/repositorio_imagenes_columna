@@ -75,7 +75,7 @@ const StudyForm = () => {
       link.click();
       link.remove(); // Eliminar el enlace después de hacer clic
     } catch (error) {
-      console.error('Error al hacer la solicitud:', error);
+      console.error('Error al hacer la solicitud:');
     } finally {
       setIsLoading(false); // Ocultar la animación de carga cuando la solicitud finalice
     }

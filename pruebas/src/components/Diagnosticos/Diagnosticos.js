@@ -75,7 +75,6 @@ const DiagnosticForm = ({ selectedFile }) => {
           : '',
       }));
     } catch (error) {
-      console.error('Error al obtener el diagnóstico más reciente:', error);
       setErrorMessage('Error al obtener el diagnóstico más reciente.');
     }
   };
@@ -151,14 +150,12 @@ const DiagnosticForm = ({ selectedFile }) => {
       if (!study || !study.estudio_id) {
         throw new Error('Estudio no encontrado');
       }
-      console.log(formData.subregion, formData.region)
       if (formData.subregion != null || formData.subregion != '') {
         formData.region = formData.subregion
       }
 
       // Construct new key (clave) based on form data
       const nuevaClave = formData.tipoEstudio + formData.region + formData.proyeccion + formData.valido + "1" + formData.obtencion + formData.sexo + formData.edad;
-      console.log('Nueva clave:', nuevaClave);
 
       // Prepare updated diagnosis data
       const updatedDiagnostico = {
@@ -214,7 +211,6 @@ const DiagnosticForm = ({ selectedFile }) => {
         edad: ''
       });
     } catch (error) {
-      console.error('Error al actualizar el diagnóstico:', error);
       setErrorMessage('Error al actualizar el diagnóstico.');
     }
   };

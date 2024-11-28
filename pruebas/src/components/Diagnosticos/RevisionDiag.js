@@ -17,9 +17,6 @@ const RevisionDiagnostico = ({ onSearch }) => {
     const [resultados, setResultados] = useState([]);
 
     const handleSearch = (searchParams) => {
-        // Aquí puedes hacer la lógica de filtrado. Por ejemplo:
-        console.log('Buscando con los siguientes parámetros:', searchParams);
-
         // Si estás buscando en una lista de datos estática:
         const datos = [
             { nombre: 'Juan Pérez', correo: 'juan@example.com', imagen: 'imagen1.jpg' },
