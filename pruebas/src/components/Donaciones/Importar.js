@@ -152,7 +152,9 @@ const Importar = () => {
 
   return (
     <div>
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
       <div className="content" onContextMenu={(e) => e.preventDefault()}>
         <div className="form-section">
           <h2>Formulario de Importación</h2>

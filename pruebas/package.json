@@ -1,6 +1,6 @@
 {
-  "name": "bdmdm",
-  "version": "1.6.1",
+  "name": "bmdm",
+  "version": "1.17.120",
   "private": true,
   "dependencies": {
     "@cornerstonejs/core": "^1.84.4",

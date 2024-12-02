@@ -33,7 +33,7 @@ const DiagnosticForm = ({ selectedFile }) => {
       { value: '19', label: 'Pelvis Infantil' },
     ],
   };
-  
+
   const [clave, setClave] = useState(''); // Estado para almacenar la clave
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -118,9 +118,8 @@ const DiagnosticForm = ({ selectedFile }) => {
   };
 
   const obtenerValoresDesdeClave = (clave) => {
-    if (!clave || clave.length < 11) return {};
     const region = clave.substring(2, 4) || '';
-    const subregion = subregionesOptions[region]?.[0]?.value || ''; // Toma el primer valor por defecto
+    const subregion = subregionesOptions[region]?.[0]?.value || '';
     return {
       tipoEstudio: clave.substring(0, 2) || '',
       region,
@@ -150,28 +149,20 @@ const DiagnosticForm = ({ selectedFile }) => {
       if (!study || !study.estudio_id) {
         throw new Error('Estudio no encontrado');
       }
-      if (formData.subregion != null || formData.subregion != '') {
+      if (formData.subregion !== null || formData.subregion !== '') {
         formData.region = formData.subregion
       }
 
       // Construct new key (clave) based on form data
       const nuevaClave = formData.tipoEstudio + formData.region + formData.proyeccion + formData.valido + "1" + formData.obtencion + formData.sexo + formData.edad;
-
+      
       // Prepare updated diagnosis data
       const updatedDiagnostico = {
         hallazgos: formData.hallazgos,
         impresion: formData.impresion,
         observaciones: formData.observaciones,
-        medico: formData.medico,
-        medicoNuevo: localStorage.getItem('nombre'),
+        medico: localStorage.getItem('nombre'),
         fecha: formattedDate,
-        tipoEstudio: formData.tipoEstudio,
-        region: formData.region,
-        proyeccion: formData.proyeccion,
-        valido: formData.valido,
-        obtencion: formData.obtencion,
-        sexo: formData.sexo,
-        edad: formData.edad,
       };
 
       // Send PATCH request to update diagnosis and image key
@@ -190,7 +181,7 @@ const DiagnosticForm = ({ selectedFile }) => {
       if (!updateResponse.ok) {
         throw new Error('Error al actualizar el diagnóstico');
       }
-      
+
       alert('Diagnóstico guardado exitosamente');
       setErrorMessage('');
 
@@ -219,7 +210,29 @@ const DiagnosticForm = ({ selectedFile }) => {
       <h2>Diagnóstico</h2>
       <form onSubmit={handleSubmit}>
 
-      <div className="form-group">
+        <div className="form-group">
+          <label style={{ fontWeight: 'bold' }}>Tipo de Estudio:</label>
+          <select
+            name="tipoEstudio"
+            value={formData.tipoEstudio}
+            onChange={handleChange}
+            required
+          >
+            <option value="00">Seleccione</option>
+            <option value="00">Desconocido</option>
+            <option value="01">Radiografía</option>
+            <option value="02">Tomografía Computarizada</option>
+            <option value="03">Resonancia Magnética</option>
+            <option value="04">Ultrasonido</option>
+            <option value="05">Mastografia</option>
+            <option value="06">Angiografía</option>
+            <option value="07">Medicina Nuclear</option>
+            <option value="08">Radio Terapia</option>
+            <option value="09">Fluoroscopia</option>
+          </select>
+        </div>
+
+        <div className="form-group">
           <label style={{ fontWeight: 'bold' }}>Región:</label>
           <select
             name="region"
@@ -362,12 +375,12 @@ const DiagnosticForm = ({ selectedFile }) => {
           <label style={{ fontWeight: 'bold' }}>Obtencion:</label>
           <select
             name="obtencion"
-            value={formData.Obtencion}
+            value={formData.obtencion}
             onChange={handleChange}
             required
           >
             <option value="">Seleccione</option>
-            <option value="2">Desconocido</option>
+            <option value="0">Desconocido</option>
             <option value="1">Estudio digital</option>
             <option value="2">Estudio Fisico</option>
           </select>
@@ -394,7 +407,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             type="text"
             id="medicoA"
             name="medicoA"
-            placeholder="Ingresa el nombre del médico"
+            placeholder="Nombre del médico que realizo el diagnostico"
             value={formData.medico}
             onChange={handleChange}
             readOnly
@@ -409,7 +422,7 @@ const DiagnosticForm = ({ selectedFile }) => {
             type="text"
             id="medico"
             name="medico"
-            placeholder="Ingresa el nombre del médico"
+            placeholder="Tu nombre médico"
             value={formData.medicoNuevo}
             onChange={handleChange}
             readOnly

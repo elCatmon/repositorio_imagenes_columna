@@ -134,7 +134,7 @@ const Donaciones = () => {
     selectedFiles.forEach(({ file }) => {
       formData.append('files', file);
     });
-    const donador = localStorage.getItem('userID');
+    const donador = localStorage.getItem('curp');
     const estudioid = Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
     formData.append('estudioID', estudioid)
     formData.append('tipoEstudio', tipoEstudio);
@@ -169,7 +169,9 @@ const Donaciones = () => {
 
   return (
     <div>
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
         <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins' }}>
           Donación de archivos

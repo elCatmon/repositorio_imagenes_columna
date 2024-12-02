@@ -129,7 +129,9 @@ function FormularioEstudios() {
 
   return (
     <div>
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
       <div className=".registro-container">
         <div className="container">
           <form onSubmit={handleSubmit}>

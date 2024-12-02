@@ -135,7 +135,9 @@ function Register() {
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
       <header className="header-section text-center">
         <h1 className="text-5xl font-extrabold" style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins' }}>
           Registrarse

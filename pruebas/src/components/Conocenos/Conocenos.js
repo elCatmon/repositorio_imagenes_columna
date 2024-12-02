@@ -43,7 +43,9 @@ const Conocenos = () => {
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
       <div className="next-module" />
       <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 45 }}>
         Conócenos

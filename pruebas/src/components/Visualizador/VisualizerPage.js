@@ -25,9 +25,10 @@ function VisualizerPage() {
 
   return (
     <div className="visualizer-page">
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
       <div className="next-module" />
-
       <div className="content">
         <div className="thumbnail-gallery">
           <ThumbnailGallery onThumbnailClick={handleThumbnailClick} />

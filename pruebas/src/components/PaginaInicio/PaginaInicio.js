@@ -9,7 +9,9 @@ import Header from '../assets/Header';
 function PaginaInicio() {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-      <Header />
+      <div className="next-module">
+        <Header />
+      </div>
 
       {/* Banner */}
       <section id="banner">
