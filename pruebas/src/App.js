@@ -1,28 +1,27 @@
-// src/App.js
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
+import PrivateRoute from './PrivateRoute';
+
+// Rutas con carga inmediata
 import Conocenos from './components/Conocenos/Conocenos';
 import Contacto from './components/Contacto/Contacto';
 import Nosotros from './components/Nosotros/Nosotros';
 import Register from './components/Registro/Register';
 import Login from './components/LOGIN/Login';
+
+// Rutas con carga diferida
 import VisualizerPage from './components/Visualizador/VisualizerPage';
-import Importar from './components/Donaciones/Importar';
 import Donacion from './components/Donaciones/Donacion';
 import PaginaInicio from './components/PaginaInicio/PaginaInicio';
 import Fisica from './components/Fisica/Fisica';
 import MenuAcceso from './components/MenuAcceso/MenuAcceso';
 import Diagnostico from './components/Diagnosticos/DiagnosticosPage';
+import Importar from './components/Donaciones/Importar'
 import Dataset from './components/dataset/datasetDownload';
 import ChangePassword from './components/CambiarContrasena/CambioContrasena';
-import Muestra from './components/dataset/datasetFijo';
 import FormDonacion from './components/Donaciones/RegistroDonaciones';
-import Editor from './components/Editor/Editor';
 import TablaDonaciones from './components/Donaciones/ConsultarDonaciones';
-import PrivateRoute from './PrivateRoute';
-import Servicios from './components/Servicios/Sevicios'
-import Visualizador from './components/Visualizador/VisualizadorPublico'
 
 function App() {
   return (
@@ -36,17 +35,13 @@ function App() {
           <Route path="/conocenos" element={<Conocenos />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/editor" element={<Editor />} />
           <Route path="/menu" element={<MenuAcceso />} />
-          <Route path="/convertidor" element={<Servicios />} />
-          <Route path="/visualizadordicom" element={<Visualizador />} />
-          <Route element={<PrivateRoute />} >
+          <Route element={<PrivateRoute />}>
             <Route path="/visualizador" element={<VisualizerPage />} />
             <Route path="/importar" element={<Importar />} />
             <Route path="/donacion" element={<Donacion />} />
             <Route path="/diagnosticos" element={<Diagnostico />} />
             <Route path="/dataset" element={<Dataset />} />
-            <Route path="/muestra" element={<Muestra />} />
             <Route path="/formulariodonacion" element={<FormDonacion />} />
             <Route path="/consultardonaciones" element={<TablaDonaciones />} />
             <Route path="/cambiarcontrasena" element={<ChangePassword />} />

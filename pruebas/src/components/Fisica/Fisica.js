@@ -40,7 +40,7 @@ const Fisica = () => {
             {/*<p className="text-gray-600 mt-2 font-semibold ">Contacto</p>*/}
             <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> oross@citedi.mx</p>
             <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 664 623 13 44</p>
-            <p className="text-gray-500 mt-1"><i className="fas fa-globe"></i> <a href="https://www.citedi.mx" target="_blank">www.citedi.mx</a></p> 
+            <p className="text-gray-500 mt-1"><i className="fas fa-globe"></i> <a href="https://www.citedi.mx" target="_blank">www.citedi.mx</a></p>
 
           </div>
           <div className="qr-cardDF">

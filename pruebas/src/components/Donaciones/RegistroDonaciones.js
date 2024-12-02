@@ -1,32 +1,24 @@
 import React, { useState } from 'react';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
-import './RegistroDonaciones.css';
+import "./RegistroDonaciones.css";
 import { BASE_URL } from '../config/config';
 
 function FormularioEstudios() {
-  const [tipoPersona, setTipoPersona] = useState('');
   const [datosPersona, setDatosPersona] = useState({
     correo: '',
     curp: '',
-    carrera: '',
-    cuatrimestre: '',
-    area: ''
   });
 
   const [datosEstudios, setDatosEstudios] = useState([
     { tipoEstudio: '', cantidadImagenes: 0, esDonacion: false, observaciones: '' }
   ]);
-  
+
   const [registros, setRegistros] = useState([]);
 
   const tiposEstudio = [
     'Radiografia', 'Tomografia Computarizada', 'Resonancia Magnetica',
     'Ultrasonido', 'Mastografia', 'Angiografia', 'Medicina Nuclear', 'Fluoroscopia'
-  ];
-
-  const cuatrimestres = [
-    '1ro', '2do', '3ro', '4to', '5to', '6to', '8vo', '9no', 'Estadía'
   ];
 
   const handlePersonaChange = (e) => {
@@ -39,7 +31,7 @@ function FormularioEstudios() {
 
   const handleEstudioChange = (index, event) => {
     const { name, value, type, checked } = event.target;
-  
+
     setDatosEstudios(prevState => {
       const newState = [...prevState];
       newState[index] = {
@@ -49,7 +41,7 @@ function FormularioEstudios() {
       return newState;
     });
   };
-  
+
   const agregarOtroEstudio = () => {
     setDatosEstudios((prevDatosEstudios) => [
       ...prevDatosEstudios,
@@ -76,10 +68,10 @@ function FormularioEstudios() {
       alert('Por favor, ingresa un CURP válido.');
       return;
     }
-  
+
     const folio = Math.floor(Math.random() * 1e11).toString().padStart(12, '0');
     const fechaRecepcion = new Date().toISOString();
-  
+
     const estudiosConDonacionesYObservaciones = datosEstudios.map(estudio => ({
       tipoEstudio: estudio.tipoEstudio,
       cantidadImagenes: parseInt(estudio.cantidadImagenes, 10),
@@ -87,10 +79,10 @@ function FormularioEstudios() {
       observaciones: estudio.observaciones,
       fechaDevolucion: estudio.esDonacion ? '' : calcularFechaPrestamo() // Enviar vacío si es donación
     }));
-  
+
     const tiposDeEstudioConcatenados = datosEstudios.map(estudio => estudio.tipoEstudio).join(', ');
     const totalCantidadImagenes = datosEstudios.reduce((total, estudio) => total + estudio.cantidadImagenes, 0);
-  
+
     const nuevoRegistro = {
       folio,
       fechaRecepcion,
@@ -99,34 +91,31 @@ function FormularioEstudios() {
       cantidadTotalImagenes: totalCantidadImagenes,
       detallesEstudios: estudiosConDonacionesYObservaciones,
     };
-  
+
     try {
       const response = await fetch(`${BASE_URL}/api/estudios`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nuevoRegistro),
       });
-  
+
       if (!response.ok) {
         throw new Error('Error al guardar el estudio');
       }
-  
+
       setRegistros((prevRegistros) => [...prevRegistros, nuevoRegistro]);
-  
+
       // Reiniciar los campos
       setDatosPersona({
         correo: '',
         curp: '',
-        carrera: '',
-        cuatrimestre: '',
-        area: ''
       });
       setDatosEstudios([{ tipoEstudio: '', cantidadImagenes: 0, esDonacion: false, observaciones: '' }]);
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
+
   const formatDate = (date) => {
     if (!date) return '-';
     const d = new Date(date);
@@ -140,20 +129,13 @@ function FormularioEstudios() {
 
   return (
     <div>
-      <div className="next-module"><Header /></div>
-      <div className="container">
-        <div className="form-container">
+      <div className="next-module">
+        <Header />
+      </div>
+      <div className=".registro-container">
+        <div className="container">
           <form onSubmit={handleSubmit}>
             <h2>Datos de la Persona</h2>
-            <label>
-              Tipo de Persona:
-              <select value={tipoPersona} onChange={(e) => setTipoPersona(e.target.value)} className="input-field">
-                <option value="">Seleccionar</option>
-                <option value="alumno">Alumno</option>
-                <option value="trabajador">Trabajador</option>
-                <option value="externo">Externo</option>
-              </select>
-            </label>
 
             <label>
               Correo:
@@ -163,7 +145,7 @@ function FormularioEstudios() {
                 value={datosPersona.correo}
                 onChange={handlePersonaChange}
                 required
-                className="input-field"
+                className="input-field-R"
               />
             </label>
 
@@ -175,67 +157,10 @@ function FormularioEstudios() {
                 value={datosPersona.curp}
                 onChange={handlePersonaChange}
                 required
-                className="input-field"
+                className="input-field-R"
                 maxLength={18}
               />
             </label>
-
-            {tipoPersona === 'alumno' && (
-              <>
-                <label>
-                  Carrera:
-                  <select
-                    name="carrera"
-                    value={datosPersona.carrera}
-                    onChange={handlePersonaChange}
-                    required
-                    className="input-field"
-                  >
-                    <option value="">Selecciona una carrera</option>
-                    <option value="Ingenieria Biomedica">Ingeniería Biomedica</option>
-                    <option value="Ingenieria en Biotecnologia">Ingeniería en Biotecnología</option>
-                    <option value="Ingenieria Financiera">Ingeniería Financiera</option>
-                    <option value="Ingenieria en Tecnologias de la Informacion e Innovacion Digital">Ingeniería en Tecnologías de la Información e Innovación Digital</option>
-                    <option value="Ingenieria Mecanica Automotriz">Ingeniería Mecánica Automotriz</option>
-                    <option value="Ingenieria Mecatronica">Ingeniería Mecatrónica</option>
-                    <option value="Ingenieria Mecatronica mixto">Ingeniería Mecatrónica Mixto</option>
-                    <option value="Ingenieria Industrial">Ingeniería Industrial</option>
-                    <option value="Licenciatura en Terapia Fisica">Licenciatura en Terapia Física</option>
-                    <option value="Licenciatura en Medico Cirujano">Licenciatura en Médico Cirujano</option>
-                    <option value="Ingenieria en Software">Ingeniería en Software</option>
-                  </select>
-                </label>
-                <label>
-                  Cuatrimestre:
-                  <select
-                    name="cuatrimestre"
-                    value={datosPersona.cuatrimestre}
-                    onChange={handlePersonaChange}
-                    required
-                    className="input-field"
-                  >
-                    <option value="">Seleccionar</option>
-                    {cuatrimestres.map((cuatri, index) => (
-                      <option key={index} value={cuatri}>{cuatri}</option>
-                    ))}
-                  </select>
-                </label>
-              </>
-            )}
-
-            {tipoPersona === 'trabajador' && (
-              <label>
-                Área:
-                <input
-                  type="text"
-                  name="area"
-                  value={datosPersona.area}
-                  onChange={handlePersonaChange}
-                  required
-                  className="input-field"
-                />
-              </label>
-            )}
 
             <h2>Datos de los Estudios</h2>
             {datosEstudios.map((estudio, index) => (
@@ -247,7 +172,7 @@ function FormularioEstudios() {
                     value={estudio.tipoEstudio}
                     onChange={(e) => handleEstudioChange(index, e)}  // Ensure event is passed
                     required
-                    className="input-field"
+                    className="input-field-R"
                   >
                     <option value="">Seleccionar</option>
                     {tiposEstudio.map((tipo, tipoIndex) => (
@@ -265,7 +190,7 @@ function FormularioEstudios() {
                     onChange={(e) => handleEstudioChange(index, e)}  // Ensure event is passed
                     min="1"
                     required
-                    className="input-field"
+                    className="input-field-R"
                   />
                 </label>
                 <div>
@@ -285,7 +210,7 @@ function FormularioEstudios() {
                       name="observaciones"
                       value={datosEstudios.observaciones}
                       onChange={(event) => handleEstudioChange(index, event)}
-                      className="input-field"
+                      className="input-field-R"
                     />
                   </label>
                 </div>
@@ -293,7 +218,7 @@ function FormularioEstudios() {
               </div>
             ))}
 
-            <button type="button" onClick={agregarOtroEstudio} className="add-study-button">
+            <button type="button" onClick={agregarOtroEstudio} className="add-study-button-R">
               Agregar otro estudio
             </button>
             <button type="submit">Guardar</button>
@@ -302,9 +227,9 @@ function FormularioEstudios() {
 
         {/* Tabla de registros guardados */}
         {registros.length > 0 && (
-          <div className="table-container">
+          <div className="table-container-R">
             <h2>Registros Guardados</h2>
-            <table className="data-table">
+            <table className="data-table-R">
               <thead>
                 <tr>
                   <th>Folio</th>

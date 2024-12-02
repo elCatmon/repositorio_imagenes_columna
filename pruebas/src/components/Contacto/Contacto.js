@@ -6,11 +6,9 @@ import Header from '../assets/Header';
 const Contacto = () => {
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen">
-
       <div className="next-module">
         <Header />
       </div>
-
       <header className="header-section text-center py-12 mt-8" style={{ backgroundColor: 'transparent !important', paddingTop: '10px' }}>
         <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', backgroundColor: 'transparent !important', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins' }}>
           Contáctanos
@@ -59,32 +57,32 @@ const Contacto = () => {
               <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
             </div>
           </div>
-        <div className="persona-card">
-          <img src="/imagenes/tania.jpg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
-          <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
-          <p className="text-gray-600 mt-2">Asesor Clínico UPP</p>
-          <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> taniaaparicio@upp.edu.mx</p>
-          <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 771 547 7510</p>
-          <div className="mt-4 flex justify-center space-x-3">
-            <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
-            <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
-            <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+          <div className="persona-card">
+            <img src="/imagenes/tania.jpeg" alt="Dra. Tania Inés Aparicio Monroy" className="persona-img" />
+            <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dra. Tania Inés Aparicio Monroy</h2>
+            <p className="text-gray-600 mt-2">Asesor Clínico UPP</p>
+            <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> taniaaparicio@upp.edu.mx</p>
+            <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 771 547 7510</p>
+            <div className="mt-4 flex justify-center space-x-3">
+              <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+              <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+              <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+            </div>
+          </div>
+          <div className="persona-card">
+            <img src="/imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
+            <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Gener José Avilés Rodríguez</h2>
+            <p className="text-gray-600 mt-2">Asesor Clínico UABC</p>
+            <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> aviles.gener@uabc.edu.mx</p>
+            <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 646 152 8231</p>
+            <div className="mt-4 flex justify-center space-x-3">
+              <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
+              <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
+              <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
+            </div>
           </div>
         </div>
-        <div className="persona-card">
-          <img src="/imagenes/gener.jpeg" alt="Dr. Gener José Avilés Rodríguez" className="persona-img" />
-          <h2 className="mt-6 text-2xl font-semibold text-gray-900">Dr. Gener José Avilés Rodríguez</h2>
-          <p className="text-gray-600 mt-2">Asesor Clínico UABC</p>
-          <p className="text-gray-500 mt-2"><i className="fas fa-envelope"></i> aviles.gener@uabc.edu.mx</p>
-          <p className="text-gray-500 mt-1"><i className="fas fa-phone-alt"></i> +52 646 152 8231</p>
-          <div className="mt-4 flex justify-center space-x-3">
-            <a href="#" className="text-blue-600 hover:text-blue-800"><i className="fab fa-linkedin fa-lg"></i></a>
-            <a href="#" className="text-blue-400 hover:text-blue-600"><i className="fab fa-x-twitter fa-lg"></i></a>
-            <a href="#" className="text-gray-600 hover:text-gray-800"><i className="fab fa-github fa-lg"></i></a>
-          </div>
-        </div>
-        </div>
-        <div className="next-module"/>
+        <div className="next-module" />
       </main>
       <Footer />
     </div>

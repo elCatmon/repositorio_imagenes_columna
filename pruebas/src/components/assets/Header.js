@@ -24,9 +24,31 @@ function Header() {
           <button className="menu-toggle" onClick={toggleMenu}>
             <i className="fas fa-bars"></i>
           </button>
-          <img src="/imagenes/logo_bdmdm.png" alt="Logo BDMDM" className="logo1" onContextMenu={(e) => e.preventDefault()}/>
-          <img src="/imagenes/logo_upp.png" alt="Logo BDMDM" className="logo" onContextMenu={(e) => e.preventDefault()}/>
-          <img src="/imagenes/logo_citedi.png" alt="Logo BDMDM" className="logo2" onContextMenu={(e) => e.preventDefault()}/>
+          <a href="https://conahcyt.mx/" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/imagenes/Logo_CONAHCYT.png"
+              alt="Logo CONAHCYT"
+              className="logo1"
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          </a>
+          <a href="https://www.citedi.mx/portal/" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/imagenes/logo_citedi.png"
+              alt="Logo CITEDI"
+              className="logo2"
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          </a>
+          <a href="https://www.upp.edu.mx/" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/imagenes/logo_upp.png"
+              alt="Logo UPP"
+              className="logo"
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          </a>
+
         </div>
 
         {/* Mostrar enlaces solo en pantallas grandes */}
@@ -34,8 +56,8 @@ function Header() {
           <a href="/" className="nav-link">Inicio</a>
           <a href="/conocenos" className="nav-link">Conócenos</a>
           <a href="/contacto" className="nav-link">Contacto</a>
-          <a href="/fisica" className="nav-link">Donación física</a>   
-            <a href="/menu" className="nav-link">Menu</a>
+          <a href="/fisica" className="nav-link">Donación física</a>
+          <a href="/menu" className="nav-link">Menu</a>
           {isAuthenticated ? (
             <a href="/" onClick={handleLogout} className="nav-link">Cerrar Sesión</a>
           ) : (

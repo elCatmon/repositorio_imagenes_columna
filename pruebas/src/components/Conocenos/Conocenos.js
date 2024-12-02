@@ -6,7 +6,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './Conocenos.css';
 import Footer from '../assets/Footer';
 import Header from '../assets/Header';
-import Video from '../assets/video';
 import InfoCard from './InfoCard';
 
 const Conocenos = () => {
@@ -44,33 +43,15 @@ const Conocenos = () => {
 
   return (
     <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" onContextMenu={(e) => e.preventDefault()}>
-      <div className="next-module"><Header /></div>
+      <div className="next-module">
+        <Header />
+      </div>
       <div className="next-module" />
       <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 45 }}>
         Conócenos
       </h1>
       <main>
         <div>
-          <h1 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 30 }}>
-            ¿Quiénes somos?
-          </h1>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', margin: '20px 0' }}>
-            <Video />
-          </div>
-        </div>
-        <div class="contenedorConocenos">
-          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
-            Misión
-          </h2>
-          <p>Nuestra misión es SI</p>
-          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
-            Vision
-          </h2>
-          <p>Nuestra visión es SI</p>
-          <h2 className='center-textC' style={{ color: '#666666', fontWeight: '600', fontFamily: 'Poppins', fontSize: 25 }}>
-            Valores
-          </h2>
-          <p>Nuestros valores son SIs</p>
         </div>
         <h1 className='center-textC' style={{ color: '#666666', fontWeight: '900', fontFamily: 'Poppins', fontSize: 30 }}>Lideres del proyecto</h1>
         <div className="carousel-container">
@@ -133,8 +114,8 @@ const Conocenos = () => {
               title="Ingenieria en Biomedica"
               description="" />
             <InfoCard
-              image="/imagenes/gener.jpeg"
-              name="Aris"
+              image="/imagenes/ariana.jpeg"
+              name="Ariana Calvo Velasco"
               title="Ingenieria en Biomedica"
               description="" />
           </Slider>

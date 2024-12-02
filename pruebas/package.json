@@ -1,6 +1,6 @@
 {
-  "name": "bdmdm",
-  "version": "1.6.1",
+  "name": "bmdm",
+  "version": "1.17.120",
   "private": true,
   "dependencies": {
     "@cornerstonejs/core": "^1.84.4",
@@ -35,9 +35,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired start",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired build",
-    "test": "cross-env NODE_OPTIONS='--max-old-space-size=8192' react-app-rewired test",
+    "start": "cross-env NODE_OPTIONS='--max-old-space-size=10240' react-app-rewired start",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=10240' react-app-rewired build",
+    "test": "cross-env NODE_OPTIONS='--max-old-space-size=10240' react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

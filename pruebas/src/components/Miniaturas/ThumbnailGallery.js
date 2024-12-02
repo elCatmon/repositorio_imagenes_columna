@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BASE_URL } from '../config/config';
-import '../assets/App.css'; 
+import '../assets/App.css';
 
 const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [images, setImages] = useState([]);
@@ -8,7 +8,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  
+
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [region, setRegion] = useState('');
   const [subregion, setSubregion] = useState('');
@@ -22,68 +22,52 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
       { value: '06', label: 'Sacra' },
       { value: '07', label: 'Coxis' }
     ],
-    '08': [
-      { value: '09', label: 'Tele de Torax' }
-    ],
-    '10': [
-      { value: '11', label: 'Hombro' },
-      { value: '12', label: 'Humero' },
-      { value: '13', label: 'Codo' },
-      { value: '14', label: 'Antebrazo' },
-      { value: '15', label: 'Muñeca' },
-      { value: '16', label: 'Mano' }
-    ],
-    '18': [
-      { value: '19', label: 'Femur' },
-      { value: '20', label: 'Rodilla' },
-      { value: '21', label: 'Tibia y Perone' },
-      { value: '22', label: 'Tobillo' },
-      { value: '23', label: 'Pie' }
+    '26': [
+      { value: '18', label: 'Pelvis Adulto' },
+      { value: '19', label: 'Pelvis Infantil' },
     ],
   };
 
   const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
   
-    // Verificar si se ha seleccionado una subregión; si no, usamos el valor de la región
     const selectedRegion = subregion || region;
   
     try {
-      // Crear los parámetros de búsqueda
       const query = new URLSearchParams({
         tipoEstudio: tipoEstudio,
-        // Solo agregar la región si está seleccionada
         ...(selectedRegion && { region: selectedRegion }),
         page: pageNumber,
-        limit: 9 // Límite de imágenes por página
+        limit: 9, // Límite de imágenes por página
       }).toString();
   
       const response = await fetch(`${BASE_URL}/thumbnails?${query}`);
-      
+  
       if (response.ok) {
-        const data = await response.json();
-        
-        // Si es la primera página, reinicia las imágenes, de lo contrario agrega
+        const { images, total } = await response.json();
+  
         if (pageNumber === 1) {
-          setImages(data);
+          setImages(images);
         } else {
-          setImages(prevImages => [...prevImages, ...data]);
+          setImages((prevImages) => [...prevImages, ...images]);
         }
   
-        // Si recibimos menos de 18 imágenes, desactiva la carga de más imágenes
-        if (data.length < 9) {
+        // Desactivar más cargas si hemos alcanzado el total
+        if (pageNumber * 9 >= total) {
           setHasMore(false);
+        } else {
+          setHasMore(true);
         }
-        
+  
         setLoaded(true);
       } else {
-        setError('Error al obtener las imágenes');
+        setError("Error al obtener las imágenes");
       }
     } catch (error) {
-      setError('Error en la solicitud de imágenes: ' + error.message);
+      setError("Error en la solicitud de imágenes: " + error.message);
     }
-  }, [region, subregion, tipoEstudio]);
-  
+  }, [region, subregion, tipoEstudio]);  
+
   useEffect(() => {
     // Resetear estado de imágenes y paginación al cambiar filtros
     setImages([]);
@@ -116,89 +100,90 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
 
   return (
     <div className="thumbnail-gallery-container" style={{ marginLeft: '100px', maxWidth: '1200px', margin: '0 auto' }}>
-    <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins', textAlign: 'center' }}>
-      Estudios médicos
-    </h1>
+      <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ color: '#666666', marginTop: '20px', fontWeight: '900', fontFamily: 'Poppins', textAlign: 'center' }}>
+        Estudios médicos
+      </h1>
 
-    <div className="filters" style={filterStyle}>
-      <label>
-        Tipo de Estudio:
-        <select value={tipoEstudio} onChange={(e) => setTipoEstudio(e.target.value)}>
-          <option value="">Seleccione</option>
-          <option value="01">Radiografía</option>
-          <option value="02">Tomografía Computarizada</option>
-          <option value="03">Resonancia Magnética</option>
-          <option value="04">Ultrasonido</option>
-          <option value="05">Mamografía</option>
-          <option value="06">Angiografía</option>
-          <option value="07">Medicina Nuclear</option>
-          <option value="08">Radio Terapia</option>
-          <option value="09">Fluoroscopia</option>
-        </select>
-      </label>
-      
-      <label>
-        Región:
-        <select value={region} onChange={handleRegionChange}>
-          <option value="">Seleccione</option>
-          <option value="00">Desconocido</option>
-          <option value="01">Craneo</option>
-          <option value="02">Columna Vertebral</option>
-          <option value="08">Torax</option>
-          <option value="10">Extremidad Superior</option>
-          <option value="17">Pelvis</option>
-          <option value="18">Extremidad Inferior</option>
-        </select>
-      </label>
-
-      {region && subregionesOptions[region] && (
+      <div className="filters" style={filterStyle}>
         <label>
-          Subregión:
-          <select value={subregion} onChange={handleSubregionChange}>
+          Tipo de Estudio:
+          <select value={tipoEstudio} onChange={(e) => setTipoEstudio(e.target.value)}>
             <option value="">Seleccione</option>
-            {subregionesOptions[region].map(option2 => (
-              <option key={option2.value} value={option2.value}>
-                {option2.label}
-              </option>
-            ))}
+            <option value="01">Radiografía</option>
+            <option value="02">Tomografía Computarizada</option>
+            <option value="03">Resonancia Magnética</option>
+            <option value="04">Ultrasonido</option>
+            <option value="05">Mamografía</option>
+            <option value="06">Angiografía</option>
+            <option value="07">Medicina Nuclear</option>
+            <option value="08">Medio de contraste</option>
+            <option value="09">Fluoroscopia</option>
           </select>
         </label>
-      )}
-    </div>
 
-    <div className="thumbnail-gallery" style={{ marginTop: '20px' }}>
-      {loaded ? (
-        images.length > 0 ? (
-          <div style={galleryStyle}>
-            {images.map((image, index) => (
-              <div
-                key={index}
-                style={thumbnailContainerStyle}
-                onClick={() => onThumbnailClick(image)}
-                onContextMenu={(e) => e.preventDefault()} 
-              >
-                <img
-                  src={image}
-                  alt={`Thumbnail ${index}`}
-                  style={thumbnailStyle}
-                  onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150'; }} 
-                />
-              </div>
-            ))}
-          </div>
+        <label>
+          Región:
+          <select value={region} onChange={handleRegionChange}>
+            <option value="">Seleccione</option>
+            <option value="00">Desconocido</option>
+            <option value="02">Columna Vertebral</option>
+            <option value="26">Pelvis</option>
+          </select>
+        </label>
+
+        {region && subregionesOptions[region] && (
+          <label>
+            Subregión:
+            <select value={subregion} onChange={handleSubregionChange}>
+              <option value="">Seleccione</option>
+              {subregionesOptions[region].map(option2 => (
+                <option key={option2.value} value={option2.value}>
+                  {option2.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+
+      <div className="thumbnail-gallery" style={{ marginTop: '20px' }}>
+        {loaded ? (
+          images.length > 0 ? (
+            <div style={galleryStyle}>
+              {images.map((image, index) => {
+
+                return (
+                  <div
+                    key={index}
+                    style={thumbnailContainerStyle}
+                    onClick={() => onThumbnailClick(image)}
+                    onContextMenu={(e) => e.preventDefault()}
+                  >
+                    <img
+                      src={image}
+                      alt={`Thumbnail ${index}`}
+                      style={thumbnailStyle}
+                      onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/150'; }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <p>No hay imágenes disponibles.</p>
+          )
         ) : (
-          <p>No hay imágenes disponibles.</p>
-        )
-      ) : (
-        <p>Seleccione el tipo de estudio...</p>
-      )}
-      {hasMore && (
-        <button onClick={handleLoadMore} style={buttonStyle}>Cargar más</button>
-      )}
+          <p>Seleccione el tipo de estudio...</p>
+        )}
+        {hasMore && (
+          <button onClick={handleLoadMore} style={buttonStyle}>Cargar más</button>
+        )}
+      </div>
+
     </div>
-  </div>
   );
 };
+
 // Estilos para la galería de miniaturas
 const galleryStyle = {
   display: 'grid',

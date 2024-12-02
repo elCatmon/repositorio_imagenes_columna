@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Header from '../assets/Header';
-import Footer from '../assets/Footer';
+import Header from "../assets/Header";
+import Footer from "../assets/Footer";
 import { BASE_URL } from '../config/config';
 
 const ChangePassword = () => {
@@ -49,7 +49,7 @@ const ChangePassword = () => {
             if (response.status === 200) {
                 setSuccess('Contraseña cambiada con éxito.');
                 // Aquí podrías redirigir o reiniciar el formulario
-                
+
             } else {
                 setError('Error al cambiar la contraseña. Asegúrate de que la contraseña actual sea correcta.');
             }
@@ -60,10 +60,10 @@ const ChangePassword = () => {
 
     return (
         <div>
-       <div className="next-module">
-        <Header/>
-        <div className="next-module"/>
-        </div>
+            <div className="next-module">
+                <Header />
+            </div>
+            <div className="next-module" />
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
 
@@ -112,8 +112,8 @@ const ChangePassword = () => {
                     <button type="submit">Cambiar Contraseña</button>
                 </form>
             )}
-            <div className="next-module"/>
-            <Footer/>
+            <div className="next-module" />
+            <Footer />
         </div>
     );
 };

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'; // Importar useEffect
 import JSZip from 'jszip';
-import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../config/config';
 import * as dicomParser from 'dicom-parser';
 import Header from '../assets/Header';
 import Footer from '../assets/Footer';
-import './Donaciones.css';
+import "./Donaciones.css";
 
 const Donaciones = () => {
-  const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [error, setError] = useState(null);
@@ -41,7 +39,7 @@ const Donaciones = () => {
   const handleFileChange = async (event) => {
     const files = Array.from(event.target.files);
     const validFiles = [];
-    const maxSize = 50 * 1024 * 1024;
+    const maxSize = 1024 * 1024 * 1024;
 
     for (const file of files) {
       if (file.size > maxSize) {
@@ -136,7 +134,7 @@ const Donaciones = () => {
     selectedFiles.forEach(({ file }) => {
       formData.append('files', file);
     });
-    const donador = ("D" + Math.floor(Math.random() * 1e11).toString().padStart(11, '0'));
+    const donador = localStorage.getItem('curp');
     const estudioid = Math.floor(Math.random() * 10000000000).toString().padStart(10, '0');
     formData.append('estudioID', estudioid)
     formData.append('tipoEstudio', tipoEstudio);
@@ -170,7 +168,7 @@ const Donaciones = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-teal-100 via-blue-100 to-green-100 min-h-screen" style={{ fontFamily: 'Poppins' }}>
+    <div>
       <div className="next-module">
         <Header />
       </div>

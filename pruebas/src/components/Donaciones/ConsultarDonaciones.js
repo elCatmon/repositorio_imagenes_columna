@@ -21,7 +21,6 @@ function Estudios() {
 
   const handleShowModal = (folio, fecha_Recepcion, correoD) => {
     setModalData({ folio, fecha_Recepcion, correoD }); // Establece el folio, id y fechaRecepcion
-    console.log(folio, fecha_Recepcion, correoD)
     setShowModal(true); // Muestra el modal
   };
 
@@ -43,11 +42,6 @@ function Estudios() {
     setLoading(true);
     setError(null);
 
-    if (!isValidCURP(filtros.curp)) {
-      alert('Por favor, ingresa un CURP válido.');
-      return;
-    }
-
     const queryParams = new URLSearchParams();
     if (filtros.folio) queryParams.append("folio", filtros.folio);
     if (filtros.correo) queryParams.append("correo", filtros.correo);
@@ -68,11 +62,6 @@ function Estudios() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const isValidCURP = (curp) => {
-    const curpRegex = /^[A-Z]{4}\d{6}[HM][A-Z]{5}[A-Z0-9]{2}$/;
-    return curpRegex.test(curp);
   };
 
   return (
@@ -130,7 +119,6 @@ function Estudios() {
           <div className="columna-tabla">
 
             <h2>Lista de donaciones</h2>
-
             {loading ? (
               <p>Loading...</p>
             ) : error ? (
