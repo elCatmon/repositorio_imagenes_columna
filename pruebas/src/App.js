@@ -22,6 +22,8 @@ import Dataset from './components/dataset/datasetDownload';
 import ChangePassword from './components/CambiarContrasena/CambioContrasena';
 import FormDonacion from './components/Donaciones/RegistroDonaciones';
 import TablaDonaciones from './components/Donaciones/ConsultarDonaciones';
+import DiagnosticosIA from './components/Diagnosticos/DiagnosticosIAPage';
+
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
             <Route path="/formulariodonacion" element={<FormDonacion />} />
             <Route path="/consultardonaciones" element={<TablaDonaciones />} />
             <Route path="/cambiarcontrasena" element={<ChangePassword />} />
+            <Route path="/diagnosticos-ia" element={<DiagnosticosIA />} />
           </Route>
         </Routes>
       </AuthProvider>

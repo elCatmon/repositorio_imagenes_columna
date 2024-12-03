@@ -1,0 +1,104 @@
+.dxia-container {
+    display: flex;
+    flex-direction: column;
+    /* Mantener en columna para dispositivos móviles */
+    height: 100vh;
+    /* Asegura que ocupe el 100% de la altura de la ventana */
+}
+
+/* Contenedor para el contenido principal */
+.dxia-content {
+    display: flex;
+    /* Usa flexbox para alinear los elementos horizontalmente */
+    flex: 1;
+    /* Permite que ocupe el espacio restante */
+    overflow: hidden;
+    /* Evita el desbordamiento */
+}
+
+/* Contenedor de la galería de miniaturas */
+.dxia-thumbnail-gallery {
+    display: flex;
+    flex: 1;
+    /* Hace que la galería ocupe un tercio del ancho disponible */
+    min-width: 280px;
+    /* Ancho mínimo para mantener la responsividad */
+    max-height: 700px;
+    /* Limita la altura de la galería de miniaturas */
+    overflow-y: auto;
+    /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+}
+
+/* Contenedor del visualizador DICOM */
+.dxia-dicom-viewer-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* Cambiado a 100% para mejorar la responsividad */
+    height: 800px;
+    /* Altura fija para el contenedor */
+    max-height: 850px;
+    /* Limita la altura total del contenedor */
+}
+
+.dxia-dicom-viewer {
+    display: flex;
+    flex: 1;
+    /* Permite que el visualizador ocupe el espacio restante */
+    width: 100%;
+    height: 100%;
+    /* Asegura que el visualizador ocupe toda la altura del contenedor */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contenedor de información del estudio */
+.dxia-study-info {
+    flex: 1;
+    /* Hace que la sección de información ocupe el mismo espacio que la galería */
+    max-height: 400px;
+    /* Limita la altura de la sección de diagnóstico */
+    overflow-y: auto;
+    /* Agrega una barra de desplazamiento vertical si el contenido excede la altura */
+    padding-left: 60px;
+}
+
+
+.dxia-clave-info {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dxia-input-field {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 800px) {
+    .dxia-content {
+        flex-direction: column;
+        /* Cambiar a columna para pantallas más pequeñas */
+    }
+
+    .dxia-thumbnail-gallery,
+    .dxia-dicom-viewer-container,
+    .dxia-study-info {
+        flex: 1 1 100%;
+        /* Cada sección ocupa el 100% del ancho en pantallas pequeñas */
+        min-width: 100%;
+        /* Asegura que ocupe el ancho completo */
+        max-height: none;
+        /* Sin límite de altura en pantallas pequeñas */
+    }
+
+    .dxia-dicom-viewer {
+        height: 100%;
+        /* El visualizador ocupa toda la altura disponible */
+    }
+}
