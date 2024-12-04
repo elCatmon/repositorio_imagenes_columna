@@ -9,6 +9,7 @@ import { BASE_URL } from '../config/config';
 
 function DiagnosticosIAPage() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [DiagnosticoGenerado, setDiagnosticoGenerado] = useState(false);
 
     const handleThumbnailClick = (image) => {
         const fileName = image.split('/').pop().replace('.jpg', '.dcm');
@@ -19,10 +20,10 @@ function DiagnosticosIAPage() {
         hallazgos: '',
         impresion: '',
         observaciones: '',
-      });
+    });
 
     const handleSubmit = async (e) => {
-        console.log("hola")
+        setDiagnosticoGenerado(true);
         try {
             const response = await fetch(
                 `${BASE_URL}/api/diagnosticos/obtener-diagnostico?imagenid=${selectedImage}`,
@@ -37,6 +38,7 @@ function DiagnosticosIAPage() {
 
             const data = await response.json();
 
+
             // Actualizar el estado de forma inmutable
             setFormData((prevFormData) => ({
                 ...prevFormData,
@@ -44,8 +46,6 @@ function DiagnosticosIAPage() {
                 impresion: data.impresion,
                 observaciones: data.observaciones,
             }));
-
-            console.log('Hallazgos:', data.hallazgos);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -65,7 +65,6 @@ function DiagnosticosIAPage() {
                 <h1 className="text-5xl font-extrabold mb-4 animate-reveal" style={{ textAlign: "center", color: '#666666', backgroundColor: 'transparent !important', marginBottom: '50px', fontWeight: '900', fontFamily: 'Poppins' }}>Generar diagnostico con IA</h1>
             </div>
             <div className="dxia-container">
-
                 <div className="dxia-content">
                     <div className="dxia-thumbnail-gallery">
                         <ThumbnailGallery onThumbnailClick={handleThumbnailClick} />
@@ -76,60 +75,62 @@ function DiagnosticosIAPage() {
                         ) : (
                             <p>Selecciona una miniatura para ver la imagen DICOM.</p>
                         )}
-
                     </div>
-                    <div className="dxia-clave-info">
-                        <div className="columna-formulario">
-                            <h2>Informacion de la imagen:</h2>
-                            <label>
-                                Tipo de Estudio:
-                                <input
-                                    name="tipoEstudio"
-                                    readOnly
-                                    className="dxia-input-field"
-                                />
-                            </label>
-                            <label>
-                                Region:
-                                <input
-                                    name="region"
-                                    readOnly
-                                    className="dxia-input-field"
-                                />
-                            </label>
-                            <label>
-                                Proyeccion:
-                                <input
-                                    name="proyeccion"
-                                    readOnly
-                                    className="dxia-input-field"
-                                />
-                            </label>
-                            <label>
-                                Sexo:
-                                <input
-                                    name="sexo"
-                                    readOnly
-                                    className="dxia-input-field"
-                                />
-                            </label>
-                            <label>
-                                Edad:
-                                <input
-                                    name="edad"
-                                    readOnly
-                                    className="dxia-input-field"
-                                />
-                            </label>
-                            <button style={buttonStyle} onClick={handleSubmit}>Generar Diagnostico</button>
-
-
-                        </div>
-                    </div>
-
                 </div>
-                <div className="next-module">
+                <div className="dxia-content">
                     {selectedImage ? (
+                        <div className="dxia-clave-info">
+                            <div className="columna-formulario">
+                                <h2>Informacion de la imagen:</h2>
+                                <label>
+                                    Tipo de Estudio:
+                                    <input
+                                        name="tipoEstudio"
+                                        readOnly
+                                        className="dxia-input-field"
+                                    />
+                                </label>
+                                <label>
+                                    Region:
+                                    <input
+                                        name="region"
+                                        readOnly
+                                        className="dxia-input-field"
+                                    />
+                                </label>
+                                <label>
+                                    Proyeccion:
+                                    <input
+                                        name="proyeccion"
+                                        readOnly
+                                        className="dxia-input-field"
+                                    />
+                                </label>
+                                <label>
+                                    Sexo:
+                                    <input
+                                        name="sexo"
+                                        readOnly
+                                        className="dxia-input-field"
+                                    />
+                                </label>
+                                <label>
+                                    Edad:
+                                    <input
+                                        name="edad"
+                                        readOnly
+                                        className="dxia-input-field"
+                                    />
+                                </label>
+                                <button style={buttonStyle} onClick={handleSubmit}>Generar Diagnostico</button>
+
+
+                            </div>
+                        </div>
+                    ) : (
+                        <p>Selecciona una miniatura para ver la informacion del estudio DICOM.</p>
+                    )}
+                    {DiagnosticoGenerado ? (
                         <div className="gdxia-form-diagnostico" style={{ margin: '20px' }}>
                             <div className="gdxia-diagnostico" style={{ marginBottom: '15px' }}>
                                 <label style={{ fontWeight: 'bold' }} htmlFor="hallazgos">Hallazgos:</label>
@@ -170,7 +171,7 @@ function DiagnosticosIAPage() {
 
                         </div>
                     ) : (
-                        <p>Selecciona una miniatura para ver la imagen DICOM.</p>
+                        <p>Genera el diagnostico para ver el resultado.</p>
                     )}
                 </div>
             </div >

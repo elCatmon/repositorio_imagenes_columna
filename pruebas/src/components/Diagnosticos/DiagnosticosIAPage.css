@@ -1,3 +1,4 @@
+/* Contenedor principal */
 .dxia-container {
     display: flex;
     flex-direction: column;
@@ -9,6 +10,15 @@
 /* Contenedor para el contenido principal */
 .dxia-content {
     display: flex;
+    /* Usa flexbox para alinear los elementos horizontalmente */
+    flex: 1;
+    /* Permite que ocupe el espacio restante */
+    overflow-y: auto;
+    /* Evita el desbordamiento */
+}
+
+.dxia-content2 {
+    display: inline-flex;
     /* Usa flexbox para alinear los elementos horizontalmente */
     flex: 1;
     /* Permite que ocupe el espacio restante */
@@ -34,7 +44,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* Cambiado a 100% para mejorar la responsividad */
+    /* 100% para mejorar la responsividad */
     height: 800px;
     /* Altura fija para el contenedor */
     max-height: 850px;
@@ -49,7 +59,6 @@
     height: 100%;
     /* Asegura que el visualizador ocupe toda la altura del contenedor */
     position: relative;
-    overflow: hidden;
 }
 
 /* Contenedor de información del estudio */
@@ -63,7 +72,7 @@
     padding-left: 60px;
 }
 
-
+/* Elementos visuales */
 .dxia-clave-info {
     margin: 20px;
     padding: 20px;
@@ -71,6 +80,7 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 570px;
 }
 
 .dxia-input-field {
@@ -84,12 +94,14 @@
 }
 
 .gdxia-form-diagnostico {
-    margin: 20px;
+    margin-left: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    height: 600px;
 }
 
 .gdxia-input-field {
@@ -100,27 +112,52 @@
     box-sizing: border-box;
 }
 
+/* Media Queries para responsividad */
+@media (max-width: 1024px) {
+    .dxia-content {
+        flex-direction: column; /* Columna para pantallas medianas */
+        gap: 10px;
+    }
 
-/* Media queries para responsividad */
-@media (max-width: 800px) {
+    .dxia-thumbnail-gallery {
+        max-width: 100%; /* Ancho completo */
+        height: auto; /* Altura automática */
+        min-height: 700px; /* Altura máxima */
+    }
+
+    .dxia-dicom-viewer-container {
+        min-width: 700px; /* Altura fija para pantallas medianas */
+        height: auto;
+        width: 100%;
+    }
+
+    .dxia-clave-info {
+        height: auto; /* Altura automática */
+    }
+
+    .gdxia-form-diagnostico {
+        width: 100%; /* Ancho completo */
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
     .dxia-content {
         flex-direction: column;
-        /* Cambiar a columna para pantallas más pequeñas */
     }
 
     .dxia-thumbnail-gallery,
     .dxia-dicom-viewer-container,
-    .dxia-study-info {
-        flex: 1 1 100%;
-        /* Cada sección ocupa el 100% del ancho en pantallas pequeñas */
-        min-width: 100%;
-        /* Asegura que ocupe el ancho completo */
-        max-height: none;
-        /* Sin límite de altura en pantallas pequeñas */
+    .dxia-clave-info {
+        max-width: 100%;
     }
 
-    .dxia-dicom-viewer {
-        height: 100%;
-        /* El visualizador ocupa toda la altura disponible */
+    .dxia-thumbnail-gallery {
+        height: auto;
+        max-height: 200px;
+    }
+
+    .dxia-dicom-viewer-container {
+        height: auto;
     }
 }
