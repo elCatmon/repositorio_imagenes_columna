@@ -12,6 +12,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
   const [tipoEstudio, setTipoEstudio] = useState('');
   const [region, setRegion] = useState('');
   const [subregion, setSubregion] = useState('');
+  const [proyeccion, setProyeccion] = useState('');
 
   // Define subregiones según la región seleccionada
   const subregionesOptions = {
@@ -30,35 +31,36 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
 
   const fetchImages = useCallback(async (pageNumber) => {
     if (!tipoEstudio) return;
-  
+
     const selectedRegion = subregion || region;
-  
+
     try {
       const query = new URLSearchParams({
         tipoEstudio: tipoEstudio,
+        proyeccion: proyeccion,
         ...(selectedRegion && { region: selectedRegion }),
         page: pageNumber,
         limit: 9, // Límite de imágenes por página
       }).toString();
-  
+
       const response = await fetch(`${BASE_URL}/thumbnails?${query}`);
-  
+
       if (response.ok) {
         const { images, total } = await response.json();
-  
+
         if (pageNumber === 1) {
           setImages(images);
         } else {
           setImages((prevImages) => [...prevImages, ...images]);
         }
-  
+
         // Desactivar más cargas si hemos alcanzado el total
         if (pageNumber * 9 >= total) {
           setHasMore(false);
         } else {
           setHasMore(true);
         }
-  
+
         setLoaded(true);
       } else {
         setError("Error al obtener las imágenes");
@@ -66,7 +68,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     } catch (error) {
       setError("Error en la solicitud de imágenes: " + error.message);
     }
-  }, [region, subregion, tipoEstudio]);  
+  }, [region, subregion, tipoEstudio, proyeccion]);
 
   useEffect(() => {
     // Resetear estado de imágenes y paginación al cambiar filtros
@@ -75,7 +77,7 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
     setHasMore(true);
     setLoaded(false);
     fetchImages(1);
-  }, [fetchImages, tipoEstudio, region, subregion]);
+  }, [fetchImages, tipoEstudio, region, subregion, proyeccion]);
 
   const handleLoadMore = () => {
     if (hasMore) {
@@ -143,6 +145,23 @@ const ThumbnailGallery = ({ onThumbnailClick }) => {
               ))}
             </select>
           </label>
+        )}
+        {tipoEstudio && region &&(
+          <label>
+            Proyeccion:
+            <select value={proyeccion} onChange={(e) => setProyeccion(e.target.value)}>
+              <option value="">Seleccione</option>
+              <option value="00">Desconocido</option>
+              <option value="01">Postero Anterior</option>
+              <option value="02">Antero Posterior</option>
+              <option value="03">Oblicua</option>
+              <option value="04">Lateral Izquierda</option>
+              <option value="05">Lateral Derecha</option>
+              <option value="06">Especial</option>
+              <option value="07">Comparativa</option>
+            </select>
+          </label>
+
         )}
       </div>
 
